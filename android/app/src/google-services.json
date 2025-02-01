@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "49085509221",
+    "project_id": "daikoon-prod",
+    "storage_bucket": "daikoon-prod.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49085509221:android:904092f005960ae601e08c",
+        "android_client_info": {
+          "package_name": "dev.llanas.daikoon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49085509221-h8cemuubtrscjtdul5m80fmj1ri11q5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDHMZsf781MyZlpm4Tcb-WlAVNeE-AOVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49085509221-h8cemuubtrscjtdul5m80fmj1ri11q5u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.llanas.daikoon"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
