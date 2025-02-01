@@ -20,10 +20,10 @@ abstract class EnvDev {
   static String powersyncUrl = _EnvDev.powersyncUrl;
 
   /// iOS client id key secret.
-  @EnviedField(varName: 'GOOGLE_IOS_CLIENT_ID', obfuscate: true)
+  @EnviedField(varName: 'IOS_CLIENT_ID', obfuscate: true)
   static String iOSClientId = _EnvDev.iOSClientId;
 
   /// Web client id key secret.
-  @EnviedField(varName: 'GOOGLE_WEB_CLIENT_ID', obfuscate: true)
+  @EnviedField(varName: 'WEB_CLIENT_ID', obfuscate: true)
   static String webClientId = _EnvDev.webClientId;
 }
