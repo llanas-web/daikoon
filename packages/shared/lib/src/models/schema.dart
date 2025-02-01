@@ -1,5 +1,6 @@
 import 'package:powersync/powersync.dart';
 
+/// The schema of the database.
 const schema = Schema([
   Table('bets', [
     Column.text('created_at'),

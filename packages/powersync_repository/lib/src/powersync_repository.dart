@@ -29,6 +29,7 @@ class SupabaseConnector extends PowerSyncBackendConnector {
   /// PowerSync main database.
   final PowerSyncDatabase db;
 
+  /// Define if the app is running in development mode.
   final bool isDev;
 
   // /// Environment values.
@@ -153,6 +154,8 @@ class PowerSyncRepository {
 
   // /// Environment values.
   // final EnvValue env;
+
+  /// Define if the app is running in development mode.
   final bool isDev;
 
   bool _isInitialized = false;
@@ -188,7 +191,7 @@ class PowerSyncRepository {
   /// Returns the relative directory of the local database.
   Future<String> getDatabasePath() async {
     final dir = await getApplicationSupportDirectory();
-    return join(dir.path, 'flutter-instagram-offline-first.db');
+    return join(dir.path, 'daikoon.db');
   }
 
   /// Loads the Supabase client with the provided environment values.
