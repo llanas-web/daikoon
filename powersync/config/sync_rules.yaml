@@ -1,35 +1,26 @@
-# yaml-language-server: $schema=../../../schema/schema.json
+# yaml-language-server: $schema=https://unpkg.com/@powersync/service-sync-rules@latest/schema/sync_rules.json
+#
+# See Documentation for more information:
+# https://docs.powersync.com/usage/sync-rules
+#
+# Note that changes to this file are not watched.
+# The service needs to be restarted for changes to take effect.
 
-# See https://docs.powersync.com/self-hosting/telemetry
-telemetry:
-  # Opt out of reporting anonymized usage metrics to PowerSync telemetry service
-  disable_telemetry_sharing: false
+bucket_definitions:
+  global_challenges:
+    data:
+      - select * from bets
+      - select * from challenges
+      - select * from choices
+      - select * from participants
 
-# Settings for source database replication
-replication:
-  connections:
-    - type: postgresql
-      uri: !env PS_DATA_SOURCE_URI
+  global_users:
+    data:
+      - select * from users
+      - select * from friendships
+      - select * from notifications
 
-      # SSL settings
-      sslmode: disable # 'verify-full' (default) or 'verify-ca' or 'disable'
-
-# Connection settings for sync bucket storage
-storage:
-  type: mongodb
-  uri: !env PS_MONGO_URI
-
-# The port which the PowerSync API server will listen on
-port: !env PS_PORT
-
-# Specify sync rules
-sync_rules:
-  path: sync_rules.yaml
-
-# Client (application end user) authentication settings
-client_auth:
-  supabase: true
-  supabase_jwt_secret: !env PS_SUPABASE_JWT_SECRET
-
-  # JWKS audience
-  audience: ["powersync-dev", "powersync"]
+  global_wallets:
+    data:
+      - select * from wallets
+      - select * from transactions
