@@ -1,4 +1,3 @@
-import 'package:daikoon/counter/counter.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +7,7 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -16,7 +16,11 @@ class AppView extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const SafeArea(
+        child: Scaffold(
+          body: Text('Hello World'),
+        ),
+      ),
     );
   }
 }
