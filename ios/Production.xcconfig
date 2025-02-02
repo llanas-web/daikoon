@@ -1,4 +1,4 @@
 #include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
-#include "Generated.xcconfig"
+#include "Flutter/Generated.xcconfig"
 
-GOOGLESERVICE_INFO_PLIST = ${PROJECT_DIR}/Firebase/Production/GoogleService-Info.plist
+GOOGLESERVICE_INFO_PLIST = ${PROJECT_DIR}/Runner/Firebase/Production/GoogleService-Info.plist
