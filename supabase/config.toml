@@ -138,7 +138,7 @@ url = ""
 # `twitter`, `slack`, `spotify`, `workos`, `zoom`.
 [auth.external.google]
 enabled = true
-client_id = "env(GOOGLE_WEB_CLIENT_ID)"
+client_id = "env(WEB_CLIENT_ID)"
 # DO NOT commit your OAuth provider secret to git. Use environment variable substitution instead:
 secret = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET)"
 # Overrides the default auth redirectUrl.
