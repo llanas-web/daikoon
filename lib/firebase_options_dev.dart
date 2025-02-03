@@ -60,7 +60,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '516409268825',
     projectId: 'daikoon-dev',
     storageBucket: 'daikoon-dev.firebasestorage.app',
-    iosClientId: '516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut.apps.googleusercontent.com',
+    iosClientId:
+        '516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut.apps.googleusercontent.com',
     iosBundleId: 'dev.llanas.daikoon.dev',
   );
 
@@ -70,8 +71,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '516409268825',
     projectId: 'daikoon-dev',
     storageBucket: 'daikoon-dev.firebasestorage.app',
-    iosClientId: '516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut.apps.googleusercontent.com',
+    iosClientId:
+        '516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut.apps.googleusercontent.com',
     iosBundleId: 'dev.llanas.daikoon.dev',
   );
-
 }

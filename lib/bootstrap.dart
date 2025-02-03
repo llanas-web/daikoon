@@ -27,8 +27,11 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(AppBuilder builder,
-    {required FirebaseOptions options, required bool isDev}) async {
+Future<void> bootstrap(
+  AppBuilder builder, {
+  required FirebaseOptions options,
+  required bool isDev,
+}) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
