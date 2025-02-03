@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   bloc: ^9.0.0
+  env:
+    path: packages/env
   firebase_core: ^3.10.1
   flutter:
     sdk: flutter
