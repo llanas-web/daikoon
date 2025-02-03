@@ -1,4 +1,5 @@
 import 'package:env/env.dart';
+import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:powersync/powersync.dart';
@@ -24,16 +25,13 @@ final List<RegExp> fatalResponseCodes = [
 /// Use Supabase for authentication and data upload.
 class SupabaseConnector extends PowerSyncBackendConnector {
   /// {@macro supabase_connector}
-  SupabaseConnector(this.db, {required this.isDev});
+  SupabaseConnector(this.db, {required this.env});
 
   /// PowerSync main database.
   final PowerSyncDatabase db;
 
-  /// Define if the app is running in development mode.
-  final bool isDev;
-
-  // /// Environment values.
-  // final EnvValue env;
+  /// Environment values.
+  final EnvValue env;
 
   Future<void>? _refreshFuture;
 
@@ -60,7 +58,7 @@ class SupabaseConnector extends PowerSyncBackendConnector {
         ? null
         : DateTime.fromMillisecondsSinceEpoch(session.expiresAt! * 1000);
     return PowerSyncCredentials(
-      endpoint: isDev ? EnvDev.powersyncUrl : EnvProd.powersyncUrl,
+      endpoint: env(Env.powerSyncUrl),
       token: token,
       userId: userId,
       expiresAt: expiresAt,
@@ -150,13 +148,13 @@ class SupabaseConnector extends PowerSyncBackendConnector {
 /// {@endtemplate}
 class PowerSyncRepository {
   /// Initializes a new instance of the [PowerSyncRepository] class.
-  PowerSyncRepository({this.isDev = false});
+  PowerSyncRepository({required this.env});
 
-  // /// Environment values.
-  // final EnvValue env;
+  /// Environment values.
+  final EnvValue env;
 
-  /// Define if the app is running in development mode.
-  final bool isDev;
+  // /// Define if the app is running in development mode.
+  // final bool isDev;
 
   bool _isInitialized = false;
 
@@ -197,8 +195,8 @@ class PowerSyncRepository {
   /// Loads the Supabase client with the provided environment values.
   Future<void> _loadSupabase() async {
     await Supabase.initialize(
-      url: isDev ? EnvDev.supabaseUrl : EnvProd.supabaseUrl,
-      anonKey: isDev ? EnvDev.supabaseAnonKey : EnvProd.supabaseAnonKey,
+      url: env(Env.supabaseUrl),
+      anonKey: env(Env.supabaseAnonKey),
       authOptions: const FlutterAuthClientOptions(
         authFlowType: AuthFlowType.implicit,
       ),
@@ -219,7 +217,7 @@ class PowerSyncRepository {
     SupabaseConnector? currentConnector;
 
     if (isLoggedIn()) {
-      currentConnector = SupabaseConnector(_db, isDev: isDev);
+      currentConnector = SupabaseConnector(_db, env: env);
       await _db.connect(connector: currentConnector);
     }
 
@@ -228,7 +226,7 @@ class PowerSyncRepository {
       if (event == AuthChangeEvent.signedIn ||
           event == AuthChangeEvent.passwordRecovery) {
         shared.logD('Connect to PowerSync');
-        currentConnector = SupabaseConnector(_db, isDev: isDev);
+        currentConnector = SupabaseConnector(_db, env: env);
         await _db.connect(connector: currentConnector!);
       } else if (event == AuthChangeEvent.signedOut) {
         currentConnector = null;

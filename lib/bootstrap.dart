@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:daikoon/app/app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:powersync_repository/powersync_repository.dart';
@@ -30,7 +31,7 @@ class AppBlocObserver extends BlocObserver {
 Future<void> bootstrap(
   AppBuilder builder, {
   required FirebaseOptions options,
-  required bool isDev,
+  required AppFlavor appFlavor,
 }) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
@@ -41,11 +42,13 @@ Future<void> bootstrap(
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
 
+    setupDi(appFlavor: appFlavor);
+
     await Firebase.initializeApp(
       options: options,
     );
 
-    final powerSyncRepository = PowerSyncRepository(isDev: isDev);
+    final powerSyncRepository = PowerSyncRepository(env: appFlavor.getEnv);
     await powerSyncRepository.initialize();
 
     runApp(await builder(powerSyncRepository));
