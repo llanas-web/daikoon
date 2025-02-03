@@ -1,8 +1,6 @@
-import 'package:daikoon/app/app.dart';
 import 'package:daikoon/l10n/l10n.dart';
-import 'package:env/env.dart';
+import 'package:daikoon/login/login.dart';
 import 'package:flutter/material.dart';
-import 'package:shared/shared.dart';
 
 class AppView extends StatelessWidget {
   const AppView({super.key});
@@ -19,9 +17,7 @@ class AppView extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: SafeArea(
-        child: Scaffold(body: Text(getIt<AppFlavor>().getEnv(Env.iOSClientId))),
-      ),
+      home: const LoginPage(),
     );
   }
 }
