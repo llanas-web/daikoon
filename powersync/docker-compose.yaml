@@ -20,6 +20,7 @@ services:
       - supabase_network_daikoon
     environment:
       PS_SUPABASE_JWT_SECRET: ${PS_SUPABASE_JWT_SECRET}
+      PS_PG_URI: postgres://${PG_DATABASE_USER}:${PG_DATABASE_PASSWORD}@${PG_DATABASE_HOSTNAME}:${PG_DATABASE_PORT}/${PG_DATABASE_NAME}
 
 #Supabase exposes their services on this network
 networks:
