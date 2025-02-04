@@ -1,26 +1,20 @@
-# yaml-language-server: $schema=https://unpkg.com/@powersync/service-sync-rules@latest/schema/sync_rules.json
-#
-# See Documentation for more information:
-# https://docs.powersync.com/usage/sync-rules
-#
-# Note that changes to this file are not watched.
-# The service needs to be restarted for changes to take effect.
-
+# Define sync rules to control which data is synced to each user
+# See the docs: https://docs.powersync.com/usage/sync-rules
 bucket_definitions:
   global_challenges:
     data:
       - select * from bets
       - select * from challenges
       - select * from choices
-      - select * from participants
+      - select *, user_id || '.' || challenge_id as id from participants
 
   global_users:
     data:
       - select * from users
-      - select * from friendships
+      - select *, sender_id || '.' || receiver_id as id from friendships
       - select * from notifications
 
   global_wallets:
     data:
-      - select * from wallets
+      - select *, user_id as id from wallets
       - select * from transactions
