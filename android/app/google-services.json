@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "49085509221-aoj6j66n9slf6ghslmlh6s307l2cgcr1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.llanas.daikoon",
+            "certificate_hash": "0ed816830b1677b9700db784f34932e4b62e354f"
+          }
+        },
+        {
           "client_id": "49085509221-h8cemuubtrscjtdul5m80fmj1ri11q5u.apps.googleusercontent.com",
           "client_type": 3
         }
