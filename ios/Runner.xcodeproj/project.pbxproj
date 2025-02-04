@@ -227,6 +227,7 @@
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				553DD144B1F9D878552666C5 /* [CP] Embed Pods Frameworks */,
+				9B91C2477E02EDC862F6C016 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -367,6 +368,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
+		};
+		9B91C2477E02EDC862F6C016 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		C01D3B953E4D8F6849AA42E0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -518,13 +536,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
-				GOOGLE_INFO_URL=com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Daikoon;
+				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -615,13 +633,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C829724A2D4F982300411309 /* Production.xcconfig */;
 			buildSettings = {
-				GOOGLE_INFO_URL=com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Daikoon;
+				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -707,13 +725,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C829724A2D4F982300411309 /* Production.xcconfig */;
 			buildSettings = {
-				GOOGLE_INFO_URL=com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Daikoon;
+				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -804,13 +822,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C82972492D4F980500411309 /* Development.xcconfig */;
 			buildSettings = {
-				GOOGLE_INFO_URL=com.googleusercontent.apps.516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Daikoon";
+				GOOGLE_INFO_URL = "com.googleusercontent.apps.516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -899,13 +917,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C82972492D4F980500411309 /* Development.xcconfig */;
 			buildSettings = {
-				GOOGLE_INFO_URL=com.googleusercontent.apps.516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Daikoon";
+				GOOGLE_INFO_URL = "com.googleusercontent.apps.516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -993,13 +1011,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C82972492D4F980500411309 /* Development.xcconfig */;
 			buildSettings = {
-				GOOGLE_INFO_URL=com.googleusercontent.apps.516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Daikoon";
+				GOOGLE_INFO_URL = "com.googleusercontent.apps.516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1090,13 +1108,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C829724A2D4F982300411309 /* Production.xcconfig */;
 			buildSettings = {
-				GOOGLE_INFO_URL=com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Daikoon";
+				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1212,11 +1230,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1D382C70483A65AF158D026 /* Pods-RunnerTests.release-staging.xcconfig */;
 			buildSettings = {
-				GOOGLE_INFO_URL=com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.llanas.daikoon.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1279,13 +1297,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C829724A2D4F982300411309 /* Production.xcconfig */;
 			buildSettings = {
-				GOOGLE_INFO_URL=com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-stg";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Daikoon";
+				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
