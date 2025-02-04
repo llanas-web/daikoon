@@ -22,6 +22,7 @@ jobs:
       flutter_channel: stable
       coverage_excludes: "test/**/* lib/l10n/**/* *.g.dart"
       min_coverage: 0
+      test_optimization: false
 
   spell-check:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1

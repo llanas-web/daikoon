@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
 import 'package:env/env.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +101,7 @@ class LogoutButton extends StatelessWidget {
           }
           return ElevatedButton.icon(
             onPressed: _logout,
-            icon: const Icon(Icons.logout),
+            icon: Assets.icons.google.svg(),
             label: Text(
               'Logout',
               style: Theme.of(context)
