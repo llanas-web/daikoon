@@ -1,0 +1,56 @@
+name: app_ui
+description: A Very Good Project created by Very Good CLI.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+  flutter: ^3.24.0
+
+dependencies:
+  flex_color_scheme: ^8.0.2
+  flutter:
+    sdk: flutter
+  shared:
+    path: ../shared
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.4
+  very_good_analysis: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/animations/
+    - assets/icons/
+    - assets/images/
+  fonts:
+    - family: Gotham
+      fonts:
+        - asset: assets/fonts/gotham/Gotham-Ultra.otf
+          weight: 800
+        - asset: assets/fonts/gotham/Gotham-Black.otf
+          weight: 700
+        - asset: assets/fonts/gotham/Gotham-Bold.otf
+          weight: 600
+        - asset: assets/fonts/gotham/Gotham-Medium.otf
+          weight: 500
+        - asset: assets/fonts/gotham/Gotham-Book.otf
+          weight: 400
+        - asset: assets/fonts/gotham/Gotham-Light.otf
+          weight: 300
+        - asset: assets/fonts/gotham/Gotham-XLight.otf
+          weight: 200
+
+flutter_gen:
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: true
+  output: lib/src/generated/
+  line_length: 80
+
+  integrations:
+    flutter_svg: true
