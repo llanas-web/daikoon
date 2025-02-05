@@ -146,6 +146,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d\'\'utilisation de Daïkoon.'**
   String get conditionsLabel;
+
+  /// Text shown before the social media buttons
+  ///
+  /// In fr, this message translates to:
+  /// **'Connexion avec {provider}'**
+  String signInWithText(String provider);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

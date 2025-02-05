@@ -35,5 +35,15 @@
   "conditionsLabel": "En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d''utilisation de Daïkoon.",
   "@conditionsLabel": {
     "description": "Label text for the conditions"
+  },
+  "signInWithText": "Connexion avec {provider}",
+  "@signInWithText": {
+    "description": "Text shown before the social media buttons",
+    "placeholders": {
+      "provider": {
+        "type": "String",
+        "example": "Google"
+      }
+    }
   }
 }

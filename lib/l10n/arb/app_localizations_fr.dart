@@ -32,4 +32,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get conditionsLabel => 'En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d\'utilisation de Daïkoon.';
+
+  @override
+  String signInWithText(String provider) {
+    return 'Connexion avec $provider';
+  }
 }

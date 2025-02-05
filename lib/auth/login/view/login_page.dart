@@ -1,6 +1,4 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/auth/login/widgets/conditions_infos.dart';
-import 'package:daikoon/auth/login/widgets/login_form.dart';
 import 'package:daikoon/auth/login/widgets/widgets.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +61,14 @@ class LoginPage extends StatelessWidget {
                   const Align(
                     child: SignInButton(),
                   ),
-                ].spacerBetween(height: AppSpacing.xxlg),
+                  const AppDivider(),
+                  Align(
+                    child: AuthProviderSignInButton(
+                      provider: AuthProvider.google,
+                      onPressed: () => logD('Google'),
+                    ),
+                  ),
+                ].spacerBetween(height: AppSpacing.xlg),
               ),
             ),
             const ConditionsInfos(),
