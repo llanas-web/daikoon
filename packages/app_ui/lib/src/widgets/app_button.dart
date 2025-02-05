@@ -36,12 +36,14 @@ class AppButton extends StatelessWidget {
     bool outlined = false,
     Key? key,
     ButtonStyle? style,
+    TextStyle? textStyle,
   }) : this(
           style: style,
           outlined: outlined,
           text: text,
           onPressed: onPressed,
           key: key,
+          textStyle: textStyle,
         );
 
   /// {@macro app_button}
@@ -61,16 +63,19 @@ class AppButton extends StatelessWidget {
         );
 
   /// {@macro app_button}
-  const AppButton.inProgress({
+  AppButton.inProgress({
     double scale = 0.6,
     Key? key,
     ButtonStyle? style,
+    Color? color,
   }) : this(
           text: '',
           style: style,
           iconScale: scale,
           loading: true,
-          icon: const CircularProgressIndicator(),
+          icon: CircularProgressIndicator(
+            color: color,
+          ),
           key: key,
         );
 

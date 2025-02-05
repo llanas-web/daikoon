@@ -26,6 +26,7 @@ class AppTheme {
           primary: primary,
           swapOnMaterial3: true,
         ),
+        // ignore: avoid_redundant_argument_values
         useMaterial3: true,
         useMaterial3ErrorColors: true,
       ).copyWith(
@@ -141,6 +142,7 @@ class AppDarkTheme extends AppTheme {
           appBarColor: AppColors.transparent,
           swapOnMaterial3: true,
         ),
+        // ignore: avoid_redundant_argument_values
         useMaterial3: true,
         useMaterial3ErrorColors: true,
       ).copyWith(

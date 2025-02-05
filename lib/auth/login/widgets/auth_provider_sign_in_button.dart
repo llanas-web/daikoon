@@ -1,6 +1,8 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/auth/login/login.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
 class AuthProviderSignInButton extends StatelessWidget {
@@ -16,6 +18,12 @@ class AuthProviderSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isInProgress = context.select(
+      (LoginCubit cubit) => switch (provider) {
+        AuthProvider.google => cubit.state.status.isGoogleAuthInProgress,
+      },
+    );
+
     final effectiveIcon = switch (provider) {
       AuthProvider.google => Assets.icons.google.svg(),
     };
@@ -23,13 +31,14 @@ class AuthProviderSignInButton extends StatelessWidget {
       dimension: 24,
       child: effectiveIcon,
     );
+
     return Tappable.faded(
       throttle: true,
       throttleDuration: 650.ms,
       backgroundColor: context.theme.focusColor,
       borderRadius: BorderRadius.circular(4),
-      onTap: false ? null : onPressed,
-      child: false
+      onTap: isInProgress ? null : onPressed,
+      child: isInProgress
           ? Center(child: AppCircularProgress(context.adaptiveColor))
           : Padding(
               padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),

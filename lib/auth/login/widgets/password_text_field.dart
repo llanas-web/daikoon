@@ -1,6 +1,9 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/auth/login/cubit/login_cubit.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared/shared.dart';
 
 class PasswordTextField extends StatefulWidget {
   const PasswordTextField({
@@ -12,35 +15,46 @@ class PasswordTextField extends StatefulWidget {
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
+  late Debouncer _debouncer;
   late TextEditingController _controller;
   late FocusNode _focusNode;
-  bool showPassword = true;
 
   @override
   void initState() {
     super.initState();
+    _debouncer = Debouncer();
     _controller = TextEditingController();
-    _focusNode = FocusNode();
+    _focusNode = FocusNode()..addListener(_focusNodeListener);
   }
 
   @override
   void dispose() {
+    _debouncer.dispose();
     _controller.dispose();
-    _focusNode.dispose();
+    _focusNode
+      ..removeListener(_focusNodeListener)
+      ..dispose();
     super.dispose();
   }
 
-  void toggleShowPassword() {
-    setState(() {
-      showPassword = !showPassword;
-    });
+  void _focusNodeListener() {
+    if (!_focusNode.hasFocus) {
+      context.read<LoginCubit>().onPasswordUnfocused();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final passwordError =
+        context.select((LoginCubit cubit) => cubit.state.password.errorMessage);
+
+    final showPassword =
+        context.select((LoginCubit cubit) => cubit.state.showPassword);
+
     return AppTextField(
       key: const ValueKey('loginPasswordTextField'),
       textController: _controller,
+      errorText: passwordError,
       focusNode: _focusNode,
       floatingLabelBehaviour: FloatingLabelBehavior.always,
       cursorColor: context.reversedAdaptiveColor,
@@ -61,7 +75,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       textInputAction: TextInputAction.done,
       suffixIcon: Tappable.faded(
         backgroundColor: AppColors.transparent,
-        onTap: toggleShowPassword,
+        onTap: context.read<LoginCubit>().changePasswordVisibility,
         child: Icon(
           !showPassword ? Icons.visibility : Icons.visibility_off,
           color: context.reversedAdaptiveColor,
