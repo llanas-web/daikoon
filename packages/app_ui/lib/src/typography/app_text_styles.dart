@@ -22,6 +22,14 @@ abstract class UITextStyle {
     textBaseline: TextBaseline.alphabetic,
   );
 
+  /// Screen Label Text Style
+  static final TextStyle screenLabel = _baseTextStyle.copyWith(
+    fontSize: 16,
+    height: 1.33,
+    fontWeight: AppFontWeight.black,
+    letterSpacing: 18,
+  );
+
   /// Display 2 Text Style
   static final TextStyle display2 = _baseTextStyle.copyWith(
     fontSize: 57,
@@ -119,7 +127,7 @@ abstract class UITextStyle {
     fontSize: 18,
     height: 1.42,
     fontWeight: AppFontWeight.medium,
-    // letterSpacing: 0.1,
+    letterSpacing: 0.4,
   );
 
   /// Overline Text Style

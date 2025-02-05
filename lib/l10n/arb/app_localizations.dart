@@ -98,6 +98,54 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Counter'**
   String get counterAppBarTitle;
+
+  /// Label text for the required field
+  ///
+  /// In fr, this message translates to:
+  /// **'champs obligatoires'**
+  String get requiredFieldLabel;
+
+  /// Hint text for the email text field
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisissez votre adresse e-mail'**
+  String get emailTextFieldHint;
+
+  /// Label text for the email text field
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse e-mail'**
+  String get emailTextFieldLabel;
+
+  /// Hint text for the password text field
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisissez votre mot de passe'**
+  String get passwordTextFieldHint;
+
+  /// Label text for the password text field
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe'**
+  String get passwordTextFieldLabel;
+
+  /// Label text for the forgot password button
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe oublié ?'**
+  String get forgotPasswordButtonLabel;
+
+  /// Label text for the connexion button
+  ///
+  /// In fr, this message translates to:
+  /// **'Connexion'**
+  String get connexionButtonLabel;
+
+  /// Label text for the conditions
+  ///
+  /// In fr, this message translates to:
+  /// **'En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d\'\'utilisation de Daïkoon.'**
+  String get conditionsLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

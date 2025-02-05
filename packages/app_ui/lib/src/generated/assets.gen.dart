@@ -87,6 +87,9 @@ class $AssetsImagesGen {
   AssetGenImage get bluryBackground =>
       const AssetGenImage('assets/images/blury_background.png');
 
+  /// File path: assets/images/daikoon.svg
+  SvgGenImage get daikoon => const SvgGenImage('assets/images/daikoon.svg');
+
   /// File path: assets/images/daikoon_blury.png
   AssetGenImage get daikoonBlury =>
       const AssetGenImage('assets/images/daikoon_blury.png');
@@ -107,10 +110,11 @@ class $AssetsImagesGen {
   AssetGenImage get qrCode => const AssetGenImage('assets/images/qr-code.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
+  List<dynamic> get values => [
         authBackground,
         authBluryBackground,
         bluryBackground,
+        daikoon,
         daikoonBlury,
         heroImage,
         isometricLogo,

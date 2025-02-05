@@ -3,5 +3,37 @@
   "counterAppBarTitle": "Counter",
   "@counterAppBarTitle": {
     "description": "Text shown in the AppBar of the Counter Page"
+  },
+  "requiredFieldLabel": "champs obligatoires",
+  "@requiredFieldLabel": {
+    "description": "Label text for the required field"
+  },
+  "emailTextFieldHint": "Saisissez votre adresse e-mail",
+  "@emailTextFieldHint": {
+    "description": "Hint text for the email text field"
+  },
+  "emailTextFieldLabel": "Adresse e-mail",
+  "@emailTextFieldLabel": {
+    "description": "Label text for the email text field"
+  },
+  "passwordTextFieldHint": "Saisissez votre mot de passe",
+  "@passwordTextFieldHint": {
+    "description": "Hint text for the password text field"
+  },
+  "passwordTextFieldLabel": "Mot de passe",
+  "@passwordTextFieldLabel": {
+    "description": "Label text for the password text field"
+  },
+  "forgotPasswordButtonLabel": "Mot de passe oublié ?",
+  "@forgotPasswordButtonLabel": {
+    "description": "Label text for the forgot password button"
+  },
+  "connexionButtonLabel": "Connexion",
+  "@connexionButtonLabel": {
+    "description": "Label text for the connexion button"
+  },
+  "conditionsLabel": "En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d''utilisation de Daïkoon.",
+  "@conditionsLabel": {
+    "description": "Label text for the conditions"
   }
 }
