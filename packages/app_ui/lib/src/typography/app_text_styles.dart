@@ -116,9 +116,10 @@ abstract class UITextStyle {
 
   /// Button Text Style
   static final TextStyle button = _baseTextStyle.copyWith(
-    fontSize: 16,
+    fontSize: 18,
     height: 1.42,
-    letterSpacing: 0.1,
+    fontWeight: AppFontWeight.medium,
+    // letterSpacing: 0.1,
   );
 
   /// Overline Text Style

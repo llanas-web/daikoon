@@ -17,8 +17,14 @@ abstract class AppColors {
   /// The light blue color.
   static const Color lightBlue = Color.fromARGB(255, 100, 181, 246);
 
+  /// The primary color and swatch.
+  static const Color primary = Color.fromARGB(255, 131, 197, 190);
+
+  /// The secondary color and swatch.
+  static const Color secondary = Color.fromARGB(255, 235, 15, 141);
+
   /// The blue primary color and swatch.
-  static const Color blue = Color(0xFF3898EC);
+  static const Color blue = Color.fromARGB(255, 131, 197, 190);
 
   /// The deep blue color.
   static const Color deepBlue = Color(0xff337eff);

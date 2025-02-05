@@ -1,6 +1,6 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/l10n/l10n.dart';
-import 'package:daikoon/login/login.dart';
+import 'package:daikoon/auth/auth.dart';
 import 'package:flutter/material.dart';
 
 class AppView extends StatelessWidget {
@@ -15,7 +15,7 @@ class AppView extends StatelessWidget {
       darkTheme: const AppDarkTheme().theme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const LoginPage(),
+      home: const AuthPage(),
     );
   }
 }
