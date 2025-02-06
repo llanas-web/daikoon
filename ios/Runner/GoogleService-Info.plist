@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut.apps.googleusercontent.com</string>
+	<string>49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut</string>
+	<string>com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8</string>
 	<key>API_KEY</key>
-	<string>AIzaSyClJIKueocGQy8yQVaoN_cletCRzv6a8qM</string>
+	<string>AIzaSyB0xjfQ3WYzeRrPC5f76fjokTH3aUfIcBQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>516409268825</string>
+	<string>49085509221</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>dev.llanas.daikoon.dev</string>
+	<string>dev.llanas.daikoon</string>
 	<key>PROJECT_ID</key>
-	<string>daikoon-dev</string>
+	<string>daikoon-prod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>daikoon-dev.firebasestorage.app</string>
+	<string>daikoon-prod.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:516409268825:ios:8b022b41b73b0b5d5e2f48</string>
+	<string>1:49085509221:ios:d5f6a3fee2f2ee7001e08c</string>
 </dict>
 </plist>
