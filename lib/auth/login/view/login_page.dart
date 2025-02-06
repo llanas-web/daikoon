@@ -29,6 +29,24 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       backgroundColor: AppColors.deepBlue,
+      appBar: AppBar(
+        backgroundColor: AppColors.deepBlue,
+        title: Text(
+          context.l10n.backButtonLabel,
+          style: TextStyle(
+            color: context.reversedAdaptiveColor,
+          ),
+        ),
+        centerTitle: false,
+        leading: IconButton(
+          icon: Icon(
+            Icons.adaptive.arrow_back,
+            color: context.reversedAdaptiveColor,
+          ),
+          onPressed: () =>
+              context.read<AuthCubit>().changeAuth(status: AuthStatus.home),
+        ),
+      ),
       releaseFocus: true,
       resizeToAvoidBottomInset: true,
       body: AppConstrainedScrollView(
@@ -40,7 +58,6 @@ class LoginView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const BackHomeButton(),
             const Gap.v(AppSpacing.xxxlg),
             const AppLogo(
               height: AppSpacing.xxxlg,

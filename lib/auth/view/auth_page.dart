@@ -56,6 +56,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
+      backgroundColor: AppColors.primary,
+      extendBodyBehindAppBar: true,
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
