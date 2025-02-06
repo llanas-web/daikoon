@@ -242,6 +242,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Vérification de l\'\'adresse e-mail'**
   String get forgotPasswordEmailConfirmationText;
+
+  /// No description provided for @verificationTokenSentText.
+  ///
+  /// In fr, this message translates to:
+  /// **'Token de vérification a été envoyé à {email}'**
+  String verificationTokenSentText(String email);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

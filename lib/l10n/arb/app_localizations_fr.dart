@@ -82,4 +82,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get forgotPasswordEmailConfirmationText => 'Vérification de l\'adresse e-mail';
+
+  @override
+  String verificationTokenSentText(String email) {
+    return 'Token de vérification a été envoyé à $email';
+  }
 }

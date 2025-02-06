@@ -1,4 +1,5 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/app/app.dart';
 import 'package:daikoon/auth/auth.dart';
 import 'package:daikoon/auth/login/login.dart';
 import 'package:daikoon/l10n/l10n.dart';
@@ -90,7 +91,14 @@ class LoginView extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () => context.read<UserRepository>().logOut(),
+              onPressed: () {
+                openSnackbar(
+                  const SnackbarMessage.error(
+                    title: 'Feature is not available!',
+                  ),
+                );
+                // context.read<UserRepository>().logOut();
+              },
               child: const Text('logout'),
             ),
             const ConditionsInfos(),

@@ -117,7 +117,9 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
       );
     } catch (error, stackTrace) {
       addError(error, stackTrace);
-      emit(state.copyWith(status: ChangePasswordStatus.invalidOtp));
+      emit(
+        state.copyWith(status: ChangePasswordStatus.invalidOtp),
+      );
     }
   }
 }

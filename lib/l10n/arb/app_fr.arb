@@ -105,5 +105,14 @@
   "forgotPasswordEmailConfirmationText": "Vérification de l''adresse e-mail",
   "@forgotPasswordEmailConfirmationText": {
     "description": "Text shown in the forgot password page"
+  },
+  "verificationTokenSentText": "Token de vérification a été envoyé à {email}",
+  "@verificationTokenSentText": {
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "example": "johndale@gmail.com"
+      }
+    }
   }
 }
