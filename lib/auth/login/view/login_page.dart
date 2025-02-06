@@ -31,7 +31,11 @@ class LoginView extends StatelessWidget {
       releaseFocus: true,
       resizeToAvoidBottomInset: true,
       body: AppConstrainedScrollView(
-        padding: const EdgeInsets.all(AppSpacing.xxlg),
+        padding: const EdgeInsets.only(
+          top: AppSpacing.xxlg,
+          left: AppSpacing.xxlg,
+          right: AppSpacing.xxlg,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
