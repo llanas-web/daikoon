@@ -28,7 +28,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get forgotPasswordButtonLabel => 'Mot de passe oublié ?';
 
   @override
-  String get connexionButtonLabel => 'Connexion';
+  String get loginLabel => 'Connexion';
+
+  @override
+  String get loginButtonLabel => 'Connexion';
+
+  @override
+  String get signUpLabel => 'Inscription';
+
+  @override
+  String get signUpButtonLabel => 'Créer un compte';
 
   @override
   String get conditionsLabel => 'En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d\'utilisation de Daïkoon.';
@@ -37,4 +46,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String signInWithText(String provider) {
     return 'Connexion avec $provider';
   }
+
+  @override
+  String get usernameText => 'Pseudo';
 }

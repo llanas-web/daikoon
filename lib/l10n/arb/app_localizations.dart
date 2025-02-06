@@ -135,11 +135,29 @@ abstract class AppLocalizations {
   /// **'Mot de passe oublié ?'**
   String get forgotPasswordButtonLabel;
 
+  /// Label text for the connexion
+  ///
+  /// In fr, this message translates to:
+  /// **'Connexion'**
+  String get loginLabel;
+
   /// Label text for the connexion button
   ///
   /// In fr, this message translates to:
   /// **'Connexion'**
-  String get connexionButtonLabel;
+  String get loginButtonLabel;
+
+  /// Label text for the inscription
+  ///
+  /// In fr, this message translates to:
+  /// **'Inscription'**
+  String get signUpLabel;
+
+  /// Label text for the inscription button
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer un compte'**
+  String get signUpButtonLabel;
 
   /// Label text for the conditions
   ///
@@ -152,6 +170,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Connexion avec {provider}'**
   String signInWithText(String provider);
+
+  /// Text shown before the username text field
+  ///
+  /// In fr, this message translates to:
+  /// **'Pseudo'**
+  String get usernameText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

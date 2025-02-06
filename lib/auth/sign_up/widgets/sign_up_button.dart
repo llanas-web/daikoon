@@ -1,16 +1,16 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/auth/login/login.dart';
+import 'package:daikoon/auth/sign_up/cubit/sign_up_cubit.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignInButton extends StatelessWidget {
-  const SignInButton({super.key});
+class SignUpButton extends StatelessWidget {
+  const SignUpButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isLoading =
-        context.select((LoginCubit bloc) => bloc.state.status.isLoading);
+    final isLoading = context
+        .select((SignUpCubit bloc) => bloc.state.submissionStatus.isLoading);
 
     final style = ButtonStyle(
       backgroundColor: WidgetStatePropertyAll(
@@ -30,8 +30,8 @@ class SignInButton extends StatelessWidget {
           color: context.reversedAdaptiveColor,
         ),
       _ => AppButton.auth(
-          context.l10n.loginButtonLabel,
-          context.read<LoginCubit>().onSubmit,
+          context.l10n.signUpButtonLabel,
+          context.read<SignUpCubit>().onSubmit,
           style: style,
           textStyle: UITextStyle.button.copyWith(
             color: context.reversedAdaptiveColor,

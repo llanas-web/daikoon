@@ -1,6 +1,7 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/auth/login/widgets/widgets.dart';
+import 'package:daikoon/auth/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
 class LoginForm extends StatelessWidget {
@@ -11,8 +12,26 @@ class LoginForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const EmailFormField(),
-        const PasswordTextField(),
+        EmailFormField<LoginCubit, LoginState>(
+          onEmailChanged: (cubit, value) => cubit.onEmailChanged(value),
+          onEmailUnfocused: (cubit) => cubit.onEmailUnfocused(),
+          emailError: context
+              .select((LoginCubit cubit) => cubit.state.email.errorMessage),
+          isLoading: context
+              .select((LoginCubit cubit) => cubit.state.status.isLoading),
+        ),
+        PasswordTextField<LoginCubit, LoginState>(
+          onPasswordChanged: (cubit, value) => cubit.onPasswordChanged(value),
+          onPasswordUnfocused: (cubit) => cubit.onPasswordUnfocused(),
+          onChangePasswordVisibility: (cubit) =>
+              cubit.changePasswordVisibility(),
+          passwordError: context
+              .select((LoginCubit cubit) => cubit.state.password.errorMessage),
+          showPassword:
+              context.select((LoginCubit cubit) => cubit.state.showPassword),
+          isLoading: context
+              .select((LoginCubit cubit) => cubit.state.status.isLoading),
+        ),
       ].spacerBetween(height: AppSpacing.xxlg),
     );
   }

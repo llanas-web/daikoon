@@ -1,6 +1,7 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/auth/login/cubit/login_cubit.dart';
-import 'package:daikoon/auth/login/widgets/widgets.dart';
+import 'package:daikoon/auth/sign_up/cubit/sign_up_cubit.dart';
+import 'package:daikoon/auth/sign_up/sign_up.dart';
+import 'package:daikoon/auth/sign_up/widgets/sign_up_form.dart';
 import 'package:daikoon/auth/widgets/widgets.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -8,23 +9,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(
+      create: (context) => SignUpCubit(
         userRepository: context.read<UserRepository>(),
       ),
-      child: const LoginView(),
+      child: const SignUpView(),
     );
   }
 }
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
+  @override
+  State<SignUpView> createState() => _SignUpViewState();
+}
+
+class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -48,7 +54,7 @@ class LoginView extends StatelessWidget {
             ),
             const Gap.v(AppSpacing.sm),
             Text(
-              context.l10n.loginLabel,
+              context.l10n.signUpLabel,
               style: UITextStyle.screenLabel.copyWith(
                 color: context.customReversedAdaptiveColor(
                   light: AppColors.primary,
@@ -69,30 +75,19 @@ class LoginView extends StatelessWidget {
                     ),
                     textAlign: TextAlign.end,
                   ),
-                  const LoginForm(),
-                  Tappable(
-                    child: Text(
-                      context.l10n.forgotPasswordButtonLabel,
-                      style: UITextStyle.caption.copyWith(
-                        color: context.reversedAdaptiveColor,
-                        decoration: TextDecoration.underline,
-                        decorationColor: context.reversedAdaptiveColor,
-                      ),
-                    ),
-                  ),
+                  const SignUpForm(),
                   const Align(
-                    child: SignInButton(),
+                    child: SignUpButton(),
                   ),
                   const AppDivider(),
                   Align(
                     child: AuthProviderSignInButton(
                       provider: AuthProvider.google,
                       isInProgress: context.select(
-                        (LoginCubit cubit) =>
-                            cubit.state.status.isGoogleAuthInProgress,
+                        (SignUpCubit cubit) =>
+                            cubit.state.submissionStatus.isGoogleAuthInProgress,
                       ),
-                      onPressed: () =>
-                          context.read<LoginCubit>().loginWithGoogle(),
+                      onPressed: () => logD('Sign up'),
                     ),
                   ),
                 ].spacerBetween(height: AppSpacing.xlg),

@@ -97,17 +97,13 @@ class SupabaseAuthenticationClient implements AuthenticationClient {
   @override
   Future<void> signUpWithPassword({
     required String password,
-    required String fullName,
     required String username,
-    String? avatarUrl,
     String? email,
     String? phone,
     String? pushToken,
   }) async {
     final data = {
-      'full_name': fullName,
       'username': username,
-      if (avatarUrl != null) 'avatar_url': avatarUrl,
       if (pushToken != null) 'push_token': pushToken,
     };
     try {

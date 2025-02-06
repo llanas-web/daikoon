@@ -1,14 +1,13 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/auth/login/login.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
 class AuthProviderSignInButton extends StatelessWidget {
   const AuthProviderSignInButton({
     required this.provider,
     required this.onPressed,
+    required this.isInProgress,
     super.key,
   });
 
@@ -16,14 +15,10 @@ class AuthProviderSignInButton extends StatelessWidget {
 
   final VoidCallback onPressed;
 
+  final bool isInProgress;
+
   @override
   Widget build(BuildContext context) {
-    final isInProgress = context.select(
-      (LoginCubit cubit) => switch (provider) {
-        AuthProvider.google => cubit.state.status.isGoogleAuthInProgress,
-      },
-    );
-
     final effectiveIcon = switch (provider) {
       AuthProvider.google => Assets.icons.google.svg(),
     };

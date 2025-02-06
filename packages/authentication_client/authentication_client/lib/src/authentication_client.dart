@@ -141,9 +141,7 @@ abstract class AuthenticationClient {
   /// Throws a [SignUpWithPasswordFailure] if an exception occurs.
   Future<void> signUpWithPassword({
     required String password,
-    required String fullName,
     required String username,
-    String? avatarUrl,
     String? email,
     String? phone,
     String? pushToken,

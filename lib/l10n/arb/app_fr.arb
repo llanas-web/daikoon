@@ -28,9 +28,21 @@
   "@forgotPasswordButtonLabel": {
     "description": "Label text for the forgot password button"
   },
-  "connexionButtonLabel": "Connexion",
-  "@connexionButtonLabel": {
+  "loginLabel": "Connexion",
+  "@loginLabel": {
+    "description": "Label text for the connexion"
+  },
+  "loginButtonLabel": "Connexion",
+  "@loginButtonLabel": {
     "description": "Label text for the connexion button"
+  },
+  "signUpLabel": "Inscription",
+  "@signUpLabel": {
+    "description": "Label text for the inscription"
+  },
+  "signUpButtonLabel": "Créer un compte",
+  "@signUpButtonLabel": {
+    "description": "Label text for the inscription button"
   },
   "conditionsLabel": "En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d''utilisation de Daïkoon.",
   "@conditionsLabel": {
@@ -45,5 +57,9 @@
         "example": "Google"
       }
     }
+  },
+  "usernameText": "Pseudo",
+  "@usernameText": {
+    "description": "Text shown before the username text field"
   }
 }

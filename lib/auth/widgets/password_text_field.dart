@@ -1,20 +1,38 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/auth/login/cubit/login_cubit.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
-class PasswordTextField extends StatefulWidget {
+typedef PasswordChangedCallback<T> = void Function(T cubit, String email);
+typedef PasswordUnfocusedCallback<T> = void Function(T cubit);
+typedef PasswordToggleVisibilityCallback<T> = void Function(T cubit);
+
+class PasswordTextField<T extends Cubit<S>, S> extends StatefulWidget {
   const PasswordTextField({
+    required this.onPasswordChanged,
+    required this.onPasswordUnfocused,
+    required this.onChangePasswordVisibility,
+    required this.passwordError,
+    required this.showPassword,
+    required this.isLoading,
     super.key,
   });
 
+  final PasswordChangedCallback<T> onPasswordChanged;
+  final PasswordUnfocusedCallback<T> onPasswordUnfocused;
+  final PasswordToggleVisibilityCallback<T> onChangePasswordVisibility;
+  final String? passwordError;
+  final bool showPassword;
+  final bool isLoading;
+
   @override
-  State<PasswordTextField> createState() => _PasswordTextFieldState();
+  State<PasswordTextField<T, S>> createState() =>
+      _PasswordTextFieldState<T, S>();
 }
 
-class _PasswordTextFieldState extends State<PasswordTextField> {
+class _PasswordTextFieldState<T extends Cubit<S>, S>
+    extends State<PasswordTextField<T, S>> {
   late Debouncer _debouncer;
   late TextEditingController _controller;
   late FocusNode _focusNode;
@@ -39,28 +57,29 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
 
   void _focusNodeListener() {
     if (!_focusNode.hasFocus) {
-      context.read<LoginCubit>().onPasswordUnfocused();
+      final cubit = context.read<T>();
+      widget.onPasswordUnfocused(cubit);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final passwordError =
-        context.select((LoginCubit cubit) => cubit.state.password.errorMessage);
-
-    final showPassword =
-        context.select((LoginCubit cubit) => cubit.state.showPassword);
+    final cubit = context.read<T>();
 
     return AppTextField(
       key: const ValueKey('loginPasswordTextField'),
       textController: _controller,
-      errorText: passwordError,
+      onChanged: (value) => _debouncer.run(
+        () => widget.onPasswordChanged(cubit, value),
+      ),
+      errorText: widget.passwordError,
       focusNode: _focusNode,
       floatingLabelBehaviour: FloatingLabelBehavior.always,
       cursorColor: context.reversedAdaptiveColor,
       style: ContentTextStyle.bodyText1.copyWith(
         color: context.reversedAdaptiveColor,
       ),
+      enabled: !widget.isLoading,
       hintText: context.l10n.passwordTextFieldHint,
       hintStyle: ContentTextStyle.bodyText2.copyWith(
         color: context.reversedAdaptiveColor,
@@ -70,14 +89,16 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       labelStyle: ContentTextStyle.bodyText1.copyWith(
         color: context.reversedAdaptiveColor,
       ),
-      obscureText: !showPassword,
+      obscureText: !widget.showPassword,
       textInputType: TextInputType.visiblePassword,
       textInputAction: TextInputAction.done,
       suffixIcon: Tappable.faded(
         backgroundColor: AppColors.transparent,
-        onTap: context.read<LoginCubit>().changePasswordVisibility,
+        onTap: widget.isLoading
+            ? null
+            : () => widget.onChangePasswordVisibility(cubit),
         child: Icon(
-          !showPassword ? Icons.visibility : Icons.visibility_off,
+          !widget.showPassword ? Icons.visibility : Icons.visibility_off,
           color: context.reversedAdaptiveColor,
         ),
       ),
