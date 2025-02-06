@@ -7,6 +7,7 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
+  animations: ^2.0.11
   app_ui:
     path: packages/app_ui
   bloc: ^9.0.0

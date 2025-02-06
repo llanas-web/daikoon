@@ -10,6 +10,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get counterAppBarTitle => 'Counter';
 
   @override
+  String get backButtonLabel => 'Retour';
+
+  @override
   String get requiredFieldLabel => 'champs obligatoires';
 
   @override

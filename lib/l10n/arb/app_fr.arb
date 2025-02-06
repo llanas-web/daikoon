@@ -4,6 +4,10 @@
   "@counterAppBarTitle": {
     "description": "Text shown in the AppBar of the Counter Page"
   },
+  "backButtonLabel": "Retour",
+  "@backButtonLabel": {
+    "description": "Label text for the back button"
+  },
   "requiredFieldLabel": "champs obligatoires",
   "@requiredFieldLabel": {
     "description": "Label text for the required field"

@@ -1,8 +1,55 @@
+import 'package:animations/animations.dart';
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/auth/auth.dart';
+import 'package:daikoon/auth/cubit/auth_cubit.dart';
+import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => AuthCubit(),
+      child: const AuthView(),
+    );
+  }
+}
+
+class AuthView extends StatelessWidget {
+  const AuthView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final authState = context.select((AuthCubit b) => b.state);
+
+    return PageTransitionSwitcher(
+      reverse: authState == AuthStatus.home,
+      transitionBuilder: (
+        child,
+        animation,
+        secondaryAnimation,
+      ) {
+        return SharedAxisTransition(
+          animation: animation,
+          secondaryAnimation: secondaryAnimation,
+          transitionType: SharedAxisTransitionType.horizontal,
+          child: child,
+        );
+      },
+      child: switch (authState) {
+        AuthStatus.home => const HomePage(),
+        AuthStatus.login => const LoginPage(),
+        AuthStatus.signUp => const SignUpPage(),
+      },
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +90,10 @@ class AuthPage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AppButton.outlined(
-                      text: 'Inscription',
+                      text: context.l10n.signUpLabel,
+                      onPressed: () => context
+                          .read<AuthCubit>()
+                          .changeAuth(status: AuthStatus.signUp),
                       textStyle: UITextStyle.button.copyWith(
                         color: context.reversedAdaptiveColor,
                       ),
@@ -74,7 +124,10 @@ class AuthPage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AppButton.outlined(
-                      text: 'Connexion',
+                      text: context.l10n.loginLabel,
+                      onPressed: () => context
+                          .read<AuthCubit>()
+                          .changeAuth(status: AuthStatus.login),
                       textStyle: UITextStyle.button.copyWith(
                         color: context.reversedAdaptiveColor,
                       ),

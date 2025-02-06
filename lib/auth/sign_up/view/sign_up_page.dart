@@ -39,13 +39,14 @@ class _SignUpViewState extends State<SignUpView> {
       resizeToAvoidBottomInset: true,
       body: AppConstrainedScrollView(
         padding: const EdgeInsets.only(
-          top: AppSpacing.xxlg,
-          left: AppSpacing.xxlg,
-          right: AppSpacing.xxlg,
+          top: AppSpacing.xlg,
+          left: AppSpacing.xlg,
+          right: AppSpacing.xlg,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const BackHomeButton(),
             const Gap.v(AppSpacing.xxxlg),
             const AppLogo(
               height: AppSpacing.xxxlg,
@@ -93,10 +94,6 @@ class _SignUpViewState extends State<SignUpView> {
                   ),
                 ].spacerBetween(height: AppSpacing.xlg),
               ),
-            ),
-            AppButton(
-              text: 'Logout',
-              onPressed: () => context.read<UserRepository>().logOut(),
             ),
             const ConditionsInfos(),
           ],

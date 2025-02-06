@@ -99,6 +99,12 @@ abstract class AppLocalizations {
   /// **'Counter'**
   String get counterAppBarTitle;
 
+  /// Label text for the back button
+  ///
+  /// In fr, this message translates to:
+  /// **'Retour'**
+  String get backButtonLabel;
+
   /// Label text for the required field
   ///
   /// In fr, this message translates to:
