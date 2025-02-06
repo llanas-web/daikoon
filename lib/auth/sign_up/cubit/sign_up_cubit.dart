@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:form_fields/form_fields.dart';
 import 'package:shared/shared.dart';
+import 'package:supabase_authentication_client/supabase_authentication_client.dart';
 import 'package:user_repository/user_repository.dart';
 
 part 'sign_up_state.dart';
@@ -168,6 +169,19 @@ class SignUpCubit extends Cubit<SignUpState> {
       emit(state.copyWith(submissionStatus: SignUpSubmissionStatus.success));
     } catch (e, stackTrace) {
       _errorFormatter(e, stackTrace);
+    }
+  }
+
+  Future<void> loginWithGoogle() async {
+    emit(state.copyWith(
+        submissionStatus: SignUpSubmissionStatus.googleAuthInProgress));
+    try {
+      await _userRepository.logInWithGoogle();
+      emit(state.copyWith(submissionStatus: SignUpSubmissionStatus.success));
+    } on LogInWithGoogleCanceled {
+      emit(state.copyWith(submissionStatus: SignUpSubmissionStatus.idle));
+    } catch (error, stackTrace) {
+      _errorFormatter(error, stackTrace);
     }
   }
 

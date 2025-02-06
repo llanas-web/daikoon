@@ -87,11 +87,16 @@ class _SignUpViewState extends State<SignUpView> {
                         (SignUpCubit cubit) =>
                             cubit.state.submissionStatus.isGoogleAuthInProgress,
                       ),
-                      onPressed: () => logD('Sign up'),
+                      onPressed: () =>
+                          context.read<SignUpCubit>().loginWithGoogle(),
                     ),
                   ),
                 ].spacerBetween(height: AppSpacing.xlg),
               ),
+            ),
+            AppButton(
+              text: 'Logout',
+              onPressed: () => context.read<UserRepository>().logOut(),
             ),
             const ConditionsInfos(),
           ],
