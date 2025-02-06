@@ -1,6 +1,5 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
-import 'package:daikoon/auth/auth.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +8,8 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final routerConfig = router();
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
       theme: const AppTheme().theme,
@@ -24,7 +24,7 @@ class AppView extends StatelessWidget {
           ],
         );
       },
-      home: const AuthPage(),
+      routerConfig: routerConfig,
     );
   }
 }
