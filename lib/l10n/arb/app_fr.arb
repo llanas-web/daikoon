@@ -28,6 +28,14 @@
   "@passwordTextFieldLabel": {
     "description": "Label text for the password text field"
   },
+  "newPasswordText": "Nouveau mot de passe",
+  "@newPasswordText": {
+    "description": "Text shown before the new password text field"
+  },
+  "otpText": "Code de vérification",
+  "@otpText": {
+    "description": "Text shown before the otp text field"
+  },
   "forgotPasswordButtonLabel": "Mot de passe oublié ?",
   "@forgotPasswordButtonLabel": {
     "description": "Label text for the forgot password button"
@@ -65,5 +73,37 @@
   "usernameText": "Pseudo",
   "@usernameText": {
     "description": "Text shown before the username text field"
+  },
+  "recoveryPasswordText": "Récupération de mot de passe",
+  "@recoveryPasswordText": {
+    "description": "Text shown in the recovery password page"
+  },
+  "changePasswordText": "Changer le mot de passe",
+  "@changePasswordText": {
+    "description": "Text shown in the change password page"
+  },
+  "goBackConfirmationText": "Êtes-vous sûr de vouloir revenir en arrière ?",
+  "@goBackConfirmationText": {
+    "description": "Text shown in the confirmation dialog when the user tries to go back"
+  },
+  "loseAllEditsText": "Vous perdrez toutes les modifications non enregistrées.",
+  "@loseAllEditsText": {
+    "description": "Text shown in the confirmation dialog when the user tries to go back"
+  },
+  "cancelText": "Annuler",
+  "@cancelText": {
+    "description": "Text shown in the confirmation dialog when the user tries to go back"
+  },
+  "goBackText": "Revenir en arrière",
+  "@goBackText": {
+    "description": "Text shown in the confirmation dialog when the user tries to go back"
+  },
+  "furtherText": "Suite",
+  "@furtherText": {
+    "description": "Text shown in the confirmation dialog when the user tries to go back"
+  },
+  "forgotPasswordEmailConfirmationText": "Vérification de l''adresse e-mail",
+  "@forgotPasswordEmailConfirmationText": {
+    "description": "Text shown in the forgot password page"
   }
 }

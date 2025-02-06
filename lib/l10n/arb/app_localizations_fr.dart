@@ -28,6 +28,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get passwordTextFieldLabel => 'Mot de passe';
 
   @override
+  String get newPasswordText => 'Nouveau mot de passe';
+
+  @override
+  String get otpText => 'Code de vérification';
+
+  @override
   String get forgotPasswordButtonLabel => 'Mot de passe oublié ?';
 
   @override
@@ -52,4 +58,28 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get usernameText => 'Pseudo';
+
+  @override
+  String get recoveryPasswordText => 'Récupération de mot de passe';
+
+  @override
+  String get changePasswordText => 'Changer le mot de passe';
+
+  @override
+  String get goBackConfirmationText => 'Êtes-vous sûr de vouloir revenir en arrière ?';
+
+  @override
+  String get loseAllEditsText => 'Vous perdrez toutes les modifications non enregistrées.';
+
+  @override
+  String get cancelText => 'Annuler';
+
+  @override
+  String get goBackText => 'Revenir en arrière';
+
+  @override
+  String get furtherText => 'Suite';
+
+  @override
+  String get forgotPasswordEmailConfirmationText => 'Vérification de l\'adresse e-mail';
 }

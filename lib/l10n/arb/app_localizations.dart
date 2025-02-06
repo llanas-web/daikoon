@@ -135,6 +135,18 @@ abstract class AppLocalizations {
   /// **'Mot de passe'**
   String get passwordTextFieldLabel;
 
+  /// Text shown before the new password text field
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau mot de passe'**
+  String get newPasswordText;
+
+  /// Text shown before the otp text field
+  ///
+  /// In fr, this message translates to:
+  /// **'Code de vérification'**
+  String get otpText;
+
   /// Label text for the forgot password button
   ///
   /// In fr, this message translates to:
@@ -182,6 +194,54 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Pseudo'**
   String get usernameText;
+
+  /// Text shown in the recovery password page
+  ///
+  /// In fr, this message translates to:
+  /// **'Récupération de mot de passe'**
+  String get recoveryPasswordText;
+
+  /// Text shown in the change password page
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer le mot de passe'**
+  String get changePasswordText;
+
+  /// Text shown in the confirmation dialog when the user tries to go back
+  ///
+  /// In fr, this message translates to:
+  /// **'Êtes-vous sûr de vouloir revenir en arrière ?'**
+  String get goBackConfirmationText;
+
+  /// Text shown in the confirmation dialog when the user tries to go back
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous perdrez toutes les modifications non enregistrées.'**
+  String get loseAllEditsText;
+
+  /// Text shown in the confirmation dialog when the user tries to go back
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get cancelText;
+
+  /// Text shown in the confirmation dialog when the user tries to go back
+  ///
+  /// In fr, this message translates to:
+  /// **'Revenir en arrière'**
+  String get goBackText;
+
+  /// Text shown in the confirmation dialog when the user tries to go back
+  ///
+  /// In fr, this message translates to:
+  /// **'Suite'**
+  String get furtherText;
+
+  /// Text shown in the forgot password page
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification de l\'\'adresse e-mail'**
+  String get forgotPasswordEmailConfirmationText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

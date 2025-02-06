@@ -1,7 +1,6 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/auth/login/cubit/login_cubit.dart';
-import 'package:daikoon/auth/login/widgets/widgets.dart';
-import 'package:daikoon/auth/widgets/widgets.dart';
+import 'package:daikoon/auth/auth.dart';
+import 'package:daikoon/auth/login/login.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,16 +70,7 @@ class LoginView extends StatelessWidget {
                     textAlign: TextAlign.end,
                   ),
                   const LoginForm(),
-                  Tappable(
-                    child: Text(
-                      context.l10n.forgotPasswordButtonLabel,
-                      style: UITextStyle.caption.copyWith(
-                        color: context.reversedAdaptiveColor,
-                        decoration: TextDecoration.underline,
-                        decorationColor: context.reversedAdaptiveColor,
-                      ),
-                    ),
-                  ),
+                  const ForgotPasswordButton(),
                   const Align(
                     child: SignInButton(),
                   ),
@@ -98,6 +88,10 @@ class LoginView extends StatelessWidget {
                   ),
                 ].spacerBetween(height: AppSpacing.xlg),
               ),
+            ),
+            ElevatedButton(
+              onPressed: () => context.read<UserRepository>().logOut(),
+              child: const Text('logout'),
             ),
             const ConditionsInfos(),
           ],
