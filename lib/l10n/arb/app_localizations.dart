@@ -248,6 +248,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Token de vérification a été envoyé à {email}'**
   String verificationTokenSentText(String email);
+
+  /// Label text for the home nav bar item
+  ///
+  /// In fr, this message translates to:
+  /// **'Accueil'**
+  String get homeNavBarItemLabel;
+
+  /// Label text for the search nav bar item
+  ///
+  /// In fr, this message translates to:
+  /// **'Recherche'**
+  String get searchNavBarItemLabel;
+
+  /// Label text for the favorite nav bar item
+  ///
+  /// In fr, this message translates to:
+  /// **'Favoris'**
+  String get favoriteNavBarItemLabel;
+
+  /// Label text for the notification nav bar item
+  ///
+  /// In fr, this message translates to:
+  /// **'Notifications'**
+  String get notificationNavBarItemLabel;
+
+  /// Label text for the profile nav bar item
+  ///
+  /// In fr, this message translates to:
+  /// **'Profil'**
+  String get profileNavBarItemLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

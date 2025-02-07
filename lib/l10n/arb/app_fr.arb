@@ -114,5 +114,25 @@
         "example": "johndale@gmail.com"
       }
     }
+  },
+  "homeNavBarItemLabel": "Accueil",
+  "@homeNavBarItemLabel": {
+    "description": "Label text for the home nav bar item"
+  },
+  "searchNavBarItemLabel": "Recherche",
+  "@searchNavBarItemLabel": {
+    "description": "Label text for the search nav bar item"
+  },
+  "favoriteNavBarItemLabel": "Favoris",
+  "@favoriteNavBarItemLabel": {
+    "description": "Label text for the favorite nav bar item"
+  },
+  "notificationNavBarItemLabel": "Notifications",
+  "@notificationNavBarItemLabel": {
+    "description": "Label text for the notification nav bar item"
+  },
+  "profileNavBarItemLabel": "Profil",
+  "@profileNavBarItemLabel": {
+    "description": "Label text for the profile nav bar item"
   }
 }

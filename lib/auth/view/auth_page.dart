@@ -42,7 +42,7 @@ class AuthView extends StatelessWidget {
         );
       },
       child: switch (authState) {
-        AuthStatus.home => const HomePage(),
+        AuthStatus.home => const _HomePage(),
         AuthStatus.login => const LoginPage(),
         AuthStatus.signUp => const SignUpPage(),
       },
@@ -50,8 +50,8 @@ class AuthView extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class _HomePage extends StatelessWidget {
+  const _HomePage();
 
   @override
   Widget build(BuildContext context) {

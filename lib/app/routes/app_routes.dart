@@ -1,5 +1,10 @@
 enum AppRoutes {
-  auth('/auth');
+  auth('/auth'),
+  home('/home'),
+  search('/search'),
+  favorite('/favorite'),
+  notification('/notification'),
+  userProfile('/user-profile');
 
   const AppRoutes(this.route, {this.path});
 

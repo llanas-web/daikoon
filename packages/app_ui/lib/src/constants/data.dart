@@ -1,22 +1,22 @@
 // ignore_for_file: public_member_api_docs
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
-// import 'package:shared/shared.dart';
+import 'package:shared/shared.dart';
 
 /// Navigation bar items
 List<NavBarItem> mainNavigationBarItems({
   required String homeLabel,
   required String searchLabel,
-  required String createMediaLabel,
-  required String reelsLabel,
+  required String favoriteLabel,
+  required String notificationLabel,
   required String userProfileLabel,
-  required Widget userProfileAvatar,
 }) =>
     <NavBarItem>[
-      NavBarItem(icon: Icons.home_filled, label: homeLabel),
-      NavBarItem(icon: Icons.search, label: searchLabel),
-      NavBarItem(icon: Icons.add_box_outlined, label: createMediaLabel),
-      NavBarItem(icon: Icons.video_collection_outlined, label: reelsLabel),
-      NavBarItem(child: userProfileAvatar, label: userProfileLabel),
+      NavBarItem(icon: Icons.home_outlined, label: homeLabel),
+      NavBarItem(icon: Icons.search_outlined, label: searchLabel),
+      NavBarItem(icon: Icons.favorite_outline, label: favoriteLabel),
+      NavBarItem(icon: Icons.notifications_outlined, label: notificationLabel),
+      NavBarItem(icon: Icons.person_outlined, label: userProfileLabel),
     ];
 
 class NavBarItem {
@@ -69,36 +69,36 @@ enum PremiumGradient {
 List<String> get commentEmojies =>
     ['🩷', '🙌', '🔥', '👏🏻', '😢', '😍', '😮', '😂'];
 
-// List<ModalOption> createMediaModalOptions({
-//   required String reelLabel,
-//   required String postLabel,
-//   required String storyLabel,
-//   required BuildContext context,
-//   required void Function(String route, {Object? extra}) goTo,
-//   required bool enableStory,
-//   ValueSetter<String>? onStoryCreated,
-// }) =>
-//     <ModalOption>[
-//       ModalOption(
-//         name: reelLabel,
-//         iconData: Icons.video_collection_outlined,
-//         onTap: () => goTo('create-post', extra: true),
-//       ),
-//       ModalOption(
-//         name: postLabel,
-//         iconData: Icons.outbox_outlined,
-//         onTap: () => goTo('create-post'),
-//       ),
-//       if (enableStory)
-//         ModalOption(
-//           name: storyLabel,
-//           iconData: Icons.cameraswitch_outlined,
-//           onTap: () => goTo('create-stories', extra: onStoryCreated),
-//         ),
-//     ];
+List<ModalOption> createMediaModalOptions({
+  required String reelLabel,
+  required String postLabel,
+  required String storyLabel,
+  required BuildContext context,
+  required void Function(String route, {Object? extra}) goTo,
+  required bool enableStory,
+  ValueSetter<String>? onStoryCreated,
+}) =>
+    <ModalOption>[
+      ModalOption(
+        name: reelLabel,
+        iconData: Icons.video_collection_outlined,
+        onTap: () => goTo('create-post', extra: true),
+      ),
+      ModalOption(
+        name: postLabel,
+        iconData: Icons.outbox_outlined,
+        onTap: () => goTo('create-post'),
+      ),
+      if (enableStory)
+        ModalOption(
+          name: storyLabel,
+          iconData: Icons.cameraswitch_outlined,
+          onTap: () => goTo('create-stories', extra: onStoryCreated),
+        ),
+    ];
 
-// List<ModalOption> followerModalOptions({
-//   required String unfollowLabel,
-//   required VoidCallback onUnfollowTap,
-// }) =>
-//     <ModalOption>[ModalOption(name: unfollowLabel, onTap: onUnfollowTap)];
+List<ModalOption> followerModalOptions({
+  required String unfollowLabel,
+  required VoidCallback onUnfollowTap,
+}) =>
+    <ModalOption>[ModalOption(name: unfollowLabel, onTap: onUnfollowTap)];

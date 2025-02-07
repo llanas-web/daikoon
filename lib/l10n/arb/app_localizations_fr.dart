@@ -87,4 +87,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String verificationTokenSentText(String email) {
     return 'Token de vérification a été envoyé à $email';
   }
+
+  @override
+  String get homeNavBarItemLabel => 'Accueil';
+
+  @override
+  String get searchNavBarItemLabel => 'Recherche';
+
+  @override
+  String get favoriteNavBarItemLabel => 'Favoris';
+
+  @override
+  String get notificationNavBarItemLabel => 'Notifications';
+
+  @override
+  String get profileNavBarItemLabel => 'Profil';
 }
