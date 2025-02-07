@@ -6,9 +6,10 @@ import 'package:daikoon/app/app.dart';
 import 'package:daikoon/app/home/home.dart';
 import 'package:daikoon/auth/view/auth_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
 GoRouter router(AppBloc appBloc) {
   return GoRouter(
@@ -20,6 +21,7 @@ GoRouter router(AppBloc appBloc) {
         builder: (context, state) => const AuthPage(),
       ),
       StatefulShellRoute.indexedStack(
+        parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state, navigationShell) => HomePage(
           navigationShell: navigationShell,
         ),
