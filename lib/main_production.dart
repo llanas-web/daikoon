@@ -10,7 +10,7 @@ import 'package:user_repository/user_repository.dart';
 
 void main() {
   bootstrap(
-    (powerSyncrepository) {
+    (powerSyncrepository) async {
       final iOSClientId = getIt<AppFlavor>().getEnv(Env.iOSClientId);
       final webClientId = getIt<AppFlavor>().getEnv(Env.webClientId);
 
@@ -30,6 +30,7 @@ void main() {
         authenticationClient: authenticationClient,
       );
       return App(
+        user: await userRepository.user.first,
         userRepository: userRepository,
       );
     },

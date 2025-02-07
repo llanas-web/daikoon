@@ -1,12 +1,16 @@
+import 'dart:async';
+
 import 'package:animations/animations.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
 import 'package:daikoon/app/home/home.dart';
 import 'package:daikoon/auth/view/auth_page.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-GoRouter router() {
+GoRouter router(AppBloc appBloc) {
   return GoRouter(
     initialLocation: AppRoutes.home.route,
     routes: [
@@ -24,11 +28,74 @@ GoRouter router() {
           generateStatefulShellBranch(route: AppRoutes.search),
           generateStatefulShellBranch(route: AppRoutes.favorite),
           generateStatefulShellBranch(route: AppRoutes.notification),
-          generateStatefulShellBranch(route: AppRoutes.userProfile),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.userProfile.route,
+                name: AppRoutes.userProfile.name,
+                pageBuilder: (context, state) {
+                  return CustomTransitionPage(
+                    child: AppScaffold(
+                      body: Center(
+                        child: ElevatedButton(
+                          onPressed: () => context
+                              .read<AppBloc>()
+                              .add(const AppLogoutRequested()),
+                          child: const Text('Logout'),
+                        ),
+                      ),
+                    ),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) =>
+                            SharedAxisTransition(
+                      animation: animation,
+                      secondaryAnimation: secondaryAnimation,
+                      transitionType: SharedAxisTransitionType.horizontal,
+                      child: child,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ],
       ),
     ],
+    redirect: (context, state) {
+      final authenticated = appBloc.state.status == AppStatus.authenticated;
+      final authenticating = state.matchedLocation == AppRoutes.auth.route;
+      final isInHome = state.matchedLocation == AppRoutes.home.route;
+
+      if (isInHome && !authenticated) return AppRoutes.auth.route;
+      if (!authenticated) return AppRoutes.auth.route;
+      if (authenticating && authenticated) return AppRoutes.home.route;
+
+      return null;
+    },
+    refreshListenable: GoRouterAppBlocRefreshStream(appBloc.stream),
   );
+}
+
+/// {@template go_router_refresh_stream}
+/// A [ChangeNotifier] that notifies listeners when a [Stream] emits a value.
+/// This is used to rebuild the UI when the [AppBloc] emits a new state.
+/// {@endtemplate}
+class GoRouterAppBlocRefreshStream extends ChangeNotifier {
+  /// {@macro go_router_refresh_stream}
+  GoRouterAppBlocRefreshStream(Stream<AppState> stream) {
+    notifyListeners();
+    _subscription = stream.asBroadcastStream().listen((appState) {
+      notifyListeners();
+    });
+  }
+
+  late final StreamSubscription<dynamic> _subscription;
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
 }
 
 StatefulShellBranch generateStatefulShellBranch({
