@@ -342,7 +342,7 @@ class AppSnackbarState extends State<AppSnackbar>
                         //     ? getColor(context, 'shadowColorLight')
                         //     : getColor(context, 'shadowColor').withOpacity(0.
                         // 1),
-                        color: AppColors.black.withOpacity(.1),
+                        color: AppColors.black.withValues(alpha: 0.1),
                         blurRadius: 15,
                         spreadRadius: 2,
                       ),
