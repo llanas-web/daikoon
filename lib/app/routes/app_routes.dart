@@ -6,10 +6,10 @@ enum AppRoutes {
   notification('/notification'),
   userProfile('/user-profile');
 
-  const AppRoutes(this.route, {this.path});
+  const AppRoutes(this.route);
 
   final String route;
-  final String? path;
+  // final String? path;
 
   String get name => route.replaceAll('/', '');
 }

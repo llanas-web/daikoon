@@ -74,7 +74,7 @@ class _HomePage extends StatelessWidget {
               end: Alignment.topCenter,
               colors: [
                 AppColors.primary,
-                AppColors.white.withOpacity(0),
+                AppColors.white.withValues(alpha: 0),
               ],
             ),
           ),
@@ -103,7 +103,7 @@ class _HomePage extends StatelessWidget {
                       ),
                       style: ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll(
-                          context.reversedAdaptiveColor.withOpacity(0.4),
+                          context.reversedAdaptiveColor.withValues(alpha: 0.4),
                         ),
                         padding: WidgetStateProperty.all(
                           const EdgeInsets.symmetric(
@@ -112,8 +112,8 @@ class _HomePage extends StatelessWidget {
                         ),
                         side: WidgetStateProperty.all(
                           BorderSide(
-                            color:
-                                context.reversedAdaptiveColor.withOpacity(0.5),
+                            color: context.reversedAdaptiveColor
+                                .withValues(alpha: 0.5),
                           ),
                         ),
                       ),
@@ -143,8 +143,8 @@ class _HomePage extends StatelessWidget {
                         ),
                         side: WidgetStateProperty.all(
                           BorderSide(
-                            color:
-                                context.reversedAdaptiveColor.withOpacity(0.5),
+                            color: context.reversedAdaptiveColor
+                                .withValues(alpha: 0.5),
                           ),
                         ),
                       ),

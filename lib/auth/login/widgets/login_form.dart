@@ -41,7 +41,8 @@ class LoginForm extends StatelessWidget {
             onChangePasswordVisibility: (cubit) =>
                 cubit.changePasswordVisibility(),
             passwordError: context.select(
-                (LoginCubit cubit) => cubit.state.password.errorMessage),
+              (LoginCubit cubit) => cubit.state.password.errorMessage,
+            ),
             showPassword:
                 context.select((LoginCubit cubit) => cubit.state.showPassword),
             isLoading: context

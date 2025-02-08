@@ -176,8 +176,11 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   Future<void> loginWithGoogle() async {
-    emit(state.copyWith(
-        submissionStatus: SignUpSubmissionStatus.googleAuthInProgress));
+    emit(
+      state.copyWith(
+        submissionStatus: SignUpSubmissionStatus.googleAuthInProgress,
+      ),
+    );
     try {
       await _userRepository.logInWithGoogle();
       emit(state.copyWith(submissionStatus: SignUpSubmissionStatus.success));

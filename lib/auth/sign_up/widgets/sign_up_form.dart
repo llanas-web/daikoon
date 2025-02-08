@@ -34,7 +34,8 @@ class SignUpForm extends StatelessWidget {
             emailError: context
                 .select((SignUpCubit cubit) => cubit.state.email.errorMessage),
             isLoading: context.select(
-                (SignUpCubit cubit) => cubit.state.submissionStatus.isLoading),
+              (SignUpCubit cubit) => cubit.state.submissionStatus.isLoading,
+            ),
           ),
           const UsernameTextField(),
           PasswordTextField<SignUpCubit, SignUpState>(
@@ -43,11 +44,14 @@ class SignUpForm extends StatelessWidget {
             onChangePasswordVisibility: (cubit) =>
                 cubit.changePasswordVisibility(),
             passwordError: context.select(
-                (SignUpCubit cubit) => cubit.state.password.errorMessage),
-            showPassword:
-                context.select((SignUpCubit cubit) => cubit.state.showPassword),
+              (SignUpCubit cubit) => cubit.state.password.errorMessage,
+            ),
+            showPassword: context.select(
+              (SignUpCubit cubit) => cubit.state.showPassword,
+            ),
             isLoading: context.select(
-                (SignUpCubit cubit) => cubit.state.submissionStatus.isLoading),
+              (SignUpCubit cubit) => cubit.state.submissionStatus.isLoading,
+            ),
           ),
         ].spacerBetween(height: AppSpacing.xlg),
       ),

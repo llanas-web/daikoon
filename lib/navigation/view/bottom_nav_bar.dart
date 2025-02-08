@@ -41,7 +41,7 @@ class BottomNavBar extends StatelessWidget {
       showSelectedLabels: false,
       showUnselectedLabels: false,
       selectedItemColor: AppColors.secondary,
-      unselectedItemColor: AppColors.grey.withOpacity(0.7),
+      unselectedItemColor: AppColors.grey.withValues(alpha: 0.7),
       items: navigationBarItems
           .map(
             (navBarItem) => BottomNavigationBarItem(
