@@ -12,10 +12,10 @@ on:
       - main
   pull_request:
     paths:
-      - "daikoon/lib/**"
-      - "daikoon/test/**"
-      - "daikoon/packages/**"
-      - "daikoon/pubspec.yaml"
+      - "lib/**"
+      - "test/**"
+      - "packages/**"
+      - "pubspec.yaml"
       - ".github/workflows/daikoon.yaml"
     branches:
       - main
@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2.12.0
+      - uses: subosito/flutter-action@v2.16.0
         with:
           channel: ${{matrix.channel}}
           flutter-version: "3.27.4"
@@ -41,6 +41,17 @@ jobs:
         run: |
           flutter pub global activate very_good_cli
           very_good packages get --recursive
+
+      - name: Copy .test.env to .dev.env and .prod.env
+        run: |
+          cp packages/env/test/.test.txt packages/env/.env.dev
+          cp packages/env/test/.test.txt packages/env/.env.prod
+        shell: bash
+
+      - name: Run build_runner build
+        run: |
+          cd packages/env
+          dart run build_runner build --delete-conflicting-outputs
 
       - name: Format
         run: dart format --set-exit-if-changed lib test
