@@ -107,17 +107,6 @@ class LoginView extends StatelessWidget {
                 ].spacerBetween(height: AppSpacing.xlg),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                openSnackbar(
-                  const SnackbarMessage.error(
-                    title: 'Feature is not available!',
-                  ),
-                );
-                // context.read<UserRepository>().logOut();
-              },
-              child: const Text('logout'),
-            ),
             const ConditionsInfos(),
           ],
         ),

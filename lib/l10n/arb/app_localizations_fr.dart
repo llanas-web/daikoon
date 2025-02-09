@@ -49,8 +49,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get signUpButtonLabel => 'Créer un compte';
 
   @override
-  String get conditionsLabel =>
-      'En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d\'utilisation de Daïkoon.';
+  String get conditionsLabel => 'En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d\'utilisation de Daïkoon.';
 
   @override
   String signInWithText(String provider) {
@@ -67,12 +66,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get changePasswordText => 'Changer le mot de passe';
 
   @override
-  String get goBackConfirmationText =>
-      'Êtes-vous sûr de vouloir revenir en arrière ?';
+  String get goBackConfirmationText => 'Êtes-vous sûr de vouloir revenir en arrière ?';
 
   @override
-  String get loseAllEditsText =>
-      'Vous perdrez toutes les modifications non enregistrées.';
+  String get loseAllEditsText => 'Vous perdrez toutes les modifications non enregistrées.';
 
   @override
   String get cancelText => 'Annuler';
@@ -84,8 +81,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get furtherText => 'Suite';
 
   @override
-  String get forgotPasswordEmailConfirmationText =>
-      'Vérification de l\'adresse e-mail';
+  String get forgotPasswordEmailConfirmationText => 'Vérification de l\'adresse e-mail';
 
   @override
   String verificationTokenSentText(String email) {
