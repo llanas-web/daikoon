@@ -1,6 +1,4 @@
-import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

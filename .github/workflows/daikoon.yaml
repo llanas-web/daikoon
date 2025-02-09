@@ -1,0 +1,66 @@
+name: daikoon
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - "daikoon/lib/**"
+      - "daikoon/test/**"
+      - "daikoon/packages/**"
+      - "daikoon/pubspec.yaml"
+      - ".github/workflows/daikoon.yaml"
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        channel: [stable]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2.12.0
+        with:
+          channel: ${{matrix.channel}}
+          flutter-version: "3.27.4"
+          cache: false
+
+      - name: Install Dependencies
+        run: |
+          flutter pub global activate very_good_cli
+          very_good packages get --recursive
+
+      - name: Format
+        run: dart format --set-exit-if-changed lib test
+
+      - name: Run build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Analyze
+        run: flutter analyze lib test
+
+      - name: Run tests
+        run: very_good test -x presubmit-only --coverage --test-randomize-ordering-seed random --exclude-coverage "**/*.g.dart **/*.freezed.dart **/*.gen.dart **/l10n/*.dart **/l10n/**/*.dart **/main/bootstrap.dart packages/env/*"
+            
+      - name: Check for existing and non-empty coverage file
+        id: test_coverage_file
+        run: if [ -s "/coverage/lcov.info" ]; then echo "result=true" >> $GITHUB_OUTPUT ; else echo "result=false" >> $GITHUB_OUTPUT; fi
+
+      - name: Very Good Coverage
+        if: steps.test_coverage_file.outputs.result == 'true'
+        uses: VeryGoodOpenSource/very_good_coverage@v3
+        with:
+            exclude: "**/*.g.dart **/*.gen.dart **/l10n/*.dart **/l10n/**/*.dart **/main/bootstrap.dart"
+            path: "/coverage/lcov.info"
