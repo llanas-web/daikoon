@@ -11,7 +11,6 @@ dependencies:
   app_ui:
     path: packages/app_ui
   bloc: ^9.0.0
-  build_runner: ^2.4.14
   env:
     path: packages/env
   equatable: ^2.0.7
@@ -41,6 +40,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^10.0.0
+  build_runner: ^2.4.14
   build_verify: ^3.1.0
   flutter_test:
     sdk: flutter
