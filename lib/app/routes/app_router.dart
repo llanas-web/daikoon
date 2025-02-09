@@ -13,6 +13,7 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
 GoRouter router(AppBloc appBloc) {
   return GoRouter(
+    navigatorKey: _rootNavigatorKey,
     initialLocation: AppRoutes.home.route,
     routes: [
       GoRoute(
@@ -111,7 +112,9 @@ StatefulShellBranch generateStatefulShellBranch({
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               child: AppScaffold(
-                body: Text(route.name, style: context.headlineSmall),
+                body: Center(
+                  child: Text(route.name, style: context.headlineSmall),
+                ),
               ),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) =>
