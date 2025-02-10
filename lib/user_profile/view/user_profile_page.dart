@@ -76,7 +76,9 @@ class UserProfileView extends StatelessWidget {
                         _UserProfileTileItem(
                           icon: const Icon(Icons.info_outline),
                           title: context.l10n.userProfileTileInformationLabel,
-                          onTap: () {},
+                          onTap: () => context.pushNamed(
+                            AppRoutes.editProfile.name,
+                          ),
                         ),
                         _UserProfileTileItem(
                           icon: Assets.icons.historic.svg(

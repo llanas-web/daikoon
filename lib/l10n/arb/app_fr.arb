@@ -135,7 +135,7 @@
   "@profileNavBarItemLabel": {
     "description": "Label text for the profile nav bar item"
   },
-  "userProfileTileInformationLabel": "Informations",
+  "userProfileTileInformationLabel": "Mes Informations",
   "@userProfileTileInformationLabel": {
     "description": "Label text for the information tile"
   },

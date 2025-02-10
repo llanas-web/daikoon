@@ -49,7 +49,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get signUpButtonLabel => 'Créer un compte';
 
   @override
-  String get conditionsLabel => 'En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d\'utilisation de Daïkoon.';
+  String get conditionsLabel =>
+      'En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d\'utilisation de Daïkoon.';
 
   @override
   String signInWithText(String provider) {
@@ -66,10 +67,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get changePasswordText => 'Changer le mot de passe';
 
   @override
-  String get goBackConfirmationText => 'Êtes-vous sûr de vouloir revenir en arrière ?';
+  String get goBackConfirmationText =>
+      'Êtes-vous sûr de vouloir revenir en arrière ?';
 
   @override
-  String get loseAllEditsText => 'Vous perdrez toutes les modifications non enregistrées.';
+  String get loseAllEditsText =>
+      'Vous perdrez toutes les modifications non enregistrées.';
 
   @override
   String get cancelText => 'Annuler';
@@ -81,7 +84,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get furtherText => 'Suite';
 
   @override
-  String get forgotPasswordEmailConfirmationText => 'Vérification de l\'adresse e-mail';
+  String get forgotPasswordEmailConfirmationText =>
+      'Vérification de l\'adresse e-mail';
 
   @override
   String verificationTokenSentText(String email) {
@@ -104,7 +108,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileNavBarItemLabel => 'Profil';
 
   @override
-  String get userProfileTileInformationLabel => 'Informations';
+  String get userProfileTileInformationLabel => 'Mes Informations';
 
   @override
   String get userProfileTileHistoricLabel => 'Historique';
@@ -128,5 +132,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get logOutText => 'Déconnexion';
 
   @override
-  String get logOutConfirmationText => 'Êtes-vous sûr de vouloir vous déconnecter ?';
+  String get logOutConfirmationText =>
+      'Êtes-vous sûr de vouloir vous déconnecter ?';
 }
