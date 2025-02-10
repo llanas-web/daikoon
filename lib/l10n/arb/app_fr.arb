@@ -134,5 +134,33 @@
   "profileNavBarItemLabel": "Profil",
   "@profileNavBarItemLabel": {
     "description": "Label text for the profile nav bar item"
+  },
+  "userProfileTileInformationLabel": "Informations",
+  "@userProfileTileInformationLabel": {
+    "description": "Label text for the information tile"
+  },
+  "userProfileTileHistoricLabel": "Historique",
+  "@userProfileTileHistoricLabel": {
+    "description": "Label text for the historic tile"
+  },
+  "userProfileTileDaikoinsLabel": "Mes Daïkoins",
+  "@userProfileTileDaikoinsLabel": {
+    "description": "Label text for the daikoins tile"
+  },
+  "userProfileTileChangePasswordLabel": "Changer le mot de passe",
+  "@userProfileTileChangePasswordLabel": {
+    "description": "Label text for the change password tile"
+  },
+  "userProfileTileSettingsLabel": "Paramètres",
+  "@userProfileTileSettingsLabel": {
+    "description": "Label text for the settings tile"
+  },
+  "userProfileTileFriendsLabel": "Mes Amis",
+  "@userProfileTileFriendsLabel": {
+    "description": "Label text for the friends tile"
+  },
+  "userProfileTileLogoutLabel": "Déconnexion",
+  "@userProfileTileLogoutLabel": {
+    "description": "Label text for the logout tile"
   }
 }

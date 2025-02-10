@@ -41,6 +41,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/google.svg
   SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
 
+  /// File path: assets/icons/historic.svg
+  SvgGenImage get historic => const SvgGenImage('assets/icons/historic.svg');
+
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
@@ -64,6 +67,7 @@ class $AssetsIconsGen {
         daikoon,
         friends,
         google,
+        historic,
         home,
         iconeNotification,
         notif,

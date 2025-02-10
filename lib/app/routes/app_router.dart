@@ -5,6 +5,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
 import 'package:daikoon/app/home/home.dart';
 import 'package:daikoon/auth/view/auth_page.dart';
+import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -27,7 +28,27 @@ GoRouter router(AppBloc appBloc) {
           navigationShell: navigationShell,
         ),
         branches: [
-          generateStatefulShellBranch(route: AppRoutes.home),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home.route,
+                name: AppRoutes.home.name,
+                pageBuilder: (context, state) {
+                  return CustomTransitionPage(
+                    child: const UserProfilePage(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) =>
+                            SharedAxisTransition(
+                      animation: animation,
+                      secondaryAnimation: secondaryAnimation,
+                      transitionType: SharedAxisTransitionType.horizontal,
+                      child: child,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
           generateStatefulShellBranch(route: AppRoutes.search),
           generateStatefulShellBranch(route: AppRoutes.favorite),
           generateStatefulShellBranch(route: AppRoutes.notification),
@@ -38,16 +59,7 @@ GoRouter router(AppBloc appBloc) {
                 name: AppRoutes.userProfile.name,
                 pageBuilder: (context, state) {
                   return CustomTransitionPage(
-                    child: AppScaffold(
-                      body: Center(
-                        child: ElevatedButton(
-                          onPressed: () => context
-                              .read<AppBloc>()
-                              .add(const AppLogoutRequested()),
-                          child: const Text('Logout'),
-                        ),
-                      ),
-                    ),
+                    child: const UserProfilePage(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) =>
                             SharedAxisTransition(

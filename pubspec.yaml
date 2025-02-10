@@ -31,6 +31,7 @@ dependencies:
     path: packages/powersync_repository
   shared:
     path: packages/shared
+  sliver_tools: ^0.2.12
   supabase_authentication_client:
     path: packages/authentication_client/supabase_authentication_client
   token_storage:

@@ -1,5 +1,4 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/app/app.dart';
 import 'package:daikoon/auth/auth.dart';
 import 'package:daikoon/auth/login/login.dart';
 import 'package:daikoon/l10n/l10n.dart';

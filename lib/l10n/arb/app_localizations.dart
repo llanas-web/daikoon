@@ -278,6 +278,48 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Profil'**
   String get profileNavBarItemLabel;
+
+  /// Label text for the information tile
+  ///
+  /// In fr, this message translates to:
+  /// **'Informations'**
+  String get userProfileTileInformationLabel;
+
+  /// Label text for the historic tile
+  ///
+  /// In fr, this message translates to:
+  /// **'Historique'**
+  String get userProfileTileHistoricLabel;
+
+  /// Label text for the daikoins tile
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes Daïkoins'**
+  String get userProfileTileDaikoinsLabel;
+
+  /// Label text for the change password tile
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer le mot de passe'**
+  String get userProfileTileChangePasswordLabel;
+
+  /// Label text for the settings tile
+  ///
+  /// In fr, this message translates to:
+  /// **'Paramètres'**
+  String get userProfileTileSettingsLabel;
+
+  /// Label text for the friends tile
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes Amis'**
+  String get userProfileTileFriendsLabel;
+
+  /// Label text for the logout tile
+  ///
+  /// In fr, this message translates to:
+  /// **'Déconnexion'**
+  String get userProfileTileLogoutLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -102,4 +102,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileNavBarItemLabel => 'Profil';
+
+  @override
+  String get userProfileTileInformationLabel => 'Informations';
+
+  @override
+  String get userProfileTileHistoricLabel => 'Historique';
+
+  @override
+  String get userProfileTileDaikoinsLabel => 'Mes Daïkoins';
+
+  @override
+  String get userProfileTileChangePasswordLabel => 'Changer le mot de passe';
+
+  @override
+  String get userProfileTileSettingsLabel => 'Paramètres';
+
+  @override
+  String get userProfileTileFriendsLabel => 'Mes Amis';
+
+  @override
+  String get userProfileTileLogoutLabel => 'Déconnexion';
 }
