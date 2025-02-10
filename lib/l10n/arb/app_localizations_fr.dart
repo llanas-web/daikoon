@@ -123,4 +123,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get userProfileTileLogoutLabel => 'Déconnexion';
+
+  @override
+  String get logOutText => 'Déconnexion';
+
+  @override
+  String get logOutConfirmationText => 'Êtes-vous sûr de vouloir vous déconnecter ?';
 }

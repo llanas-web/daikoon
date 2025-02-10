@@ -162,5 +162,13 @@
   "userProfileTileLogoutLabel": "Déconnexion",
   "@userProfileTileLogoutLabel": {
     "description": "Label text for the logout tile"
+  },
+  "logOutText": "Déconnexion",
+  "@logOutText": {
+    "description": "Text shown in the logout page"
+  },
+  "logOutConfirmationText": "Êtes-vous sûr de vouloir vous déconnecter ?",
+  "@logOutConfirmationText": {
+    "description": "Text shown in the confirmation dialog when the user tries to logout"
   }
 }

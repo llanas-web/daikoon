@@ -320,6 +320,18 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Déconnexion'**
   String get userProfileTileLogoutLabel;
+
+  /// Text shown in the logout page
+  ///
+  /// In fr, this message translates to:
+  /// **'Déconnexion'**
+  String get logOutText;
+
+  /// Text shown in the confirmation dialog when the user tries to logout
+  ///
+  /// In fr, this message translates to:
+  /// **'Êtes-vous sûr de vouloir vous déconnecter ?'**
+  String get logOutConfirmationText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

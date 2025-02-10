@@ -1,8 +1,10 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/app/app.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:user_repository/user_repository.dart';
 
 class UserProfilePage extends StatelessWidget {
@@ -115,7 +117,17 @@ class UserProfileView extends StatelessWidget {
                         _UserProfileTileItem(
                           icon: const Icon(Icons.logout),
                           title: context.l10n.userProfileTileLogoutLabel,
-                          onTap: () {},
+                          onTap: () => context.confirmAction(
+                            fn: () {
+                              context.read<AppBloc>().add(
+                                    const AppLogoutRequested(),
+                                  );
+                            },
+                            title: context.l10n.logOutText,
+                            content: context.l10n.logOutConfirmationText,
+                            noText: context.l10n.cancelText,
+                            yesText: context.l10n.logOutText,
+                          ),
                           trailing: false,
                         ),
                       ]
