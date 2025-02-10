@@ -28,27 +28,7 @@ GoRouter router(AppBloc appBloc) {
           navigationShell: navigationShell,
         ),
         branches: [
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: AppRoutes.home.route,
-                name: AppRoutes.home.name,
-                pageBuilder: (context, state) {
-                  return CustomTransitionPage(
-                    child: const UserProfilePage(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) =>
-                            SharedAxisTransition(
-                      animation: animation,
-                      secondaryAnimation: secondaryAnimation,
-                      transitionType: SharedAxisTransitionType.horizontal,
-                      child: child,
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
+          generateStatefulShellBranch(route: AppRoutes.home),
           generateStatefulShellBranch(route: AppRoutes.search),
           generateStatefulShellBranch(route: AppRoutes.favorite),
           generateStatefulShellBranch(route: AppRoutes.notification),
@@ -58,8 +38,11 @@ GoRouter router(AppBloc appBloc) {
                 path: AppRoutes.userProfile.route,
                 name: AppRoutes.userProfile.name,
                 pageBuilder: (context, state) {
+                  final user = context.select(
+                    (AppBloc bloc) => bloc.state.user,
+                  );
                   return CustomTransitionPage(
-                    child: const UserProfilePage(),
+                    child: UserProfilePage(userId: user.id),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) =>
                             SharedAxisTransition(

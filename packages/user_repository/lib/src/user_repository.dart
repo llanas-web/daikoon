@@ -1,17 +1,24 @@
 import 'package:authentication_client/authentication_client.dart';
+import 'package:database_client/database_client.dart';
 // import 'package:powersync_repository/powersync_repository.dart' hide User;
 import 'package:user_repository/user_repository.dart';
 
 /// {@template user_repository}
 /// A package that manages user flow.
 /// {@endtemplate}
-class UserRepository {
+class UserRepository implements UserBaseRepository {
   /// {@macro user_repository}
   const UserRepository({
     required AuthenticationClient authenticationClient,
-  }) : _authenticationClient = authenticationClient;
+    required DatabaseClient databaseClient,
+  })  : _authenticationClient = authenticationClient,
+        _databalseClient = databaseClient;
 
   final AuthenticationClient _authenticationClient;
+  final DatabaseClient _databalseClient;
+
+  @override
+  String? get currentUserId => _databalseClient.currentUserId;
 
   /// Stream of [User] which will emit the current user when
   /// the authentication state changes.
@@ -135,4 +142,8 @@ class UserRepository {
       Error.throwWithStackTrace(ResetPasswordFailure, stackTrace);
     }
   }
+
+  @override
+  Stream<User> profile({required String userId}) =>
+      _databalseClient.profile(userId: userId);
 }

@@ -1,6 +1,7 @@
 import 'package:daikoon/app/app.dart';
 import 'package:daikoon/bootstrap.dart';
 import 'package:daikoon/firebase_options_prod.dart';
+import 'package:database_client/database_client.dart';
 import 'package:env/env.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared/shared.dart';
@@ -26,9 +27,15 @@ void main() {
         googleSignIn: googleSignIn,
       );
 
+      final powerSyncDatabaseClient = PowerSyncDatabaseClient(
+        powerSyncRepository: powerSyncrepository,
+      );
+
       final userRepository = UserRepository(
         authenticationClient: authenticationClient,
+        databaseClient: powerSyncDatabaseClient,
       );
+
       return App(
         user: await userRepository.user.first,
         userRepository: userRepository,
