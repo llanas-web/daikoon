@@ -170,5 +170,9 @@
   "logOutConfirmationText": "Êtes-vous sûr de vouloir vous déconnecter ?",
   "@logOutConfirmationText": {
     "description": "Text shown in the confirmation dialog when the user tries to logout"
+  },
+  "saveText": "Sauvegarder",
+  "@saveText": {
+    "description": "Text shown in the save button"
   }
 }

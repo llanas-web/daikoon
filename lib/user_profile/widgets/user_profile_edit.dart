@@ -2,7 +2,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/bloc/app_bloc.dart';
 import 'package:daikoon/app/routes/app_routes.dart';
 import 'package:daikoon/l10n/l10n.dart';
-import 'package:daikoon/user_profile/bloc/user_profile_bloc.dart';
+import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -31,6 +31,9 @@ class UserProfileEditView extends StatefulWidget {
 }
 
 class _UserProfileEditViewState extends State<UserProfileEditView> {
+  final _fullNameController = TextEditingController();
+  final _usernameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final user = context.select((AppBloc bloc) => bloc.state.user);
@@ -55,12 +58,41 @@ class _UserProfileEditViewState extends State<UserProfileEditView> {
                 label: 'Full Name',
                 description: 'Your full name',
                 infoType: ProfileEditInfoType.fullName,
+                textController: _fullNameController,
               ),
               ProfileInfoInput(
                 value: user.username,
                 label: context.l10n.usernameText,
                 description: 'username',
                 infoType: ProfileEditInfoType.username,
+                textController: _usernameController,
+              ),
+              const Gap.v(AppSpacing.md),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.xlg,
+                      ),
+                      child: UserProfileEditSaveButton(
+                        onPressed: () {
+                          context.read<UserProfileBloc>().add(
+                                UserProfileUpdateRequested(
+                                  fullName: _fullNameController.text.isNotEmpty
+                                      ? _fullNameController.text
+                                      : null,
+                                  username: _usernameController.text.isNotEmpty
+                                      ? _usernameController.text
+                                      : null,
+                                ),
+                              );
+                          context.pop();
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ].spacerBetween(height: AppSpacing.md),
           ),

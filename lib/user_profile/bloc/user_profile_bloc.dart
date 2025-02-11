@@ -15,6 +15,9 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
     on<UserProfileSubscriptionRequested>(
       _onUserProfileSubscriptionRequested,
     );
+    on<UserProfileUpdateRequested>(
+      _onUserProfileUpdateRequested,
+    );
   }
 
   final String _userId;
@@ -30,5 +33,24 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
       isOwner ? _userRepository.user : _userRepository.profile(userId: _userId),
       onData: (user) => state.copyWith(user: user),
     );
+  }
+
+  Future<void> _onUserProfileUpdateRequested(
+    UserProfileUpdateRequested event,
+    Emitter<UserProfileState> emit,
+  ) async {
+    try {
+      await _userRepository.updateUser(
+        email: event.email,
+        username: event.username,
+        avatarUrl: event.avatarUrl,
+        fullName: event.fullName,
+        pushToken: event.pushToken,
+      );
+      emit(state.copyWith(status: UserProfileStatus.userUpdated));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+      emit(state.copyWith(status: UserProfileStatus.userUpdateFailed));
+    }
   }
 }

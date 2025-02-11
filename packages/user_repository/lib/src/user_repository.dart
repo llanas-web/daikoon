@@ -12,13 +12,13 @@ class UserRepository implements UserBaseRepository {
     required AuthenticationClient authenticationClient,
     required DatabaseClient databaseClient,
   })  : _authenticationClient = authenticationClient,
-        _databalseClient = databaseClient;
+        _databaseClient = databaseClient;
 
   final AuthenticationClient _authenticationClient;
-  final DatabaseClient _databalseClient;
+  final DatabaseClient _databaseClient;
 
   @override
-  String? get currentUserId => _databalseClient.currentUserId;
+  String? get currentUserId => _databaseClient.currentUserId;
 
   /// Stream of [User] which will emit the current user when
   /// the authentication state changes.
@@ -145,5 +145,21 @@ class UserRepository implements UserBaseRepository {
 
   @override
   Stream<User> profile({required String userId}) =>
-      _databalseClient.profile(userId: userId);
+      _databaseClient.profile(userId: userId);
+
+  @override
+  Future<void> updateUser({
+    String? fullName,
+    String? email,
+    String? username,
+    String? avatarUrl,
+    String? pushToken,
+  }) =>
+      _databaseClient.updateUser(
+        fullName: fullName,
+        email: email,
+        username: username,
+        avatarUrl: avatarUrl,
+        pushToken: pushToken,
+      );
 }
