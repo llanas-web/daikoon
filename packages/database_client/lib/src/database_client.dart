@@ -4,7 +4,7 @@ import 'package:user_repository/user_repository.dart';
 abstract class UserBaseRepository {
   String? get currentUserId;
 
-  /// Broadcasts the user profile identified by [id].
+  /// Broadcasts the user profile identified by [userId].
   Stream<User> profile({required String userId});
 
   /// Updates currently authenticated database user's metadata.
@@ -15,6 +15,9 @@ abstract class UserBaseRepository {
     String? avatarUrl,
     String? pushToken,
   });
+
+  /// Broadcasts the user's daikoins amount identified by [userId].
+  Stream<int> daikoins({required String userId});
 }
 
 /// {@template database_client}
@@ -65,5 +68,16 @@ class PowerSyncDatabaseClient extends DatabaseClient {
           if (avatarUrl != null) 'avatar_url': avatarUrl,
           if (pushToken != null) 'push_token': pushToken,
         },
+      );
+
+  @override
+  Stream<int> daikoins({required String userId}) =>
+      _powerSyncRepository.db().watch(
+        '''
+        SELECT * FROM wallets WHERE user_id = ?
+        ''',
+        parameters: [userId],
+      ).map(
+        (event) => event.isEmpty ? 0 : event.first['amount'] as int,
       );
 }

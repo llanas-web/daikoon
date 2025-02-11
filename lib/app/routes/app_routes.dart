@@ -5,7 +5,8 @@ enum AppRoutes {
   favorite('/favorite'),
   notification('/notification'),
   userProfile('/user-profile'),
-  editProfile('/edit-profile');
+  editProfile('/edit-profile'),
+  daikoins('/daikoins');
 
   const AppRoutes(this.route);
 

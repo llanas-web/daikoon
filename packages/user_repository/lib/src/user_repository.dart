@@ -162,4 +162,8 @@ class UserRepository implements UserBaseRepository {
         avatarUrl: avatarUrl,
         pushToken: pushToken,
       );
+
+  @override
+  Stream<int> daikoins({required String userId}) =>
+      _databaseClient.daikoins(userId: userId);
 }

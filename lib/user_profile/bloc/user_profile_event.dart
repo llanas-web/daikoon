@@ -29,3 +29,7 @@ final class UserProfileSubscriptionRequested extends UserProfileEvent {
 
   final String? userId;
 }
+
+final class UserProfileDaikoinsRequested extends UserProfileEvent {
+  const UserProfileDaikoinsRequested();
+}

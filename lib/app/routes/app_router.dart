@@ -71,6 +71,23 @@ GoRouter router(AppBloc appBloc) {
                       ),
                     ),
                   ),
+                  GoRoute(
+                    path: AppRoutes.daikoins.route,
+                    name: AppRoutes.daikoins.name,
+                    parentNavigatorKey: _rootNavigatorKey,
+                    pageBuilder: (context, state) => CustomTransitionPage(
+                      key: state.pageKey,
+                      child: const UserProfileDaikoins(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) =>
+                              SharedAxisTransition(
+                        animation: animation,
+                        secondaryAnimation: secondaryAnimation,
+                        transitionType: SharedAxisTransitionType.horizontal,
+                        child: child,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],

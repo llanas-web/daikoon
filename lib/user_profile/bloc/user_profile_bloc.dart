@@ -19,6 +19,9 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
     on<UserProfileUpdateRequested>(
       _onUserProfileUpdateRequested,
     );
+    on<UserProfileDaikoinsRequested>(
+      _onUserProfileDaikoinsRequested,
+    );
   }
 
   final String _userId;
@@ -54,5 +57,15 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
       addError(error, stackTrace);
       emit(state.copyWith(status: UserProfileStatus.userUpdateFailed));
     }
+  }
+
+  Future<void> _onUserProfileDaikoinsRequested(
+    UserProfileDaikoinsRequested event,
+    Emitter<UserProfileState> emit,
+  ) async {
+    await emit.forEach(
+      _userRepository.daikoins(userId: _userId),
+      onData: (daikoins) => state.copyWith(daikoins: daikoins),
+    );
   }
 }

@@ -96,7 +96,9 @@ class UserProfileView extends StatelessWidget {
                             width: AppSpacing.xlg,
                           ),
                           title: context.l10n.userProfileTileDaikoinsLabel,
-                          onTap: () {},
+                          onTap: () => context.pushNamed(
+                            AppRoutes.daikoins.name,
+                          ),
                         ),
                         _UserProfileTileItem(
                           icon: const Icon(Icons.lock_outline),
