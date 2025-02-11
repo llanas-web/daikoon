@@ -110,7 +110,15 @@ class SupabaseConnector extends PowerSyncBackendConnector {
         } else if (op.op == UpdateType.patch) {
           await table.update(op.opData!).eq('id', op.id);
         } else if (op.op == UpdateType.delete) {
-          await table.delete().eq('id', op.id);
+          if (op.table == 'friendships') {
+            final [senderId, receiverId] = op.id.split('.');
+            await table
+                .delete()
+                .eq('sender_id', senderId)
+                .eq('receiver_id', receiverId);
+          } else {
+            await table.delete().eq('id', op.id);
+          }
         }
       }
 

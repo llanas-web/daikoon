@@ -20,7 +20,13 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
       _onUserProfileUpdateRequested,
     );
     on<UserProfileDaikoinsRequested>(
-      _onUserProfileDaikoinsRequested,
+      _onDaikoinsFetch,
+    );
+    on<UserProfileFetchFriendsRequested>(
+      _onFriendsFetch,
+    );
+    on<UserProfileUnfriendRequested>(
+      _onUnfriendRequested,
     );
   }
 
@@ -59,7 +65,7 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
     }
   }
 
-  Future<void> _onUserProfileDaikoinsRequested(
+  Future<void> _onDaikoinsFetch(
     UserProfileDaikoinsRequested event,
     Emitter<UserProfileState> emit,
   ) async {
@@ -67,5 +73,22 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
       _userRepository.daikoins(userId: _userId),
       onData: (daikoins) => state.copyWith(daikoins: daikoins),
     );
+  }
+
+  Future<void> _onFriendsFetch(
+    UserProfileFetchFriendsRequested event,
+    Emitter<UserProfileState> emit,
+  ) async {
+    final friends = await _userRepository.getFriends(userId: _userId);
+    emit(state.copyWith(friends: friends));
+  }
+
+  Future<void> _onUnfriendRequested(
+    UserProfileUnfriendRequested event,
+    Emitter<UserProfileState> emit,
+  ) async {
+    await _userRepository.unfriend(userId: _userId, friendId: event.friendId);
+    final friends = await _userRepository.getFriends(userId: _userId);
+    emit(state.copyWith(friends: friends));
   }
 }

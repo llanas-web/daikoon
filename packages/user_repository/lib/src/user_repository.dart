@@ -166,4 +166,13 @@ class UserRepository implements UserBaseRepository {
   @override
   Stream<int> daikoins({required String userId}) =>
       _databaseClient.daikoins(userId: userId);
+
+  @override
+  Future<List<User>> getFriends({required String userId}) =>
+      _databaseClient.getFriends(userId: userId);
+
+  @override
+  Future<void> unfriend({required String userId, required String friendId}) {
+    return _databaseClient.unfriend(userId: userId, friendId: friendId);
+  }
 }
