@@ -87,7 +87,6 @@ class _UserProfileEditViewState extends State<UserProfileEditView> {
                                       : null,
                                 ),
                               );
-                          context.pop();
                         },
                       ),
                     ),

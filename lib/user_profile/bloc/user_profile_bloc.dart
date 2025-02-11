@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
 
 part 'user_profile_event.dart';
@@ -40,6 +41,7 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
     Emitter<UserProfileState> emit,
   ) async {
     try {
+      emit(state.copyWith(status: UserProfileStatus.initial));
       await _userRepository.updateUser(
         email: event.email,
         username: event.username,

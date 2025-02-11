@@ -174,5 +174,13 @@
   "saveText": "Sauvegarder",
   "@saveText": {
     "description": "Text shown in the save button"
+  },
+  "profileUpdatedTitle": "Vos informations ont été mises à jour",
+  "@profileUpdatedTitle": {
+    "description": "Title text for the profile updated page"
+  },
+  "test": "Test",
+  "@test": {
+    "description": "Test"
   }
 }

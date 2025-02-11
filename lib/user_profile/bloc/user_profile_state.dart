@@ -3,7 +3,10 @@ part of 'user_profile_bloc.dart';
 enum UserProfileStatus {
   initial,
   userUpdated,
-  userUpdateFailed,
+  userUpdateFailed;
+
+  bool get isUpdateSuccess => this == UserProfileStatus.userUpdated;
+  bool get isUpdateError => this == UserProfileStatus.userUpdateFailed;
 }
 
 class UserProfileState extends Equatable {
@@ -67,3 +70,8 @@ class UserProfileState extends Equatable {
     );
   }
 }
+
+final userProfileStatusMessage = <UserProfileStatus, SubmissionStatusMessage>{
+  UserProfileStatus.userUpdateFailed:
+      const SubmissionStatusMessage.genericError(),
+};
