@@ -220,5 +220,17 @@
   "drawerSettingsLabel": "Réglages",
   "@drawerSettingsLabel": {
     "description": "Label for the settings page"
+  },
+  "challengeCreationContinueButtonLabel": "Continuer",
+  "@challengeCreationContinueButtonLabel": {
+    "description": "Label for the continue button in the challenge creation page"
+  },
+  "challengeCreationCancelButtonLabel": "Retour",
+  "@challengeCreationCancelButtonLabel": {
+    "description": "Label for the cancel button in the challenge creation page"
+  },
+  "challengeCreationTitleFormLabel": "Nom du défi",
+  "@challengeCreationTitleFormLabel": {
+    "description": "Label for the title form in the challenge creation page"
   }
 }

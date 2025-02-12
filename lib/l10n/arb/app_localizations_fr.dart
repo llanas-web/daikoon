@@ -170,4 +170,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get drawerSettingsLabel => 'Réglages';
+
+  @override
+  String get challengeCreationContinueButtonLabel => 'Continuer';
+
+  @override
+  String get challengeCreationCancelButtonLabel => 'Retour';
+
+  @override
+  String get challengeCreationTitleFormLabel => 'Nom du défi';
 }

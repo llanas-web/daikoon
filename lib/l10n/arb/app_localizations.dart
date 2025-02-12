@@ -399,6 +399,24 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Réglages'**
   String get drawerSettingsLabel;
+
+  /// Label for the continue button in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer'**
+  String get challengeCreationContinueButtonLabel;
+
+  /// Label for the cancel button in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Retour'**
+  String get challengeCreationCancelButtonLabel;
+
+  /// Label for the title form in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom du défi'**
+  String get challengeCreationTitleFormLabel;
 }
 
 class _AppLocalizationsDelegate

@@ -58,6 +58,16 @@ GoRouter router(AppBloc appBloc) {
                   );
                 },
               ),
+              GoRoute(
+                path: AppRoutes.createChallenge.route,
+                name: AppRoutes.createChallenge.name,
+                pageBuilder: (context, state) {
+                  return NoTransitionPage(
+                    key: state.pageKey,
+                    child: const CreateChallengePage(),
+                  );
+                },
+              ),
             ],
           ),
           generateStatefulShellBranch(route: AppRoutes.search),
