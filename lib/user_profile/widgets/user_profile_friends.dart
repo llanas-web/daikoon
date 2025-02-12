@@ -31,9 +31,14 @@ class UserProfileFriendsView extends StatefulWidget {
   State<UserProfileFriendsView> createState() => _UserProfileFriendsViewState();
 }
 
-class _UserProfileFriendsViewState extends State<UserProfileFriendsView> {
+class _UserProfileFriendsViewState extends State<UserProfileFriendsView>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final friendsStream = context.read<UserProfileBloc>().friends;
 
     return AppScaffold(
