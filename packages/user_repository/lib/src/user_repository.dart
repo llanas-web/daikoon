@@ -168,7 +168,7 @@ class UserRepository implements UserBaseRepository {
       _databaseClient.daikoins(userId: userId);
 
   @override
-  Future<List<User>> getFriends({required String userId}) =>
+  Stream<List<User>> getFriends({required String userId}) =>
       _databaseClient.getFriends(userId: userId);
 
   /// Generates a specific hash for each query and if hash already exists in the
@@ -188,6 +188,14 @@ class UserRepository implements UserBaseRepository {
       offset: offset,
       excludeUserIds: excludeUserIds,
     );
+  }
+
+  @override
+  Stream<bool> friendshipStatus({
+    required String friendId,
+    String? userId,
+  }) {
+    return _databaseClient.friendshipStatus(userId: userId, friendId: friendId);
   }
 
   @override

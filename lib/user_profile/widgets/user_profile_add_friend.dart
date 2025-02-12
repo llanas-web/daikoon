@@ -1,5 +1,6 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/user_profile/user_profile.dart';
+import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
@@ -186,29 +187,26 @@ class _FriendTile extends StatelessWidget {
               ],
             ),
           ),
-          _AddFriendButton(onPressed: onAddFriend),
+          _AddFriendButton(user: user, onPressed: onAddFriend),
         ].spacerBetween(width: AppSpacing.md),
       ),
     );
   }
 }
 
-class _AddFriendButton extends StatefulWidget {
+class _AddFriendButton extends StatelessWidget {
   const _AddFriendButton({
     required this.onPressed,
+    required this.user,
   });
 
   final Future<void> Function() onPressed;
-
-  @override
-  State<_AddFriendButton> createState() => _AddFriendButtonState();
-}
-
-class _AddFriendButtonState extends State<_AddFriendButton> {
-  bool isLoading = false;
+  final User user;
 
   @override
   Widget build(BuildContext context) {
+    final userProfileBloc = context.read<UserProfileBloc>();
+
     final style = ButtonStyle(
       backgroundColor: WidgetStatePropertyAll(context.reversedAdaptiveColor),
       shape: WidgetStatePropertyAll(
@@ -224,18 +222,32 @@ class _AddFriendButtonState extends State<_AddFriendButton> {
       ),
       elevation: const WidgetStatePropertyAll(0),
     );
-    return AppButton(
-      text: 'Ajouter',
-      style: style,
-      textStyle: TextStyle(
-        color: context.adaptiveColor,
-      ),
-      onPressed: () async {
-        isLoading = true;
-        await widget.onPressed.call();
-        isLoading = false;
+    return BetterStreamBuilder(
+      stream: userProfileBloc.friendshipStatus(friendId: user.id),
+      builder: (context, isFriend) {
+        return AppButton(
+          text: isFriend ? 'Supprimer' : 'Ajouter',
+          style: style,
+          textStyle: TextStyle(
+            color: context.adaptiveColor,
+          ),
+          onPressed: isFriend
+              ? () async {
+                  userProfileBloc.add(
+                    UserProfileUnfriendRequested(
+                      friendId: user.id,
+                    ),
+                  );
+                }
+              : () async {
+                  userProfileBloc.add(
+                    UserProfileFriendRequested(
+                      friendId: user.id,
+                    ),
+                  );
+                },
+        );
       },
-      loading: isLoading,
     );
   }
 }

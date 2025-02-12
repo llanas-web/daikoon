@@ -22,9 +22,6 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
     on<UserProfileDaikoinsRequested>(
       _onDaikoinsFetch,
     );
-    on<UserProfileFetchFriendsRequested>(
-      _onFriendsFetch,
-    );
     on<UserProfileFriendRequested>(
       _onFriendRequested,
     );
@@ -37,6 +34,11 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
   final UserRepository _userRepository;
 
   bool get isOwner => _userRepository.currentUserId == _userId;
+
+  Stream<List<User>> get friends => _userRepository.getFriends(userId: _userId);
+
+  Stream<bool> friendshipStatus({required String friendId}) =>
+      _userRepository.friendshipStatus(friendId: friendId).asBroadcastStream();
 
   Future<void> _onUserProfileSubscriptionRequested(
     UserProfileSubscriptionRequested event,
@@ -78,14 +80,6 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
     );
   }
 
-  Future<void> _onFriendsFetch(
-    UserProfileFetchFriendsRequested event,
-    Emitter<UserProfileState> emit,
-  ) async {
-    final friends = await _userRepository.getFriends(userId: _userId);
-    emit(state.copyWith(friends: friends));
-  }
-
   Future<void> _onFriendRequested(
     UserProfileFriendRequested event,
     Emitter<UserProfileState> emit,
@@ -102,8 +96,8 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
     Emitter<UserProfileState> emit,
   ) async {
     await _userRepository.removeFriend(
-        userId: _userId, friendId: event.friendId);
-    final friends = await _userRepository.getFriends(userId: _userId);
-    emit(state.copyWith(friends: friends));
+      userId: _userId,
+      friendId: event.friendId,
+    );
   }
 }

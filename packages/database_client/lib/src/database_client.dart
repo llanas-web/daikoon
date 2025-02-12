@@ -22,8 +22,15 @@ abstract class UserBaseRepository {
   /// Broadcasts the user's daikoins amount identified by [userId].
   Stream<int> daikoins({required String userId});
 
-  /// Returns a list of friends for the user identified by [userId].
-  Future<List<User>> getFriends({required String userId});
+  /// Returns realtime stream of friends for the user identified by [userId].
+  Stream<List<User>> getFriends({required String userId});
+
+  /// Returns realtime stream of friendships status of the user identified by
+  /// [friendId] to the user identified by [userId].
+  Stream<bool> friendshipStatus({
+    required String friendId,
+    String? userId,
+  });
 
   /// Adds a friend identified by [friendId]. [userId] is the id
   /// of currently authenticated user.
@@ -114,30 +121,19 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       );
 
   @override
-  Future<List<User>> getFriends({required String userId}) async {
-    final listFriendships = await _powerSyncRepository.db().getAll(
+  Stream<List<User>> getFriends({required String userId}) {
+    return _powerSyncRepository.db().watch(
       '''
-      SELECT * FROM friendships WHERE (sender_id = ? OR receiver_id = ?)
+      SELECT users.id, users.username, users.full_name, users.avatar_url
+      FROM friendships
+      JOIN users
+      ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id) AND users.id != ?1
+      WHERE (friendships.sender_id = ?1 OR friendships.receiver_id = ?1)
       ''',
-      [userId, userId],
+      parameters: [userId],
+    ).map(
+      (event) => event.safeMap(User.fromJson).toList(growable: false),
     );
-    if (listFriendships.isEmpty) return [];
-    final friends = <User>[];
-    for (final friendship in listFriendships) {
-      final friendId = friendship['sender_id'] == userId
-          ? friendship['receiver_id']
-          : friendship['sender_id'];
-      final result = await _powerSyncRepository.db().execute(
-        '''
-        SELECT * FROM users WHERE id = ?
-        ''',
-        [friendId],
-      );
-      if (result.isEmpty) continue;
-      final friend = User.fromJson(result.first);
-      friends.add(friend);
-    }
-    return friends;
   }
 
   @override
@@ -152,6 +148,18 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       [userId ?? currentUserId, friendId],
     );
   }
+
+  @override
+  Stream<bool> friendshipStatus({
+    required String friendId,
+    String? userId,
+  }) =>
+      _powerSyncRepository.db().watch(
+        '''
+        SELECT 1 FROM friendships WHERE (sender_id = ?1 AND receiver_id = ?2) OR (sender_id = ?2 AND receiver_id = ?1)
+        ''',
+        parameters: [userId ?? currentUserId, friendId],
+      ).map((event) => event.isNotEmpty);
 
   @override
   Future<List<User>> searchUsers({

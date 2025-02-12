@@ -1,7 +1,9 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:collection/collection.dart';
 import 'package:daikoon/app/routes/app_routes.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:daikoon/user_profile/user_profile.dart';
+import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -29,24 +31,10 @@ class UserProfileFriendsView extends StatefulWidget {
   State<UserProfileFriendsView> createState() => _UserProfileFriendsViewState();
 }
 
-class _UserProfileFriendsViewState extends State<UserProfileFriendsView>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  void initState() {
-    super.initState();
-    context
-        .read<UserProfileBloc>()
-        .add(const UserProfileFetchFriendsRequested());
-  }
-
-  @override
-  bool get wantKeepAlive => true;
-
+class _UserProfileFriendsViewState extends State<UserProfileFriendsView> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-    final friends =
-        context.select((UserProfileBloc bloc) => bloc.state.friends);
+    final friendsStream = context.read<UserProfileBloc>().friends;
 
     return AppScaffold(
       releaseFocus: true,
@@ -65,18 +53,24 @@ class _UserProfileFriendsViewState extends State<UserProfileFriendsView>
         ],
       ),
       body: CustomScrollView(
-        cacheExtent: 2760,
         slivers: [
-          SliverList.builder(
-            itemCount: friends.length,
-            itemBuilder: (context, index) {
-              final user = friends[index];
-              return _FriendTile(
-                user: user,
-                onUnfriend: () {
-                  context.read<UserProfileBloc>().add(
-                        UserProfileUnfriendRequested(friendId: user.id),
-                      );
+          BetterStreamBuilder(
+            initialData: const <User>[],
+            stream: friendsStream,
+            comparator: const ListEquality<User>().equals,
+            builder: (context, friends) {
+              return SliverList.builder(
+                itemCount: friends.length,
+                itemBuilder: (context, index) {
+                  final user = friends[index];
+                  return _FriendTile(
+                    user: user,
+                    onUnfriend: () {
+                      context.read<UserProfileBloc>().add(
+                            UserProfileUnfriendRequested(friendId: user.id),
+                          );
+                    },
+                  );
                 },
               );
             },

@@ -14,7 +14,6 @@ class UserProfileState extends Equatable {
     required this.status,
     required this.user,
     required this.daikoins,
-    required this.friends,
   });
 
   const UserProfileState.initial()
@@ -22,33 +21,28 @@ class UserProfileState extends Equatable {
           status: UserProfileStatus.initial,
           user: User.anonymous,
           daikoins: 0,
-          friends: const [],
         );
 
   final UserProfileStatus status;
   final User user;
   final int daikoins;
-  final List<User> friends;
 
   @override
   List<Object> get props => [
         status,
         user,
         daikoins,
-        friends,
       ];
 
   UserProfileState copyWith({
     UserProfileStatus? status,
     User? user,
     int? daikoins,
-    List<User>? friends,
   }) {
     return UserProfileState._(
       status: status ?? this.status,
       user: user ?? this.user,
       daikoins: daikoins ?? this.daikoins,
-      friends: friends ?? this.friends,
     );
   }
 }

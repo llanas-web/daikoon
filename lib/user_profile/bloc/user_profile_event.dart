@@ -34,12 +34,6 @@ final class UserProfileDaikoinsRequested extends UserProfileEvent {
   const UserProfileDaikoinsRequested();
 }
 
-final class UserProfileFetchFriendsRequested extends UserProfileEvent {
-  const UserProfileFetchFriendsRequested({this.userId});
-
-  final String? userId;
-}
-
 final class UserProfileUnfriendRequested extends UserProfileEvent {
   const UserProfileUnfriendRequested({required this.friendId});
 
