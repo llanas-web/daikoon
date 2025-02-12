@@ -143,4 +143,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get test => 'Test';
+
+  @override
+  String drawerHeadline(String username) {
+    return 'Hello $username ! 😁';
+  }
+
+  @override
+  String get drawerWelcomeText =>
+      'Bienvenue sur votre espace personnel Daïkoon ! \n Ici, vous pourrez retrouver tous vos défis, en créer de nouveaux et échanger avec vos amis ! 🔥';
+
+  @override
+  String get drawerListChallengeTitle => 'Mes défis';
 }

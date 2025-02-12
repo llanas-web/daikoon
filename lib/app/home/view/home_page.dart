@@ -1,31 +1,27 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/navigation/navigation.dart';
-import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
+import 'package:daikoon/app/widgets/widgets.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({required this.navigationShell, super.key});
-
-  final StatefulNavigationShell navigationShell;
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return HomeView(navigationShell: navigationShell);
+    return const HomeView();
   }
 }
 
 class HomeView extends StatelessWidget {
-  const HomeView({required this.navigationShell, super.key});
-
-  final StatefulNavigationShell navigationShell;
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      body: navigationShell,
-      bottomNavigationBar: BottomNavBar(
-        navigationShell: navigationShell,
+    return const AppScaffold(
+      appBar: HomeAppBar(),
+      body: Center(
+        child: Text('home'),
       ),
+      drawer: AppDrawer(),
     );
   }
 }

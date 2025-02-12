@@ -5,6 +5,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
 import 'package:daikoon/app/home/home.dart';
 import 'package:daikoon/auth/view/auth_page.dart';
+import 'package:daikoon/challenge/challenge.dart';
 import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,11 +25,41 @@ GoRouter router(AppBloc appBloc) {
       ),
       StatefulShellRoute.indexedStack(
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state, navigationShell) => HomePage(
+        builder: (context, state, navigationShell) => AppPage(
           navigationShell: navigationShell,
         ),
         branches: [
-          generateStatefulShellBranch(route: AppRoutes.home),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home.route,
+                name: AppRoutes.home.name,
+                pageBuilder: (context, state) {
+                  return CustomTransitionPage(
+                    child: const HomePage(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) =>
+                            SharedAxisTransition(
+                      animation: animation,
+                      secondaryAnimation: secondaryAnimation,
+                      transitionType: SharedAxisTransitionType.horizontal,
+                      child: child,
+                    ),
+                  );
+                },
+              ),
+              GoRoute(
+                path: AppRoutes.listChallenges.route,
+                name: AppRoutes.listChallenges.name,
+                pageBuilder: (context, state) {
+                  return NoTransitionPage(
+                    key: state.pageKey,
+                    child: const ChallengeListPage(),
+                  );
+                },
+              ),
+            ],
+          ),
           generateStatefulShellBranch(route: AppRoutes.search),
           generateStatefulShellBranch(route: AppRoutes.favorite),
           generateStatefulShellBranch(route: AppRoutes.notification),

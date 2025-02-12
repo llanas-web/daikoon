@@ -8,7 +8,8 @@ enum AppRoutes {
   editProfile('/edit-profile'),
   daikoins('/daikoins'),
   friends('/friends'),
-  addFriends('/add-friends');
+  addFriends('/add-friends'),
+  listChallenges('/list-challenges');
 
   const AppRoutes(this.route);
 

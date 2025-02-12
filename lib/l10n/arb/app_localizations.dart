@@ -351,6 +351,24 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Test'**
   String get test;
+
+  /// Text shown in the drawer
+  ///
+  /// In fr, this message translates to:
+  /// **'Hello {username} ! 😁'**
+  String drawerHeadline(String username);
+
+  /// Text shown in the drawer
+  ///
+  /// In fr, this message translates to:
+  /// **'Bienvenue sur votre espace personnel Daïkoon ! \n Ici, vous pourrez retrouver tous vos défis, en créer de nouveaux et échanger avec vos amis ! 🔥'**
+  String get drawerWelcomeText;
+
+  /// Text shown in the drawer
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes défis'**
+  String get drawerListChallengeTitle;
 }
 
 class _AppLocalizationsDelegate
