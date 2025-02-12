@@ -1,4 +1,5 @@
 import 'package:powersync_repository/powersync_repository.dart' hide User;
+import 'package:shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
 
 /// UserBaseRepository
@@ -26,6 +27,16 @@ abstract class UserBaseRepository {
 
   /// Unfriends the user identified by [friendId].
   Future<void> unfriend({required String userId, required String friendId});
+
+  /// Looks up into a database a returns users associated with the provided
+  /// [query].
+  Future<List<User>> searchUsers({
+    required int limit,
+    required int offset,
+    required String query,
+    String? userId,
+    String? excludeUserIds,
+  });
 }
 
 /// {@template database_client}
@@ -129,5 +140,28 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       ''',
       [userId, friendId, friendId, userId],
     );
+  }
+
+  @override
+  Future<List<User>> searchUsers({
+    required int limit,
+    required int offset,
+    required String query,
+    String? userId,
+    String? excludeUserIds,
+  }) async {
+    final excludeUserIdsStatement =
+        excludeUserIds == null ? '' : 'AND id NOT IN ($excludeUserIds)';
+    final result = await _powerSyncRepository.db().getAll(
+      '''
+      SELECT id, avatar_url, full_name, username 
+      FROM users 
+      WHERE (LOWER(username) LIKE LOWER('%$query%') OR LOWER(full_name) LIKE LOWER('%$query%'))
+      AND id <> ?1 $excludeUserIdsStatement
+      LIMIT ?2 OFFSET ?3
+      ''',
+      [currentUserId, limit, offset],
+    );
+    return result.safeMap(User.fromJson).toList(growable: false);
   }
 }

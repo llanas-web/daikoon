@@ -175,4 +175,23 @@ class UserRepository implements UserBaseRepository {
   Future<void> unfriend({required String userId, required String friendId}) {
     return _databaseClient.unfriend(userId: userId, friendId: friendId);
   }
+
+  /// Generates a specific hash for each query and if hash already exists in the
+  /// cache, returns the cached result. Otherwise queries for users and caches
+  /// the result.
+  @override
+  Future<List<User>> searchUsers({
+    required String query,
+    int limit = 8,
+    int offset = 0,
+    String? userId,
+    String? excludeUserIds,
+  }) async {
+    return _databaseClient.searchUsers(
+      query: query,
+      limit: limit,
+      offset: offset,
+      excludeUserIds: excludeUserIds,
+    );
+  }
 }

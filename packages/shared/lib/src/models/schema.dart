@@ -38,7 +38,8 @@ const schema = Schema([
     Column.text('email'),
     Column.text('username'),
     Column.text('avatar_url'),
-    Column.text('fcm_token'),
+    Column.text('push_token'),
+    Column.text('full_name'),
   ]),
   Table('friendships', [
     Column.text('sender_id'),
