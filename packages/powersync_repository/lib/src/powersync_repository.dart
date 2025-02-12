@@ -105,7 +105,9 @@ class SupabaseConnector extends PowerSyncBackendConnector {
         final table = rest.from(op.table);
         if (op.op == UpdateType.put) {
           final data = Map<String, dynamic>.of(op.opData!);
-          data['id'] = op.id;
+          if (op.table != 'friendships') {
+            data['id'] = op.id;
+          }
           await table.upsert(data);
         } else if (op.op == UpdateType.patch) {
           await table.update(op.opData!).eq('id', op.id);

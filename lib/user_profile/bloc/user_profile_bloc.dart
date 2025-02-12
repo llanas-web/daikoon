@@ -25,6 +25,9 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
     on<UserProfileFetchFriendsRequested>(
       _onFriendsFetch,
     );
+    on<UserProfileFriendRequested>(
+      _onFriendRequested,
+    );
     on<UserProfileUnfriendRequested>(
       _onUnfriendRequested,
     );
@@ -83,11 +86,23 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
     emit(state.copyWith(friends: friends));
   }
 
+  Future<void> _onFriendRequested(
+    UserProfileFriendRequested event,
+    Emitter<UserProfileState> emit,
+  ) async {
+    try {
+      await _userRepository.addFriend(friendId: event.friendId);
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   Future<void> _onUnfriendRequested(
     UserProfileUnfriendRequested event,
     Emitter<UserProfileState> emit,
   ) async {
-    await _userRepository.unfriend(userId: _userId, friendId: event.friendId);
+    await _userRepository.removeFriend(
+        userId: _userId, friendId: event.friendId);
     final friends = await _userRepository.getFriends(userId: _userId);
     emit(state.copyWith(friends: friends));
   }

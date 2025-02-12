@@ -171,11 +171,6 @@ class UserRepository implements UserBaseRepository {
   Future<List<User>> getFriends({required String userId}) =>
       _databaseClient.getFriends(userId: userId);
 
-  @override
-  Future<void> unfriend({required String userId, required String friendId}) {
-    return _databaseClient.unfriend(userId: userId, friendId: friendId);
-  }
-
   /// Generates a specific hash for each query and if hash already exists in the
   /// cache, returns the cached result. Otherwise queries for users and caches
   /// the result.
@@ -193,5 +188,15 @@ class UserRepository implements UserBaseRepository {
       offset: offset,
       excludeUserIds: excludeUserIds,
     );
+  }
+
+  @override
+  Future<void> addFriend({required String friendId, String? userId}) {
+    return _databaseClient.addFriend(userId: userId, friendId: friendId);
+  }
+
+  @override
+  Future<void> removeFriend({required String friendId, String? userId}) {
+    return _databaseClient.removeFriend(userId: userId, friendId: friendId);
   }
 }

@@ -111,7 +111,11 @@ class _UserProfileAddFriendsViewState extends State<UserProfileAddFriendsView> {
                   return _FriendTile(
                     user: user,
                     onAddFriend: () async {
-                      logD('AddFriend');
+                      context.read<UserProfileBloc>().add(
+                            UserProfileFriendRequested(
+                              friendId: user.id,
+                            ),
+                          );
                     },
                   );
                 },

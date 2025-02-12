@@ -45,3 +45,9 @@ final class UserProfileUnfriendRequested extends UserProfileEvent {
 
   final String friendId;
 }
+
+final class UserProfileFriendRequested extends UserProfileEvent {
+  const UserProfileFriendRequested({required this.friendId});
+
+  final String friendId;
+}

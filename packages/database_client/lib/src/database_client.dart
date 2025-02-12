@@ -25,8 +25,19 @@ abstract class UserBaseRepository {
   /// Returns a list of friends for the user identified by [userId].
   Future<List<User>> getFriends({required String userId});
 
-  /// Unfriends the user identified by [friendId].
-  Future<void> unfriend({required String userId, required String friendId});
+  /// Adds a friend identified by [friendId]. [userId] is the id
+  /// of currently authenticated user.
+  Future<void> addFriend({
+    required String friendId,
+    String? userId,
+  });
+
+  /// Remove friend the user identified by [friendId]. [userId] is the id
+  /// of currently authenticated user.
+  Future<void> removeFriend({
+    required String friendId,
+    String? userId,
+  });
 
   /// Looks up into a database a returns users associated with the provided
   /// [query].
@@ -130,15 +141,15 @@ class PowerSyncDatabaseClient extends DatabaseClient {
   }
 
   @override
-  Future<void> unfriend({
-    required String userId,
+  Future<void> removeFriend({
     required String friendId,
+    String? userId,
   }) async {
     await _powerSyncRepository.db().execute(
       '''
-      DELETE FROM friendships WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)
+      DELETE FROM friendships WHERE (sender_id = ?1 AND receiver_id = ?2) OR (sender_id = ?2 AND receiver_id = ?1)
       ''',
-      [userId, friendId, friendId, userId],
+      [userId ?? currentUserId, friendId],
     );
   }
 
@@ -163,5 +174,19 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       [currentUserId, limit, offset],
     );
     return result.safeMap(User.fromJson).toList(growable: false);
+  }
+
+  @override
+  Future<void> addFriend({
+    required String friendId,
+    String? userId,
+  }) async {
+    final senderId = userId ?? currentUserId;
+    await _powerSyncRepository.db().execute(
+      '''
+      INSERT INTO friendships (id, sender_id, receiver_id) VALUES ('$senderId.$friendId', ?1, ?2)
+      ''',
+      [senderId, friendId],
+    );
   }
 }
