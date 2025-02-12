@@ -164,12 +164,12 @@ class _UnfriendButton extends StatelessWidget {
       backgroundColor: WidgetStatePropertyAll(context.reversedAdaptiveColor),
       shape: WidgetStatePropertyAll(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
-      side: WidgetStatePropertyAll(
+      side: const WidgetStatePropertyAll(
         BorderSide(
-          color: context.reversedAdaptiveColor,
+          color: AppColors.primary,
           width: 2,
         ),
       ),
@@ -178,8 +178,8 @@ class _UnfriendButton extends StatelessWidget {
     return AppButton(
       text: 'Retirer',
       style: style,
-      textStyle: TextStyle(
-        color: context.adaptiveColor,
+      textStyle: const TextStyle(
+        color: AppColors.primary,
       ),
       onPressed: onPressed,
     );
