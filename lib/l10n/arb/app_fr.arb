@@ -185,7 +185,7 @@
   },
   "drawerHeadline": "Hello {username} ! 😁",
   "@drawerHeadline": {
-    "description": "Text shown in the drawer",
+    "description": "Header of the drawer with the username of connected user",
     "placeholders": {
       "username": {
         "type": "String",
@@ -195,10 +195,30 @@
   },
   "drawerWelcomeText": "Bienvenue sur votre espace personnel Daïkoon ! \n Ici, vous pourrez retrouver tous vos défis, en créer de nouveaux et échanger avec vos amis ! 🔥",
   "@drawerWelcomeText": {
-    "description": "Text shown in the drawer"
+    "description": "Welcome text explaining daikoon in the drawer header"
   },
-  "drawerListChallengeTitle": "Mes défis",
-  "@drawerListChallengeTitle": {
-    "description": "Text shown in the drawer"
+  "drawerListChallengeLabel": "Mes défis",
+  "@drawerListChallengeLabel": {
+    "description": "Label for the list challenges page"
+  },
+  "drawerChallengeLabel": "Mes défis",
+  "@drawerChallengeLabel": {
+    "description": "Label for the challenges page"
+  },
+  "drawerFriendsLabel": "Mes amis",
+  "@drawerFriendsLabel": {
+    "description": "Label for the friends page"
+  },
+  "drawerMessagesLabel": "Messagerie",
+  "@drawerMessagesLabel": {
+    "description": "Label for the messages page"
+  },
+  "drawerDaikoinsLabel": "Mes Daïkoins",
+  "@drawerDaikoinsLabel": {
+    "description": "Label for the daikoins page"
+  },
+  "drawerSettingsLabel": "Réglages",
+  "@drawerSettingsLabel": {
+    "description": "Label for the settings page"
   }
 }

@@ -16,7 +16,12 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Tappable(
-            child: Assets.images.daikoon.svg(),
+            child: Assets.images.daikoon.svg(
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary,
+                BlendMode.srcIn,
+              ),
+            ),
             onTap: () => context.go('/'),
           ),
         ],

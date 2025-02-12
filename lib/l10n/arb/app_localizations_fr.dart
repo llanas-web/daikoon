@@ -154,5 +154,20 @@ class AppLocalizationsFr extends AppLocalizations {
       'Bienvenue sur votre espace personnel Daïkoon ! \n Ici, vous pourrez retrouver tous vos défis, en créer de nouveaux et échanger avec vos amis ! 🔥';
 
   @override
-  String get drawerListChallengeTitle => 'Mes défis';
+  String get drawerListChallengeLabel => 'Mes défis';
+
+  @override
+  String get drawerChallengeLabel => 'Mes défis';
+
+  @override
+  String get drawerFriendsLabel => 'Mes amis';
+
+  @override
+  String get drawerMessagesLabel => 'Messagerie';
+
+  @override
+  String get drawerDaikoinsLabel => 'Mes Daïkoins';
+
+  @override
+  String get drawerSettingsLabel => 'Réglages';
 }

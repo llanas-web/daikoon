@@ -21,8 +21,18 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.lg,
+            padding: const EdgeInsets.only(
+              left: AppSpacing.lg,
+              right: AppSpacing.lg,
+              bottom: AppSpacing.xxlg,
+            ),
+            // adding bottom border
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: AppColors.primary,
+                ),
+              ),
             ),
             margin: EdgeInsets.zero,
             child: Column(
@@ -30,7 +40,12 @@ class AppDrawer extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Assets.images.daikoon.svg(),
+                    Assets.images.daikoon.svg(
+                      colorFilter: const ColorFilter.mode(
+                        AppColors.primary,
+                        BlendMode.srcIn,
+                      ),
+                    ),
                     IconButton(
                       icon: Icon(
                         Icons.close,
@@ -66,13 +81,28 @@ class AppDrawer extends StatelessWidget {
                     ],
                   ),
                 ),
-              ].spacerBetween(height: AppSpacing.lg),
+              ].spacerBetween(height: AppSpacing.xlg),
             ),
           ),
           _DrawerItemWidget(
-            title: context.l10n.drawerListChallengeTitle,
+            title: context.l10n.drawerListChallengeLabel,
+            icon: Assets.icons.challenge,
+            route: AppRoutes.createChallenge,
+          ),
+          _DrawerItemWidget(
+            title: context.l10n.drawerListChallengeLabel,
             icon: Assets.icons.trophy,
             route: AppRoutes.listChallenges,
+          ),
+          _DrawerItemWidget(
+            title: context.l10n.drawerFriendsLabel,
+            icon: Assets.icons.friends,
+            route: AppRoutes.friends,
+          ),
+          _DrawerItemWidget(
+            title: context.l10n.drawerDaikoinsLabel,
+            icon: Assets.icons.daikoon,
+            route: AppRoutes.daikoins,
           ),
         ],
       ),
@@ -97,15 +127,26 @@ class _DrawerItemWidget extends StatelessWidget {
   ) {
     final isSelected = GoRouter.of(context).state.name == route.name;
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 40),
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: AppSpacing.sm,
+        horizontal: AppSpacing.xxlg,
+      ),
       selected: isSelected,
       selectedColor: Colors.white,
       selectedTileColor: AppColors.primary,
-      title: Text(title),
+      title: Text(
+        title,
+        style: context.labelMedium!.copyWith(
+          fontWeight: AppFontWeight.bold,
+          color: isSelected
+              ? context.reversedAdaptiveColor
+              : context.adaptiveColor,
+        ),
+      ),
       leading: icon.svg(
         colorFilter: isSelected
-            ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
-            : null,
+            ? ColorFilter.mode(context.reversedAdaptiveColor, BlendMode.srcIn)
+            : ColorFilter.mode(context.adaptiveColor, BlendMode.srcIn),
       ),
       onTap: () => context.go(route.route),
     );

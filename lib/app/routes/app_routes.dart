@@ -9,6 +9,7 @@ enum AppRoutes {
   daikoins('/daikoins'),
   friends('/friends'),
   addFriends('/add-friends'),
+  createChallenge('/create-challenge'),
   listChallenges('/list-challenges');
 
   const AppRoutes(this.route);

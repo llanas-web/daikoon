@@ -352,23 +352,53 @@ abstract class AppLocalizations {
   /// **'Test'**
   String get test;
 
-  /// Text shown in the drawer
+  /// Header of the drawer with the username of connected user
   ///
   /// In fr, this message translates to:
   /// **'Hello {username} ! 😁'**
   String drawerHeadline(String username);
 
-  /// Text shown in the drawer
+  /// Welcome text explaining daikoon in the drawer header
   ///
   /// In fr, this message translates to:
   /// **'Bienvenue sur votre espace personnel Daïkoon ! \n Ici, vous pourrez retrouver tous vos défis, en créer de nouveaux et échanger avec vos amis ! 🔥'**
   String get drawerWelcomeText;
 
-  /// Text shown in the drawer
+  /// Label for the list challenges page
   ///
   /// In fr, this message translates to:
   /// **'Mes défis'**
-  String get drawerListChallengeTitle;
+  String get drawerListChallengeLabel;
+
+  /// Label for the challenges page
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes défis'**
+  String get drawerChallengeLabel;
+
+  /// Label for the friends page
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes amis'**
+  String get drawerFriendsLabel;
+
+  /// Label for the messages page
+  ///
+  /// In fr, this message translates to:
+  /// **'Messagerie'**
+  String get drawerMessagesLabel;
+
+  /// Label for the daikoins page
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes Daïkoins'**
+  String get drawerDaikoinsLabel;
+
+  /// Label for the settings page
+  ///
+  /// In fr, this message translates to:
+  /// **'Réglages'**
+  String get drawerSettingsLabel;
 }
 
 class _AppLocalizationsDelegate
