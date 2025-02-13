@@ -12,15 +12,51 @@ class ChallengeNextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: AppButton(
-            text: context.l10n.challengeCreationContinueButtonLabel,
-            onPressed: onPressed,
-          ),
+    const style = ButtonStyle(
+      backgroundColor: WidgetStatePropertyAll(
+        AppColors.primary,
+      ),
+      padding: WidgetStatePropertyAll(
+        EdgeInsets.symmetric(
+          vertical: AppSpacing.lg,
+          horizontal: AppSpacing.xlg,
         ),
-      ],
+      ),
+    );
+    final textStyle =
+        UITextStyle.button.copyWith(color: context.reversedAdaptiveColor);
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: AppButton(
+              style: style,
+              textStyle: textStyle,
+              text: context.l10n.challengeCreationContinueButtonLabel,
+              onPressed: onPressed,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      context.l10n.challengeCreationContinueButtonLabel,
+                      style: textStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    size: AppSize.iconSizeMedium,
+                    color: context.reversedAdaptiveColor,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

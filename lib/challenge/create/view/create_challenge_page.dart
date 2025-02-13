@@ -13,7 +13,7 @@ class CreateChallengePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CreateChallengeBloc(),
-      child: CreateChallengeView(),
+      child: const CreateChallengeView(),
     );
   }
 }
