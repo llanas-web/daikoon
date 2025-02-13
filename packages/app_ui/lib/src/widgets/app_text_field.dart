@@ -258,7 +258,7 @@ class AppTextField extends StatelessWidget {
   final bool expands;
   final Brightness? keyboardAppearance;
   final TextMagnifierConfiguration? magnifierConfiguration;
-  final int maxLines;
+  final int? maxLines;
   final int? maxLength;
   final int? minLength;
   final int? minLines;

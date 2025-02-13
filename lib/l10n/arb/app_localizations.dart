@@ -417,6 +417,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Nom du défi'**
   String get challengeCreationTitleFormLabel;
+
+  /// Hint text for the title form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Défi fifa ⚽'**
+  String get challengeCreationTitleFormFieldHint;
+
+  /// Label for the question form in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Pronostics'**
+  String get challengeCreationQuestionFormLabel;
+
+  /// Label for the question form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre question'**
+  String get challengeCreationQuestionFormFieldLabel;
+
+  /// Hint text for the question form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Qui va gagner ?'**
+  String get challengeCreationQuestionFormFieldHint;
 }
 
 class _AppLocalizationsDelegate

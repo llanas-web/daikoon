@@ -232,5 +232,21 @@
   "challengeCreationTitleFormLabel": "Nom du défi",
   "@challengeCreationTitleFormLabel": {
     "description": "Label for the title form in the challenge creation page"
+  },
+  "challengeCreationTitleFormFieldHint": "Défi fifa ⚽",
+  "@challengeCreationTitleFormFieldHint": {
+    "description": "Hint text for the title form field in the challenge creation page"
+  },
+  "challengeCreationQuestionFormLabel": "Pronostics",
+  "@challengeCreationQuestionFormLabel": {
+    "description": "Label for the question form in the challenge creation page"
+  },
+  "challengeCreationQuestionFormFieldLabel": "Votre question",
+  "@challengeCreationQuestionFormFieldLabel": {
+    "description": "Label for the question form field in the challenge creation page"
+  },
+  "challengeCreationQuestionFormFieldHint": "Qui va gagner ?",
+  "@challengeCreationQuestionFormFieldHint": {
+    "description": "Hint text for the question form field in the challenge creation page"
   }
 }

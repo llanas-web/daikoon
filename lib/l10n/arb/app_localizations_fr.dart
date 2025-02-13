@@ -179,4 +179,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeCreationTitleFormLabel => 'Nom du défi';
+
+  @override
+  String get challengeCreationTitleFormFieldHint => 'Défi fifa ⚽';
+
+  @override
+  String get challengeCreationQuestionFormLabel => 'Pronostics';
+
+  @override
+  String get challengeCreationQuestionFormFieldLabel => 'Votre question';
+
+  @override
+  String get challengeCreationQuestionFormFieldHint => 'Qui va gagner ?';
 }

@@ -67,7 +67,27 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
                 transitionType:
                     SharedAxisTransitionType.horizontal, // Left ↔ Right
                 fillColor: Colors.transparent,
-                child: child,
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    return SingleChildScrollView(
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: constraints.maxHeight,
+                        ),
+                        child: IntrinsicHeight(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Spacer(),
+                              child,
+                              const Spacer(),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               );
             },
             child: stepsForm[formIndex],

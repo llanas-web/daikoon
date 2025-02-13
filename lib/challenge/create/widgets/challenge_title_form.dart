@@ -24,47 +24,31 @@ class _ChallengeTitleFormState extends State<ChallengeTitleForm> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: constraints.maxHeight,
-            ),
-            child: IntrinsicHeight(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Spacer(),
-                  Text(
-                    context.l10n.challengeCreationTitleFormLabel,
-                    style: context.headlineMedium,
-                  ),
-                  AppTextField(
-                    hintText: 'Défi fifa ⚽',
-                    textController: _textController,
-                    filled: true,
-                    filledColor: AppColors.white,
-                    hintStyle: const TextStyle(
-                      color: AppColors.grey,
-                    ),
-                  ),
-                  ChallengeNextButton(
-                    onPressed: () {
-                      context.read<CreateChallengeBloc>().add(
-                            CreateChallengeTitleContinued(
-                              title: _textController.text,
-                            ),
-                          );
-                    },
-                  ),
-                  const Spacer(),
-                ].spacerBetween(height: AppSpacing.xxlg),
-              ),
-            ),
+    return Column(
+      children: [
+        Text(
+          context.l10n.challengeCreationTitleFormLabel,
+          style: context.headlineMedium,
+        ),
+        AppTextField(
+          hintText: context.l10n.challengeCreationTitleFormFieldHint,
+          textController: _textController,
+          filled: true,
+          filledColor: AppColors.white,
+          hintStyle: const TextStyle(
+            color: AppColors.grey,
           ),
-        );
-      },
+        ),
+        ChallengeNextButton(
+          onPressed: () {
+            context.read<CreateChallengeBloc>().add(
+                  CreateChallengeTitleContinued(
+                    title: _textController.text,
+                  ),
+                );
+          },
+        ),
+      ].spacerBetween(height: AppSpacing.xxlg),
     );
   }
 }
