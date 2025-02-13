@@ -4,14 +4,22 @@ import 'package:daikoon/app/app.dart';
 import 'package:daikoon/challenge/create/create_challenge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared/shared.dart';
 
 class CreateChallengePage extends StatelessWidget {
   const CreateChallengePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CreateChallengeBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CreateChallengeCubit(),
+        ),
+        BlocProvider(
+          create: (context) => FormStepperCubit(),
+        ),
+      ],
       child: const CreateChallengeView(),
     );
   }
@@ -29,7 +37,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
 
   final List<Widget> stepsForm = [
     const ChallengeTitleForm(),
-    const ChallengeQuestionForm(),
+    const ChallengeOptionsForm(),
     const ChallengeBetForm(),
   ];
 
@@ -37,8 +45,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
 
   @override
   Widget build(BuildContext context) {
-    final formIndex =
-        context.select((CreateChallengeBloc bloc) => bloc.state.formIndex);
+    final formIndex = context.select((FormStepperCubit bloc) => bloc.state);
 
     final reverse = lastIndex > formIndex;
     lastIndex = formIndex;
@@ -80,8 +87,11 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
                             children: [
                               const Spacer(),
                               child,
+                              const ChallengeNextButton(),
+                              if (formIndex > 0)
+                                const ChallengePreviousButton(),
                               const Spacer(),
-                            ],
+                            ].spacerBetween(height: AppSpacing.xxlg),
                           ),
                         ),
                       ),

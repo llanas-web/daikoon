@@ -428,7 +428,7 @@ abstract class AppLocalizations {
   ///
   /// In fr, this message translates to:
   /// **'Pronostics'**
-  String get challengeCreationQuestionFormLabel;
+  String get challengeCreationOptionsFormLabel;
 
   /// Label for the question form field in the challenge creation page
   ///
@@ -446,13 +446,13 @@ abstract class AppLocalizations {
   ///
   /// In fr, this message translates to:
   /// **'Les choix'**
-  String get challengeCreationOptionFormLabel;
+  String get challengeCreationOptionsFormFieldLabel;
 
   /// Hint text for the option form field in the challenge creation page
   ///
   /// In fr, this message translates to:
   /// **'Choix 1'**
-  String get challengeCreationOptionFormFieldHing;
+  String get challengeCreationOptionsFormFieldHint;
 
   /// Label for the daikoins choice form in the challenge creation page
   ///

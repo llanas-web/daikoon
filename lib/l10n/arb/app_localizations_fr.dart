@@ -184,7 +184,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeCreationTitleFormFieldHint => 'Défi fifa ⚽';
 
   @override
-  String get challengeCreationQuestionFormLabel => 'Pronostics';
+  String get challengeCreationOptionsFormLabel => 'Pronostics';
 
   @override
   String get challengeCreationQuestionFormFieldLabel => 'Votre question';
@@ -193,10 +193,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeCreationQuestionFormFieldHint => 'Qui va gagner ?';
 
   @override
-  String get challengeCreationOptionFormLabel => 'Les choix';
+  String get challengeCreationOptionsFormFieldLabel => 'Les choix';
 
   @override
-  String get challengeCreationOptionFormFieldHing => 'Choix 1';
+  String get challengeCreationOptionsFormFieldHint => 'Choix 1';
 
   @override
   String get challengeCreationBetFormLabel => 'Choix du défi';

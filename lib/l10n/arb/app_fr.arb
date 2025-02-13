@@ -237,8 +237,8 @@
   "@challengeCreationTitleFormFieldHint": {
     "description": "Hint text for the title form field in the challenge creation page"
   },
-  "challengeCreationQuestionFormLabel": "Pronostics",
-  "@challengeCreationQuestionFormLabel": {
+  "challengeCreationOptionsFormLabel": "Pronostics",
+  "@challengeCreationOptionsFormLabel": {
     "description": "Label for the question form in the challenge creation page"
   },
   "challengeCreationQuestionFormFieldLabel": "Votre question",
@@ -249,12 +249,12 @@
   "@challengeCreationQuestionFormFieldHint": {
     "description": "Hint text for the question form field in the challenge creation page"
   },
-  "challengeCreationOptionFormLabel": "Les choix",
-  "@challengeCreationOptionFormLabel": {
+  "challengeCreationOptionsFormFieldLabel": "Les choix",
+  "@challengeCreationOptionsFormFieldLabel": {
     "description": "Label for the option form in the challenge creation page"
   },
-  "challengeCreationOptionFormFieldHing": "Choix 1",
-  "@challengeCreationOptionFormFieldHing": {
+  "challengeCreationOptionsFormFieldHint": "Choix 1",
+  "@challengeCreationOptionsFormFieldHint": {
     "description": "Hint text for the option form field in the challenge creation page"
   },
   "challengeCreationBetFormLabel": "Choix du défi",

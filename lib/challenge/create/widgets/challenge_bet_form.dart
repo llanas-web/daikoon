@@ -11,7 +11,8 @@ class ChallengeBetForm extends StatefulWidget {
 }
 
 class _ChallengeBetFormState extends State<ChallengeBetForm> {
-  var hasBet = false;
+  /// The value of the bet.
+  bool hasBet = false;
 
   @override
   Widget build(BuildContext context) {

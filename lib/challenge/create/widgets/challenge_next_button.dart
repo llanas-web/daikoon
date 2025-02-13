@@ -1,14 +1,13 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/challenge/challenge.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChallengeNextButton extends StatelessWidget {
   const ChallengeNextButton({
-    required this.onPressed,
     super.key,
   });
-
-  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class ChallengeNextButton extends StatelessWidget {
               style: style,
               textStyle: textStyle,
               text: context.l10n.challengeCreationContinueButtonLabel,
-              onPressed: onPressed,
+              onPressed: () => context.read<FormStepperCubit>().nextStep(),
               child: Row(
                 children: [
                   Expanded(
