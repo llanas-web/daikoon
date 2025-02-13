@@ -197,4 +197,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeCreationOptionFormFieldHing => 'Choix 1';
+
+  @override
+  String get challengeCreationBetFormLabel => 'Choix du défi';
+
+  @override
+  String get challengeCreationBetFormFieldTrue => 'Daikoins';
+
+  @override
+  String get challengeCreationBetFormFieldFalse => 'Pas d\'enjeu';
 }

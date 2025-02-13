@@ -256,5 +256,17 @@
   "challengeCreationOptionFormFieldHing": "Choix 1",
   "@challengeCreationOptionFormFieldHing": {
     "description": "Hint text for the option form field in the challenge creation page"
+  },
+  "challengeCreationBetFormLabel": "Choix du défi",
+  "@challengeCreationBetFormLabel": {
+    "description": "Label for the daikoins choice form in the challenge creation page"
+  },
+  "challengeCreationBetFormFieldTrue": "Daikoins",
+  "@challengeCreationBetFormFieldTrue": {
+    "description": "Text for the daikoins choice in the challenge creation page"
+  },
+  "challengeCreationBetFormFieldFalse": "Pas d''enjeu",
+  "@challengeCreationBetFormFieldFalse": {
+    "description": "Text for the daikoins choice in the challenge creation page"
   }
 }

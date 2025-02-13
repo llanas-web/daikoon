@@ -1,8 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
-import 'package:daikoon/challenge/create/bloc/create_challenge_bloc.dart';
-import 'package:daikoon/challenge/create/widgets/widgets.dart';
+import 'package:daikoon/challenge/create/create_challenge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,6 +30,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
   final List<Widget> stepsForm = [
     const ChallengeTitleForm(),
     const ChallengeQuestionForm(),
+    const ChallengeBetForm(),
   ];
 
   int lastIndex = 0;

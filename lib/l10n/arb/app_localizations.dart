@@ -453,6 +453,24 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Choix 1'**
   String get challengeCreationOptionFormFieldHing;
+
+  /// Label for the daikoins choice form in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Choix du défi'**
+  String get challengeCreationBetFormLabel;
+
+  /// Text for the daikoins choice in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Daikoins'**
+  String get challengeCreationBetFormFieldTrue;
+
+  /// Text for the daikoins choice in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas d\'\'enjeu'**
+  String get challengeCreationBetFormFieldFalse;
 }
 
 class _AppLocalizationsDelegate

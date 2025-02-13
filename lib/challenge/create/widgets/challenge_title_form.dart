@@ -24,20 +24,17 @@ class _ChallengeTitleFormState extends State<ChallengeTitleForm> {
 
   @override
   Widget build(BuildContext context) {
+    _textController.text =
+        context.select((CreateChallengeBloc bloc) => bloc.state.challengeTitle);
     return Column(
       children: [
         Text(
           context.l10n.challengeCreationTitleFormLabel,
           style: context.headlineMedium,
         ),
-        AppTextField(
+        ChallengeTextFormField(
           hintText: context.l10n.challengeCreationTitleFormFieldHint,
           textController: _textController,
-          filled: true,
-          filledColor: AppColors.white,
-          hintStyle: const TextStyle(
-            color: AppColors.grey,
-          ),
         ),
         ChallengeNextButton(
           onPressed: () {
