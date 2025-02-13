@@ -46,6 +46,11 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
     return AppScaffold(
       appBar: const HomeAppBar(),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: Assets.images.bluryBackground.provider(),
+          ),
+        ),
         padding: const EdgeInsets.all(AppSpacing.xxlg),
         child: Center(
           child: PageTransitionSwitcher(
@@ -61,6 +66,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
                 secondaryAnimation: secondaryAnimation,
                 transitionType:
                     SharedAxisTransitionType.horizontal, // Left ↔ Right
+                fillColor: Colors.transparent,
                 child: child,
               );
             },

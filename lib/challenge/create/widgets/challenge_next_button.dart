@@ -19,7 +19,7 @@ class ChallengeNextButton extends StatelessWidget {
       padding: WidgetStatePropertyAll(
         EdgeInsets.symmetric(
           vertical: AppSpacing.lg,
-          horizontal: AppSpacing.xlg,
+          horizontal: AppSpacing.xxlg,
         ),
       ),
     );

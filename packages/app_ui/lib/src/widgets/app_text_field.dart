@@ -50,6 +50,7 @@ class AppTextField extends StatelessWidget {
     this.textCapitalization = TextCapitalization.none,
     this.suffixText,
     this.filled,
+    this.filledColor,
     this.onFieldSubmitted,
     this.onEditingComplete,
     this.cursorColor,
@@ -243,6 +244,7 @@ class AppTextField extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final String? suffixText;
   final bool? filled;
+  final Color? filledColor;
   final TextStyle? hintStyle;
   final TextStyle? labelStyle;
   final ValueSetter<String?>? onFieldSubmitted;
@@ -361,10 +363,11 @@ class AppTextField extends StatelessWidget {
         prefix: prefix,
         suffixIcon: suffixIcon,
         filled: filled,
-        fillColor: context.customReversedAdaptiveColor(
-          dark: AppColors.darkGrey,
-          light: AppColors.brightGrey,
-        ),
+        fillColor: filledColor ??
+            context.customReversedAdaptiveColor(
+              dark: AppColors.darkGrey,
+              light: AppColors.brightGrey,
+            ),
         enabled: enabled,
         border: border,
         contentPadding: contentPadding,

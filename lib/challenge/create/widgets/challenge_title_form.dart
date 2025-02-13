@@ -4,6 +4,7 @@ import 'package:daikoon/challenge/create/widgets/widgets.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared/shared.dart';
 
 class ChallengeTitleForm extends StatefulWidget {
   const ChallengeTitleForm({super.key});
@@ -35,12 +36,19 @@ class _ChallengeTitleFormState extends State<ChallengeTitleForm> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Spacer(),
-                  Text(context.l10n.challengeCreationTitleFormLabel),
+                  Text(
+                    context.l10n.challengeCreationTitleFormLabel,
+                    style: context.headlineMedium,
+                  ),
                   AppTextField(
                     hintText: 'Défi fifa ⚽',
                     textController: _textController,
+                    filled: true,
+                    filledColor: AppColors.white,
+                    hintStyle: const TextStyle(
+                      color: AppColors.grey,
+                    ),
                   ),
-                  const Gap.v(AppSpacing.lg),
                   ChallengeNextButton(
                     onPressed: () {
                       context.read<CreateChallengeBloc>().add(
@@ -51,7 +59,7 @@ class _ChallengeTitleFormState extends State<ChallengeTitleForm> {
                     },
                   ),
                   const Spacer(),
-                ],
+                ].spacerBetween(height: AppSpacing.xxlg),
               ),
             ),
           ),
