@@ -191,4 +191,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeCreationQuestionFormFieldHint => 'Qui va gagner ?';
+
+  @override
+  String get challengeCreationOptionFormLabel => 'Les choix';
+
+  @override
+  String get challengeCreationOptionFormFieldHing => 'Choix 1';
 }

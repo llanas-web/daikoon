@@ -30,3 +30,27 @@ abstract class AppSpacing {
   /// xxxlg pacing value (64pt)
   static const double xxxlg = 4 * spaceUnit;
 }
+
+/// Default Radius in App UI.
+abstract class AppRadius {
+  /// The default unit of radius
+  static const double radiusUnit = 8;
+
+  /// xs radius value (2pt)
+  static const double xs = 0.25 * radiusUnit;
+
+  /// xs spacing value (4pt)
+  static const double sm = 0.5 * radiusUnit;
+
+  /// xs spacing value (6pt)
+  static const double md = 0.75 * radiusUnit;
+
+  /// lg spacing value (8pt)
+  static const double lg = radiusUnit;
+
+  /// xlg spacing value (12pt)
+  static const double xlg = 1.5 * radiusUnit;
+
+  /// xxlg spacing value (20pt)
+  static const double xxlg = 2.5 * radiusUnit;
+}

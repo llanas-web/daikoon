@@ -248,5 +248,13 @@
   "challengeCreationQuestionFormFieldHint": "Qui va gagner ?",
   "@challengeCreationQuestionFormFieldHint": {
     "description": "Hint text for the question form field in the challenge creation page"
+  },
+  "challengeCreationOptionFormLabel": "Les choix",
+  "@challengeCreationOptionFormLabel": {
+    "description": "Label for the option form in the challenge creation page"
+  },
+  "challengeCreationOptionFormFieldHing": "Choix 1",
+  "@challengeCreationOptionFormFieldHing": {
+    "description": "Hint text for the option form field in the challenge creation page"
   }
 }

@@ -15,11 +15,30 @@ class ChallengeQuestionForm extends StatefulWidget {
 
 class _ChallengeQuestionFormState extends State<ChallengeQuestionForm> {
   late final TextEditingController _questionController;
+  late final TextEditingController _optionController;
+
+  final List<String> _options = [];
 
   @override
   void initState() {
     super.initState();
     _questionController = TextEditingController();
+    _optionController = TextEditingController();
+  }
+
+  void _addOption() {
+    if (_optionController.text.isNotEmpty) {
+      setState(() {
+        _options.add(_optionController.text);
+        _optionController.clear();
+      });
+    }
+  }
+
+  void _removeOption(int index) {
+    setState(() {
+      _options.removeAt(index);
+    });
   }
 
   @override
@@ -51,6 +70,53 @@ class _ChallengeQuestionFormState extends State<ChallengeQuestionForm> {
             ),
           ].spacerBetween(height: AppSpacing.md),
         ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('${context.l10n.challengeCreationOptionFormLabel} :'),
+            if (_options.isNotEmpty)
+              Column(
+                children: _options
+                    .map((option) {
+                      final index = _options.indexOf(option);
+                      return _OptionItem(
+                        option: option,
+                        onRemove: () => _removeOption(index),
+                      );
+                    })
+                    .toList()
+                    .spacerBetween(height: AppSpacing.md),
+              ),
+            Row(
+              children: [
+                Expanded(
+                  child: AppTextField(
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: AppSpacing.lg,
+                      horizontal: AppSpacing.xlg,
+                    ),
+                    hintText: context.l10n.challengeCreationOptionFormFieldHing,
+                    textController: _optionController,
+                    filled: true,
+                    filledColor: AppColors.white,
+                    hintStyle: const TextStyle(
+                      color: AppColors.grey,
+                    ),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(
+                        right: AppSpacing.xlg,
+                      ),
+                      child: Tappable(
+                        onTap: _addOption,
+                        child: const Icon(Icons.add),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ].spacerBetween(height: AppSpacing.md),
+        ),
         ChallengeNextButton(
           onPressed: () {
             context.read<CreateChallengeBloc>().add(
@@ -71,6 +137,46 @@ class _ChallengeQuestionFormState extends State<ChallengeQuestionForm> {
           ),
         ),
       ].spacerBetween(height: AppSpacing.xxlg),
+    );
+  }
+}
+
+class _OptionItem extends StatelessWidget {
+  const _OptionItem({
+    required this.option,
+    required this.onRemove,
+  });
+
+  final String option;
+  final VoidCallback onRemove;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppRadius.lg),
+              color: AppColors.white,
+            ),
+            padding: const EdgeInsets.symmetric(
+              vertical: AppSpacing.lg,
+              horizontal: AppSpacing.xlg,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(option, style: context.bodyLarge),
+                Tappable(
+                  onTap: onRemove,
+                  child: const Icon(Icons.remove),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

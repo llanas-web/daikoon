@@ -441,6 +441,18 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Qui va gagner ?'**
   String get challengeCreationQuestionFormFieldHint;
+
+  /// Label for the option form in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Les choix'**
+  String get challengeCreationOptionFormLabel;
+
+  /// Hint text for the option form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Choix 1'**
+  String get challengeCreationOptionFormFieldHing;
 }
 
 class _AppLocalizationsDelegate

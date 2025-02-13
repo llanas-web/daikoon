@@ -24,7 +24,11 @@ final class CreateChallengeTitleContinued extends CreateChallengeEvent {
 }
 
 final class CreateChallengeQuestionContinue extends CreateChallengeEvent {
-  const CreateChallengeQuestionContinue({required this.question});
+  const CreateChallengeQuestionContinue({
+    required this.question,
+    required this.options,
+  });
 
   final String question;
+  final List<String> options;
 }

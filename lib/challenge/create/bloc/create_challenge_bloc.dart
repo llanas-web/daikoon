@@ -16,7 +16,13 @@ class CreateChallengeBloc
       emit(state.copyWith(challengeTitle: event.title, formIndex: 1));
     });
     on<CreateChallengeQuestionContinue>((event, emit) {
-      emit(state.copyWith(challengeQuestion: event.question, formIndex: 2));
+      emit(
+        state.copyWith(
+          challengeQuestion: event.question,
+          options: event.options,
+          formIndex: 2,
+        ),
+      );
     });
   }
 }
