@@ -206,4 +206,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeCreationBetFormFieldFalse => 'Pas d\'enjeu';
+
+  @override
+  String get challengeCreationBetAmountFormLabel => 'Somme à parier';
+
+  @override
+  String get challengeCreationBetAmountMinFormFieldLabel => 'Minimum';
+
+  @override
+  String get challengeCreationBetAmountMaxFormFieldLabel => 'Maximum';
+
+  @override
+  String get challengeCreationBetAmountNoLimitFormFieldLabel => 'Pas de limite';
 }

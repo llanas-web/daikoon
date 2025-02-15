@@ -53,6 +53,7 @@ class ChallengeOptionsForm extends StatelessWidget {
                     .toList()
                     .spacerBetween(height: AppSpacing.md),
               ),
+            const Gap.v(AppSpacing.lg),
             const Row(
               children: [
                 Expanded(

@@ -471,6 +471,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Pas d\'\'enjeu'**
   String get challengeCreationBetFormFieldFalse;
+
+  /// Label for the amount form in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Somme à parier'**
+  String get challengeCreationBetAmountFormLabel;
+
+  /// Label for the minimum amount form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Minimum'**
+  String get challengeCreationBetAmountMinFormFieldLabel;
+
+  /// Label for the maximum amount form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Maximum'**
+  String get challengeCreationBetAmountMaxFormFieldLabel;
+
+  /// Label for the no limit amount form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas de limite'**
+  String get challengeCreationBetAmountNoLimitFormFieldLabel;
 }
 
 class _AppLocalizationsDelegate

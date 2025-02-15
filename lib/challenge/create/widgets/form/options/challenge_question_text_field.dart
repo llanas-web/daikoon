@@ -19,8 +19,8 @@ class _ChallengeQuestionTextFieldState
 
   @override
   Widget build(BuildContext context) {
-    final challengeTitle = context.select(
-      (CreateChallengeCubit cubit) => cubit.state.challengeTitle,
+    final challengeQuestion = context.select(
+      (CreateChallengeCubit cubit) => cubit.state.challengeQuestion,
     );
     return AppTextField(
       contentPadding: const EdgeInsets.symmetric(
@@ -33,7 +33,7 @@ class _ChallengeQuestionTextFieldState
       hintStyle: const TextStyle(
         color: AppColors.grey,
       ),
-      initialValue: challengeTitle.value,
+      initialValue: challengeQuestion.value,
       onChanged: (newQuestion) => _debouncer.run(
         () =>
             context.read<CreateChallengeCubit>().onQuestionChanged(newQuestion),

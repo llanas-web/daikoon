@@ -268,5 +268,21 @@
   "challengeCreationBetFormFieldFalse": "Pas d''enjeu",
   "@challengeCreationBetFormFieldFalse": {
     "description": "Text for the daikoins choice in the challenge creation page"
+  },
+  "challengeCreationBetAmountFormLabel": "Somme à parier",
+  "@challengeCreationBetAmountFormLabel": {
+    "description": "Label for the amount form in the challenge creation page"
+  },
+  "challengeCreationBetAmountMinFormFieldLabel": "Minimum",
+  "@challengeCreationBetAmountMinFormFieldLabel": {
+    "description": "Label for the minimum amount form field in the challenge creation page"
+  },
+  "challengeCreationBetAmountMaxFormFieldLabel": "Maximum",
+  "@challengeCreationBetAmountMaxFormFieldLabel": {
+    "description": "Label for the maximum amount form field in the challenge creation page"
+  },
+  "challengeCreationBetAmountNoLimitFormFieldLabel": "Pas de limite",
+  "@challengeCreationBetAmountNoLimitFormFieldLabel": {
+    "description": "Label for the no limit amount form field in the challenge creation page"
   }
 }

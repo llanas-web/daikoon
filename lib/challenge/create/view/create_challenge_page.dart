@@ -35,16 +35,20 @@ class CreateChallengeView extends StatefulWidget {
 class _CreateChallengeViewState extends State<CreateChallengeView> {
   late AnimationController animationController;
 
-  final List<Widget> stepsForm = [
-    const ChallengeTitleForm(),
-    const ChallengeOptionsForm(),
-    const ChallengeBetForm(),
-  ];
-
   int lastIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    final hasBet =
+        context.select((CreateChallengeCubit cubit) => cubit.state.hasBet);
+
+    final stepsForm = <Widget>[
+      const ChallengeTitleForm(),
+      const ChallengeOptionsForm(),
+      const ChallengeBetForm(),
+      if (hasBet) const ChallengeBetAmountForm(),
+    ];
+
     final formIndex = context.select((FormStepperCubit bloc) => bloc.state);
 
     final reverse = lastIndex > formIndex;
