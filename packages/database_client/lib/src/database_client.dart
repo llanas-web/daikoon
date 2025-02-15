@@ -55,6 +55,12 @@ abstract class UserBaseRepository {
     String? userId,
     String? excludeUserIds,
   });
+
+  /// Search for friends associated with the provided [userId] and [query].
+  Future<List<User>> searchFriends({
+    required String query,
+    String? userId,
+  });
 }
 
 /// {@template database_client}
@@ -196,5 +202,20 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       ''',
       [senderId, friendId],
     );
+  }
+
+  @override
+  Future<List<User>> searchFriends({required String query, String? userId}) {
+    return _powerSyncRepository.db().getAll(
+      '''
+      SELECT users.id, users.username, users.full_name, users.avatar_url
+      FROM friendships
+      JOIN users
+      ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id) AND users.id != ?1
+      WHERE (friendships.sender_id = ?1 OR friendships.receiver_id = ?1)
+      AND (LOWER(users.username) LIKE LOWER('%$query%') OR LOWER(users.full_name) LIKE LOWER('%$query%'))
+      ''',
+      [userId ?? currentUserId],
+    ).then((event) => event.safeMap(User.fromJson).toList(growable: false));
   }
 }

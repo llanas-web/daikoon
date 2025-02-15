@@ -284,5 +284,17 @@
   "challengeCreationBetAmountNoLimitFormFieldLabel": "Pas de limite",
   "@challengeCreationBetAmountNoLimitFormFieldLabel": {
     "description": "Label for the no limit amount form field in the challenge creation page"
+  },
+  "challengeCreationParticipantsFormLabel": "Les joueurs",
+  "@challengeCreationParticipantsFormLabel": {
+    "description": "Label for the participants form in the challenge creation page"
+  },
+  "challengeCreationParticipantsFormFieldLabel": "Joueurs",
+  "@challengeCreationParticipantsFormFieldLabel": {
+    "description": "Label for the participants form field in the challenge creation page"
+  },
+  "challengeCreationParticipantsFormFieldHint": "Pseudo",
+  "@challengeCreationParticipantsFormFieldHint": {
+    "description": "Hint text for the participants form field in the challenge creation page"
   }
 }

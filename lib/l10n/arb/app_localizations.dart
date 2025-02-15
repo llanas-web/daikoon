@@ -495,6 +495,24 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Pas de limite'**
   String get challengeCreationBetAmountNoLimitFormFieldLabel;
+
+  /// Label for the participants form in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Les joueurs'**
+  String get challengeCreationParticipantsFormLabel;
+
+  /// Label for the participants form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Joueurs'**
+  String get challengeCreationParticipantsFormFieldLabel;
+
+  /// Hint text for the participants form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Pseudo'**
+  String get challengeCreationParticipantsFormFieldHint;
 }
 
 class _AppLocalizationsDelegate

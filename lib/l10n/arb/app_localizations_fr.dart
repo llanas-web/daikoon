@@ -218,4 +218,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeCreationBetAmountNoLimitFormFieldLabel => 'Pas de limite';
+
+  @override
+  String get challengeCreationParticipantsFormLabel => 'Les joueurs';
+
+  @override
+  String get challengeCreationParticipantsFormFieldLabel => 'Joueurs';
+
+  @override
+  String get challengeCreationParticipantsFormFieldHint => 'Pseudo';
 }

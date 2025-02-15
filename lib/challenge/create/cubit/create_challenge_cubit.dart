@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:form_fields/form_fields.dart';
+import 'package:user_repository/user_repository.dart';
 
 part 'create_challenge_state.dart';
 
@@ -96,6 +97,26 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     final previousState = state;
     final newState = previousState.copyWith(
       noBetAmount: isSelected ?? !previousState.noBetAmount,
+    );
+    emit(newState);
+  }
+
+  void onParticipantAdded(User user) {
+    final previousState = state;
+    final newParticipants = List<User>.from(previousState.participants)
+      ..add(user);
+    final newState = previousState.copyWith(
+      participants: newParticipants,
+    );
+    emit(newState);
+  }
+
+  void onParticipantRemoved(User user) {
+    final previousState = state;
+    final newParticipants = List<User>.from(previousState.participants)
+      ..remove(user);
+    final newState = previousState.copyWith(
+      participants: newParticipants,
     );
     emit(newState);
   }

@@ -207,4 +207,9 @@ class UserRepository implements UserBaseRepository {
   Future<void> removeFriend({required String friendId, String? userId}) {
     return _databaseClient.removeFriend(userId: userId, friendId: friendId);
   }
+
+  @override
+  Future<List<User>> searchFriends({required String query, String? userId}) {
+    return _databaseClient.searchFriends(userId: userId, query: query);
+  }
 }
