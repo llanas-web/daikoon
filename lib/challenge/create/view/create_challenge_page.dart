@@ -4,6 +4,7 @@ import 'package:daikoon/app/app.dart';
 import 'package:daikoon/challenge/create/create_challenge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared/shared.dart';
 
 class CreateChallengePage extends StatelessWidget {
@@ -55,61 +56,69 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
     final reverse = lastIndex > formIndex;
     lastIndex = formIndex;
 
-    return AppScaffold(
-      appBar: const HomeAppBar(),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: Assets.images.bluryBackground.provider(),
+    return BackButtonListener(
+      onBackButtonPressed: () async {
+        formIndex == 0
+            ? GoRouter.of(context).go('/home')
+            : context.read<FormStepperCubit>().previousStep();
+        return true;
+      },
+      child: AppScaffold(
+        appBar: const HomeAppBar(),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: Assets.images.bluryBackground.provider(),
+            ),
           ),
-        ),
-        padding: const EdgeInsets.all(AppSpacing.xxlg),
-        child: Center(
-          child: PageTransitionSwitcher(
-            duration: const Duration(milliseconds: 1000),
-            reverse: reverse,
-            transitionBuilder: (
-              Widget child,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-            ) {
-              return SharedAxisTransition(
-                animation: animation,
-                secondaryAnimation: secondaryAnimation,
-                transitionType:
-                    SharedAxisTransitionType.horizontal, // Left ↔ Right
-                fillColor: Colors.transparent,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    return SingleChildScrollView(
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: constraints.maxHeight,
-                        ),
-                        child: IntrinsicHeight(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Spacer(),
-                              child,
-                              const ChallengeNextButton(),
-                              if (formIndex > 0)
-                                const ChallengePreviousButton(),
-                              const Spacer(),
-                            ].spacerBetween(height: AppSpacing.xxlg),
+          padding: const EdgeInsets.all(AppSpacing.xxlg),
+          child: Center(
+            child: PageTransitionSwitcher(
+              duration: const Duration(milliseconds: 1000),
+              reverse: reverse,
+              transitionBuilder: (
+                Widget child,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+              ) {
+                return SharedAxisTransition(
+                  animation: animation,
+                  secondaryAnimation: secondaryAnimation,
+                  transitionType:
+                      SharedAxisTransitionType.horizontal, // Left ↔ Right
+                  fillColor: Colors.transparent,
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return SingleChildScrollView(
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: constraints.maxHeight,
+                          ),
+                          child: IntrinsicHeight(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Spacer(),
+                                child,
+                                const ChallengeNextButton(),
+                                if (formIndex > 0)
+                                  const ChallengePreviousButton(),
+                                const Spacer(),
+                              ].spacerBetween(height: AppSpacing.xxlg),
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              );
-            },
-            child: stepsForm[formIndex],
+                      );
+                    },
+                  ),
+                );
+              },
+              child: stepsForm[formIndex],
+            ),
           ),
         ),
+        drawer: const AppDrawer(),
       ),
-      drawer: const AppDrawer(),
     );
   }
 }
