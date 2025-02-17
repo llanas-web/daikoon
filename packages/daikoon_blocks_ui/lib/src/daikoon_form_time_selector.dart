@@ -5,31 +5,31 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared/shared.dart';
 
-class DaikoonFormDateSelector extends StatelessWidget {
-  const DaikoonFormDateSelector({
+class DaikoonFormTimeSelector extends StatelessWidget {
+  const DaikoonFormTimeSelector({
     required this.value,
     required this.hintText,
-    required this.minDate,
-    required this.maxDate,
-    required this.onDateSelected,
+    required this.onTimeSelected,
     super.key,
   });
 
   final DateTime? value;
   final String hintText;
-  final DateTime minDate;
-  final DateTime maxDate;
-  final void Function(DateTime) onDateSelected;
+  final void Function(TimeOfDay) onTimeSelected;
 
   Future<void> onTapDate(BuildContext context) async {
-    final date = await showDatePicker(
+    final defaultTimeOfDay = value != null
+        ? TimeOfDay(
+            hour: value!.day,
+            minute: value!.minute,
+          )
+        : TimeOfDay.now();
+    final time = await showTimePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: minDate,
-      lastDate: maxDate,
+      initialTime: defaultTimeOfDay,
     );
-    if (date != null) {
-      onDateSelected(date);
+    if (time != null) {
+      onTimeSelected(time);
     }
   }
 
@@ -41,7 +41,7 @@ class DaikoonFormDateSelector extends StatelessWidget {
         horizontal: AppSpacing.xlg,
       ),
       hintText: hintText,
-      prefixIcon: const Icon(Icons.calendar_today),
+      prefixIcon: const Icon(Icons.access_time),
       suffixIcon: const Icon(Icons.arrow_drop_down),
       filled: true,
       filledColor: AppColors.white,
@@ -53,7 +53,7 @@ class DaikoonFormDateSelector extends StatelessWidget {
         text: value != null
             ? value!.format(
                 context,
-                dateFormat: DateFormat.yMMMd,
+                dateFormat: DateFormat.Hm,
               )
             : hintText,
       ),

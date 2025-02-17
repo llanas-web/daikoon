@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:form_fields/form_fields.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -123,8 +124,75 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
 
   void onStartDateChanged(DateTime startDate) {
     final previousState = state;
+    final selectedDate = state.startDate ?? DateTime.now();
+    final selectedDateTime = DateTime(
+      startDate.year,
+      startDate.month,
+      startDate.day,
+      selectedDate.hour,
+      selectedDate.minute,
+    );
     final newState = previousState.copyWith(
-      startDate: startDate,
+      startDate: selectedDateTime,
+    );
+    emit(newState);
+  }
+
+  void onStartTimeChanged(TimeOfDay startTime) {
+    final previousState = state;
+    final selectedDate = state.startDate ?? DateTime.now();
+    final selectedDateTime = DateTime(
+      selectedDate.year,
+      selectedDate.month,
+      selectedDate.day,
+      startTime.hour,
+      startTime.minute,
+    );
+    if (selectedDateTime.isBefore(DateTime.now())) {
+      throw Exception('Start date cannot be in the past');
+    }
+    if (previousState.limitDate != null &&
+        selectedDateTime.isAfter(previousState.limitDate!)) {
+      throw Exception('Start date cannot be after limit date');
+    }
+    final newState = previousState.copyWith(
+      startDate: selectedDateTime,
+    );
+    emit(newState);
+  }
+
+  void onLimitDateChanged(DateTime limitDate) {
+    final previousState = state;
+    final selectedDate = state.limitDate ?? DateTime.now();
+    final selectedDateTime = DateTime(
+      limitDate.year,
+      limitDate.month,
+      limitDate.day,
+      selectedDate.hour,
+      selectedDate.minute,
+    );
+    final newState = previousState.copyWith(
+      limitDate: selectedDateTime,
+    );
+    emit(newState);
+  }
+
+  void onLimitTimeChanged(TimeOfDay limitTime) {
+    final previousState = state;
+    final selectedDate = state.limitDate ?? DateTime.now();
+    final selectedDateTime = DateTime(
+      selectedDate.year,
+      selectedDate.month,
+      selectedDate.day,
+      limitTime.hour,
+      limitTime.minute,
+    );
+    if (previousState.startDate != null &&
+        selectedDateTime.isBefore(previousState.startDate!)) {
+      throw Exception('Limit date cannot be before start date');
+    }
+    final newState = previousState.copyWith(
+      limitDate: selectedDateTime,
     );
     emit(newState);
   }

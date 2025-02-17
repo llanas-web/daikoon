@@ -15,6 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ">=0.18.0 <=0.20.2"
+  jiffy: ^6.3.2
   logger: ^2.5.0
   powersync: ^1.11.2
 

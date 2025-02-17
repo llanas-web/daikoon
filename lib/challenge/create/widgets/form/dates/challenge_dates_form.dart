@@ -18,6 +18,7 @@ class ChallengeDatesForm extends StatelessWidget {
         Column(
           children: [
             const ChallengeDateStartFormField(),
+            const ChallengeDateLimitFormField(),
           ].spacerBetween(height: AppSpacing.md),
         ),
       ].spacerBetween(height: AppSpacing.xxlg),
