@@ -12,9 +12,9 @@ class ChallengeDateStartFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final [startDate, limitDate] = context.select(
+    final [startDate, limitDate, endDate] = context.select(
       (CreateChallengeCubit cubit) =>
-          [cubit.state.startDate, cubit.state.limitDate],
+          [cubit.state.startDate, cubit.state.limitDate, cubit.state.endDate],
     );
     return Row(
       children: [
@@ -33,7 +33,8 @@ class ChallengeDateStartFormField extends StatelessWidget {
                       hintText:
                           context.l10n.challengeCreationDatesStartFieldLabel,
                       minDate: DateTime.now(),
-                      maxDate: limitDate ?? DateTime.now().add(365.days),
+                      maxDate:
+                          limitDate ?? endDate ?? DateTime.now().add(365.days),
                       onDateSelected: (date) {
                         context
                             .read<CreateChallengeCubit>()

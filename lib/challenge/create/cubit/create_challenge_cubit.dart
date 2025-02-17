@@ -155,6 +155,10 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
         selectedDateTime.isAfter(previousState.limitDate!)) {
       throw Exception('Start date cannot be after limit date');
     }
+    if (previousState.endDate != null &&
+        selectedDateTime.isAfter(previousState.endDate!)) {
+      throw Exception('Start date cannot be after end date');
+    }
     final newState = previousState.copyWith(
       startDate: selectedDateTime,
     );
@@ -187,12 +191,62 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
       limitTime.hour,
       limitTime.minute,
     );
+    if (selectedDateTime.isBefore(DateTime.now())) {
+      throw Exception('Limit date cannot be in the past');
+    }
     if (previousState.startDate != null &&
         selectedDateTime.isBefore(previousState.startDate!)) {
       throw Exception('Limit date cannot be before start date');
     }
+    if (previousState.endDate != null &&
+        selectedDateTime.isAfter(previousState.endDate!)) {
+      throw Exception('Limit date cannot be after end date');
+    }
     final newState = previousState.copyWith(
       limitDate: selectedDateTime,
+    );
+    emit(newState);
+  }
+
+  void onEndDateChanged(DateTime endDate) {
+    final previousState = state;
+    final selectedDate = state.endDate ?? DateTime.now();
+    final selectedDateTime = DateTime(
+      endDate.year,
+      endDate.month,
+      endDate.day,
+      selectedDate.hour,
+      selectedDate.minute,
+    );
+    final newState = previousState.copyWith(
+      endDate: selectedDateTime,
+    );
+    emit(newState);
+  }
+
+  void onEndTimeChanged(TimeOfDay endTime) {
+    final previousState = state;
+    final selectedDate = state.endDate ?? DateTime.now();
+    final selectedDateTime = DateTime(
+      selectedDate.year,
+      selectedDate.month,
+      selectedDate.day,
+      endTime.hour,
+      endTime.minute,
+    );
+    if (selectedDateTime.isBefore(DateTime.now())) {
+      throw Exception('End date cannot be in the past');
+    }
+    if (previousState.startDate != null &&
+        selectedDateTime.isBefore(previousState.startDate!)) {
+      throw Exception('End date cannot be before start date');
+    }
+    if (previousState.limitDate != null &&
+        selectedDateTime.isAfter(previousState.limitDate!)) {
+      throw Exception('End date cannot be after limit date');
+    }
+    final newState = previousState.copyWith(
+      endDate: selectedDateTime,
     );
     emit(newState);
   }

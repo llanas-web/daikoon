@@ -1,16 +1,70 @@
+import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/app/view/app.dart';
+import 'package:daikoon/challenge/challenge.dart';
+import 'package:daikoon/l10n/l10n.dart';
+import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared/shared.dart';
 
-class ChallengeDateEndFormField extends StatefulWidget {
+class ChallengeDateEndFormField extends StatelessWidget {
   const ChallengeDateEndFormField({super.key});
 
   @override
-  State<ChallengeDateEndFormField> createState() =>
-      _ChallengeDateEndFormFieldState();
-}
-
-class _ChallengeDateEndFormFieldState extends State<ChallengeDateEndFormField> {
-  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final [startDate, limitDate, endDate] = context.select(
+      (CreateChallengeCubit cubit) =>
+          [cubit.state.startDate, cubit.state.limitDate, cubit.state.endDate],
+    );
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${context.l10n.challengeCreationDatesEndFieldLabel} :',
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: DaikoonFormDateSelector(
+                      value: endDate,
+                      hintText:
+                          context.l10n.challengeCreationDatesStartFieldLabel,
+                      minDate: limitDate ?? startDate ?? DateTime.now(),
+                      maxDate: DateTime.now().add(365.days),
+                      onDateSelected: (date) {
+                        context
+                            .read<CreateChallengeCubit>()
+                            .onEndDateChanged(date);
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: DaikoonFormTimeSelector(
+                      value: endDate,
+                      hintText:
+                          context.l10n.challengeCreationDatesStartFieldLabel,
+                      onTimeSelected: (time) {
+                        try {
+                          context
+                              .read<CreateChallengeCubit>()
+                              .onEndTimeChanged(time);
+                        } catch (e) {
+                          openSnackbar(
+                            SnackbarMessage.error(title: e.toString()),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ].spacerBetween(width: AppSpacing.md),
+              ),
+            ].spacerBetween(height: AppSpacing.sm),
+          ),
+        ),
+      ],
+    );
   }
 }

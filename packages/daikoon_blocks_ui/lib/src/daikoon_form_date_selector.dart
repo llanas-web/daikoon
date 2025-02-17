@@ -24,7 +24,7 @@ class DaikoonFormDateSelector extends StatelessWidget {
   Future<void> onTapDate(BuildContext context) async {
     final date = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: value ?? minDate,
       firstDate: minDate,
       lastDate: maxDate,
     );
