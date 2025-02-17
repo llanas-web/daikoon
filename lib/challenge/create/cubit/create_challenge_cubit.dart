@@ -120,4 +120,12 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     );
     emit(newState);
   }
+
+  void onStartDateChanged(DateTime startDate) {
+    final previousState = state;
+    final newState = previousState.copyWith(
+      startDate: startDate,
+    );
+    emit(newState);
+  }
 }

@@ -10,6 +10,7 @@ class CreateChallengeState extends Equatable {
     required this.maxAmount,
     required this.noBetAmount,
     required this.participants,
+    required this.startDate,
   });
 
   const CreateChallengeState.initial()
@@ -22,6 +23,7 @@ class CreateChallengeState extends Equatable {
           maxAmount: 0,
           noBetAmount: false,
           participants: const [],
+          startDate: null,
         );
 
   final ChallengeTitle challengeTitle;
@@ -32,6 +34,7 @@ class CreateChallengeState extends Equatable {
   final int maxAmount;
   final bool noBetAmount;
   final List<User> participants;
+  final DateTime? startDate;
 
   CreateChallengeState copyWith({
     ChallengeTitle? challengeTitle,
@@ -42,6 +45,7 @@ class CreateChallengeState extends Equatable {
     int? maxAmount,
     bool? noBetAmount,
     List<User>? participants,
+    DateTime? startDate,
   }) {
     return CreateChallengeState._(
       challengeTitle: challengeTitle ?? this.challengeTitle,
@@ -52,6 +56,7 @@ class CreateChallengeState extends Equatable {
       maxAmount: maxAmount ?? this.maxAmount,
       noBetAmount: noBetAmount ?? this.noBetAmount,
       participants: participants ?? this.participants,
+      startDate: startDate ?? this.startDate,
     );
   }
 
@@ -65,5 +70,6 @@ class CreateChallengeState extends Equatable {
         maxAmount,
         noBetAmount,
         participants,
+        startDate,
       ];
 }

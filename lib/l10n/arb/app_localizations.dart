@@ -513,6 +513,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Pseudo'**
   String get challengeCreationParticipantsFormFieldHint;
+
+  /// Label for the dates form in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Temporalité'**
+  String get challengeCreationDatesFormLabel;
+
+  /// Label for the start date form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Début du défi'**
+  String get challengeCreationDatesStartFieldLabel;
+
+  /// Label for the end date form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Fin du défi'**
+  String get challengeCreationDatesEndFieldLabel;
+
+  /// Label for the limit date form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Limite de mise'**
+  String get challengeCreationDatesLimitFieldLabel;
 }
 
 class _AppLocalizationsDelegate

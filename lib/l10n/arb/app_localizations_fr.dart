@@ -229,4 +229,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeCreationParticipantsFormFieldHint => 'Pseudo';
+
+  @override
+  String get challengeCreationDatesFormLabel => 'Temporalité';
+
+  @override
+  String get challengeCreationDatesStartFieldLabel => 'Début du défi';
+
+  @override
+  String get challengeCreationDatesEndFieldLabel => 'Fin du défi';
+
+  @override
+  String get challengeCreationDatesLimitFieldLabel => 'Limite de mise';
 }

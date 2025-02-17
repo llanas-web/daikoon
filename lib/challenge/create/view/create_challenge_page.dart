@@ -49,6 +49,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
       const ChallengeBetForm(),
       if (hasBet) const ChallengeBetAmountForm(),
       const ChallengeParticipantsForm(),
+      const ChallengeDatesForm(),
     ];
 
     final formIndex = context.select((FormStepperCubit bloc) => bloc.state);
