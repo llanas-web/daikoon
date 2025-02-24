@@ -4,7 +4,7 @@ class CreateChallengeState extends Equatable {
   const CreateChallengeState._({
     required this.challengeTitle,
     required this.challengeQuestion,
-    required this.options,
+    required this.choices,
     required this.hasBet,
     required this.minAmount,
     required this.maxAmount,
@@ -19,7 +19,7 @@ class CreateChallengeState extends Equatable {
       : this._(
           challengeTitle: const ChallengeTitle.pure(),
           challengeQuestion: const ChallengeQuestion.pure(),
-          options: const [],
+          choices: const [],
           hasBet: false,
           minAmount: 0,
           maxAmount: 0,
@@ -32,12 +32,12 @@ class CreateChallengeState extends Equatable {
 
   final ChallengeTitle challengeTitle;
   final ChallengeQuestion challengeQuestion;
-  final List<String> options;
+  final List<String> choices;
   final bool hasBet;
   final int minAmount;
   final int maxAmount;
   final bool noBetAmount;
-  final List<User> participants;
+  final List<Participant> participants;
   final DateTime? startDate;
   final DateTime? limitDate;
   final DateTime? endDate;
@@ -45,12 +45,12 @@ class CreateChallengeState extends Equatable {
   CreateChallengeState copyWith({
     ChallengeTitle? challengeTitle,
     ChallengeQuestion? challengeQuestion,
-    List<String>? options,
+    List<String>? choices,
     bool? hasBet,
     int? minAmount,
     int? maxAmount,
     bool? noBetAmount,
-    List<User>? participants,
+    List<Participant>? participants,
     DateTime? startDate,
     DateTime? limitDate,
     DateTime? endDate,
@@ -58,7 +58,7 @@ class CreateChallengeState extends Equatable {
     return CreateChallengeState._(
       challengeTitle: challengeTitle ?? this.challengeTitle,
       challengeQuestion: challengeQuestion ?? this.challengeQuestion,
-      options: options ?? this.options,
+      choices: choices ?? this.choices,
       hasBet: hasBet ?? this.hasBet,
       minAmount: minAmount ?? this.minAmount,
       maxAmount: maxAmount ?? this.maxAmount,
@@ -74,7 +74,7 @@ class CreateChallengeState extends Equatable {
   List<Object?> get props => [
         challengeTitle,
         challengeQuestion,
-        options,
+        choices,
         hasBet,
         minAmount,
         maxAmount,

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 
-const maxSteps = 5;
+const maxSteps = 6;
 
 class FormStepperCubit extends Cubit<int> {
   FormStepperCubit() : super(0);

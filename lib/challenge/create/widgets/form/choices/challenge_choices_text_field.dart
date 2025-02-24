@@ -4,15 +4,15 @@ import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChallengeOptionsTextField extends StatefulWidget {
-  const ChallengeOptionsTextField({super.key});
+class ChallengeChoicesTextField extends StatefulWidget {
+  const ChallengeChoicesTextField({super.key});
 
   @override
-  State<ChallengeOptionsTextField> createState() =>
-      _ChallengeOptionsTextFieldState();
+  State<ChallengeChoicesTextField> createState() =>
+      _ChallengeChoicesTextFieldState();
 }
 
-class _ChallengeOptionsTextFieldState extends State<ChallengeOptionsTextField> {
+class _ChallengeChoicesTextFieldState extends State<ChallengeChoicesTextField> {
   late final TextEditingController _optionController;
 
   @override
@@ -41,7 +41,7 @@ class _ChallengeOptionsTextFieldState extends State<ChallengeOptionsTextField> {
         ),
         child: Tappable(
           onTap: () {
-            context.read<CreateChallengeCubit>().onOptionAdded(
+            context.read<CreateChallengeCubit>().onChoicesAdded(
                   _optionController.text,
                 );
             _optionController.clear();

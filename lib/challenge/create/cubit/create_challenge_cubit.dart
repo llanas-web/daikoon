@@ -1,13 +1,20 @@
 import 'package:bloc/bloc.dart';
+import 'package:challenge_repository/challenge_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:form_fields/form_fields.dart';
+import 'package:shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
 
 part 'create_challenge_state.dart';
 
 class CreateChallengeCubit extends Cubit<CreateChallengeState> {
-  CreateChallengeCubit() : super(const CreateChallengeState.initial());
+  CreateChallengeCubit({
+    required ChallengeRepository challengeRepository,
+  })  : _challengeRepository = challengeRepository,
+        super(const CreateChallengeState.initial());
+
+  final ChallengeRepository _challengeRepository;
 
   /// Emits initial state of challenge creation screen.
   void resetState() => emit(const CreateChallengeState.initial());
@@ -49,21 +56,21 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     emit(newState);
   }
 
-  void onOptionAdded(String newOption) {
+  void onChoicesAdded(String newChoice) {
     final previousState = state;
-    final newOptions = List<String>.from(previousState.options)..add(newOption);
+    final newChoices = List<String>.from(previousState.choices)..add(newChoice);
     final newState = previousState.copyWith(
-      options: newOptions,
+      choices: newChoices,
     );
     emit(newState);
   }
 
-  void onOptionRemoved(int index) {
+  void onChoicesRemoved(int index) {
     final previousState = state;
-    final newOptions = List<String>.from(previousState.options)
+    final newChoices = List<String>.from(previousState.choices)
       ..removeAt(index);
     final newState = previousState.copyWith(
-      options: newOptions,
+      choices: newChoices,
     );
     emit(newState);
   }
@@ -104,8 +111,8 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
 
   void onParticipantAdded(User user) {
     final previousState = state;
-    final newParticipants = List<User>.from(previousState.participants)
-      ..add(user);
+    final newParticipants = List<Participant>.from(previousState.participants)
+      ..add(Participant(user: user));
     final newState = previousState.copyWith(
       participants: newParticipants,
     );
@@ -114,8 +121,8 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
 
   void onParticipantRemoved(User user) {
     final previousState = state;
-    final newParticipants = List<User>.from(previousState.participants)
-      ..remove(user);
+    final newParticipants = List<Participant>.from(previousState.participants)
+      ..removeWhere((participant) => participant.id == user.id);
     final newState = previousState.copyWith(
       participants: newParticipants,
     );
@@ -242,12 +249,37 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
       throw Exception('End date cannot be before start date');
     }
     if (previousState.limitDate != null &&
-        selectedDateTime.isAfter(previousState.limitDate!)) {
-      throw Exception('End date cannot be after limit date');
+        selectedDateTime.isBefore(previousState.limitDate!)) {
+      throw Exception('End date cannot be before limit date');
     }
     final newState = previousState.copyWith(
       endDate: selectedDateTime,
     );
     emit(newState);
+  }
+
+  void submit({
+    required User creator,
+  }) {
+    final previousState = state;
+    final newChallenge = Challenge(
+      title: previousState.challengeTitle.value,
+      question: previousState.challengeQuestion.value,
+      choices:
+          previousState.choices.map((choice) => Choice(value: choice)).toList(),
+      hasBet: previousState.hasBet,
+      minBet: previousState.minAmount,
+      maxBet: previousState.maxAmount,
+      participants: previousState.participants,
+      starting: previousState.startDate,
+      limitDate: previousState.limitDate,
+      ending: previousState.endDate,
+    );
+    _challengeRepository.createChallenge(
+      challenge: newChallenge,
+      creator: creator,
+      choices: newChallenge.choices,
+      participants: newChallenge.participants,
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:challenge_repository/challenge_repository.dart';
 import 'package:daikoon/app/app.dart';
 import 'package:daikoon/app/view/app_view.dart';
 import 'package:flutter/material.dart';
@@ -11,16 +12,21 @@ class App extends StatelessWidget {
   const App({
     required this.user,
     required this.userRepository,
+    required this.challengeRepository,
     super.key,
   });
 
   final User user;
   final UserRepository userRepository;
+  final ChallengeRepository challengeRepository;
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: userRepository,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider.value(value: userRepository),
+        RepositoryProvider.value(value: challengeRepository),
+      ],
       child: BlocProvider(
         create: (context) => AppBloc(
           userRepository: userRepository,

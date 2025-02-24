@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:app_ui/app_ui.dart';
+import 'package:challenge_repository/challenge_repository.dart';
 import 'package:daikoon/app/app.dart';
 import 'package:daikoon/challenge/create/create_challenge.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,9 @@ class CreateChallengePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CreateChallengeCubit(),
+          create: (context) => CreateChallengeCubit(
+            challengeRepository: context.read<ChallengeRepository>(),
+          ),
         ),
         BlocProvider(
           create: (context) => FormStepperCubit(),
@@ -45,11 +48,12 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
 
     final stepsForm = <Widget>[
       const ChallengeTitleForm(),
-      const ChallengeOptionsForm(),
+      const ChallengeChoicesForm(),
       const ChallengeBetForm(),
       if (hasBet) const ChallengeBetAmountForm(),
       const ChallengeParticipantsForm(),
       const ChallengeDatesForm(),
+      const ChallengeResume(),
     ];
 
     final formIndex = context.select((FormStepperCubit bloc) => bloc.state);
@@ -101,7 +105,10 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
                               children: [
                                 const Spacer(),
                                 child,
-                                const ChallengeNextButton(),
+                                if (formIndex < stepsForm.length - 1)
+                                  const ChallengeNextButton()
+                                else
+                                  const ChallengeSubmitButton(),
                                 if (formIndex > 0)
                                   const ChallengePreviousButton(),
                                 const Spacer(),

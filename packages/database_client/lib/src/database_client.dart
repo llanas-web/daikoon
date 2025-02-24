@@ -63,10 +63,23 @@ abstract class UserBaseRepository {
   });
 }
 
+/// ChallengeBaseRepository
+// ignore: one_member_abstracts
+abstract class ChallengeBaseRepository {
+  /// Creates a challenge.
+  Future<void> createChallenge({
+    required Challenge challenge,
+    required User creator,
+    List<Choice> choices,
+    List<Participant> participants,
+  });
+}
+
 /// {@template database_client}
 /// A Very Good Project created by Very Good CLI.
 /// {@endtemplate}
-abstract class DatabaseClient implements UserBaseRepository {
+abstract class DatabaseClient
+    implements UserBaseRepository, ChallengeBaseRepository {
   /// {@macro database_client}
   const DatabaseClient();
 }
@@ -217,5 +230,72 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       ''',
       [userId ?? currentUserId],
     ).then((event) => event.safeMap(User.fromJson).toList(growable: false));
+  }
+
+  @override
+  Future<void> createChallenge({
+    required Challenge challenge,
+    required User creator,
+    List<Choice> choices = const [],
+    List<Participant> participants = const [],
+  }) async {
+    await _powerSyncRepository.db().writeTransaction((sqlContext) async {
+      await sqlContext.execute(
+        '''
+        INSERT INTO challenges (id, title, question, starting, limit_date, ending, min_bet, max_bet, has_bet, creator_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''',
+        [
+          challenge.id,
+          challenge.title,
+          challenge.question,
+          challenge.starting!.toIso8601String(),
+          challenge.limitDate!.toIso8601String(),
+          challenge.ending!.toIso8601String(),
+          challenge.minBet,
+          challenge.maxBet,
+          challenge.hasBet,
+          creator.id,
+        ],
+      );
+
+      for (final choice in choices) {
+        await sqlContext.execute(
+          '''
+          INSERT INTO choices (id, value, challenge_id, is_correct)
+          VALUES (?, ?, ?, ?)
+          ''',
+          [choice.id, choice.value, challenge.id, choice.isCorrect],
+        );
+      }
+
+      await sqlContext.execute(
+        '''
+          INSERT INTO participants (id, challenge_id, user_id, status)
+          VALUES (?, ?, ?, ?)
+          ''',
+        [
+          '${challenge.id}.${creator.id}',
+          challenge.id,
+          creator.id,
+          ParticipantStatus.accepted.name,
+        ],
+      );
+
+      for (final participant in participants) {
+        await sqlContext.execute(
+          '''
+          INSERT INTO participants (id, challenge_id, user_id, status)
+          VALUES (?, ?, ?, ?)
+          ''',
+          [
+            '${challenge.id}.${participant.id}',
+            challenge.id,
+            participant.id,
+            participant.status.name,
+          ],
+        );
+      }
+    });
   }
 }

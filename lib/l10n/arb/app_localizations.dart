@@ -537,6 +537,18 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Limite de mise'**
   String get challengeCreationDatesLimitFieldLabel;
+
+  /// Label for the resume page in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Validation'**
+  String get challengeCreationResumeLabel;
+
+  /// Label for the submit button in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Valider'**
+  String get challengeCreationSubmitButtonLabel;
 }
 
 class _AppLocalizationsDelegate

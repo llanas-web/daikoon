@@ -1,3 +1,4 @@
+import 'package:challenge_repository/challenge_repository.dart';
 import 'package:daikoon/app/app.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -7,13 +8,15 @@ import 'package:user_repository/user_repository.dart';
 
 import 'app_test.mocks.dart';
 
-@GenerateMocks([User, UserRepository])
+@GenerateMocks([User, UserRepository, ChallengeRepository])
 void main() {
   late UserRepository userRepository;
+  late ChallengeRepository challengeRepository;
   late User user;
 
   setUp(() {
     userRepository = MockUserRepository();
+    challengeRepository = MockChallengeRepository();
     user = MockUser();
 
     when(user.isAnonymous).thenReturn(false);
@@ -36,6 +39,7 @@ void main() {
       App(
         user: user,
         userRepository: userRepository,
+        challengeRepository: challengeRepository,
       ),
     );
 

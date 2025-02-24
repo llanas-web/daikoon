@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
-class ChallengeOptionsForm extends StatelessWidget {
-  const ChallengeOptionsForm({super.key});
+class ChallengeChoicesForm extends StatelessWidget {
+  const ChallengeChoicesForm({super.key});
 
   @override
   Widget build(BuildContext context) {
     final options = context.select(
-      (CreateChallengeCubit cubit) => cubit.state.options,
+      (CreateChallengeCubit cubit) => cubit.state.choices,
     );
     return Column(
       children: [
@@ -47,7 +47,7 @@ class ChallengeOptionsForm extends StatelessWidget {
                         option: option,
                         onRemove: () => context
                             .read<CreateChallengeCubit>()
-                            .onOptionRemoved(index),
+                            .onChoicesRemoved(index),
                       );
                     })
                     .toList()
@@ -57,7 +57,7 @@ class ChallengeOptionsForm extends StatelessWidget {
             const Row(
               children: [
                 Expanded(
-                  child: ChallengeOptionsTextField(),
+                  child: ChallengeChoicesTextField(),
                 ),
               ],
             ),

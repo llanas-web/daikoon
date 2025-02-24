@@ -312,5 +312,13 @@
   "challengeCreationDatesLimitFieldLabel": "Limite de mise",
   "@challengeCreationDatesLimitFieldLabel": {
     "description": "Label for the limit date form field in the challenge creation page"
+  },
+  "challengeCreationResumeLabel": "Validation",
+  "@challengeCreationResumeLabel": {
+    "description": "Label for the resume page in the challenge creation page"
+  },
+  "challengeCreationSubmitButtonLabel": "Valider",
+  "@challengeCreationSubmitButtonLabel": {
+    "description": "Label for the submit button in the challenge creation page"
   }
 }

@@ -21,6 +21,8 @@ final List<RegExp> fatalResponseCodes = [
   RegExp(r'^42501$'),
 ];
 
+final listTableWithGhostId = ['friendships', 'participants'];
+
 /// Use Supabase for authentication and data upload.
 class SupabaseConnector extends PowerSyncBackendConnector {
   /// {@macro supabase_connector}
@@ -83,6 +85,23 @@ class SupabaseConnector extends PowerSyncBackendConnector {
         .then((response) => null, onError: (error) => null);
   }
 
+  /// Populate data with generated Id that only exists in powerSync
+  /// friendships table has a composite primary key of sender_id and receiver_id
+  /// We generate a ghost id by concatenating the two ids
+  Map<String, dynamic> populateDataWithGhostId(
+    String table,
+    Map<String, dynamic> data,
+    String? id,
+  ) {
+    if (listTableWithGhostId.contains(table)) {
+      return data;
+    }
+    if (id != null) {
+      data['id'] = id;
+    }
+    return data;
+  }
+
   // Upload pending changes to Supabase.
   @override
   Future<void> uploadData(PowerSyncDatabase database) async {
@@ -105,10 +124,7 @@ class SupabaseConnector extends PowerSyncBackendConnector {
         final table = rest.from(op.table);
         if (op.op == UpdateType.put) {
           final data = Map<String, dynamic>.of(op.opData!);
-          if (op.table != 'friendships') {
-            data['id'] = op.id;
-          }
-          await table.upsert(data);
+          await table.upsert(populateDataWithGhostId(op.table, data, op.id));
         } else if (op.op == UpdateType.patch) {
           await table.update(op.opData!).eq('id', op.id);
         } else if (op.op == UpdateType.delete) {

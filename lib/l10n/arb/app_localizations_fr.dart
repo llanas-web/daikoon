@@ -241,4 +241,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeCreationDatesLimitFieldLabel => 'Limite de mise';
+
+  @override
+  String get challengeCreationResumeLabel => 'Validation';
+
+  @override
+  String get challengeCreationSubmitButtonLabel => 'Valider';
 }
