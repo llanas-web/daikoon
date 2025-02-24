@@ -1,5 +1,5 @@
-import { createClient } from "npm:@supabase/supabase-js@2";
-import { JWT } from "npm:google-auth-library@9";
+import { createClient } from "jsr:@supabase/supabase-js@2.47.0";
+import { FcmClient } from "https://deno.land/x/firebase_messaging@1.0.4/mod.ts";
 
 interface Notification {
   id: string;
@@ -21,19 +21,25 @@ const supabase = createClient(
   Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
 );
 
+const serviceAccount = JSON.parse(Deno.env.get("GOOGLE_SERVICE_JSON")!);
+
+const fcmClient = new FcmClient(serviceAccount);
+
 Deno.serve(async (req) => {
   const payload: WebhookPayload = await req.json();
-  console.log(payload);
-  console.log(Deno.env.get("SUPABASE_URL")!);
-  console.log(Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+  const { user_id, body, title } = payload.record;
 
   if (payload.record.user_id == null) {
     return builResponse(405, JSON.stringify({ error: "user_id is required" }));
   }
 
-  const userFcmToken = await getFcmTokenFromUserId(payload.record.user_id);
+  const { data: user } = await supabase
+    .from("users")
+    .select("push_token")
+    .eq("id", user_id)
+    .single();
 
-  if (userFcmToken == null) {
+  if (user?.push_token == null) {
     return builResponse(
       400,
       JSON.stringify({ error: "user has no fcm_token specified" }),
@@ -41,11 +47,16 @@ Deno.serve(async (req) => {
   }
 
   try {
-    await sendNotification(
-      userFcmToken,
-      payload.record.title,
-      payload.record.body,
+    const response = await fcmClient.sendNotification(
+      {
+        notification: {
+          title,
+          body,
+        },
+        token: user?.push_token,
+      },
     );
+    console.dir(response);
     await updateNotifications(payload.record.id, "sent");
     return builResponse(204);
   } catch (e) {
@@ -58,95 +69,11 @@ Deno.serve(async (req) => {
   }
 });
 
-const getFcmTokenFromUserId = async (userId: string) => {
-  const { data: user } = await supabase
-    .from("users")
-    .select("fcm_token")
-    .eq("id", userId)
-    .single();
-
-  return user?.fcm_token as string | null;
-};
-
 const updateNotifications = async (notificationId: string, status: string) => {
   await supabase.from("notifications").update({ status }).eq(
     "id",
     notificationId,
   );
-};
-
-const sendNotification = async (
-  fcmToken: string,
-  title: string,
-  body: string,
-) => {
-  const { default: serviceAccount } = await import(
-    "../service-account.json",
-    {
-      with: { type: "json" },
-    }
-  );
-
-  const accessToken = await getAccessToken({
-    clientEmail: serviceAccount.client_email,
-    privateKey: serviceAccount.private_key,
-  });
-
-  console.log(accessToken);
-
-  const notificationContent = {
-    title,
-    body,
-  };
-
-  const res = await fetch(
-    `https://fcm.googleapis.com/v1/projects/${serviceAccount.project_id}/messages:send`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify({
-        message: {
-          token: fcmToken,
-          notification: notificationContent,
-        },
-      }),
-    },
-  );
-
-  console.log(res.status);
-
-  const resData = await res.json();
-
-  console.log(resData);
-  if (res.status < 200 || 299 < res.status) {
-    throw resData;
-  }
-};
-
-const getAccessToken = ({
-  clientEmail,
-  privateKey,
-}: {
-  clientEmail: string;
-  privateKey: string;
-}): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const jwtClient = new JWT({
-      email: clientEmail,
-      key: privateKey,
-      scopes: ["https://www.googleapis.com/auth/firebase.messaging"],
-    });
-    jwtClient.authorize((err, tokens) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve(tokens!.access_token!);
-    });
-  });
 };
 
 const builResponse = (status: number, body?: string) => {
