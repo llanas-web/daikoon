@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:form_fields/form_fields.dart';
+import 'package:notifications_repository/notifications_repository.dart';
 import 'package:powersync_repository/powersync_repository.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_authentication_client/supabase_authentication_client.dart';
@@ -19,10 +20,13 @@ class SignUpCubit extends Cubit<SignUpState> {
   /// {@macro sign_up_cubit}
   SignUpCubit({
     required UserRepository userRepository,
+    required NotificationsRepository notificationsRepository,
   })  : _userRepository = userRepository,
+        _notificationsRepository = notificationsRepository,
         super(const SignUpState.initial());
 
   final UserRepository _userRepository;
+  final NotificationsRepository _notificationsRepository;
 
   /// Changes password visibility, making it visible or not.
   void changePasswordVisibility() => emit(
@@ -162,10 +166,13 @@ class SignUpCubit extends Cubit<SignUpState> {
     if (!isFormValid) return;
 
     try {
+      final pushToken = await _notificationsRepository.fetchToken();
+
       await _userRepository.signUpWithPassword(
         email: email.value,
         password: password.value,
         username: username.value,
+        pushToken: pushToken,
       );
 
       if (isClosed) return;

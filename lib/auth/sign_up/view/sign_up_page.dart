@@ -4,6 +4,7 @@ import 'package:daikoon/auth/sign_up/sign_up.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notifications_repository/notifications_repository.dart';
 import 'package:shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -15,6 +16,7 @@ class SignUpPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignUpCubit(
         userRepository: context.read<UserRepository>(),
+        notificationsRepository: context.read<NotificationsRepository>(),
       ),
       child: const SignUpView(),
     );

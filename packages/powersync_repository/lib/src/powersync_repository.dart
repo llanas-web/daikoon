@@ -21,6 +21,7 @@ final List<RegExp> fatalResponseCodes = [
   RegExp(r'^42501$'),
 ];
 
+/// Tables that have a composite primary key and need a ghost id
 final listTableWithGhostId = ['friendships', 'participants'];
 
 /// Use Supabase for authentication and data upload.

@@ -5,12 +5,14 @@ import 'package:app_ui/app_ui.dart';
 import 'package:bloc/bloc.dart';
 import 'package:daikoon/app/app.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_notifications_client/firebase_notifications_client.dart';
 import 'package:flutter/widgets.dart';
 import 'package:powersync_repository/powersync_repository.dart';
 import 'package:shared/shared.dart';
 
 typedef AppBuilder = FutureOr<Widget> Function(
   PowerSyncRepository,
+  FirebaseMessaging,
 );
 
 class AppBlocObserver extends BlocObserver {
@@ -27,6 +29,13 @@ class AppBlocObserver extends BlocObserver {
     logD('onError(${bloc.runtimeType}, $error, $stackTrace)');
     super.onError(bloc, error, stackTrace);
   }
+}
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+
+  logI('Handling a background message: ${message.toMap()}');
 }
 
 Future<void> bootstrap(
@@ -52,9 +61,14 @@ Future<void> bootstrap(
     final powerSyncRepository = PowerSyncRepository(env: appFlavor.getEnv);
     await powerSyncRepository.initialize();
 
+    final firebaseMessaging = FirebaseMessaging.instance;
+    FirebaseMessaging.onBackgroundMessage(
+      _firebaseMessagingBackgroundHandler,
+    );
+
     SystemUiOverlayTheme.setPortraitOrientation();
 
-    runApp(await builder(powerSyncRepository));
+    runApp(await builder(powerSyncRepository, firebaseMessaging));
   }, (error, stack) {
     logE(error.toString(), stackTrace: stack);
   });

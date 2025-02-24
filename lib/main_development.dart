@@ -4,7 +4,9 @@ import 'package:daikoon/bootstrap.dart';
 import 'package:daikoon/firebase_options_dev.dart';
 import 'package:database_client/database_client.dart';
 import 'package:env/env.dart';
+import 'package:firebase_notifications_client/firebase_notifications_client.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:notifications_repository/notifications_repository.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_authentication_client/supabase_authentication_client.dart';
 import 'package:token_storage/token_storage.dart';
@@ -12,7 +14,7 @@ import 'package:user_repository/user_repository.dart';
 
 void main() {
   bootstrap(
-    (powerSyncrepository) async {
+    (powerSyncrepository, firebaseMessaging) async {
       final iOSClientId = getIt<AppFlavor>().getEnv(Env.iOSClientId);
       final webClientId = getIt<AppFlavor>().getEnv(Env.webClientId);
 
@@ -41,10 +43,19 @@ void main() {
         databaseClient: powerSyncDatabaseClient,
       );
 
+      final firebaseNotificationsClient = FirebaseNotificationsClient(
+        firebaseMessaging: firebaseMessaging,
+      );
+
+      final notificationsRepository = NotificationsRepository(
+        notificationsClient: firebaseNotificationsClient,
+      );
+
       return App(
         user: await userRepository.user.first,
         userRepository: userRepository,
         challengeRepository: challengeRepository,
+        notificationsRepository: notificationsRepository,
       );
     },
     options: DefaultFirebaseOptions.currentPlatform,
