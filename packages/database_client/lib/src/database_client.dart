@@ -73,6 +73,9 @@ abstract class ChallengeBaseRepository {
     List<Choice> choices,
     List<Participant> participants,
   });
+
+  /// Returns a list of challenges associated with the provided [userId].
+  Stream<List<Challenge>> getChallenges({required String userId});
 }
 
 /// NotificationBaseRepository
@@ -243,6 +246,25 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       ''',
       [userId ?? currentUserId],
     ).then((event) => event.safeMap(User.fromJson).toList(growable: false));
+  }
+
+  @override
+  Stream<List<Challenge>> getChallenges({required String userId}) {
+    return _powerSyncRepository.db().watch(
+      '''
+      SELECT challenges.*, users.id as creator_id, users.username as creator_username, users.full_name as creator_full_name, users.avatar_url as creator_avatar_url
+      FROM participants
+      JOIN challenges
+      ON participants.challenge_id = challenges.id
+      JOIN users
+      ON challenges.creator_id = users.id
+      WHERE participants.user_id = ?1
+      ORDER BY challenges.created_at DESC
+      ''',
+      parameters: [userId],
+    ).map(
+      (event) => event.safeMap(Challenge.fromJson).toList(growable: false),
+    );
   }
 
   @override

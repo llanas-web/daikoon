@@ -1,6 +1,5 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
-import 'package:daikoon/app/bloc/app_bloc.dart';
 import 'package:daikoon/notification/notification.dart';
 import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/material.dart' hide Notification;

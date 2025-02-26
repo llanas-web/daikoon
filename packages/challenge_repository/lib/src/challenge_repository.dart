@@ -26,4 +26,9 @@ class ChallengeRepository implements ChallengeBaseRepository {
         choices: choices,
         participants: participants,
       );
+
+  @override
+  Stream<List<Challenge>> getChallenges({required String userId}) {
+    return _databaseClient.getChallenges(userId: userId);
+  }
 }

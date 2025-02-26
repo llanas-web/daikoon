@@ -1,10 +1,16 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 import 'package:shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
+
+part 'challenge.g.dart';
 
 /// {@template message}
 /// The representation of the challenge.
 /// {@endtemplate}
+@immutable
+@JsonSerializable()
 class Challenge extends Equatable {
   /// {@macro message}
   Challenge({
@@ -23,6 +29,10 @@ class Challenge extends Equatable {
     this.participants = const [],
   })  : id = id ?? uuid.v4(),
         createdAt = createdAt ?? Jiffy.now().dateTime;
+
+  /// Creates a challenge from a json object.
+  factory Challenge.fromJson(Map<String, dynamic> json) =>
+      _$ChallengeFromJson(json);
 
   /// The challenge's generated uuid.
   final String id;
@@ -55,14 +65,17 @@ class Challenge extends Equatable {
   final bool hasBet;
 
   /// The challenge's creator.
+  @UserConverter()
   final User? creator;
 
   /// The challenge's options.
+  @ListChoicesConverter()
   final List<Choice> choices;
 
   /// The challenge's participants.
   final List<Participant> participants;
 
+  /// The effective title display without null aware operators.
   @override
   List<Object?> get props => [
         id,
@@ -84,21 +97,5 @@ class Challenge extends Equatable {
   static Challenge empty = Challenge();
 
   /// Creates a challenge from a json object.
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'id': id,
-      'title': title,
-      'question': question,
-      'starting': starting!.microsecondsSinceEpoch,
-      'limitDate': limitDate!.microsecondsSinceEpoch,
-      'ending': ending!.microsecondsSinceEpoch,
-      'minBet': minBet,
-      'maxBet': maxBet,
-      'hasBet': hasBet,
-      'creator': creator!.toJson(),
-      'choices': choices.map((choice) => choice.toJson()).toList(),
-      'participants':
-          participants.map((participant) => participant.toJson()).toList(),
-    };
-  }
+  Map<String, dynamic> toJson() => _$ChallengeToJson(this);
 }
