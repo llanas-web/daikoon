@@ -6,6 +6,7 @@ import 'package:daikoon/app/app.dart';
 import 'package:daikoon/app/home/home.dart';
 import 'package:daikoon/auth/view/auth_page.dart';
 import 'package:daikoon/challenge/challenge.dart';
+import 'package:daikoon/notification/notification.dart';
 import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,7 +73,27 @@ GoRouter router(AppBloc appBloc) {
           ),
           generateStatefulShellBranch(route: AppRoutes.search),
           generateStatefulShellBranch(route: AppRoutes.favorite),
-          generateStatefulShellBranch(route: AppRoutes.notification),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.notification.route,
+                name: AppRoutes.notification.name,
+                pageBuilder: (context, state) {
+                  return CustomTransitionPage(
+                    child: const NotificationsPage(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) =>
+                            SharedAxisTransition(
+                      animation: animation,
+                      secondaryAnimation: secondaryAnimation,
+                      transitionType: SharedAxisTransitionType.horizontal,
+                      child: child,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
           StatefulShellBranch(
             routes: [
               GoRoute(

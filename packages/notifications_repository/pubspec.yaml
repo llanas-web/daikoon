@@ -7,8 +7,12 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
+  database_client:
+    path: ../database_client
   notifications_client:
     path: ../notifications_client/notifications_client
+  shared:
+    path: ../shared
 
 dev_dependencies:
   mocktail: ^1.0.4

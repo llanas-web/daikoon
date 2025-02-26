@@ -75,11 +75,21 @@ abstract class ChallengeBaseRepository {
   });
 }
 
+/// NotificationBaseRepository
+// ignore: one_member_abstracts
+abstract class NotificationBaseRepository {
+  /// Returns a list of notifications associated with the provided [userId].
+  Stream<List<Notification>> notificationsOf({required String userId});
+}
+
 /// {@template database_client}
 /// A Very Good Project created by Very Good CLI.
 /// {@endtemplate}
 abstract class DatabaseClient
-    implements UserBaseRepository, ChallengeBaseRepository {
+    implements
+        UserBaseRepository,
+        ChallengeBaseRepository,
+        NotificationBaseRepository {
   /// {@macro database_client}
   const DatabaseClient();
 }
@@ -297,5 +307,20 @@ class PowerSyncDatabaseClient extends DatabaseClient {
         );
       }
     });
+  }
+
+  @override
+  Stream<List<Notification>> notificationsOf({required String userId}) {
+    return _powerSyncRepository.db().watch(
+      '''
+      SELECT *
+      FROM notifications
+      WHERE user_id = ?1
+      ORDER BY created_at DESC
+      ''',
+      parameters: [userId],
+    ).map(
+      (event) => event.safeMap(Notification.fromJson).toList(growable: false),
+    );
   }
 }

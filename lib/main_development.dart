@@ -48,6 +48,7 @@ void main() {
       );
 
       final notificationsRepository = NotificationsRepository(
+        databaseClient: powerSyncDatabaseClient,
         notificationsClient: firebaseNotificationsClient,
       );
 
