@@ -22,4 +22,7 @@ abstract class AppSize {
 
   /// The size of bottom bar icon (24.0)
   static const bottomBarIconSize = 24.0;
+
+  /// The size of notification (380.0)
+  static const notificationHeight = 156.0;
 }

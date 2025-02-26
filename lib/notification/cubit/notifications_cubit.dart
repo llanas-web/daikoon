@@ -23,4 +23,8 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   }) {
     return _notificationsRepository.notificationsOf(userId: userId);
   }
+
+  Future<void> markAsChecked(String notificationId) async {
+    await _notificationsRepository.markAsChecked(notificationId);
+  }
 }

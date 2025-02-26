@@ -19,3 +19,12 @@ final class AppUserChanged extends AppEvent {
   @override
   List<Object> get props => [user];
 }
+
+final class AppNotificationChanged extends AppEvent {
+  const AppNotificationChanged({required this.hasNotification});
+
+  final bool hasNotification;
+
+  @override
+  List<Object> get props => [hasNotification];
+}

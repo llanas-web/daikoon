@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
@@ -9,12 +10,19 @@ List<NavBarItem> mainNavigationBarItems({
   required String favoriteLabel,
   required String notificationLabel,
   required String userProfileLabel,
+  required bool hasNotification,
 }) =>
     <NavBarItem>[
       NavBarItem(icon: Icons.home_outlined, label: homeLabel),
       NavBarItem(icon: Icons.search_outlined, label: searchLabel),
       NavBarItem(icon: Icons.favorite_outline, label: favoriteLabel),
-      NavBarItem(icon: Icons.notifications_outlined, label: notificationLabel),
+      NavBarItem(
+        icon: Icons.notifications_outlined,
+        label: notificationLabel,
+        child: hasNotification
+            ? Assets.icons.iconeNotification.svg()
+            : const Icon(Icons.notifications_outlined),
+      ),
       NavBarItem(icon: Icons.person_outlined, label: userProfileLabel),
     ];
 

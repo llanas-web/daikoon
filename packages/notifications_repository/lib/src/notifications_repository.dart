@@ -48,4 +48,9 @@ class NotificationsRepository {
   Stream<List<Notification>> notificationsOf({required String userId}) {
     return _databaseClient.notificationsOf(userId: userId);
   }
+
+  /// Marks the notification with the provided [notificationId] as checked.
+  Future<void> markAsChecked(String notificationId) async {
+    await _databaseClient.markAsChecked(notificationId);
+  }
 }

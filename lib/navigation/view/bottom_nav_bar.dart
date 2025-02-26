@@ -1,6 +1,8 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/app/bloc/app_bloc.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 /// {@template main_bottom_navigation_bar}
@@ -21,12 +23,15 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasNotification =
+        context.select((AppBloc bloc) => bloc.state.hasNotification);
     final navigationBarItems = mainNavigationBarItems(
       homeLabel: context.l10n.homeNavBarItemLabel,
       searchLabel: context.l10n.searchNavBarItemLabel,
       favoriteLabel: context.l10n.favoriteNavBarItemLabel,
       notificationLabel: context.l10n.notificationNavBarItemLabel,
       userProfileLabel: context.l10n.profileNavBarItemLabel,
+      hasNotification: hasNotification,
     );
 
     return BottomNavigationBar(

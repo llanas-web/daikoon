@@ -64,7 +64,7 @@ class Notification extends Equatable {
         jsonDecode(json['metadatas'] as String) as Map<String, dynamic>?;
 
     return Notification(
-      id: json['user_id'] as String? ?? json['id'] as String,
+      id: json['id'] as String,
       title: json['title'] as String? ?? '',
       body: json['body'] as String? ?? '',
       type: (json['type'] as String).toNotificationType ??

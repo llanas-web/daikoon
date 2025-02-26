@@ -80,6 +80,9 @@ abstract class ChallengeBaseRepository {
 abstract class NotificationBaseRepository {
   /// Returns a list of notifications associated with the provided [userId].
   Stream<List<Notification>> notificationsOf({required String userId});
+
+  /// Marks the notification with the provided [notificationId] as checked.
+  Future<void> markAsChecked(String notificationId);
 }
 
 /// {@template database_client}
@@ -321,6 +324,18 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       parameters: [userId],
     ).map(
       (event) => event.safeMap(Notification.fromJson).toList(growable: false),
+    );
+  }
+
+  @override
+  Future<void> markAsChecked(String notificationId) {
+    return _powerSyncRepository.db().execute(
+      '''
+      UPDATE notifications
+      SET status = 'checked'
+      WHERE id = ?
+      ''',
+      [notificationId],
     );
   }
 }
