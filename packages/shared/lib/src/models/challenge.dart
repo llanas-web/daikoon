@@ -31,8 +31,18 @@ class Challenge extends Equatable {
         createdAt = createdAt ?? Jiffy.now().dateTime;
 
   /// Creates a challenge from a json object.
-  factory Challenge.fromJson(Map<String, dynamic> json) =>
-      _$ChallengeFromJson(json);
+  factory Challenge.fromJson(Map<String, dynamic> json) => _$ChallengeFromJson(
+        json
+          ..putIfAbsent(
+            'creator',
+            () => {
+              'id': json['creator_id'],
+              'username': json['creator_username'],
+              'full_name': json['creator_full_name'],
+              'avatar_url': json['creator_avatar_url'],
+            },
+          ),
+      );
 
   /// The challenge's generated uuid.
   final String id;

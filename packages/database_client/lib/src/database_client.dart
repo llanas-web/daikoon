@@ -263,7 +263,9 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       ''',
       parameters: [userId],
     ).map(
-      (event) => event.safeMap(Challenge.fromJson).toList(growable: false),
+      (event) => event
+          .safeMap((row) => Challenge.fromJson(Map<String, dynamic>.from(row)))
+          .toList(growable: false),
     );
   }
 

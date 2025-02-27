@@ -22,7 +22,7 @@ class ChallengeItem extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: AppColors.black.withValues(alpha: 0.5),
-              blurRadius: AppRadius.xlg,
+              blurRadius: AppRadius.lg,
               offset: const Offset(0, 5),
             ),
           ],
