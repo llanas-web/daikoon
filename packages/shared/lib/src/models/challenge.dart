@@ -75,6 +75,15 @@ class Challenge extends Equatable {
   /// The challenge's participants.
   final List<Participant> participants;
 
+  /// The challenge's status.
+  bool get isEnded => ending != null && ending!.isBefore(DateTime.now());
+
+  /// The challenge's status.
+  bool get isStarted => starting != null && starting!.isBefore(DateTime.now());
+
+  /// The challenge's status.
+  bool get isPending => !isEnded && !isStarted;
+
   /// The effective title display without null aware operators.
   @override
   List<Object?> get props => [

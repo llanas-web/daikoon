@@ -9,15 +9,18 @@ class DaikoonFormTimeSelector extends StatelessWidget {
   const DaikoonFormTimeSelector({
     required this.value,
     required this.hintText,
-    required this.onTimeSelected,
+    this.readOnly = false,
+    this.onTimeSelected,
     super.key,
   });
 
   final DateTime? value;
   final String hintText;
-  final void Function(TimeOfDay) onTimeSelected;
+  final bool readOnly;
+  final void Function(TimeOfDay)? onTimeSelected;
 
   Future<void> onTapDate(BuildContext context) async {
+    if (readOnly || onTimeSelected == null) return;
     final defaultTimeOfDay = value != null
         ? TimeOfDay(
             hour: value!.day,
@@ -29,7 +32,7 @@ class DaikoonFormTimeSelector extends StatelessWidget {
       initialTime: defaultTimeOfDay,
     );
     if (time != null) {
-      onTimeSelected(time);
+      onTimeSelected!(time);
     }
   }
 
@@ -40,9 +43,14 @@ class DaikoonFormTimeSelector extends StatelessWidget {
         vertical: AppSpacing.lg,
         horizontal: AppSpacing.xlg,
       ),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.primary,
+        ),
+      ),
       hintText: hintText,
       prefixIcon: const Icon(Icons.access_time),
-      suffixIcon: const Icon(Icons.arrow_drop_down),
+      suffixIcon: !readOnly ? const Icon(Icons.arrow_drop_down) : null,
       filled: true,
       filledColor: AppColors.white,
       hintStyle: const TextStyle(

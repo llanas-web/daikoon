@@ -1,7 +1,7 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:challenge_repository/challenge_repository.dart';
 import 'package:daikoon/app/app.dart';
-import 'package:daikoon/challenge/list/cubit/challenges_cubit.dart';
+import 'package:daikoon/challenge/list/challenge_list.dart';
 import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,13 +52,7 @@ class ChallengeListView extends StatelessWidget {
                   sliver: SliverList.builder(
                     itemBuilder: (context, index) => Column(
                       children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(challenges[index].title ?? ''),
-                            ),
-                          ],
-                        ),
+                        ChallengeItem(challenge: challenges[index]),
                         const SizedBox(height: AppSpacing.md),
                       ],
                     ),

@@ -9,27 +9,30 @@ class DaikoonFormDateSelector extends StatelessWidget {
   const DaikoonFormDateSelector({
     required this.value,
     required this.hintText,
-    required this.minDate,
-    required this.maxDate,
-    required this.onDateSelected,
+    this.readOnly = false,
+    this.minDate,
+    this.maxDate,
+    this.onDateSelected,
     super.key,
   });
 
   final DateTime? value;
   final String hintText;
-  final DateTime minDate;
-  final DateTime maxDate;
-  final void Function(DateTime) onDateSelected;
+  final bool readOnly;
+  final DateTime? minDate;
+  final DateTime? maxDate;
+  final void Function(DateTime)? onDateSelected;
 
   Future<void> onTapDate(BuildContext context) async {
+    if (readOnly || onDateSelected == null) return;
     final date = await showDatePicker(
       context: context,
       initialDate: value ?? minDate,
-      firstDate: minDate,
-      lastDate: maxDate,
+      firstDate: minDate ?? DateTime.now(),
+      lastDate: maxDate ?? DateTime.now().add(365.days),
     );
     if (date != null) {
-      onDateSelected(date);
+      onDateSelected!(date);
     }
   }
 
@@ -40,9 +43,14 @@ class DaikoonFormDateSelector extends StatelessWidget {
         vertical: AppSpacing.lg,
         horizontal: AppSpacing.xlg,
       ),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.primary,
+        ),
+      ),
       hintText: hintText,
       prefixIcon: const Icon(Icons.calendar_today),
-      suffixIcon: const Icon(Icons.arrow_drop_down),
+      suffixIcon: !readOnly ? const Icon(Icons.arrow_drop_down) : null,
       filled: true,
       filledColor: AppColors.white,
       hintStyle: const TextStyle(

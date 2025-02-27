@@ -39,7 +39,7 @@ class NotificationItem extends StatelessWidget {
           horizontal: AppSpacing.xlg,
           vertical: AppSpacing.lg,
         ),
-        height: AppSize.notificationHeight,
+        height: AppSize.cardItemSm,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

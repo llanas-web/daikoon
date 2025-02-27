@@ -5,6 +5,9 @@ abstract class AppSize {
   /// {@macro app_size}
   const AppSize();
 
+  /// The default size mesure (64.0)
+  static const defaultSize = 64.0;
+
   /// The big size of icon (36.0)
   static const iconSizeBig = 36.0;
 
@@ -23,6 +26,9 @@ abstract class AppSize {
   /// The size of bottom bar icon (24.0)
   static const bottomBarIconSize = 24.0;
 
-  /// The size of notification (380.0)
-  static const notificationHeight = 156.0;
+  /// The size of small card item (160.0)
+  static const cardItemSm = defaultSize * 2.5;
+
+  /// The size of medium card item (256.0)
+  static const cardItemMd = defaultSize * 4.0;
 }
