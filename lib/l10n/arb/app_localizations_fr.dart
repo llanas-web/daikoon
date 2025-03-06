@@ -247,4 +247,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeCreationSubmitButtonLabel => 'Valider';
+
+  @override
+  String get challengeDetailsQuestionLabel => 'Question du défi :';
+
+  @override
+  String challengeDetailsInvitationTitle(String challengeTitle) {
+    return 'Vous invite à participer au défi \n $challengeTitle';
+  }
+
+  @override
+  String challengeDetailsAcceptedCreatorTitle(String creatorUsername) {
+    return 'Défi organisé par @$creatorUsername';
+  }
+
+  @override
+  String challengeDetailsAcceptedTitle(String challengeTitle) {
+    return 'Participer au défi \n $challengeTitle';
+  }
 }

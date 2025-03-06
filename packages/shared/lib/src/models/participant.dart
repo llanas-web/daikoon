@@ -46,7 +46,7 @@ class Participant extends User implements Equatable {
   factory Participant.fromJson(Map<String, dynamic> json) => Participant(
         user: User.fromJson(json),
         status: ParticipantStatus.values.firstWhere(
-          (element) => element.toString() == json['status'],
+          (element) => element.name == json['status'],
           orElse: () => ParticipantStatus.pending,
         ),
       );
@@ -54,6 +54,9 @@ class Participant extends User implements Equatable {
   final ParticipantStatus _status;
 
   ParticipantStatus get status => _status;
+
+  /// Anonymous user which represents an unauthenticated user.
+  static Participant anonymousParticipant = Participant(user: User.anonymous);
 
   @override
   List<Object?> get props => [id, username, email, avatarUrl, _status];

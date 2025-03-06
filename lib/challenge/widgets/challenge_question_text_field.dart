@@ -1,12 +1,21 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/challenge/challenge.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
+typedef ChallengeQuestionChangedCallback = void Function(String question);
+
 class ChallengeQuestionTextField extends StatefulWidget {
-  const ChallengeQuestionTextField({super.key});
+  const ChallengeQuestionTextField({
+    required this.initialValue,
+    this.onQuestionChanged,
+    this.readOnly = false,
+    super.key,
+  });
+
+  final String initialValue;
+  final bool readOnly;
+  final ChallengeQuestionChangedCallback? onQuestionChanged;
 
   @override
   State<ChallengeQuestionTextField> createState() =>
@@ -19,9 +28,6 @@ class _ChallengeQuestionTextFieldState
 
   @override
   Widget build(BuildContext context) {
-    final challengeQuestion = context.select(
-      (CreateChallengeCubit cubit) => cubit.state.challengeQuestion,
-    );
     return AppTextField(
       contentPadding: const EdgeInsets.symmetric(
         vertical: AppSpacing.lg,
@@ -33,11 +39,13 @@ class _ChallengeQuestionTextFieldState
       hintStyle: const TextStyle(
         color: AppColors.grey,
       ),
-      initialValue: challengeQuestion.value,
-      onChanged: (newQuestion) => _debouncer.run(
-        () =>
-            context.read<CreateChallengeCubit>().onQuestionChanged(newQuestion),
-      ),
+      initialValue: widget.initialValue,
+      readOnly: widget.readOnly,
+      onChanged: widget.onQuestionChanged != null
+          ? (newQuestion) => _debouncer.run(
+                () => widget.onQuestionChanged!(newQuestion),
+              )
+          : null,
     );
   }
 }

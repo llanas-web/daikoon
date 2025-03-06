@@ -9,7 +9,13 @@ class ChallengeDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final challengeDetails = context.select(
       (ChallengeDetailsCubit cubit) => cubit.state.challenge,
-    );
-    return Text(challengeDetails!.title!);
+    )!;
+    if (challengeDetails.isEnded) {
+      return const ChallengeEndedDetails();
+    } else if (!challengeDetails.isStarted) {
+      return const ChallengeLimitDetails();
+    } else {
+      return const ChallengeStartedDetails();
+    }
   }
 }

@@ -13,6 +13,9 @@ class ChallengeChoicesForm extends StatelessWidget {
     final options = context.select(
       (CreateChallengeCubit cubit) => cubit.state.choices,
     );
+    final question = context.select(
+      (CreateChallengeCubit cubit) => cubit.state.challengeQuestion,
+    );
     return Column(
       children: [
         Text(
@@ -28,7 +31,12 @@ class ChallengeChoicesForm extends StatelessWidget {
                   Text(
                     '${context.l10n.challengeCreationQuestionFormFieldLabel} :',
                   ),
-                  const ChallengeQuestionTextField(),
+                  ChallengeQuestionTextField(
+                    initialValue: question.value,
+                    onQuestionChanged: (question) => context
+                        .read<CreateChallengeCubit>()
+                        .onQuestionChanged(question),
+                  ),
                 ].spacerBetween(height: AppSpacing.md),
               ),
             ),

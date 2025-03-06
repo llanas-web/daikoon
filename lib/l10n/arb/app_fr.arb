@@ -320,5 +320,39 @@
   "challengeCreationSubmitButtonLabel": "Valider",
   "@challengeCreationSubmitButtonLabel": {
     "description": "Label for the submit button in the challenge creation page"
+  },
+  "challengeDetailsQuestionLabel": "Question du défi :",
+  "@challengeDetailsQuestionLabel": {
+    "description": "Label for the question in the challenge details page"
+  },
+  "challengeDetailsInvitationTitle": "Vous invite à participer au défi \n {challengeTitle}",
+  "@challengeDetailsInvitationTitle": {
+    "description": "Header of the drawer with the username of connected user",
+    "placeholders": {
+      "challengeTitle": {
+        "type": "String",
+        "example": "Défi fifa ⚽"
+      }
+    }
+  },
+  "challengeDetailsAcceptedCreatorTitle": "Défi organisé par @{creatorUsername}",
+  "@challengeDetailsAcceptedCreatorTitle": {
+    "description": "Header of the drawer with the username of connected user",
+    "placeholders": {
+      "creatorUsername": {
+        "type": "String",
+        "example": "John"
+      }
+    }
+  },
+  "challengeDetailsAcceptedTitle": "Participer au défi \n {challengeTitle}",
+  "@challengeDetailsAcceptedTitle": {
+    "description": "Header of the drawer with the username of connected user",
+    "placeholders": {
+      "challengeTitle": {
+        "type": "String",
+        "example": "Défi fifa ⚽"
+      }
+    }
   }
 }

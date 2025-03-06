@@ -549,6 +549,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Valider'**
   String get challengeCreationSubmitButtonLabel;
+
+  /// Label for the question in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Question du défi :'**
+  String get challengeDetailsQuestionLabel;
+
+  /// Header of the drawer with the username of connected user
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous invite à participer au défi \n {challengeTitle}'**
+  String challengeDetailsInvitationTitle(String challengeTitle);
+
+  /// Header of the drawer with the username of connected user
+  ///
+  /// In fr, this message translates to:
+  /// **'Défi organisé par @{creatorUsername}'**
+  String challengeDetailsAcceptedCreatorTitle(String creatorUsername);
+
+  /// Header of the drawer with the username of connected user
+  ///
+  /// In fr, this message translates to:
+  /// **'Participer au défi \n {challengeTitle}'**
+  String challengeDetailsAcceptedTitle(String challengeTitle);
 }
 
 class _AppLocalizationsDelegate

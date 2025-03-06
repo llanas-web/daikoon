@@ -3,8 +3,10 @@ part of 'challenge_details_cubit.dart';
 enum ChallengeDetailsStatus { loading, loaded, failed }
 
 class ChallengeDetailsState extends Equatable {
-  const ChallengeDetailsState._(
-      {required this.challenge, required this.status});
+  const ChallengeDetailsState._({
+    required this.challenge,
+    required this.status,
+  });
 
   const ChallengeDetailsState.initial()
       : this._(challenge: null, status: ChallengeDetailsStatus.loading);
