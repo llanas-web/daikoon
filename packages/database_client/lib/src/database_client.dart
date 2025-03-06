@@ -76,6 +76,9 @@ abstract class ChallengeBaseRepository {
 
   /// Returns a list of challenges associated with the provided [userId].
   Stream<List<Challenge>> getChallenges({required String userId});
+
+  /// Returns the challenge details associated with the provided [challengeId].
+  Future<Challenge> getChallengeDetails({required String challengeId});
 }
 
 /// NotificationBaseRepository
@@ -267,6 +270,51 @@ class PowerSyncDatabaseClient extends DatabaseClient {
           .safeMap((row) => Challenge.fromJson(Map<String, dynamic>.from(row)))
           .toList(growable: false),
     );
+  }
+
+  @override
+  Future<Challenge> getChallengeDetails({required String challengeId}) async {
+    final challenge = await _powerSyncRepository.db().get(
+      '''
+      SELECT 
+        challenges.*, 
+        users.id as creator_id, 
+        users.username as creator_username, 
+        users.full_name as creator_full_name, 
+        users.avatar_url as creator_avatar_url
+      FROM challenges
+      JOIN users
+      ON challenges.creator_id = users.id
+      WHERE challenges.id = ?1
+      ''',
+      [challengeId],
+    ).then((event) => Challenge.fromJson(Map<String, dynamic>.from(event)));
+    final participants = await _powerSyncRepository.db().getAll(
+      '''
+      SELECT 
+        users.id as user_id, 
+        users.username as username, 
+        users.full_name as full_name, 
+        users.avatar_url as avatar_url,
+        participants.status as status
+      FROM participants
+      JOIN users
+      ON participants.user_id = users.id
+      WHERE participants.challenge_id = ?1
+      ''',
+      [challengeId],
+    ).then(
+      (event) => event.safeMap(Participant.fromJson).toList(growable: false),
+    );
+    final choices = await _powerSyncRepository.db().getAll(
+      '''
+      SELECT * FROM choices WHERE challenge_id = ?1
+      ''',
+      [challengeId],
+    ).then(
+      (event) => event.safeMap(Choice.fromJson).toList(growable: false),
+    );
+    return challenge.copyWith(participants: participants, choices: choices);
   }
 
   @override

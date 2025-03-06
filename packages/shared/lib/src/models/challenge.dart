@@ -94,6 +94,38 @@ class Challenge extends Equatable {
   /// The challenge's status.
   bool get isPending => !isEnded && !isStarted;
 
+  /// Copy the current challenge with some new values.
+  Challenge copyWith({
+    String? id,
+    DateTime? createdAt,
+    String? title,
+    String? question,
+    DateTime? starting,
+    DateTime? limitDate,
+    DateTime? ending,
+    int? minBet,
+    int? maxBet,
+    bool? hasBet,
+    User? creator,
+    List<Choice>? choices,
+    List<Participant>? participants,
+  }) =>
+      Challenge(
+        id: id ?? this.id,
+        createdAt: createdAt ?? this.createdAt,
+        title: title ?? this.title,
+        question: question ?? this.question,
+        starting: starting ?? this.starting,
+        limitDate: limitDate ?? this.limitDate,
+        ending: ending ?? this.ending,
+        minBet: minBet ?? this.minBet,
+        maxBet: maxBet ?? this.maxBet,
+        hasBet: hasBet ?? this.hasBet,
+        creator: creator ?? this.creator,
+        choices: choices ?? this.choices,
+        participants: participants ?? this.participants,
+      );
+
   /// The effective title display without null aware operators.
   @override
   List<Object?> get props => [

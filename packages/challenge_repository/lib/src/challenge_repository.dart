@@ -31,4 +31,9 @@ class ChallengeRepository implements ChallengeBaseRepository {
   Stream<List<Challenge>> getChallenges({required String userId}) {
     return _databaseClient.getChallenges(userId: userId);
   }
+
+  @override
+  Future<Challenge> getChallengeDetails({required String challengeId}) {
+    return _databaseClient.getChallengeDetails(challengeId: challengeId);
+  }
 }

@@ -27,7 +27,12 @@ class NotificationsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.select((AppBloc bloc) => bloc.state.user);
-    final notifications = context.read<NotificationsCubit>();
+    final notificationsCubit = context.read<NotificationsCubit>();
+
+    Future<void> refreshNotifications() async {
+      notificationsCubit.fetchNotifications(userId: user.id);
+    }
+
     return AppScaffold(
       appBar: const HomeAppBar(),
       drawer: const AppDrawer(),
@@ -37,38 +42,41 @@ class NotificationsView extends StatelessWidget {
             image: Assets.images.bluryBackground.provider(),
           ),
         ),
-        child: CustomScrollView(
-          slivers: [
-            BetterStreamBuilder<List<Notification>>(
-              initialData: const <Notification>[],
-              stream: notifications.fetchNotifications(userId: user.id),
-              builder: (context, notifications) {
-                return SliverPadding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.lg,
-                    vertical: AppSpacing.md,
-                  ),
-                  sliver: SliverList.builder(
-                    itemBuilder: (context, index) => Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: NotificationItem(
-                                notification: notifications[index],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Gap.v(AppSpacing.md),
-                      ],
+        child: RefreshIndicator(
+          onRefresh: refreshNotifications,
+          child: CustomScrollView(
+            slivers: [
+              BetterStreamBuilder<List<Notification>>(
+                initialData: const <Notification>[],
+                stream: notificationsCubit.fetchNotifications(userId: user.id),
+                builder: (context, notifications) {
+                  return SliverPadding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.lg,
+                      vertical: AppSpacing.md,
                     ),
-                    itemCount: notifications.length,
-                  ),
-                );
-              },
-            ),
-          ],
+                    sliver: SliverList.builder(
+                      itemBuilder: (context, index) => Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: NotificationItem(
+                                  notification: notifications[index],
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Gap.v(AppSpacing.md),
+                        ],
+                      ),
+                      itemCount: notifications.length,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,7 +1,9 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/app/routes/app_routes.dart';
 import 'package:daikoon/notification/notification.dart';
 import 'package:flutter/material.dart' hide Notification;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared/shared.dart';
 
 class NotificationItem extends StatelessWidget {
@@ -17,6 +19,12 @@ class NotificationItem extends StatelessWidget {
     return Tappable(
       onTap: () {
         context.read<NotificationsCubit>().markAsChecked(notification.id);
+        if (notification.challengeId != null) {
+          context.pushNamed(
+            AppRoutes.challengeDetails.name,
+            pathParameters: {'challengeId': notification.challengeId!},
+          );
+        }
       },
       child: Container(
         decoration: BoxDecoration(

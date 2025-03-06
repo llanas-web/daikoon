@@ -27,10 +27,9 @@ Challenge _$ChallengeFromJson(Map<String, dynamic> json) => Challenge(
       hasBet: json['hasBet'] as bool? ?? false,
       creator: _$JsonConverterFromJson<Map<String, dynamic>, User>(
           json['creator'], const UserConverter().fromJson),
-      choices: (json['choices'] as List<dynamic>?)
-              ?.map((e) => Choice.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      choices: json['choices'] == null
+          ? const []
+          : const ListChoicesConverter().fromJson(json['choices'] as String),
       participants: (json['participants'] as List<dynamic>?)
               ?.map((e) => Participant.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -50,7 +49,7 @@ Map<String, dynamic> _$ChallengeToJson(Challenge instance) => <String, dynamic>{
       'hasBet': instance.hasBet,
       'creator': _$JsonConverterToJson<Map<String, dynamic>, User>(
           instance.creator, const UserConverter().toJson),
-      'choices': instance.choices,
+      'choices': const ListChoicesConverter().toJson(instance.choices),
       'participants': instance.participants,
     };
 

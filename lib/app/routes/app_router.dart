@@ -6,6 +6,7 @@ import 'package:daikoon/app/app.dart';
 import 'package:daikoon/app/home/home.dart';
 import 'package:daikoon/auth/view/auth_page.dart';
 import 'package:daikoon/challenge/challenge.dart';
+import 'package:daikoon/challenge/details/challenge_details.dart';
 import 'package:daikoon/notification/notification.dart';
 import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:flutter/material.dart';
@@ -66,6 +67,19 @@ GoRouter router(AppBloc appBloc) {
                   return NoTransitionPage(
                     key: state.pageKey,
                     child: const CreateChallengePage(),
+                  );
+                },
+              ),
+              GoRoute(
+                path: AppRoutes.challengeDetails.path!,
+                name: AppRoutes.challengeDetails.name,
+                pageBuilder: (context, state) {
+                  final challengeId = state.pathParameters['challengeId'];
+                  return NoTransitionPage(
+                    key: state.pageKey,
+                    child: ChallengeDetailsPage(
+                      challengeId: challengeId ?? '',
+                    ),
                   );
                 },
               ),

@@ -10,12 +10,14 @@ enum AppRoutes {
   friends('/friends'),
   addFriends('/add-friends'),
   createChallenge('/create-challenge'),
-  listChallenges('/list-challenges');
+  listChallenges('/list-challenges'),
+  challengeDetails('/challenge-details', path: '/challenge/:challengeId'),
+  ;
 
-  const AppRoutes(this.route);
+  const AppRoutes(this.route, {this.path});
 
   final String route;
-  // final String? path;
+  final String? path;
 
   String get name => route.replaceAll('/', '');
 }

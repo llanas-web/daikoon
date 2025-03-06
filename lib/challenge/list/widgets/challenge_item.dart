@@ -1,7 +1,9 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/app/app.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared/shared.dart';
 
 class ChallengeItem extends StatelessWidget {
@@ -12,6 +14,10 @@ class ChallengeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tappable(
+      onTap: () => context.pushNamed(
+        AppRoutes.challengeDetails.name,
+        pathParameters: {'challengeId': challenge.id},
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.white.withValues(alpha: 0.85),
