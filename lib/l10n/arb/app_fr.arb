@@ -354,5 +354,9 @@
         "example": "Défi fifa ⚽"
       }
     }
+  },
+  "challengeDetailsAcceptedChoiceLabel": "Votre choix :",
+  "@challengeDetailsAcceptedChoiceLabel": {
+    "description": "Label for the choice in the challenge details page"
   }
 }

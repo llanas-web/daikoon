@@ -20,7 +20,9 @@ class ChallengeDetailsPage extends StatelessWidget {
         userId: context.read<AppBloc>().state.user.id,
         challengeId: challengeId,
         challengeRepository: context.read<ChallengeRepository>(),
-      )..fetchChallengeDetails(),
+      )
+        ..fetchChallengeDetails()
+        ..fetchChallengeBets(),
       child: const ChallengeDetailsView(),
     );
   }

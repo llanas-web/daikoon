@@ -79,6 +79,12 @@ abstract class ChallengeBaseRepository {
 
   /// Returns the challenge details associated with the provided [challengeId].
   Future<Challenge> getChallengeDetails({required String challengeId});
+
+  /// Returns the challenge bets associated with the provided [challengeId].
+  Stream<List<Bet>> fetchChallengeBets({required String challengeId});
+
+  /// Updates the bet associated with the provided [bet].
+  Future<Bet> updateBet({required Bet bet});
 }
 
 /// NotificationBaseRepository
@@ -315,6 +321,40 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       (event) => event.safeMap(Choice.fromJson).toList(growable: false),
     );
     return challenge.copyWith(participants: participants, choices: choices);
+  }
+
+  @override
+  Stream<List<Bet>> fetchChallengeBets({required String challengeId}) {
+    return _powerSyncRepository.db().watch(
+      '''
+      SELECT * FROM bets WHERE challenge_id = ?1
+      ''',
+      parameters: [challengeId],
+    ).map(
+      (event) => event.safeMap(Bet.fromJson).toList(growable: false),
+    );
+  }
+
+  @override
+  Future<Bet> updateBet({required Bet bet}) {
+    return _powerSyncRepository.db().writeTransaction((sqlContext) async {
+      await sqlContext.execute(
+        '''
+        INSERT INTO bets (id, user_id, choice_id, amount)
+        VALUES (?, ?, ?, ?, ?)
+        ON CONFLICT (challenge_id, user_id) DO UPDATE SET choice_id = ?, amount = ?
+        ''',
+        [
+          bet.id,
+          bet.userId,
+          bet.choiceId,
+          bet.amount,
+          bet.choiceId,
+          bet.amount,
+        ],
+      );
+      return bet;
+    });
   }
 
   @override

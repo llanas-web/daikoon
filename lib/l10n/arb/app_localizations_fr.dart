@@ -265,4 +265,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String challengeDetailsAcceptedTitle(String challengeTitle) {
     return 'Participer au défi \n $challengeTitle';
   }
+
+  @override
+  String get challengeDetailsAcceptedChoiceLabel => 'Votre choix :';
 }

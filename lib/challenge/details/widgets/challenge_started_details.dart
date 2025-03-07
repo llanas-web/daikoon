@@ -1,6 +1,7 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/challenge/challenge.dart';
 import 'package:daikoon/l10n/l10n.dart';
+import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
@@ -10,18 +11,15 @@ class ChallengeStartedDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final challengeDetails = context.select(
-      (ChallengeDetailsCubit cubit) => cubit.state.challenge,
-    )!;
     final userParticipation = context.select(
       (ChallengeDetailsCubit cubit) => cubit.userParticipation,
     );
 
     switch (userParticipation.status) {
       case ParticipantStatus.pending:
-        return ChallengeInvitationPending(challenge: challengeDetails);
+        return const ChallengeInvitationPending();
       case ParticipantStatus.accepted:
-        return ChallengeInvitationAccepted(challenge: challengeDetails);
+        return const ChallengeInvitationAccepted();
       case ParticipantStatus.declined:
         return const ChallengeInvitationDeclined();
     }
@@ -29,12 +27,17 @@ class ChallengeStartedDetails extends StatelessWidget {
 }
 
 class ChallengeInvitationAccepted extends StatelessWidget {
-  const ChallengeInvitationAccepted({required this.challenge, super.key});
-
-  final Challenge challenge;
+  const ChallengeInvitationAccepted({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final challenge = context.select(
+      (ChallengeDetailsCubit cubit) => cubit.state.challenge,
+    )!;
+    final userBet = context.select(
+      (ChallengeDetailsCubit cubit) => cubit.state.userBet,
+    );
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -68,6 +71,32 @@ class ChallengeInvitationAccepted extends StatelessWidget {
               ),
             ].spacerBetween(height: AppSpacing.md),
           ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.l10n.challengeDetailsAcceptedChoiceLabel,
+                style: const TextStyle(
+                  fontWeight: AppFontWeight.extraBold,
+                ),
+              ),
+              if (challenge.choices.isNotEmpty)
+                Column(
+                  children: challenge.choices
+                      .map((choice) {
+                        return DaikoonFormRadioItem(
+                          title: choice.value,
+                          isSelected: choice.id == userBet.choiceId,
+                          onTap: () => context
+                              .read<ChallengeDetailsCubit>()
+                              .selectChoice(choice),
+                        );
+                      })
+                      .toList()
+                      .spacerBetween(height: AppSpacing.md),
+                ),
+            ],
+          ),
         ].spacerBetween(height: AppSpacing.lg),
       ),
     );
@@ -75,12 +104,13 @@ class ChallengeInvitationAccepted extends StatelessWidget {
 }
 
 class ChallengeInvitationPending extends StatelessWidget {
-  const ChallengeInvitationPending({required this.challenge, super.key});
-
-  final Challenge challenge;
+  const ChallengeInvitationPending({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final challenge = context.select(
+      (ChallengeDetailsCubit cubit) => cubit.state.challenge,
+    )!;
     return SingleChildScrollView(
       child: Column(
         children: [

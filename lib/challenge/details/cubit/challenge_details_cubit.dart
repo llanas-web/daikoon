@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:challenge_repository/challenge_repository.dart';
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
@@ -14,7 +15,7 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
   })  : _userId = userId,
         _challengeId = challengeId,
         _challengeRepository = challengeRepository,
-        super(const ChallengeDetailsState.initial());
+        super(ChallengeDetailsState.initial(userId));
 
   final String _userId;
   final String _challengeId;
@@ -30,6 +31,47 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
                 status: ParticipantStatus.declined,
               ),
             );
+
+  void selectChoice(Choice choice) {
+    emit(
+      state.copyWith(
+        userBet: state.userBet.copyWith(
+          choiceId: choice.id,
+        ),
+      ),
+    );
+  }
+
+  void setBetAmount(int amount) {
+    emit(
+      state.copyWith(
+        userBet: state.userBet.copyWith(
+          amount: amount,
+        ),
+      ),
+    );
+  }
+
+  Future<void> updateBet({required Bet bet}) async {
+    final updatedBet = await _challengeRepository.updateBet(
+      bet: bet,
+    );
+  }
+
+  Future<void> fetchChallengeBets() async {
+    _challengeRepository
+        .fetchChallengeBets(
+          challengeId: _challengeId,
+        )
+        .listen(
+          (bets) => state.copyWith(
+            bets: bets,
+            userBet: bets.firstWhereOrNull(
+              (bet) => bet.userId == _userId,
+            ),
+          ),
+        );
+  }
 
   /// Fetches challenge details from repository and emits new state.
   Future<void> fetchChallengeDetails() async {

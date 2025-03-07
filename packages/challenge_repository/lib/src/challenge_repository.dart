@@ -36,4 +36,14 @@ class ChallengeRepository implements ChallengeBaseRepository {
   Future<Challenge> getChallengeDetails({required String challengeId}) {
     return _databaseClient.getChallengeDetails(challengeId: challengeId);
   }
+
+  @override
+  Stream<List<Bet>> fetchChallengeBets({required String challengeId}) {
+    return _databaseClient.fetchChallengeBets(challengeId: challengeId);
+  }
+
+  @override
+  Future<Bet> updateBet({required Bet bet}) {
+    return _databaseClient.updateBet(bet: bet);
+  }
 }

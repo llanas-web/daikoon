@@ -1,3 +1,4 @@
+export 'bet.dart';
 export 'challenge.dart';
 export 'choice.dart';
 export 'modal_option.dart';

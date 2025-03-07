@@ -573,6 +573,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Participer au défi \n {challengeTitle}'**
   String challengeDetailsAcceptedTitle(String challengeTitle);
+
+  /// Label for the choice in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre choix :'**
+  String get challengeDetailsAcceptedChoiceLabel;
 }
 
 class _AppLocalizationsDelegate
