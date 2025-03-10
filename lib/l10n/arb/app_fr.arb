@@ -363,20 +363,36 @@
   "@challengeDetailsAcceptedDaikoinsLabel": {
     "description": "Label for the daikoins choice in the challenge details page"
   },
-  "challengeDetailsAcceptedLimitDateLabel": "Date de fin de mise",
-  "@challengeDetailsAcceptedLimitDateLabel": {
+  "challengeDetailsLimitDateLabel": "Date de fin de mise",
+  "@challengeDetailsLimitDateLabel": {
     "description": "Label for the limit date in the challenge details page"
   },
-  "challengeDetailsAcceptedStartDateLabel": "Début du défi",
-  "@challengeDetailsAcceptedStartDateLabel": {
+  "challengeDetailsStartDateLabel": "Début du défi",
+  "@challengeDetailsStartDateLabel": {
     "description": "Label for the start date in the challenge details page"
   },
-  "challengeDetailsAcceptedEndDateLabel": "Fin du défi",
-  "@challengeDetailsAcceptedEndDateLabel": {
+  "challengeDetailsEndDateLabel": "Fin du défi",
+  "@challengeDetailsEndDateLabel": {
     "description": "Label for the end date in the challenge details page"
   },
   "challengeDetailsAcceptedValidateButtonLabel": "Valider",
   "@challengeDetailsAcceptedValidateButtonLabel": {
     "description": "Label for the validate button in the challenge details page"
+  },
+  "challengeDetailsPendingAcceptTimeLeftButtonLabel": "Temps restant",
+  "@challengeDetailsPendingAcceptTimeLeftButtonLabel": {
+    "description": "Label for the time left button in the challenge details page"
+  },
+  "challengeDetailsPendingListParticipantLabel": "Joueurs participants",
+  "@challengeDetailsPendingListParticipantLabel": {
+    "description": "Label for the list of participants in the challenge details page"
+  },
+  "challengeDetailsPendingParticipateButtonLabel": "Je participe",
+  "@challengeDetailsPendingParticipateButtonLabel": {
+    "description": "Label for the participate button in the challenge details page"
+  },
+  "challengeDetailsPendingRefuseButtonLabel": "Non merci!",
+  "@challengeDetailsPendingRefuseButtonLabel": {
+    "description": "Label for the refuse button in the challenge details page"
   }
 }

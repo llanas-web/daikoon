@@ -590,25 +590,49 @@ abstract class AppLocalizations {
   ///
   /// In fr, this message translates to:
   /// **'Date de fin de mise'**
-  String get challengeDetailsAcceptedLimitDateLabel;
+  String get challengeDetailsLimitDateLabel;
 
   /// Label for the start date in the challenge details page
   ///
   /// In fr, this message translates to:
   /// **'Début du défi'**
-  String get challengeDetailsAcceptedStartDateLabel;
+  String get challengeDetailsStartDateLabel;
 
   /// Label for the end date in the challenge details page
   ///
   /// In fr, this message translates to:
   /// **'Fin du défi'**
-  String get challengeDetailsAcceptedEndDateLabel;
+  String get challengeDetailsEndDateLabel;
 
   /// Label for the validate button in the challenge details page
   ///
   /// In fr, this message translates to:
   /// **'Valider'**
   String get challengeDetailsAcceptedValidateButtonLabel;
+
+  /// Label for the time left button in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Temps restant'**
+  String get challengeDetailsPendingAcceptTimeLeftButtonLabel;
+
+  /// Label for the list of participants in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Joueurs participants'**
+  String get challengeDetailsPendingListParticipantLabel;
+
+  /// Label for the participate button in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Je participe'**
+  String get challengeDetailsPendingParticipateButtonLabel;
+
+  /// Label for the refuse button in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Non merci!'**
+  String get challengeDetailsPendingRefuseButtonLabel;
 }
 
 class _AppLocalizationsDelegate

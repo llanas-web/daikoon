@@ -273,14 +273,28 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeDetailsAcceptedDaikoinsLabel => 'Choix des Daïkoins';
 
   @override
-  String get challengeDetailsAcceptedLimitDateLabel => 'Date de fin de mise';
+  String get challengeDetailsLimitDateLabel => 'Date de fin de mise';
 
   @override
-  String get challengeDetailsAcceptedStartDateLabel => 'Début du défi';
+  String get challengeDetailsStartDateLabel => 'Début du défi';
 
   @override
-  String get challengeDetailsAcceptedEndDateLabel => 'Fin du défi';
+  String get challengeDetailsEndDateLabel => 'Fin du défi';
 
   @override
   String get challengeDetailsAcceptedValidateButtonLabel => 'Valider';
+
+  @override
+  String get challengeDetailsPendingAcceptTimeLeftButtonLabel =>
+      'Temps restant';
+
+  @override
+  String get challengeDetailsPendingListParticipantLabel =>
+      'Joueurs participants';
+
+  @override
+  String get challengeDetailsPendingParticipateButtonLabel => 'Je participe';
+
+  @override
+  String get challengeDetailsPendingRefuseButtonLabel => 'Non merci!';
 }

@@ -11,9 +11,8 @@ class ChallengeStartedDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userParticipation = context.select(
-      (ChallengeDetailsCubit cubit) => cubit.userParticipation,
-    );
+    final userParticipation =
+        context.read<ChallengeDetailsCubit>().userParticipation;
 
     switch (userParticipation.status) {
       case ParticipantStatus.pending:
@@ -160,7 +159,7 @@ class _ChallengeInvitationAcceptedState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                context.l10n.challengeDetailsAcceptedLimitDateLabel,
+                context.l10n.challengeDetailsLimitDateLabel,
                 style: const TextStyle(
                   fontWeight: AppFontWeight.extraBold,
                 ),
@@ -187,7 +186,7 @@ class _ChallengeInvitationAcceptedState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                context.l10n.challengeDetailsAcceptedStartDateLabel,
+                context.l10n.challengeDetailsStartDateLabel,
                 style: const TextStyle(
                   fontWeight: AppFontWeight.extraBold,
                 ),
@@ -214,7 +213,7 @@ class _ChallengeInvitationAcceptedState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                context.l10n.challengeDetailsAcceptedEndDateLabel,
+                context.l10n.challengeDetailsEndDateLabel,
                 style: const TextStyle(
                   fontWeight: AppFontWeight.extraBold,
                 ),
@@ -305,7 +304,194 @@ class ChallengeInvitationPending extends StatelessWidget {
               ),
             ].spacerBetween(height: AppSpacing.md),
           ),
-        ].spacerBetween(height: AppSpacing.lg),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'daikoins',
+                style: TextStyle(
+                  fontWeight: AppFontWeight.extraBold,
+                ),
+              ),
+              Icon(
+                Icons.check,
+                color: AppColors.secondary,
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.l10n.challengeDetailsLimitDateLabel,
+                style: const TextStyle(
+                  fontWeight: AppFontWeight.extraBold,
+                ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: DaikoonFormDateSelector(
+                      value: challenge.limitDate,
+                      readOnly: true,
+                    ),
+                  ),
+                  Expanded(
+                    child: DaikoonFormTimeSelector(
+                      value: challenge.limitDate,
+                      readOnly: true,
+                    ),
+                  ),
+                ].spacerBetween(width: AppSpacing.md),
+              ),
+            ].spacerBetween(height: AppSpacing.md),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: AppButton(
+                  text: context
+                      .l10n.challengeDetailsPendingAcceptTimeLeftButtonLabel,
+                  // onPressed: () => context.showAdaptiveDialog<void>(
+                  //   builder: (context) => const Center(
+                  //     child: Text('test modal'),
+                  //   ),
+                  // ),
+                  color: AppColors.secondary,
+                  style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(AppColors.primary),
+                    padding: WidgetStatePropertyAll(
+                      EdgeInsets.symmetric(
+                        vertical: AppSpacing.lg,
+                        horizontal: AppSpacing.xxlg,
+                      ),
+                    ),
+                  ),
+                  icon: const Icon(Icons.hourglass_bottom),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.l10n.challengeDetailsStartDateLabel,
+                style: const TextStyle(
+                  fontWeight: AppFontWeight.extraBold,
+                ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: DaikoonFormDateSelector(
+                      value: challenge.starting,
+                      readOnly: true,
+                    ),
+                  ),
+                  Expanded(
+                    child: DaikoonFormTimeSelector(
+                      value: challenge.starting,
+                      readOnly: true,
+                    ),
+                  ),
+                ].spacerBetween(width: AppSpacing.md),
+              ),
+            ].spacerBetween(height: AppSpacing.md),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.l10n.challengeDetailsEndDateLabel,
+                style: const TextStyle(
+                  fontWeight: AppFontWeight.extraBold,
+                ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: DaikoonFormDateSelector(
+                      value: challenge.ending,
+                      readOnly: true,
+                    ),
+                  ),
+                  Expanded(
+                    child: DaikoonFormTimeSelector(
+                      value: challenge.ending,
+                      readOnly: true,
+                    ),
+                  ),
+                ].spacerBetween(width: AppSpacing.md),
+              ),
+            ].spacerBetween(height: AppSpacing.md),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.l10n.challengeDetailsPendingListParticipantLabel,
+                style: const TextStyle(
+                  fontWeight: AppFontWeight.extraBold,
+                ),
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: challenge.participants.length,
+                itemBuilder: (context, index) {
+                  return Text(
+                    '@${challenge.participants[index].displayUsername}',
+                  );
+                },
+              ),
+            ].spacerBetween(height: AppSpacing.md),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: AppButton(
+                  text: context
+                      .l10n.challengeDetailsPendingParticipateButtonLabel,
+                  onPressed: () =>
+                      context.read<ChallengeDetailsCubit>().acceptInvitation(),
+                  color: AppColors.secondary,
+                  style: const ButtonStyle(
+                    backgroundColor:
+                        WidgetStatePropertyAll(AppColors.secondary),
+                    padding: WidgetStatePropertyAll(
+                      EdgeInsets.symmetric(
+                        vertical: AppSpacing.lg,
+                        horizontal: AppSpacing.xxlg,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: AppButton(
+                  text: context.l10n.challengeDetailsPendingRefuseButtonLabel,
+                  onPressed: () =>
+                      context.read<ChallengeDetailsCubit>().declineInvitation(),
+                  color: AppColors.primary,
+                  style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(AppColors.primary),
+                    padding: WidgetStatePropertyAll(
+                      EdgeInsets.symmetric(
+                        vertical: AppSpacing.lg,
+                        horizontal: AppSpacing.xxlg,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ].spacerBetween(height: AppSpacing.xlg),
       ),
     );
   }

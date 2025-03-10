@@ -87,4 +87,20 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
       ),
     );
   }
+
+  Future<void> declineInvitation() {
+    return _challengeRepository.updateParticipant(
+      participant: userParticipation.copyWith(
+        status: ParticipantStatus.declined,
+      ),
+    );
+  }
+
+  Future<void> acceptInvitation() {
+    return _challengeRepository.updateParticipant(
+      participant: userParticipation.copyWith(
+        status: ParticipantStatus.accepted,
+      ),
+    );
+  }
 }
