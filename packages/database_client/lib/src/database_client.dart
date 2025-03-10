@@ -80,6 +80,12 @@ abstract class ChallengeBaseRepository {
   /// Returns the challenge details associated with the provided [challengeId].
   Future<Challenge> getChallengeDetails({required String challengeId});
 
+  /// Returns the challenge participants
+  /// associated with the provided [challengeId].
+  Stream<List<Participant>> fetchChallengeParticipant({
+    required String challengeId,
+  });
+
   /// Returns the challenge bets associated with the provided [challengeId].
   Stream<List<Bet>> fetchChallengeBets({required String challengeId});
 
@@ -300,7 +306,22 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       ''',
       [challengeId],
     ).then((event) => Challenge.fromJson(Map<String, dynamic>.from(event)));
-    final participants = await _powerSyncRepository.db().getAll(
+    final choices = await _powerSyncRepository.db().getAll(
+      '''
+      SELECT * FROM choices WHERE challenge_id = ?1
+      ''',
+      [challengeId],
+    ).then(
+      (event) => event.safeMap(Choice.fromJson).toList(growable: false),
+    );
+    return challenge.copyWith(choices: choices);
+  }
+
+  @override
+  Stream<List<Participant>> fetchChallengeParticipant({
+    required String challengeId,
+  }) {
+    return _powerSyncRepository.db().watch(
       '''
       SELECT 
         users.id as user_id, 
@@ -314,19 +335,10 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       ON participants.user_id = users.id
       WHERE participants.challenge_id = ?1
       ''',
-      [challengeId],
-    ).then(
+      parameters: [challengeId],
+    ).map(
       (event) => event.safeMap(Participant.fromJson).toList(growable: false),
     );
-    final choices = await _powerSyncRepository.db().getAll(
-      '''
-      SELECT * FROM choices WHERE challenge_id = ?1
-      ''',
-      [challengeId],
-    ).then(
-      (event) => event.safeMap(Choice.fromJson).toList(growable: false),
-    );
-    return challenge.copyWith(participants: participants, choices: choices);
   }
 
   @override

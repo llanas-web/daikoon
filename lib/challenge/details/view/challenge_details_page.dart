@@ -22,7 +22,8 @@ class ChallengeDetailsPage extends StatelessWidget {
         challengeRepository: context.read<ChallengeRepository>(),
       )
         ..fetchChallengeDetails()
-        ..fetchChallengeBets(),
+        ..fetchChallengeBets()
+        ..fetchChallengeParticipants(),
       child: const ChallengeDetailsView(),
     );
   }

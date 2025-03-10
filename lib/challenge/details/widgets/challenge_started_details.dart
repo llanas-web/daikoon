@@ -12,7 +12,7 @@ class ChallengeStartedDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userParticipation =
-        context.read<ChallengeDetailsCubit>().userParticipation;
+        context.watch<ChallengeDetailsCubit>().userParticipation;
 
     switch (userParticipation.status) {
       case ParticipantStatus.pending:

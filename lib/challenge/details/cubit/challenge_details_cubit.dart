@@ -3,7 +3,6 @@ import 'package:challenge_repository/challenge_repository.dart';
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared/shared.dart';
-import 'package:user_repository/user_repository.dart';
 
 part 'challenge_details_state.dart';
 
@@ -26,10 +25,7 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
           ? Participant.anonymousParticipant
           : state.challenge!.participants.firstWhere(
               (participant) => participant.id == _userId,
-              orElse: () => Participant(
-                user: User.anonymous,
-                status: ParticipantStatus.declined,
-              ),
+              orElse: () => Participant.anonymousParticipant,
             );
 
   void selectChoice(Choice choice) {
@@ -66,10 +62,28 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
           challengeId: _challengeId,
         )
         .listen(
-          (bets) => state.copyWith(
-            bets: bets,
-            userBet: bets.firstWhereOrNull(
-              (bet) => bet.userId == _userId,
+          (bets) => emit(
+            state.copyWith(
+              bets: bets,
+              userBet: bets.firstWhereOrNull(
+                (bet) => bet.userId == _userId,
+              ),
+            ),
+          ),
+        );
+  }
+
+  Future<void> fetchChallengeParticipants() async {
+    _challengeRepository
+        .fetchChallengeParticipant(
+          challengeId: _challengeId,
+        )
+        .listen(
+          (participants) => emit(
+            state.copyWith(
+              challenge: state.challenge!.copyWith(
+                participants: participants,
+              ),
             ),
           ),
         );
