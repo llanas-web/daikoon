@@ -8,7 +8,7 @@ import 'package:shared/shared.dart';
 class DaikoonFormDateSelector extends StatelessWidget {
   const DaikoonFormDateSelector({
     required this.value,
-    required this.hintText,
+    this.hintText,
     this.readOnly = false,
     this.minDate,
     this.maxDate,
@@ -17,8 +17,8 @@ class DaikoonFormDateSelector extends StatelessWidget {
   });
 
   final DateTime? value;
-  final String hintText;
   final bool readOnly;
+  final String? hintText;
   final DateTime? minDate;
   final DateTime? maxDate;
   final void Function(DateTime)? onDateSelected;

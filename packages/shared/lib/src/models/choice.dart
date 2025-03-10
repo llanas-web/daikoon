@@ -25,7 +25,7 @@ class ListChoicesConverter extends JsonConverter<List<Choice>, String> {
 }
 
 @immutable
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Choice extends Equatable {
   Choice({
     String? id,
@@ -40,6 +40,11 @@ class Choice extends Equatable {
   final String? id;
   final DateTime? createdAt;
   final String value;
+
+  @JsonKey(
+    fromJson: PowersyncJsonUtils.boolFromInt,
+    toJson: PowersyncJsonUtils.boolToInt,
+  )
   final bool isCorrect;
 
   @override

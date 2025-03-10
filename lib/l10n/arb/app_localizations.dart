@@ -579,6 +579,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Votre choix :'**
   String get challengeDetailsAcceptedChoiceLabel;
+
+  /// Label for the daikoins choice in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Choix des Daïkoins'**
+  String get challengeDetailsAcceptedDaikoinsLabel;
+
+  /// Label for the limit date in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Date de fin de mise'**
+  String get challengeDetailsAcceptedLimitDateLabel;
+
+  /// Label for the start date in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Début du défi'**
+  String get challengeDetailsAcceptedStartDateLabel;
+
+  /// Label for the end date in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Fin du défi'**
+  String get challengeDetailsAcceptedEndDateLabel;
+
+  /// Label for the validate button in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Valider'**
+  String get challengeDetailsAcceptedValidateButtonLabel;
 }
 
 class _AppLocalizationsDelegate

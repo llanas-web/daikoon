@@ -8,12 +8,14 @@ class DaikoonFormRadioItem extends StatelessWidget {
     required this.title,
     required this.onTap,
     required this.isSelected,
+    this.child,
     super.key,
   });
 
   final String title;
   final VoidCallback onTap;
   final bool isSelected;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +43,13 @@ class DaikoonFormRadioItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  title,
-                  style: context.bodyLarge,
-                ),
+                if (child != null)
+                  Expanded(child: child!)
+                else
+                  Text(
+                    title,
+                    style: context.bodyLarge,
+                  ),
                 Tappable(
                   onTap: onTap,
                   child: Stack(

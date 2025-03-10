@@ -268,4 +268,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeDetailsAcceptedChoiceLabel => 'Votre choix :';
+
+  @override
+  String get challengeDetailsAcceptedDaikoinsLabel => 'Choix des Daïkoins';
+
+  @override
+  String get challengeDetailsAcceptedLimitDateLabel => 'Date de fin de mise';
+
+  @override
+  String get challengeDetailsAcceptedStartDateLabel => 'Début du défi';
+
+  @override
+  String get challengeDetailsAcceptedEndDateLabel => 'Fin du défi';
+
+  @override
+  String get challengeDetailsAcceptedValidateButtonLabel => 'Valider';
 }

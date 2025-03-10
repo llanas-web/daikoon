@@ -10,7 +10,7 @@ part 'challenge.g.dart';
 /// The representation of the challenge.
 /// {@endtemplate}
 @immutable
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Challenge extends Equatable {
   /// {@macro message}
   Challenge({
@@ -72,6 +72,10 @@ class Challenge extends Equatable {
   final int? maxBet;
 
   /// The challenge's bet status.
+  @JsonKey(
+    fromJson: PowersyncJsonUtils.boolFromInt,
+    toJson: PowersyncJsonUtils.boolToInt,
+  )
   final bool hasBet;
 
   /// The challenge's creator.

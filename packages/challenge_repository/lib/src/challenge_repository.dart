@@ -43,7 +43,7 @@ class ChallengeRepository implements ChallengeBaseRepository {
   }
 
   @override
-  Future<Bet> updateBet({required Bet bet}) {
-    return _databaseClient.updateBet(bet: bet);
+  Future<Bet> createBet({required Bet bet}) {
+    return _databaseClient.createBet(bet: bet);
   }
 }

@@ -8,18 +8,18 @@ part of 'bet.dart';
 
 Bet _$BetFromJson(Map<String, dynamic> json) => Bet(
       id: json['id'] as String?,
-      createdAt: json['createdAt'] == null
+      createdAt: json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
-      choiceId: json['choiceId'] as String? ?? '',
-      userId: json['userId'] as String? ?? '',
+          : DateTime.parse(json['created_at'] as String),
+      choiceId: json['choice_id'] as String? ?? '',
+      userId: json['user_id'] as String? ?? '',
       amount: (json['amount'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$BetToJson(Bet instance) => <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'choiceId': instance.choiceId,
-      'userId': instance.userId,
+      'created_at': instance.createdAt.toIso8601String(),
+      'choice_id': instance.choiceId,
+      'user_id': instance.userId,
       'amount': instance.amount,
     };

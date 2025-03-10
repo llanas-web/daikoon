@@ -358,5 +358,25 @@
   "challengeDetailsAcceptedChoiceLabel": "Votre choix :",
   "@challengeDetailsAcceptedChoiceLabel": {
     "description": "Label for the choice in the challenge details page"
+  },
+  "challengeDetailsAcceptedDaikoinsLabel": "Choix des Daïkoins",
+  "@challengeDetailsAcceptedDaikoinsLabel": {
+    "description": "Label for the daikoins choice in the challenge details page"
+  },
+  "challengeDetailsAcceptedLimitDateLabel": "Date de fin de mise",
+  "@challengeDetailsAcceptedLimitDateLabel": {
+    "description": "Label for the limit date in the challenge details page"
+  },
+  "challengeDetailsAcceptedStartDateLabel": "Début du défi",
+  "@challengeDetailsAcceptedStartDateLabel": {
+    "description": "Label for the start date in the challenge details page"
+  },
+  "challengeDetailsAcceptedEndDateLabel": "Fin du défi",
+  "@challengeDetailsAcceptedEndDateLabel": {
+    "description": "Label for the end date in the challenge details page"
+  },
+  "challengeDetailsAcceptedValidateButtonLabel": "Valider",
+  "@challengeDetailsAcceptedValidateButtonLabel": {
+    "description": "Label for the validate button in the challenge details page"
   }
 }

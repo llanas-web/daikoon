@@ -8,7 +8,7 @@ import 'package:shared/shared.dart';
 part 'bet.g.dart';
 
 @immutable
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Bet extends Equatable {
   Bet({
     String? id,

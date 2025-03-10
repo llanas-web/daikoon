@@ -42,20 +42,22 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
     );
   }
 
-  void setBetAmount(int amount) {
+  void setBetAmount(int? amount) {
     emit(
       state.copyWith(
         userBet: state.userBet.copyWith(
-          amount: amount,
+          amount: amount ?? 0,
         ),
       ),
     );
   }
 
-  Future<void> updateBet({required Bet bet}) async {
-    final updatedBet = await _challengeRepository.updateBet(
-      bet: bet,
-    );
+  Future<void> createBet() async {
+    if (state.userBet.choiceId != '') {
+      await _challengeRepository.createBet(
+        bet: state.userBet,
+      );
+    }
   }
 
   Future<void> fetchChallengeBets() async {

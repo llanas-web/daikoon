@@ -84,7 +84,7 @@ abstract class ChallengeBaseRepository {
   Stream<List<Bet>> fetchChallengeBets({required String challengeId});
 
   /// Updates the bet associated with the provided [bet].
-  Future<Bet> updateBet({required Bet bet});
+  Future<Bet> createBet({required Bet bet});
 }
 
 /// NotificationBaseRepository
@@ -327,7 +327,10 @@ class PowerSyncDatabaseClient extends DatabaseClient {
   Stream<List<Bet>> fetchChallengeBets({required String challengeId}) {
     return _powerSyncRepository.db().watch(
       '''
-      SELECT * FROM bets WHERE challenge_id = ?1
+      SELECT bets.* 
+      FROM bets 
+      JOIN choices ON bets.choice_id = choices.id
+      WHERE choices.challenge_id = ?1
       ''',
       parameters: [challengeId],
     ).map(
@@ -336,19 +339,16 @@ class PowerSyncDatabaseClient extends DatabaseClient {
   }
 
   @override
-  Future<Bet> updateBet({required Bet bet}) {
+  Future<Bet> createBet({required Bet bet}) {
     return _powerSyncRepository.db().writeTransaction((sqlContext) async {
       await sqlContext.execute(
         '''
         INSERT INTO bets (id, user_id, choice_id, amount)
-        VALUES (?, ?, ?, ?, ?)
-        ON CONFLICT (challenge_id, user_id) DO UPDATE SET choice_id = ?, amount = ?
+        VALUES (?, ?, ?, ?)
         ''',
         [
           bet.id,
           bet.userId,
-          bet.choiceId,
-          bet.amount,
           bet.choiceId,
           bet.amount,
         ],

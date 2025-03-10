@@ -8,14 +8,14 @@ import 'package:shared/shared.dart';
 class DaikoonFormTimeSelector extends StatelessWidget {
   const DaikoonFormTimeSelector({
     required this.value,
-    required this.hintText,
+    this.hintText,
     this.readOnly = false,
     this.onTimeSelected,
     super.key,
   });
 
   final DateTime? value;
-  final String hintText;
+  final String? hintText;
   final bool readOnly;
   final void Function(TimeOfDay)? onTimeSelected;
 

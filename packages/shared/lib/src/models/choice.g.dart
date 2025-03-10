@@ -8,16 +8,18 @@ part of 'choice.dart';
 
 Choice _$ChoiceFromJson(Map<String, dynamic> json) => Choice(
       id: json['id'] as String?,
-      createdAt: json['createdAt'] == null
+      createdAt: json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
+          : DateTime.parse(json['created_at'] as String),
       value: json['value'] as String? ?? '',
-      isCorrect: json['isCorrect'] as bool? ?? false,
+      isCorrect: json['is_correct'] == null
+          ? false
+          : PowersyncJsonUtils.boolFromInt((json['is_correct'] as num).toInt()),
     );
 
 Map<String, dynamic> _$ChoiceToJson(Choice instance) => <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt?.toIso8601String(),
+      'created_at': instance.createdAt?.toIso8601String(),
       'value': instance.value,
-      'isCorrect': instance.isCorrect,
+      'is_correct': PowersyncJsonUtils.boolToInt(instance.isCorrect),
     };
