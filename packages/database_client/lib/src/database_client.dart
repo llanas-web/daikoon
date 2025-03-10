@@ -85,6 +85,11 @@ abstract class ChallengeBaseRepository {
 
   /// Updates the bet associated with the provided [bet].
   Future<Bet> createBet({required Bet bet});
+
+  /// Updates the participant associated with the provided [participant].
+  Future<Participant> updateParticipant({
+    required Participant participant,
+  });
 }
 
 /// NotificationBaseRepository
@@ -302,6 +307,7 @@ class PowerSyncDatabaseClient extends DatabaseClient {
         users.username as username, 
         users.full_name as full_name, 
         users.avatar_url as avatar_url,
+        participants.challenge_id as challenge_id,
         participants.status as status
       FROM participants
       JOIN users
@@ -449,5 +455,20 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       ''',
       [notificationId],
     );
+  }
+
+  @override
+  Future<Participant> updateParticipant({required Participant participant}) {
+    return _powerSyncRepository.db().writeTransaction((sqlContext) async {
+      await sqlContext.execute(
+        '''
+        UPDATE participants
+        SET status = ?
+        WHERE user_id = ? AND challenge_id = ?
+        ''',
+        [participant.status.name, participant.id, participant.challengeId],
+      );
+      return participant;
+    });
   }
 }

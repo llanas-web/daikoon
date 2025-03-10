@@ -6,7 +6,7 @@ bucket_definitions:
       - select * from bets
       - select * from challenges
       - select * from choices
-      - select *, user_id || '.' || challenge_id as id from participants
+      - select *, challenge_id || '.' || user_id as id from participants
 
   global_users:
     data:

@@ -127,7 +127,15 @@ class SupabaseConnector extends PowerSyncBackendConnector {
           final data = Map<String, dynamic>.of(op.opData!);
           await table.upsert(populateDataWithGhostId(op.table, data, op.id));
         } else if (op.op == UpdateType.patch) {
-          await table.update(op.opData!).eq('id', op.id);
+          if (op.table == 'participants') {
+            final [challengeId, participantId] = op.id.split('.');
+            await table
+                .update(op.opData!)
+                .eq('challenge_id', challengeId)
+                .eq('user_id', participantId);
+          } else {
+            await table.update(op.opData!).eq('id', op.id);
+          }
         } else if (op.op == UpdateType.delete) {
           if (op.table == 'friendships') {
             final [senderId, receiverId] = op.id.split('.');

@@ -33,6 +33,7 @@ class ListParticipantConverter
 class Participant extends User implements Equatable {
   Participant({
     required User user,
+    this.challengeId,
     ParticipantStatus? status,
   })  : _status = status ?? ParticipantStatus.pending,
         super(
@@ -49,9 +50,11 @@ class Participant extends User implements Equatable {
           (element) => element.name == json['status'],
           orElse: () => ParticipantStatus.pending,
         ),
+        challengeId: json['challenge_id'] as String?,
       );
 
   final ParticipantStatus _status;
+  final String? challengeId;
 
   ParticipantStatus get status => _status;
 
@@ -59,7 +62,14 @@ class Participant extends User implements Equatable {
   static Participant anonymousParticipant = Participant(user: User.anonymous);
 
   @override
-  List<Object?> get props => [id, username, email, avatarUrl, _status];
+  List<Object?> get props => [
+        id,
+        username,
+        email,
+        avatarUrl,
+        _status,
+        challengeId,
+      ];
 
   @override
   Map<String, dynamic> toJson() => {
@@ -68,5 +78,14 @@ class Participant extends User implements Equatable {
         'email': email,
         'avatarUrl': avatarUrl,
         'status': status.toString(),
+        'challenge_id': challengeId,
       };
+
+  Participant copyWith({required ParticipantStatus status}) {
+    return Participant(
+      user: this,
+      status: status,
+      challengeId: challengeId,
+    );
+  }
 }
