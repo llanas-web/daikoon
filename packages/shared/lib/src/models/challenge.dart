@@ -90,7 +90,13 @@ class Challenge extends Equatable {
   final List<Participant> participants;
 
   /// The challenge's status.
-  bool get isEnded => ending != null && ending!.isBefore(DateTime.now());
+  bool get isEnded {
+    return choices.isNotEmpty &&
+            choices.any(
+              (choice) => choice.isCorrect,
+            ) ||
+        ending != null && ending!.isBefore(DateTime.now());
+  }
 
   /// The challenge's status.
   bool get isStarted => starting != null && starting!.isBefore(DateTime.now());
