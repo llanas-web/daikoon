@@ -63,4 +63,9 @@ class ChallengeRepository implements ChallengeBaseRepository {
   Future<Participant> updateParticipant({required Participant participant}) {
     return _databaseClient.updateParticipant(participant: participant);
   }
+
+  @override
+  Future<Choice> updateChoice({required Choice choice}) {
+    return _databaseClient.updateChoice(choice: choice);
+  }
 }

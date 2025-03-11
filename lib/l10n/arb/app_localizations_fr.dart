@@ -310,4 +310,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeDetailsStatsButtonLabel => 'Désigner un gagnant';
+
+  @override
+  String challengeDetailsFinishTitle(String challengeTitle) {
+    return 'Fin du défi ! \n $challengeTitle';
+  }
+
+  @override
+  String get challengeDetailsFinishChoiceLabel =>
+      'Selection de la bonne réponse';
+
+  @override
+  String get challengeDetailsFinishWinnerLabel =>
+      'Le(s) gagnant(s) séléctionné(s)';
+
+  @override
+  String get challengeDetailsFinishButtonLabel => 'Valider';
 }

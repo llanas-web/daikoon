@@ -418,5 +418,27 @@
   "challengeDetailsStatsButtonLabel": "Désigner un gagnant",
   "@challengeDetailsStatsButtonLabel": {
     "description": "Label for the stats button in the challenge details page"
+  },
+  "challengeDetailsFinishTitle": "Fin du défi ! \n {challengeTitle}",
+  "@challengeDetailsFinishTitle": {
+    "description": "Header of the drawer with the username of connected user",
+    "placeholders": {
+      "challengeTitle": {
+        "type": "String",
+        "example": "Défi fifa ⚽"
+      }
+    }
+  },
+  "challengeDetailsFinishChoiceLabel": "Selection de la bonne réponse",
+  "@challengeDetailsFinishChoiceLabel": {
+    "description": "Label for the choice in the challenge details page"
+  },
+  "challengeDetailsFinishWinnerLabel": "Le(s) gagnant(s) séléctionné(s)",
+  "@challengeDetailsFinishWinnerLabel": {
+    "description": "Label for the winner in the challenge details page"
+  },
+  "challengeDetailsFinishButtonLabel": "Valider",
+  "@challengeDetailsFinishButtonLabel": {
+    "description": "Label for the validate button in the challenge details page"
   }
 }

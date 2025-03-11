@@ -47,6 +47,19 @@ class Choice extends Equatable {
   )
   final bool isCorrect;
 
+  Choice copyWith({
+    String? id,
+    DateTime? createdAt,
+    String? value,
+    bool? isCorrect,
+  }) =>
+      Choice(
+        id: id ?? this.id,
+        createdAt: createdAt ?? this.createdAt,
+        value: value ?? this.value,
+        isCorrect: isCorrect ?? this.isCorrect,
+      );
+
   @override
   List<Object?> get props => [id, createdAt, value, isCorrect];
 

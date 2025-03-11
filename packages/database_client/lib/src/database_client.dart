@@ -99,6 +99,9 @@ abstract class ChallengeBaseRepository {
   Future<Participant> updateParticipant({
     required Participant participant,
   });
+
+  /// Updates the choice associated with the provided [choice].
+  Future<Choice> updateChoice({required Choice choice});
 }
 
 /// NotificationBaseRepository
@@ -390,6 +393,21 @@ class PowerSyncDatabaseClient extends DatabaseClient {
         [bet.amount, bet.choiceId, bet.id],
       );
       return bet;
+    });
+  }
+
+  @override
+  Future<Choice> updateChoice({required Choice choice}) {
+    return _powerSyncRepository.db().writeTransaction((sqlContext) async {
+      await sqlContext.execute(
+        '''
+        UPDATE choices
+        SET is_correct = ?
+        WHERE id = ?
+        ''',
+        [choice.isCorrect, choice.id],
+      );
+      return choice;
     });
   }
 

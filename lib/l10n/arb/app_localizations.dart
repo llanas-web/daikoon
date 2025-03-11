@@ -651,6 +651,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Désigner un gagnant'**
   String get challengeDetailsStatsButtonLabel;
+
+  /// Header of the drawer with the username of connected user
+  ///
+  /// In fr, this message translates to:
+  /// **'Fin du défi ! \n {challengeTitle}'**
+  String challengeDetailsFinishTitle(String challengeTitle);
+
+  /// Label for the choice in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Selection de la bonne réponse'**
+  String get challengeDetailsFinishChoiceLabel;
+
+  /// Label for the winner in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Le(s) gagnant(s) séléctionné(s)'**
+  String get challengeDetailsFinishWinnerLabel;
+
+  /// Label for the validate button in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Valider'**
+  String get challengeDetailsFinishButtonLabel;
 }
 
 class _AppLocalizationsDelegate

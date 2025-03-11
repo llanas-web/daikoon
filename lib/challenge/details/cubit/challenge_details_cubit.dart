@@ -64,42 +64,42 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
     }
   }
 
-  Future<void> fetchChallengeBets() async {
-    await _betsSubscription?.cancel();
-    _betsSubscription = _challengeRepository
-        .fetchChallengeBets(challengeId: _challengeId)
-        .listen(
-          (bets) => emit(
-            state.copyWith(bets: bets),
-          ),
-        );
-  }
-
-  Future<void> fetchChallengeParticipants() async {
-    await _participantsSubscription?.cancel();
-    _participantsSubscription = _challengeRepository
-        .fetchChallengeParticipant(
-          challengeId: _challengeId,
-        )
-        .listen(
-          (participants) => emit(
-            state.copyWith(
-              challenge: state.challenge!.copyWith(
-                participants: participants,
-              ),
-            ),
-          ),
-        );
-  }
-
   Future<void> fetchChallengeDetails() async {
     final challenge = await _challengeRepository.getChallengeDetails(
       challengeId: _challengeId,
     );
+    final participantStream = _challengeRepository.fetchChallengeParticipant(
+      challengeId: _challengeId,
+    );
+    final betStream = _challengeRepository.fetchChallengeBets(
+      challengeId: _challengeId,
+    );
+
+    final listParticipant = await participantStream.first;
+    final listBet = await betStream.first;
+
     emit(
       state.copyWith(
-        challenge: challenge,
+        challenge: challenge.copyWith(
+          participants: listParticipant,
+        ),
+        bets: listBet,
         status: ChallengeDetailsStatus.loaded,
+      ),
+    );
+
+    _betsSubscription = betStream.listen(
+      (bets) => emit(
+        state.copyWith(bets: bets),
+      ),
+    );
+    _participantsSubscription = participantStream.listen(
+      (participants) => emit(
+        state.copyWith(
+          challenge: state.challenge!.copyWith(
+            participants: participants,
+          ),
+        ),
       ),
     );
   }
@@ -118,6 +118,17 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
         status: ParticipantStatus.accepted,
       ),
     );
+  }
+
+  Future<void> validateChoice(String choiceId) async {
+    final choice = state.challenge!.choices.firstWhereOrNull(
+      (choice) => choice.id == choiceId,
+    );
+
+    if (choice != null && !choice.isCorrect) {
+      final newChoice = choice.copyWith(isCorrect: true);
+      await _challengeRepository.updateChoice(choice: newChoice);
+    }
   }
 
   @override

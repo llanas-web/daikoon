@@ -20,10 +20,7 @@ class ChallengeDetailsPage extends StatelessWidget {
         userId: context.read<AppBloc>().state.user.id,
         challengeId: challengeId,
         challengeRepository: context.read<ChallengeRepository>(),
-      )
-        ..fetchChallengeDetails()
-        ..fetchChallengeBets()
-        ..fetchChallengeParticipants(),
+      )..fetchChallengeDetails(),
       child: const ChallengeDetailsView(),
     );
   }
@@ -43,6 +40,7 @@ class ChallengeDetailsView extends StatelessWidget {
           image: DecorationImage(
             image: Assets.images.bluryBackground.provider(),
           ),
+          color: AppColors.primary.withValues(alpha: 0.1),
         ),
         padding: const EdgeInsets.all(AppSpacing.xxlg),
         child: BlocBuilder<ChallengeDetailsCubit, ChallengeDetailsState>(
