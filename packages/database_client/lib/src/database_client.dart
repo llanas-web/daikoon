@@ -89,8 +89,11 @@ abstract class ChallengeBaseRepository {
   /// Returns the challenge bets associated with the provided [challengeId].
   Stream<List<Bet>> fetchChallengeBets({required String challengeId});
 
-  /// Updates the bet associated with the provided [bet].
+  /// Creates the bet associated with the provided [bet].
   Future<Bet> createBet({required Bet bet});
+
+  /// Updates a bet associated with the provided [bet].
+  Future<Bet> updateBet({required Bet bet});
 
   /// Updates the participant associated with the provided [participant].
   Future<Participant> updateParticipant({
@@ -370,6 +373,21 @@ class PowerSyncDatabaseClient extends DatabaseClient {
           bet.choiceId,
           bet.amount,
         ],
+      );
+      return bet;
+    });
+  }
+
+  @override
+  Future<Bet> updateBet({required Bet bet}) {
+    return _powerSyncRepository.db().writeTransaction((sqlContext) async {
+      await sqlContext.execute(
+        '''
+        UPDATE bets
+        SET amount = ?, choice_id = ?
+        WHERE id = ?
+        ''',
+        [bet.amount, bet.choiceId, bet.id],
       );
       return bet;
     });

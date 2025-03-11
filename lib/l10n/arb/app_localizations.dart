@@ -633,6 +633,24 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Non merci!'**
   String get challengeDetailsPendingRefuseButtonLabel;
+
+  /// Header of the drawer with the username of connected user
+  ///
+  /// In fr, this message translates to:
+  /// **'Défi organisé par @{creatorUsername}'**
+  String challengeDetailsStatsCreatorTitle(String creatorUsername);
+
+  /// Header of the drawer with the username of connected user
+  ///
+  /// In fr, this message translates to:
+  /// **'Statistiques du défi \n {challengeTitle}'**
+  String challengeDetailsStatsTitle(String challengeTitle);
+
+  /// Label for the stats button in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Désigner un gagnant'**
+  String get challengeDetailsStatsButtonLabel;
 }
 
 class _AppLocalizationsDelegate

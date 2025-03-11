@@ -12,7 +12,7 @@ class ChallengeDetails extends StatelessWidget {
     )!;
     if (challengeDetails.isEnded) {
       return const ChallengeEndedDetails();
-    } else if (!challengeDetails.isStarted) {
+    } else if (challengeDetails.isLimited) {
       return const ChallengeLimitDetails();
     } else {
       return const ChallengeStartedDetails();

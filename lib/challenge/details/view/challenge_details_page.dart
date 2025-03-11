@@ -34,9 +34,6 @@ class ChallengeDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final challengeStatus = context.select(
-      (ChallengeDetailsCubit cubit) => cubit.state.status,
-    );
     return AppScaffold(
       appBar: const HomeAppBar(),
       drawer: const AppDrawer(),
@@ -48,9 +45,17 @@ class ChallengeDetailsView extends StatelessWidget {
           ),
         ),
         padding: const EdgeInsets.all(AppSpacing.xxlg),
-        child: challengeStatus == ChallengeDetailsStatus.loading
-            ? const Center(child: CircularProgressIndicator())
-            : const ChallengeDetails(),
+        child: BlocBuilder<ChallengeDetailsCubit, ChallengeDetailsState>(
+          builder: (context, state) {
+            if (state.status == ChallengeDetailsStatus.loading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state.status == ChallengeDetailsStatus.failed) {
+              return const Center(child: Text('Error'));
+            } else {
+              return const ChallengeDetails();
+            }
+          },
+        ),
       ),
     );
   }

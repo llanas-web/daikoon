@@ -297,4 +297,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeDetailsPendingRefuseButtonLabel => 'Non merci!';
+
+  @override
+  String challengeDetailsStatsCreatorTitle(String creatorUsername) {
+    return 'Défi organisé par @$creatorUsername';
+  }
+
+  @override
+  String challengeDetailsStatsTitle(String challengeTitle) {
+    return 'Statistiques du défi \n $challengeTitle';
+  }
+
+  @override
+  String get challengeDetailsStatsButtonLabel => 'Désigner un gagnant';
 }

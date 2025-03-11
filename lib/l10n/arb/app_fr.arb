@@ -394,5 +394,29 @@
   "challengeDetailsPendingRefuseButtonLabel": "Non merci!",
   "@challengeDetailsPendingRefuseButtonLabel": {
     "description": "Label for the refuse button in the challenge details page"
+  },
+  "challengeDetailsStatsCreatorTitle": "Défi organisé par @{creatorUsername}",
+  "@challengeDetailsStatsCreatorTitle": {
+    "description": "Header of the drawer with the username of connected user",
+    "placeholders": {
+      "creatorUsername": {
+        "type": "String",
+        "example": "John"
+      }
+    }
+  },
+  "challengeDetailsStatsTitle": "Statistiques du défi \n {challengeTitle}",
+  "@challengeDetailsStatsTitle": {
+    "description": "Header of the drawer with the username of connected user",
+    "placeholders": {
+      "challengeTitle": {
+        "type": "String",
+        "example": "Défi fifa ⚽"
+      }
+    }
+  },
+  "challengeDetailsStatsButtonLabel": "Désigner un gagnant",
+  "@challengeDetailsStatsButtonLabel": {
+    "description": "Label for the stats button in the challenge details page"
   }
 }

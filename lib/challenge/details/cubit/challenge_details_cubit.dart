@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:challenge_repository/challenge_repository.dart';
 import 'package:collection/collection.dart';
@@ -14,67 +16,68 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
   })  : _userId = userId,
         _challengeId = challengeId,
         _challengeRepository = challengeRepository,
-        super(ChallengeDetailsState.initial(userId));
+        super(ChallengeDetailsState.initial());
 
   final String _userId;
   final String _challengeId;
   final ChallengeRepository _challengeRepository;
 
-  Participant get userParticipation =>
-      state.status == ChallengeDetailsStatus.loading
-          ? Participant.anonymousParticipant
-          : state.challenge!.participants.firstWhere(
-              (participant) => participant.id == _userId,
-              orElse: () => Participant.anonymousParticipant,
-            );
+  StreamSubscription<List<Bet>>? _betsSubscription;
+  StreamSubscription<List<Participant>>? _participantsSubscription;
 
-  void selectChoice(Choice choice) {
-    emit(
-      state.copyWith(
-        userBet: state.userBet.copyWith(
-          choiceId: choice.id,
-        ),
-      ),
+  bool get isOwner => state.challenge?.creator?.id == _userId;
+
+  Participant? get userParticipation {
+    if (state.status == ChallengeDetailsStatus.loading) return null;
+
+    return state.challenge!.participants.firstWhereOrNull(
+      (participant) => participant.id == _userId,
     );
   }
 
-  void setBetAmount(int? amount) {
-    emit(
-      state.copyWith(
-        userBet: state.userBet.copyWith(
-          amount: amount ?? 0,
-        ),
-      ),
-    );
-  }
+  Bet? get userBet => state.bets.firstWhereOrNull(
+        (bet) => bet.userId == _userId,
+      );
 
-  Future<void> createBet() async {
-    if (state.userBet.choiceId != '') {
+  Future<void> createOrUpdateBet({
+    required String choiceId,
+    required int amount,
+  }) async {
+    if (userBet != null) {
+      await _challengeRepository.updateBet(
+        bet: userBet!.copyWith(
+          amount: amount,
+          choiceId: choiceId,
+        ),
+      );
+      return;
+    } else {
+      final bet = userBet ??
+          Bet(
+            amount: amount,
+            choiceId: choiceId,
+            userId: _userId,
+          );
       await _challengeRepository.createBet(
-        bet: state.userBet,
+        bet: bet,
       );
     }
   }
 
   Future<void> fetchChallengeBets() async {
-    _challengeRepository
-        .fetchChallengeBets(
-          challengeId: _challengeId,
-        )
+    await _betsSubscription?.cancel();
+    _betsSubscription = _challengeRepository
+        .fetchChallengeBets(challengeId: _challengeId)
         .listen(
           (bets) => emit(
-            state.copyWith(
-              bets: bets,
-              userBet: bets.firstWhereOrNull(
-                (bet) => bet.userId == _userId,
-              ),
-            ),
+            state.copyWith(bets: bets),
           ),
         );
   }
 
   Future<void> fetchChallengeParticipants() async {
-    _challengeRepository
+    await _participantsSubscription?.cancel();
+    _participantsSubscription = _challengeRepository
         .fetchChallengeParticipant(
           challengeId: _challengeId,
         )
@@ -89,7 +92,6 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
         );
   }
 
-  /// Fetches challenge details from repository and emits new state.
   Future<void> fetchChallengeDetails() async {
     final challenge = await _challengeRepository.getChallengeDetails(
       challengeId: _challengeId,
@@ -104,7 +106,7 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
 
   Future<void> declineInvitation() {
     return _challengeRepository.updateParticipant(
-      participant: userParticipation.copyWith(
+      participant: userParticipation!.copyWith(
         status: ParticipantStatus.declined,
       ),
     );
@@ -112,9 +114,16 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
 
   Future<void> acceptInvitation() {
     return _challengeRepository.updateParticipant(
-      participant: userParticipation.copyWith(
+      participant: userParticipation!.copyWith(
         status: ParticipantStatus.accepted,
       ),
     );
+  }
+
+  @override
+  Future<void> close() {
+    _betsSubscription?.cancel();
+    _participantsSubscription?.cancel();
+    return super.close();
   }
 }

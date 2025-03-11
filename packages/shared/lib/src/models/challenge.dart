@@ -96,6 +96,10 @@ class Challenge extends Equatable {
   bool get isStarted => starting != null && starting!.isBefore(DateTime.now());
 
   /// The challenge's status.
+  bool get isLimited =>
+      limitDate != null && limitDate!.isBefore(DateTime.now());
+
+  /// The challenge's status.
   bool get isPending => !isEnded && !isStarted;
 
   /// Copy the current challenge with some new values.
