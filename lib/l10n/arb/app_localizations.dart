@@ -364,17 +364,17 @@ abstract class AppLocalizations {
   /// **'Bienvenue sur votre espace personnel Daïkoon ! \n Ici, vous pourrez retrouver tous vos défis, en créer de nouveaux et échanger avec vos amis ! 🔥'**
   String get drawerWelcomeText;
 
+  /// Label for the challenges page
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau défi'**
+  String get drawerChallengeLabel;
+
   /// Label for the list challenges page
   ///
   /// In fr, this message translates to:
   /// **'Mes défis'**
   String get drawerListChallengeLabel;
-
-  /// Label for the challenges page
-  ///
-  /// In fr, this message translates to:
-  /// **'Mes défis'**
-  String get drawerChallengeLabel;
 
   /// Label for the friends page
   ///

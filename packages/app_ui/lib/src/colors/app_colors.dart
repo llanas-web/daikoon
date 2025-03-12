@@ -23,6 +23,9 @@ abstract class AppColors {
   /// The secondary color and swatch.
   static const Color secondary = Color.fromARGB(255, 235, 15, 141);
 
+  /// The lighe grey color for background depth
+  static const Color lightGrey = Color.fromARGB(255, 244, 244, 244);
+
   /// The blue primary color and swatch.
   static const Color blue = Color.fromARGB(255, 131, 197, 190);
 

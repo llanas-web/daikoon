@@ -26,7 +26,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
-      iconTheme: IconThemeData(color: Theme.of(context).colorScheme.secondary),
+      iconTheme: const IconThemeData(
+        color: AppColors.primary,
+        size: AppSize.bottomBarIconSize,
+      ),
     );
   }
 }

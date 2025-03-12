@@ -27,13 +27,6 @@ class AppDrawer extends StatelessWidget {
               bottom: AppSpacing.xxlg,
             ),
             // adding bottom border
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: AppColors.primary,
-                ),
-              ),
-            ),
             margin: EdgeInsets.zero,
             child: Column(
               children: [
@@ -85,7 +78,7 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           _DrawerItemWidget(
-            title: context.l10n.drawerListChallengeLabel,
+            title: context.l10n.drawerChallengeLabel,
             icon: Assets.icons.challenge,
             route: AppRoutes.createChallenge,
           ),
@@ -128,8 +121,10 @@ class _DrawerItemWidget extends StatelessWidget {
     final isSelected = GoRouter.of(context).state.name == route.name;
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(
-        vertical: AppSpacing.sm,
         horizontal: AppSpacing.xxlg,
+      ),
+      shape: const Border(
+        top: BorderSide(color: AppColors.lightGrey),
       ),
       selected: isSelected,
       selectedColor: Colors.white,
