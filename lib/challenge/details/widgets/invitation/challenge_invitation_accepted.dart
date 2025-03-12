@@ -33,8 +33,8 @@ class __ChallengeInvitationAcceptedState
     _hasBet = userBet?.amount != 0 || false;
   }
 
-  Future<void> createOrUpdateBet() {
-    return context.read<ChallengeDetailsCubit>().createOrUpdateBet(
+  Future<void> upsertBet() {
+    return context.read<ChallengeDetailsCubit>().upsertBet(
           choiceId: _choiceId!,
           amount: _hasBet ? int.parse(_betAmountController.text) : 0,
         );
@@ -226,7 +226,7 @@ class __ChallengeInvitationAcceptedState
                 child: AppButton(
                   text:
                       context.l10n.challengeDetailsAcceptedValidateButtonLabel,
-                  onPressed: createOrUpdateBet,
+                  onPressed: upsertBet,
                   color: AppColors.secondary,
                   style: const ButtonStyle(
                     backgroundColor:

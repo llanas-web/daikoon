@@ -675,6 +675,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Valider'**
   String get challengeDetailsFinishButtonLabel;
+
+  /// Header of the drawer with the username of connected user
+  ///
+  /// In fr, this message translates to:
+  /// **'Félicitations \n Vous avez gagné ! 🏅'**
+  String get challengeDetailsEndedWonTitle;
+
+  /// Header of the drawer with the username of connected user
+  ///
+  /// In fr, this message translates to:
+  /// **'Dommage... \n Vous avez perdu ! 😢'**
+  String get challengeDetailsEndedLoseTitle;
+
+  /// Label for the winners in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Le(s) gagnant(s)'**
+  String get challengeDetailsEndedWinnersLabel;
+
+  /// Label for the daikoins win in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous avez gagné'**
+  String get challengeDetailsEndedDaikoinsWinLabel;
 }
 
 class _AppLocalizationsDelegate

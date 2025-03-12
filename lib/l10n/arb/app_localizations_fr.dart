@@ -326,4 +326,18 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeDetailsFinishButtonLabel => 'Valider';
+
+  @override
+  String get challengeDetailsEndedWonTitle =>
+      'Félicitations \n Vous avez gagné ! 🏅';
+
+  @override
+  String get challengeDetailsEndedLoseTitle =>
+      'Dommage... \n Vous avez perdu ! 😢';
+
+  @override
+  String get challengeDetailsEndedWinnersLabel => 'Le(s) gagnant(s)';
+
+  @override
+  String get challengeDetailsEndedDaikoinsWinLabel => 'Vous avez gagné';
 }

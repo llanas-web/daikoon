@@ -50,13 +50,8 @@ class ChallengeRepository implements ChallengeBaseRepository {
   }
 
   @override
-  Future<Bet> createBet({required Bet bet}) {
-    return _databaseClient.createBet(bet: bet);
-  }
-
-  @override
-  Future<Bet> updateBet({required Bet bet}) {
-    return _databaseClient.updateBet(bet: bet);
+  Future<Bet> upsertBet({required Bet bet}) {
+    return _databaseClient.upsertBet(bet: bet);
   }
 
   @override
@@ -67,5 +62,10 @@ class ChallengeRepository implements ChallengeBaseRepository {
   @override
   Future<Choice> updateChoice({required Choice choice}) {
     return _databaseClient.updateChoice(choice: choice);
+  }
+
+  @override
+  Future<int> getAward({required String betId, required String userId}) {
+    return _databaseClient.getAward(betId: betId, userId: userId);
   }
 }

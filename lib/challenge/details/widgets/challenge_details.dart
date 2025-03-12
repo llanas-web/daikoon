@@ -10,9 +10,12 @@ class ChallengeDetails extends StatelessWidget {
     final challengeDetails = context.select(
       (ChallengeDetailsCubit cubit) => cubit.state.challenge,
     )!;
+    final userBet = context.select(
+      (ChallengeDetailsCubit cubit) => cubit.userBet,
+    );
     if (challengeDetails.isEnded) {
       return const ChallengeEndedDetails();
-    } else if (challengeDetails.isLimited) {
+    } else if (userBet != null || challengeDetails.isLimited) {
       return const ChallengeLimitDetails();
     } else {
       return const ChallengeStartedDetails();

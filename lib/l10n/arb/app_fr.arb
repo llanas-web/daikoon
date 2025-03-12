@@ -440,5 +440,21 @@
   "challengeDetailsFinishButtonLabel": "Valider",
   "@challengeDetailsFinishButtonLabel": {
     "description": "Label for the validate button in the challenge details page"
+  },
+  "challengeDetailsEndedWonTitle": "Félicitations \n Vous avez gagné ! 🏅",
+  "@challengeDetailsEndedWonTitle": {
+    "description": "Header of the drawer with the username of connected user"
+  },
+  "challengeDetailsEndedLoseTitle": "Dommage... \n Vous avez perdu ! 😢",
+  "@challengeDetailsEndedLoseTitle": {
+    "description": "Header of the drawer with the username of connected user"
+  },
+  "challengeDetailsEndedWinnersLabel": "Le(s) gagnant(s)",
+  "@challengeDetailsEndedWinnersLabel": {
+    "description": "Label for the winners in the challenge details page"
+  },
+  "challengeDetailsEndedDaikoinsWinLabel": "Vous avez gagné",
+  "@challengeDetailsEndedDaikoinsWinLabel": {
+    "description": "Label for the daikoins win in the challenge details page"
   }
 }

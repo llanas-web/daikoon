@@ -89,11 +89,8 @@ abstract class ChallengeBaseRepository {
   /// Returns the challenge bets associated with the provided [challengeId].
   Stream<List<Bet>> fetchChallengeBets({required String challengeId});
 
-  /// Creates the bet associated with the provided [bet].
-  Future<Bet> createBet({required Bet bet});
-
   /// Updates a bet associated with the provided [bet].
-  Future<Bet> updateBet({required Bet bet});
+  Future<Bet> upsertBet({required Bet bet});
 
   /// Updates the participant associated with the provided [participant].
   Future<Participant> updateParticipant({
@@ -102,6 +99,9 @@ abstract class ChallengeBaseRepository {
 
   /// Updates the choice associated with the provided [choice].
   Future<Choice> updateChoice({required Choice choice});
+
+  /// Get the award received from [betId] by a [userId].
+  Future<int> getAward({required String betId, required String userId});
 }
 
 /// NotificationBaseRepository
@@ -363,37 +363,14 @@ class PowerSyncDatabaseClient extends DatabaseClient {
   }
 
   @override
-  Future<Bet> createBet({required Bet bet}) {
-    return _powerSyncRepository.db().writeTransaction((sqlContext) async {
-      await sqlContext.execute(
-        '''
-        INSERT INTO bets (id, user_id, choice_id, amount)
-        VALUES (?, ?, ?, ?)
-        ''',
-        [
-          bet.id,
-          bet.userId,
-          bet.choiceId,
-          bet.amount,
-        ],
-      );
-      return bet;
-    });
-  }
-
-  @override
-  Future<Bet> updateBet({required Bet bet}) {
-    return _powerSyncRepository.db().writeTransaction((sqlContext) async {
-      await sqlContext.execute(
-        '''
-        UPDATE bets
-        SET amount = ?, choice_id = ?
-        WHERE id = ?
-        ''',
-        [bet.amount, bet.choiceId, bet.id],
-      );
-      return bet;
-    });
+  Future<Bet> upsertBet({required Bet bet}) async {
+    await _powerSyncRepository.db().execute(
+      '''
+        INSERT INTO bets (id, choice_id, user_id, amount) VALUES(?1, ?2, ?3, ?4)
+      ''',
+      [bet.id, bet.choiceId, bet.userId, bet.amount],
+    );
+    return bet;
   }
 
   @override
@@ -518,5 +495,17 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       );
       return participant;
     });
+  }
+
+  @override
+  Future<int> getAward({required String betId, required String userId}) {
+    return _powerSyncRepository.db().get(
+      '''
+      SELECT amount
+      FROM transactions
+      WHERE origin_id = ? AND receiver_id = ?
+      ''',
+      [betId, userId],
+    ).then((event) => event['amount'] as int);
   }
 }

@@ -39,12 +39,12 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
         (bet) => bet.userId == _userId,
       );
 
-  Future<void> createOrUpdateBet({
+  Future<void> upsertBet({
     required String choiceId,
     required int amount,
   }) async {
     if (userBet != null) {
-      await _challengeRepository.updateBet(
+      await _challengeRepository.upsertBet(
         bet: userBet!.copyWith(
           amount: amount,
           choiceId: choiceId,
@@ -52,13 +52,12 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
       );
       return;
     } else {
-      final bet = userBet ??
-          Bet(
-            amount: amount,
-            choiceId: choiceId,
-            userId: _userId,
-          );
-      await _challengeRepository.createBet(
+      final bet = Bet(
+        amount: amount,
+        choiceId: choiceId,
+        userId: _userId,
+      );
+      await _challengeRepository.upsertBet(
         bet: bet,
       );
     }
@@ -128,6 +127,17 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
     if (choice != null && !choice.isCorrect) {
       final newChoice = choice.copyWith(isCorrect: true);
       await _challengeRepository.updateChoice(choice: newChoice);
+      emit(
+        state.copyWith(
+          challenge: state.challenge!.copyWith(
+            choices: state.challenge!.choices
+                .map(
+                  (c) => c.id == choiceId ? newChoice : c,
+                )
+                .toList(),
+          ),
+        ),
+      );
     }
   }
 
