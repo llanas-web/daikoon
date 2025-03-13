@@ -321,6 +321,10 @@
   "@challengeCreationSubmitButtonLabel": {
     "description": "Label for the submit button in the challenge creation page"
   },
+  "challengeCreationErrorTitle": "Erreur lors de la création du défi : ",
+  "@challengeCreationErrorTitle": {
+    "description": "Title for the error dialog in the challenge creation page"
+  },
   "challengeDetailsQuestionLabel": "Question du défi :",
   "@challengeDetailsQuestionLabel": {
     "description": "Label for the question in the challenge details page"

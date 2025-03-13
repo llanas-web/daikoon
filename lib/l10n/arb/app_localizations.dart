@@ -550,6 +550,12 @@ abstract class AppLocalizations {
   /// **'Valider'**
   String get challengeCreationSubmitButtonLabel;
 
+  /// Title for the error dialog in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Erreur lors de la création du défi : '**
+  String get challengeCreationErrorTitle;
+
   /// Label for the question in the challenge details page
   ///
   /// In fr, this message translates to:

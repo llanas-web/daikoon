@@ -249,6 +249,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeCreationSubmitButtonLabel => 'Valider';
 
   @override
+  String get challengeCreationErrorTitle =>
+      'Erreur lors de la création du défi : ';
+
+  @override
   String get challengeDetailsQuestionLabel => 'Question du défi :';
 
   @override

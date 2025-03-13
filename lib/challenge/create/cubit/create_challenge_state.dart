@@ -1,7 +1,12 @@
 part of 'create_challenge_cubit.dart';
 
+enum CreateChallengeStatus { initial, loading, success, error }
+
 class CreateChallengeState extends Equatable {
   const CreateChallengeState._({
+    required this.status,
+    required this.errorMessage,
+    required this.challengeId,
     required this.challengeTitle,
     required this.challengeQuestion,
     required this.choices,
@@ -17,6 +22,9 @@ class CreateChallengeState extends Equatable {
 
   const CreateChallengeState.initial()
       : this._(
+          status: CreateChallengeStatus.initial,
+          errorMessage: null,
+          challengeId: null,
           challengeTitle: const ChallengeTitle.pure(),
           challengeQuestion: const ChallengeQuestion.pure(),
           choices: const [],
@@ -30,6 +38,9 @@ class CreateChallengeState extends Equatable {
           endDate: null,
         );
 
+  final CreateChallengeStatus status;
+  final String? errorMessage;
+  final String? challengeId;
   final ChallengeTitle challengeTitle;
   final ChallengeQuestion challengeQuestion;
   final List<String> choices;
@@ -43,6 +54,9 @@ class CreateChallengeState extends Equatable {
   final DateTime? endDate;
 
   CreateChallengeState copyWith({
+    CreateChallengeStatus? status,
+    String? errorMessage,
+    String? challengeId,
     ChallengeTitle? challengeTitle,
     ChallengeQuestion? challengeQuestion,
     List<String>? choices,
@@ -56,6 +70,9 @@ class CreateChallengeState extends Equatable {
     DateTime? endDate,
   }) {
     return CreateChallengeState._(
+      status: status ?? this.status,
+      errorMessage: errorMessage ?? this.errorMessage,
+      challengeId: challengeId ?? this.challengeId,
       challengeTitle: challengeTitle ?? this.challengeTitle,
       challengeQuestion: challengeQuestion ?? this.challengeQuestion,
       choices: choices ?? this.choices,
@@ -72,6 +89,8 @@ class CreateChallengeState extends Equatable {
 
   @override
   List<Object?> get props => [
+        status,
+        challengeId,
         challengeTitle,
         challengeQuestion,
         choices,

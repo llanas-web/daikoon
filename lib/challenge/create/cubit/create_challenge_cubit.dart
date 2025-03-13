@@ -231,7 +231,7 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     emit(newState);
   }
 
-  void onEndTimeChanged(TimeOfDay endTime) {
+  Future<void> onEndTimeChanged(TimeOfDay endTime) async {
     final previousState = state;
     final selectedDate = state.endDate ?? DateTime.now();
     final selectedDateTime = DateTime(
@@ -258,28 +258,42 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     emit(newState);
   }
 
-  void submit({
+  Future<void> submit({
     required User creator,
-  }) {
-    final previousState = state;
+  }) async {
+    emit(state.copyWith(status: CreateChallengeStatus.loading));
     final newChallenge = Challenge(
-      title: previousState.challengeTitle.value,
-      question: previousState.challengeQuestion.value,
-      choices:
-          previousState.choices.map((choice) => Choice(value: choice)).toList(),
-      hasBet: previousState.hasBet,
-      minBet: previousState.minAmount,
-      maxBet: previousState.maxAmount,
-      participants: previousState.participants,
-      starting: previousState.startDate,
-      limitDate: previousState.limitDate,
-      ending: previousState.endDate,
+      title: state.challengeTitle.value,
+      question: state.challengeQuestion.value,
+      choices: state.choices.map((choice) => Choice(value: choice)).toList(),
+      hasBet: state.hasBet,
+      minBet: state.minAmount,
+      maxBet: state.maxAmount,
+      participants: state.participants,
+      starting: state.startDate,
+      limitDate: state.limitDate,
+      ending: state.endDate,
     );
-    _challengeRepository.createChallenge(
-      challenge: newChallenge,
-      creator: creator,
-      choices: newChallenge.choices,
-      participants: newChallenge.participants,
-    );
+    try {
+      await _challengeRepository.createChallenge(
+        challenge: newChallenge,
+        creator: creator,
+        choices: newChallenge.choices,
+        participants: newChallenge.participants,
+      );
+      emit(
+        state.copyWith(
+          status: CreateChallengeStatus.success,
+          challengeId: newChallenge.id,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          status: CreateChallengeStatus.error,
+          errorMessage: e.toString(),
+        ),
+      );
+    }
   }
 }
