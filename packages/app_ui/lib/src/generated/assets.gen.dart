@@ -106,6 +106,10 @@ class $AssetsImagesGen {
   AssetGenImage get isometricLogo =>
       const AssetGenImage('assets/images/isometric-logo.png');
 
+  /// File path: assets/images/orangerie.png
+  AssetGenImage get orangerie =>
+      const AssetGenImage('assets/images/orangerie.png');
+
   /// File path: assets/images/profile_pic.png
   AssetGenImage get profilePic =>
       const AssetGenImage('assets/images/profile_pic.png');
@@ -122,6 +126,7 @@ class $AssetsImagesGen {
         daikoonBlury,
         heroImage,
         isometricLogo,
+        orangerie,
         profilePic,
         qrCode
       ];

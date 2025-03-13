@@ -110,6 +110,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileNavBarItemLabel => 'Profil';
 
   @override
+  String get homeHeaderTitle => 'Pariez et défiez vos amis grâce à Daïkoon !';
+
+  @override
+  String get homeHeaderSubtitle =>
+      'Défiez, pariez et gagnez ! Défiez vos amis, pariez sans montant ou avec des daïkoins. Dépensez vos daïkoins dans les points de ventes de nos partenaires agréés. 🔥🔥';
+
+  @override
   String get userProfileTileInformationLabel => 'Mes Informations';
 
   @override

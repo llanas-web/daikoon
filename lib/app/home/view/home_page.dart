@@ -1,4 +1,5 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/app/home/home.dart';
 import 'package:daikoon/app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +19,13 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const AppScaffold(
       appBar: HomeAppBar(),
-      body: Center(
-        child: Text('home'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            HomeHeader(),
+            HomePartners(),
+          ],
+        ),
       ),
       drawer: AppDrawer(),
     );

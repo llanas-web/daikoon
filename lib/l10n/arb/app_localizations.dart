@@ -280,6 +280,18 @@ abstract class AppLocalizations {
   /// **'Profil'**
   String get profileNavBarItemLabel;
 
+  /// Title text for the home header
+  ///
+  /// In fr, this message translates to:
+  /// **'Pariez et défiez vos amis grâce à Daïkoon !'**
+  String get homeHeaderTitle;
+
+  /// Subtitle text for the home header
+  ///
+  /// In fr, this message translates to:
+  /// **'Défiez, pariez et gagnez ! Défiez vos amis, pariez sans montant ou avec des daïkoins. Dépensez vos daïkoins dans les points de ventes de nos partenaires agréés. 🔥🔥'**
+  String get homeHeaderSubtitle;
+
   /// Label text for the information tile
   ///
   /// In fr, this message translates to:

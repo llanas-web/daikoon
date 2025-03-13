@@ -135,6 +135,14 @@
   "@profileNavBarItemLabel": {
     "description": "Label text for the profile nav bar item"
   },
+  "homeHeaderTitle": "Pariez et défiez vos amis grâce à Daïkoon !",
+  "@homeHeaderTitle": {
+    "description": "Title text for the home header"
+  },
+  "homeHeaderSubtitle": "Défiez, pariez et gagnez ! Défiez vos amis, pariez sans montant ou avec des daïkoins. Dépensez vos daïkoins dans les points de ventes de nos partenaires agréés. 🔥🔥",
+  "@homeHeaderSubtitle": {
+    "description": "Subtitle text for the home header"
+  },
   "userProfileTileInformationLabel": "Mes Informations",
   "@userProfileTileInformationLabel": {
     "description": "Label text for the information tile"
