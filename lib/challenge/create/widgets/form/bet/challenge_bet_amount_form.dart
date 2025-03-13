@@ -16,16 +16,36 @@ class ChallengeBetAmountForm extends StatefulWidget {
 class _ChallengeBetAmountFormState extends State<ChallengeBetAmountForm> {
   late final FocusNode _minAmountFocusNode;
   late final FocusNode _maxAmountFocusNode;
+  late final TextEditingController _minAmountController;
+  late final TextEditingController _maxAmountController;
 
   @override
   void initState() {
     super.initState();
     _minAmountFocusNode = FocusNode();
     _maxAmountFocusNode = FocusNode();
+    _minAmountController = TextEditingController();
+    _maxAmountController = TextEditingController();
+    _minAmountFocusNode.requestFocus();
+  }
+
+  @override
+  void dispose() {
+    _minAmountFocusNode.dispose();
+    _maxAmountFocusNode.dispose();
+    _minAmountController.dispose();
+    _maxAmountController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    _minAmountController.text = context.select(
+      (CreateChallengeCubit cubit) => cubit.state.minAmount.toString(),
+    );
+    _maxAmountController.text = context.select(
+      (CreateChallengeCubit cubit) => cubit.state.maxAmount.toString(),
+    );
     return Column(
       children: [
         Text(
@@ -51,6 +71,8 @@ class _ChallengeBetAmountFormState extends State<ChallengeBetAmountForm> {
                     ),
                     textInputType: TextInputType.number,
                     focusNode: _minAmountFocusNode,
+                    textInputAction: TextInputAction.next,
+                    textController: _minAmountController,
                     onChanged: (newMinValue) {
                       final minValue = int.tryParse(newMinValue);
                       if (minValue != null) {
@@ -69,13 +91,17 @@ class _ChallengeBetAmountFormState extends State<ChallengeBetAmountForm> {
                       horizontal: AppSpacing.xlg,
                     ),
                     hintText: context
-                        .l10n.challengeCreationBetAmountMinFormFieldLabel,
+                        .l10n.challengeCreationBetAmountMaxFormFieldLabel,
                     filled: true,
                     filledColor: AppColors.white,
                     hintStyle: const TextStyle(
                       color: AppColors.grey,
                     ),
                     textInputType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
+                    textController: _maxAmountController,
+                    onFieldSubmitted: (_) =>
+                        context.read<FormStepperCubit>().nextStep(),
                     focusNode: _maxAmountFocusNode,
                     onChanged: (newMinValue) {
                       final minValue = int.tryParse(newMinValue);

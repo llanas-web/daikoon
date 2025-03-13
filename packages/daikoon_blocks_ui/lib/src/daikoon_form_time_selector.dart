@@ -66,6 +66,7 @@ class DaikoonFormTimeSelector extends StatelessWidget {
             : hintText,
       ),
       onTap: () => onTapDate(context),
+      style: context.bodySmall,
     );
   }
 }

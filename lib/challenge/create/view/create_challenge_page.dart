@@ -75,6 +75,14 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
             image: DecorationImage(
               image: Assets.images.bluryBackground.provider(),
             ),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                AppColors.primary.withValues(alpha: 0),
+                AppColors.primary.withValues(alpha: 0.5),
+              ],
+            ),
           ),
           padding: const EdgeInsets.all(AppSpacing.xxlg),
           child: Center(

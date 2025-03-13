@@ -35,7 +35,7 @@ class ChallengeParticipantsForm extends StatelessWidget {
                 ],
               ),
             ),
-          ],
+          ].spacerBetween(height: AppSpacing.md),
         ),
         Text(
           participants.isEmpty
@@ -44,7 +44,7 @@ class ChallengeParticipantsForm extends StatelessWidget {
                   .map((participant) => participant.username)
                   .join(', '),
         ),
-      ].spacerBetween(height: AppSpacing.xxlg),
+      ].spacerBetween(height: AppSpacing.xlg),
     );
   }
 }

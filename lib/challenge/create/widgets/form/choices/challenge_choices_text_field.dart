@@ -14,15 +14,32 @@ class ChallengeChoicesTextField extends StatefulWidget {
 
 class _ChallengeChoicesTextFieldState extends State<ChallengeChoicesTextField> {
   late final TextEditingController _optionController;
+  late final FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
     _optionController = TextEditingController();
+    _focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _optionController.dispose();
+    _focusNode.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    void addChoice() {
+      context.read<CreateChallengeCubit>().onChoicesAdded(
+            _optionController.text,
+          );
+      _optionController.clear();
+      _focusNode.requestFocus();
+    }
+
     return AppTextField(
       contentPadding: const EdgeInsets.symmetric(
         vertical: AppSpacing.lg,
@@ -34,21 +51,19 @@ class _ChallengeChoicesTextFieldState extends State<ChallengeChoicesTextField> {
       hintStyle: const TextStyle(
         color: AppColors.grey,
       ),
+      focusNode: _focusNode,
       textController: _optionController,
       suffixIcon: Padding(
         padding: const EdgeInsets.only(
           right: AppSpacing.xlg,
         ),
         child: Tappable(
-          onTap: () {
-            context.read<CreateChallengeCubit>().onChoicesAdded(
-                  _optionController.text,
-                );
-            _optionController.clear();
-          },
+          onTap: addChoice,
           child: const Icon(Icons.add),
         ),
       ),
+      textInputAction: TextInputAction.done,
+      onFieldSubmitted: (_) => addChoice(),
     );
   }
 }

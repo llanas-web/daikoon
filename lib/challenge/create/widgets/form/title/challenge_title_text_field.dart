@@ -36,6 +36,7 @@ class _ChallengeTitleTextFieldState extends State<ChallengeTitleTextField> {
       onChanged: (newTitle) => _debouncer.run(
         () => context.read<CreateChallengeCubit>().onTitleChanged(newTitle),
       ),
+      onFieldSubmitted: (_) => context.read<FormStepperCubit>().nextStep(),
     );
   }
 }

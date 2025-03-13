@@ -96,7 +96,10 @@ class _DaikoonFormSelectorState<T> extends State<DaikoonFormSelector<T>> {
                         final item = items[index];
                         return ListTile(
                           title: Text(widget.getItemLabel(item)),
-                          onTap: () => _onSelect(item),
+                          onTap: () {
+                            _onSelect(item);
+                            listItems.value = [];
+                          },
                         );
                       },
                     ),

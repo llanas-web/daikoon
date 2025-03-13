@@ -41,7 +41,7 @@ class DaikoonFormDateSelector extends StatelessWidget {
     return AppTextField(
       contentPadding: const EdgeInsets.symmetric(
         vertical: AppSpacing.lg,
-        horizontal: AppSpacing.xlg,
+        horizontal: AppSpacing.md,
       ),
       enabledBorder: const OutlineInputBorder(
         borderSide: BorderSide(
@@ -61,11 +61,12 @@ class DaikoonFormDateSelector extends StatelessWidget {
         text: value != null
             ? value!.format(
                 context,
-                dateFormat: DateFormat.yMMMd,
+                dateFormat: (locale) => DateFormat('dd.MM.yy', locale),
               )
             : hintText,
       ),
       onTap: () => onTapDate(context),
+      style: context.bodySmall,
     );
   }
 }

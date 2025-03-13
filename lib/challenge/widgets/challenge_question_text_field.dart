@@ -46,6 +46,7 @@ class _ChallengeQuestionTextFieldState
                 () => widget.onQuestionChanged!(newQuestion),
               )
           : null,
+      textInputAction: TextInputAction.next,
     );
   }
 }

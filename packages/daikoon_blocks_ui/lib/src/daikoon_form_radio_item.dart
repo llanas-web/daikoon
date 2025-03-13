@@ -19,40 +19,40 @@ class DaikoonFormRadioItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppRadius.lg),
-              border: isSelected
-                  ? Border.all(
-                      color: AppColors.primary,
-                      width: AppSpacing.xxs,
-                    )
-                  : Border.all(
-                      color: AppColors.white,
-                      width: AppSpacing.xxs,
+    return Tappable(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                border: isSelected
+                    ? Border.all(
+                        color: AppColors.primary,
+                        width: AppSpacing.xxs,
+                      )
+                    : Border.all(
+                        color: AppColors.white,
+                        width: AppSpacing.xxs,
+                      ),
+                color: AppColors.white,
+              ),
+              padding: const EdgeInsets.symmetric(
+                vertical: AppSpacing.lg,
+                horizontal: AppSpacing.xlg,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  if (child != null)
+                    Expanded(child: child!)
+                  else
+                    Text(
+                      title,
+                      style: context.bodyLarge,
                     ),
-              color: AppColors.white,
-            ),
-            padding: const EdgeInsets.symmetric(
-              vertical: AppSpacing.lg,
-              horizontal: AppSpacing.xlg,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (child != null)
-                  Expanded(child: child!)
-                else
-                  Text(
-                    title,
-                    style: context.bodyLarge,
-                  ),
-                Tappable(
-                  onTap: onTap,
-                  child: Stack(
+                  Stack(
                     alignment: Alignment.center,
                     children: [
                       Container(
@@ -78,12 +78,12 @@ class DaikoonFormRadioItem extends StatelessWidget {
                         ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

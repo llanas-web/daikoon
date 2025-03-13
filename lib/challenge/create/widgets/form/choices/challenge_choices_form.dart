@@ -45,7 +45,7 @@ class ChallengeChoicesForm extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('${context.l10n.challengeCreationOptionsFormLabel} :'),
+            Text('${context.l10n.challengeCreationOptionsFormFieldLabel} :'),
             if (options.isNotEmpty)
               Column(
                 children: options

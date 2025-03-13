@@ -31,7 +31,7 @@ class ChallengeDateEndFormField extends StatelessWidget {
                     child: DaikoonFormDateSelector(
                       value: endDate,
                       hintText:
-                          context.l10n.challengeCreationDatesStartFieldLabel,
+                          context.l10n.challengeCreationDatesEndFieldLabel,
                       minDate: limitDate ?? startDate ?? DateTime.now(),
                       maxDate: DateTime.now().add(365.days),
                       onDateSelected: (date) {
@@ -45,7 +45,7 @@ class ChallengeDateEndFormField extends StatelessWidget {
                     child: DaikoonFormTimeSelector(
                       value: endDate,
                       hintText:
-                          context.l10n.challengeCreationDatesStartFieldLabel,
+                          context.l10n.challengeCreationDatesEndFieldLabel,
                       onTimeSelected: (time) {
                         try {
                           context
