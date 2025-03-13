@@ -36,24 +36,31 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Text(
-            context.l10n.challengeDetailsStatsCreatorTitle(
-              challenge.creator!.displayUsername,
-            ),
-            style: context.headlineSmall,
-            textAlign: TextAlign.center,
+          Column(
+            children: [
+              Text(
+                context.l10n.challengeDetailsStatsCreatorTitle(
+                  challenge.creator!.displayUsername,
+                ),
+                style: context.headlineSmall,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                width: 300,
+                child: Text(
+                  context.l10n.challengeDetailsStatsTitle(challenge.title!),
+                  style: context.headlineLarge,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ].spacerBetween(height: AppSpacing.md),
           ),
-          SizedBox(
-            width: 300,
-            child: Text(
-              context.l10n.challengeDetailsStatsTitle(challenge.title!),
-              style: context.headlineLarge,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          ListView.builder(
+          ListView.separated(
             shrinkWrap: true,
             itemCount: choices.length,
+            separatorBuilder: (context, index) => const SizedBox(
+              height: AppSpacing.xlg,
+            ),
             itemBuilder: (context, index) {
               final choice = choices[index];
               final choiceBets = bets.where(
@@ -68,6 +75,7 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
                   )
                   .join(', ');
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,7 +87,7 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${bets.length}',
+                        '${choiceBets.length}',
                         style: const TextStyle(
                           fontWeight: AppFontWeight.extraBold,
                           color: AppColors.secondary,
@@ -90,18 +98,15 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
                   LinearProgressIndicator(
                     value: bets.isEmpty ? 0 : choiceBets.length / bets.length,
                     minHeight: 18,
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: AppColors.primary,
                     borderRadius: BorderRadius.circular(18),
-                    backgroundColor: Theme.of(context)
-                        .colorScheme
-                        .secondary
-                        .withValues(alpha: 0.17),
+                    backgroundColor: AppColors.primary.withValues(alpha: 0.35),
                   ),
                   if (participantUsernames.isEmpty)
                     const Text('Vote de : personne')
                   else
                     Text('Vote de : $participantUsernames'),
-                ].spacerBetween(height: AppSpacing.md),
+                ].spacerBetween(height: AppSpacing.sm),
               );
             },
           ),
@@ -113,6 +118,9 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
                     text: context.l10n.challengeDetailsStatsButtonLabel,
                     onPressed: () => Navigator.of(context).pushNamed('/finish'),
                     color: AppColors.secondary,
+                    textStyle: UITextStyle.button.copyWith(
+                      color: context.reversedAdaptiveColor,
+                    ),
                     style: const ButtonStyle(
                       backgroundColor:
                           WidgetStatePropertyAll(AppColors.secondary),
@@ -127,7 +135,7 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
                 ),
               ],
             ),
-        ].spacerBetween(height: AppSpacing.xlg),
+        ].spacerBetween(height: AppSpacing.xxxlg),
       ),
     );
   }
@@ -372,6 +380,9 @@ class _ChallengeLimitDetailsFormState extends State<ChallengeLimitDetailsForm> {
                   text: context.l10n.challengeDetailsFinishButtonLabel,
                   onPressed: validateChoice,
                   color: AppColors.secondary,
+                  textStyle: UITextStyle.button.copyWith(
+                    color: context.reversedAdaptiveColor,
+                  ),
                   style: const ButtonStyle(
                     backgroundColor:
                         WidgetStatePropertyAll(AppColors.secondary),

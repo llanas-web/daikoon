@@ -40,7 +40,14 @@ class ChallengeDetailsView extends StatelessWidget {
           image: DecorationImage(
             image: Assets.images.bluryBackground.provider(),
           ),
-          color: AppColors.primary.withValues(alpha: 0.1),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColors.primary.withValues(alpha: 0),
+              AppColors.primary.withValues(alpha: 0.5),
+            ],
+          ),
         ),
         padding: const EdgeInsets.all(AppSpacing.xxlg),
         child: BlocBuilder<ChallengeDetailsCubit, ChallengeDetailsState>(

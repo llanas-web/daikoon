@@ -98,7 +98,7 @@ class ChallengeInvitationPending extends StatelessWidget {
                   //     child: Text('test modal'),
                   //   ),
                   // ),
-                  color: AppColors.secondary,
+                  color: AppColors.primary,
                   style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(AppColors.primary),
                     padding: WidgetStatePropertyAll(
@@ -197,6 +197,9 @@ class ChallengeInvitationPending extends StatelessWidget {
                   onPressed: () =>
                       context.read<ChallengeDetailsCubit>().acceptInvitation(),
                   color: AppColors.secondary,
+                  textStyle: UITextStyle.button.copyWith(
+                    color: context.reversedAdaptiveColor,
+                  ),
                   style: const ButtonStyle(
                     backgroundColor:
                         WidgetStatePropertyAll(AppColors.secondary),

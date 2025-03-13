@@ -82,9 +82,17 @@ abstract class ChallengeBaseRepository {
 
   /// Returns the challenge participants
   /// associated with the provided [challengeId].
+  Future<List<Participant>> getParticipants({required String challengeId});
+
+  /// Returns the challenge participants
+  /// associated with the provided [challengeId].
   Stream<List<Participant>> fetchChallengeParticipant({
     required String challengeId,
   });
+
+  /// Returns the challenge Bets
+  /// associated with the provided [challengeId].
+  Future<List<Bet>> getBets({required String challengeId});
 
   /// Returns the challenge bets associated with the provided [challengeId].
   Stream<List<Bet>> fetchChallengeBets({required String challengeId});
@@ -324,6 +332,30 @@ class PowerSyncDatabaseClient extends DatabaseClient {
   }
 
   @override
+  Future<List<Participant>> getParticipants({
+    required String challengeId,
+  }) async {
+    return _powerSyncRepository.db().getAll(
+      '''
+      SELECT 
+        users.id as user_id, 
+        users.username as username, 
+        users.full_name as full_name, 
+        users.avatar_url as avatar_url,
+        participants.challenge_id as challenge_id,
+        participants.status as status
+      FROM participants
+      JOIN users
+      ON participants.user_id = users.id
+      WHERE participants.challenge_id = ?1
+      ''',
+      [challengeId],
+    ).then(
+      (event) => event.safeMap(Participant.fromJson).toList(growable: false),
+    );
+  }
+
+  @override
   Stream<List<Participant>> fetchChallengeParticipant({
     required String challengeId,
   }) {
@@ -344,6 +376,21 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       parameters: [challengeId],
     ).map(
       (event) => event.safeMap(Participant.fromJson).toList(growable: false),
+    );
+  }
+
+  @override
+  Future<List<Bet>> getBets({required String challengeId}) {
+    return _powerSyncRepository.db().getAll(
+      '''
+      SELECT bets.* 
+      FROM bets 
+      JOIN choices ON bets.choice_id = choices.id
+      WHERE choices.challenge_id = ?1
+      ''',
+      [challengeId],
+    ).then(
+      (event) => event.safeMap(Bet.fromJson).toList(growable: false),
     );
   }
 

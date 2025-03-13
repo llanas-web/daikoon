@@ -101,7 +101,7 @@ class __ChallengeInvitationAcceptedState
                       .toList()
                       .spacerBetween(height: AppSpacing.md),
                 ),
-            ],
+            ].spacerBetween(height: AppSpacing.md),
           ),
           if (challenge.hasBet)
             Column(
@@ -137,7 +137,7 @@ class __ChallengeInvitationAcceptedState
                     ),
                   ].spacerBetween(height: AppSpacing.md),
                 ),
-              ],
+              ].spacerBetween(height: AppSpacing.md),
             ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,6 +228,9 @@ class __ChallengeInvitationAcceptedState
                       context.l10n.challengeDetailsAcceptedValidateButtonLabel,
                   onPressed: upsertBet,
                   color: AppColors.secondary,
+                  textStyle: UITextStyle.button.copyWith(
+                    color: context.reversedAdaptiveColor,
+                  ),
                   style: const ButtonStyle(
                     backgroundColor:
                         WidgetStatePropertyAll(AppColors.secondary),

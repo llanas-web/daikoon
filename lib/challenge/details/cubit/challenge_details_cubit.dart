@@ -74,8 +74,12 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
       challengeId: _challengeId,
     );
 
-    final listParticipant = await participantStream.first;
-    final listBet = await betStream.first;
+    final listParticipant = await _challengeRepository.getParticipants(
+      challengeId: _challengeId,
+    );
+    final listBet = await _challengeRepository.getBets(
+      challengeId: _challengeId,
+    );
 
     emit(
       state.copyWith(
