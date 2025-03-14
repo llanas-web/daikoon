@@ -2,7 +2,6 @@ import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared/shared.dart';
 

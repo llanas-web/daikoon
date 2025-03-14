@@ -1,5 +1,6 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:shared/shared.dart';
 
 class PartnersItem extends StatelessWidget {
   const PartnersItem({
@@ -24,50 +25,137 @@ class PartnersItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      width: context.screenWidth * 0.65,
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(AppRadius.xlg),
+        borderRadius: BorderRadius.circular(AppRadius.xxlg),
         boxShadow: [
           BoxShadow(
             color: AppColors.grey.withValues(alpha: 0.2),
-            blurRadius: 4,
-          )
+            offset: const Offset(0, 3),
+            blurRadius: 5,
+          ),
         ],
       ),
-      padding: const EdgeInsets.all(AppSpacing.md),
+      clipBehavior: Clip.hardEdge,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Flexible(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: image.image().image,
-                  fit: BoxFit.cover,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: Image(
+                    image: image.image().image,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    AppColors.dark.withValues(alpha: 0),
-                    AppColors.dark.withValues(alpha: 0.5),
-                  ],
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.center,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          AppColors.dark.withValues(alpha: 0),
+                          AppColors.dark.withValues(alpha: 0.5),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
+                Positioned.fill(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: AppSpacing.sm,
+                      horizontal: AppSpacing.xlg,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Icon(
+                              Icons.favorite_border,
+                              color: AppColors.white,
+                              size: AppSpacing.xlg,
+                            ),
+                          ],
+                        ),
+                        Text(
+                          title,
+                          style: context.titleMedium!.copyWith(
+                            fontSize: 17,
+                            fontFamily: FontFamily.gotham,
+                            fontWeight: AppFontWeight.black,
+                            letterSpacing: -0.9,
+                            color: Colors.white, // Ensure text is visible
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: AppSpacing.md,
+                horizontal: AppSpacing.xlg,
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(subtitle, style: UITextStyle.partnerItemSubtitle),
+                      Text(description,
+                          style: UITextStyle.partnerItemDescription),
+                    ],
+                  ),
                   Row(
                     children: [
                       Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.stars_rounded,
+                                      color: AppColors.primary,
+                                      size: AppSpacing.lg,
+                                    ),
+                                    Text(
+                                      stars.toString(),
+                                      style: UITextStyle.partnerItemDistance
+                                          .copyWith(
+                                        color: AppColors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  '$distance km',
+                                  style:
+                                      UITextStyle.partnerItemDistance.copyWith(
+                                    color: AppColors.grey,
+                                  ),
+                                ),
+                              ].spacerBetween(width: AppSpacing.md),
+                            ),
                             Text(
-                              title,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
+                              '$price €',
+                              style: UITextStyle.partnerItemPrice.copyWith(
+                                color: AppColors.secondary,
                               ),
                             ),
                           ],
@@ -77,40 +165,6 @@ class PartnersItem extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-          ),
-          Flexible(
-            child: Column(
-              children: [
-                Text(subtitle, style: context.headlineSmall),
-                Text(description, style: context.bodyMedium),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.star,
-                                color: AppColors.primary,
-                                size: AppSpacing.lg,
-                              ),
-                              Text(
-                                stars.toString(),
-                                style: context.labelMedium?.copyWith(
-                                  color: AppColors.primary,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
             ),
           ),
         ],

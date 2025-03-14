@@ -17,9 +17,40 @@ abstract class UITextStyle {
   static const _baseTextStyle = TextStyle(
     package: 'app_ui',
     fontWeight: AppFontWeight.medium,
-    fontFamily: 'Inter',
+    fontFamily: FontFamily.gotham,
     decoration: TextDecoration.none,
     textBaseline: TextBaseline.alphabetic,
+    letterSpacing: -0.7,
+  );
+
+  /// TextStyle for the Partner Item Subtitle
+  static final TextStyle partnerItemSubtitle = _baseTextStyle.copyWith(
+    fontSize: 12,
+    fontWeight: AppFontWeight.bold,
+  );
+
+  /// TextStyle for the Partner Item Description
+  static final TextStyle partnerItemDescription = _baseTextStyle.copyWith(
+    fontSize: 12,
+    fontWeight: AppFontWeight.regular,
+  );
+
+  /// TextStyle for the Partner Item Distance
+  static final TextStyle partnerItemDistance = _baseTextStyle.copyWith(
+    fontSize: 12,
+    fontWeight: AppFontWeight.black,
+  );
+
+  /// TextStyle for the Partner Item Price
+  static final TextStyle partnerItemPrice = _baseTextStyle.copyWith(
+    fontSize: 15,
+    fontWeight: AppFontWeight.black,
+  );
+
+  /// TextStyle for the Offer Item Title
+  static final TextStyle offerItemTitle = _baseTextStyle.copyWith(
+    fontSize: 55,
+    fontWeight: AppFontWeight.black,
   );
 
   /// Screen Label Text Style

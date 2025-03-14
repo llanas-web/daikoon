@@ -18,13 +18,13 @@ class HomePartners extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.xlg,
+                  horizontal: AppSpacing.xxlg,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'A l`honneur',
+                      "A l'honneur 🏆",
                       style: context.headlineLarge,
                     ),
                     Row(
@@ -35,12 +35,11 @@ class HomePartners extends StatelessWidget {
                             children: [
                               Text(
                                 'Les points de vents',
-                                style: context.headlineSmall,
+                                style: context.bodyMedium,
                               ),
                               const Text(
-                                'Tout voir',
+                                'Tout voir >',
                                 style: TextStyle(
-                                  decoration: TextDecoration.underline,
                                   color: AppColors.primary,
                                 ),
                               ),
@@ -49,7 +48,7 @@ class HomePartners extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ],
+                  ].spacerBetween(height: AppSpacing.md),
                 ),
               ),
               horizontalListView(
@@ -81,37 +80,53 @@ class HomePartners extends StatelessWidget {
                     price: 1.99,
                     image: Assets.images.orangerie,
                   ),
-                ].spacerBetween(width: AppSpacing.xlg),
+                ],
               ),
-            ].spacerBetween(height: AppSpacing.md),
+            ].spacerBetween(height: AppSpacing.lg),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxlg),
+            child: AppDivider(
+              color: AppColors.lightGrey,
+            ),
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'A l`honneur',
-                style: context.headlineLarge,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.xxlg,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Nos Partenaires 🥳',
+                      style: context.headlineLarge,
+                    ),
+                    Row(
                       children: [
-                        Text(
-                          'Les points de vents',
-                          style: context.headlineSmall,
-                        ),
-                        const Text(
-                          'Tout voir',
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: AppColors.primary,
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Tous nos partenaires à la une',
+                                style: context.bodyMedium,
+                              ),
+                              const Text(
+                                'Tout voir >',
+                                style: TextStyle(
+                                  color: AppColors.primary,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  ].spacerBetween(height: AppSpacing.md),
+                ),
               ),
               horizontalListView(
                 [
@@ -142,13 +157,64 @@ class HomePartners extends StatelessWidget {
                     price: 1.99,
                     image: Assets.images.orangerie,
                   ),
-                ].spacerBetween(width: AppSpacing.xlg),
+                ],
               ),
-            ].spacerBetween(height: AppSpacing.md),
+            ].spacerBetween(height: AppSpacing.lg),
           ),
-        ]
-            .spacerBetween(height: AppSpacing.xlg)
-            .insertBetween(const AppDivider(color: AppColors.primary)),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxlg),
+            child: AppDivider(
+              color: AppColors.lightGrey,
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.xxlg,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Offres spéciales 🤩',
+                      style: context.headlineLarge,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Les offres du moment',
+                                style: context.bodyMedium,
+                              ),
+                              const Text(
+                                'Tout voir >',
+                                style: TextStyle(
+                                  color: AppColors.primary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ].spacerBetween(height: AppSpacing.md),
+                ),
+              ),
+              horizontalListView(
+                [
+                  const OfferItem(),
+                  const OfferItem(),
+                  const OfferItem(),
+                ],
+              ),
+            ].spacerBetween(height: AppSpacing.lg),
+          ),
+        ].spacerBetween(height: AppSpacing.xxlg),
       ),
     );
   }
@@ -157,14 +223,45 @@ class HomePartners extends StatelessWidget {
 // Widget for horizontal scrolling list
 Widget horizontalListView(List<Widget> items) {
   return SizedBox(
-    height: 150, // Adjust height accordingly
+    height: 230,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
+      shrinkWrap: true,
       itemCount: items.length,
-      itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.only(left: AppSpacing.md),
-        child: items[index],
-      ),
+      itemBuilder: (context, index) {
+        final lastIndex = items.length - 1;
+        if (index == 0) {
+          return Padding(
+            padding: const EdgeInsets.only(left: AppSpacing.xlg),
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: AppSpacing.lg,
+                horizontal: AppSpacing.md,
+              ),
+              child: items[index],
+            ),
+          );
+        } else if (index == lastIndex) {
+          return Padding(
+            padding: const EdgeInsets.only(right: AppSpacing.xlg),
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: AppSpacing.lg,
+                horizontal: AppSpacing.md,
+              ),
+              child: items[index],
+            ),
+          );
+        } else {
+          return Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: AppSpacing.lg,
+              horizontal: AppSpacing.md,
+            ),
+            child: items[index],
+          );
+        }
+      },
     ),
   );
 }

@@ -106,9 +106,9 @@ class $AssetsImagesGen {
   AssetGenImage get isometricLogo =>
       const AssetGenImage('assets/images/isometric-logo.png');
 
-  /// File path: assets/images/orangerie.png
+  /// File path: assets/images/orangerie.jpg
   AssetGenImage get orangerie =>
-      const AssetGenImage('assets/images/orangerie.png');
+      const AssetGenImage('assets/images/orangerie.jpg');
 
   /// File path: assets/images/profile_pic.png
   AssetGenImage get profilePic =>
