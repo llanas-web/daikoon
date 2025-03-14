@@ -143,7 +143,7 @@ class _DrawerItemWidget extends StatelessWidget {
             ? ColorFilter.mode(context.reversedAdaptiveColor, BlendMode.srcIn)
             : ColorFilter.mode(context.adaptiveColor, BlendMode.srcIn),
       ),
-      onTap: () => context.go(route.route),
+      onTap: () => context.pushNamed(route.name),
     );
   }
 }

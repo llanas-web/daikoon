@@ -28,7 +28,7 @@ class _ChallengeParticipantsFormFieldState
       onSelect: (user) {
         context.read<CreateChallengeCubit>().onParticipantAdded(user);
       },
-      getItemLabel: (user) => user.username ?? '',
+      getItemLabel: (user) => user.displayUsername,
     );
   }
 }

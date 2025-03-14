@@ -41,10 +41,10 @@ class _ChallengeBetAmountFormState extends State<ChallengeBetAmountForm> {
   @override
   Widget build(BuildContext context) {
     _minAmountController.text = context.select(
-      (CreateChallengeCubit cubit) => cubit.state.minAmount.toString(),
+      (CreateChallengeCubit cubit) => cubit.state.minAmount?.toString() ?? '',
     );
     _maxAmountController.text = context.select(
-      (CreateChallengeCubit cubit) => cubit.state.maxAmount.toString(),
+      (CreateChallengeCubit cubit) => cubit.state.maxAmount?.toString() ?? '',
     );
     return Column(
       children: [

@@ -41,7 +41,7 @@ class ChallengeParticipantsForm extends StatelessWidget {
           participants.isEmpty
               ? ''
               : participants
-                  .map((participant) => participant.username)
+                  .map((participant) => participant.displayUsername)
                   .join(', '),
         ),
       ].spacerBetween(height: AppSpacing.xlg),

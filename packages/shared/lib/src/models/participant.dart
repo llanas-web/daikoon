@@ -41,6 +41,7 @@ class Participant extends User implements Equatable {
           username: user.username,
           email: user.email,
           avatarUrl: user.avatarUrl,
+          fullName: user.fullName,
         );
 
   @override

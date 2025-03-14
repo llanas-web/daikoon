@@ -29,8 +29,8 @@ class CreateChallengeState extends Equatable {
           challengeQuestion: const ChallengeQuestion.pure(),
           choices: const [],
           hasBet: false,
-          minAmount: 0,
-          maxAmount: 0,
+          minAmount: null,
+          maxAmount: null,
           noBetAmount: false,
           participants: const [],
           startDate: null,
@@ -45,8 +45,8 @@ class CreateChallengeState extends Equatable {
   final ChallengeQuestion challengeQuestion;
   final List<String> choices;
   final bool hasBet;
-  final int minAmount;
-  final int maxAmount;
+  final int? minAmount;
+  final int? maxAmount;
   final bool noBetAmount;
   final List<Participant> participants;
   final DateTime? startDate;
