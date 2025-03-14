@@ -143,6 +143,30 @@
   "@homeHeaderSubtitle": {
     "description": "Subtitle text for the home header"
   },
+  "homePartnersHonorTitle": "A l''honneur 🏆",
+  "@homePartnersHonorTitle": {
+    "description": "Title text for the home partenaires honor"
+  },
+  "homePartnersHonorSubtitle": "Les points de vente",
+  "@homePartnersHonorSubtitle": {
+    "description": "Subtitle text for the home partenaires honor"
+  },
+  "homePartnersListTitle": "Nos partenaires 🥳",
+  "@homePartnersListTitle": {
+    "description": "Title text for the home partenaires list"
+  },
+  "homePartnersListSubtitle": "Tous nos partenaires à la une",
+  "@homePartnersListSubtitle": {
+    "description": "Subtitle text for the home partenaires list"
+  },
+  "homeOffersTitle": "Offres spéciales 🤩",
+  "@homeOffersTitle": {
+    "description": "Title text for the home offers"
+  },
+  "homeOffersSubtitle": "Les offres du moment",
+  "@homeOffersSubtitle": {
+    "description": "Subtitle text for the home offers"
+  },
   "userProfileTileInformationLabel": "Mes Informations",
   "@userProfileTileInformationLabel": {
     "description": "Label text for the information tile"

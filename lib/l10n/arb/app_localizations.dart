@@ -292,6 +292,42 @@ abstract class AppLocalizations {
   /// **'Défiez, pariez et gagnez ! Défiez vos amis, pariez sans montant ou avec des daïkoins. Dépensez vos daïkoins dans les points de ventes de nos partenaires agréés. 🔥🔥'**
   String get homeHeaderSubtitle;
 
+  /// Title text for the home partenaires honor
+  ///
+  /// In fr, this message translates to:
+  /// **'A l\'\'honneur 🏆'**
+  String get homePartnersHonorTitle;
+
+  /// Subtitle text for the home partenaires honor
+  ///
+  /// In fr, this message translates to:
+  /// **'Les points de vente'**
+  String get homePartnersHonorSubtitle;
+
+  /// Title text for the home partenaires list
+  ///
+  /// In fr, this message translates to:
+  /// **'Nos partenaires 🥳'**
+  String get homePartnersListTitle;
+
+  /// Subtitle text for the home partenaires list
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous nos partenaires à la une'**
+  String get homePartnersListSubtitle;
+
+  /// Title text for the home offers
+  ///
+  /// In fr, this message translates to:
+  /// **'Offres spéciales 🤩'**
+  String get homeOffersTitle;
+
+  /// Subtitle text for the home offers
+  ///
+  /// In fr, this message translates to:
+  /// **'Les offres du moment'**
+  String get homeOffersSubtitle;
+
   /// Label text for the information tile
   ///
   /// In fr, this message translates to:
