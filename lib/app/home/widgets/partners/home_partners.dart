@@ -38,19 +38,17 @@ class HomePartners extends StatelessWidget {
           PartnersListItem(
             title: context.l10n.homePartnersHonorTitle,
             subtitle: context.l10n.homePartnersHonorSubtitle,
-            children: [List.generate(3, (index) => _partnerItem) as Widget],
+            children: List.generate(3, (index) => _partnerItem),
           ),
           PartnersListItem(
             title: context.l10n.homePartnersListTitle,
             subtitle: context.l10n.homePartnersListSubtitle,
-            children: [List.generate(3, (index) => _partnerItem) as Widget],
+            children: List.generate(3, (index) => _partnerItem),
           ),
           PartnersListItem(
             title: context.l10n.homeOffersTitle,
             subtitle: context.l10n.homeOffersSubtitle,
-            children: [
-              List.generate(3, (index) => const OfferItem()) as Widget,
-            ],
+            children: List.generate(3, (index) => const OfferItem()),
           ) as Widget,
         ]
             .insertBetween(
@@ -97,9 +95,9 @@ class PartnersListItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(subtitle, style: context.bodyMedium),
-                        const Text(
-                          'Tout voir >',
-                          style: TextStyle(color: AppColors.primary),
+                        Text(
+                          context.l10n.homePartnersSeeAll,
+                          style: const TextStyle(color: AppColors.primary),
                         ),
                       ],
                     ),

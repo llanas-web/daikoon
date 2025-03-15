@@ -143,6 +143,10 @@
   "@homeHeaderSubtitle": {
     "description": "Subtitle text for the home header"
   },
+  "homePartnersSeeAll": "Tout voir >",
+  "@homePartnersSeeAll": {
+    "description": "Text for the see all button in the home partenaires"
+  },
   "homePartnersHonorTitle": "A l''honneur 🏆",
   "@homePartnersHonorTitle": {
     "description": "Title text for the home partenaires honor"

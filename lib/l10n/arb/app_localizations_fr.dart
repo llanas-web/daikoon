@@ -117,6 +117,9 @@ class AppLocalizationsFr extends AppLocalizations {
       'Défiez, pariez et gagnez ! Défiez vos amis, pariez sans montant ou avec des daïkoins. Dépensez vos daïkoins dans les points de ventes de nos partenaires agréés. 🔥🔥';
 
   @override
+  String get homePartnersSeeAll => 'Tout voir >';
+
+  @override
   String get homePartnersHonorTitle => 'A l\'honneur 🏆';
 
   @override

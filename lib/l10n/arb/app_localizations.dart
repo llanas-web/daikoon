@@ -292,6 +292,12 @@ abstract class AppLocalizations {
   /// **'Défiez, pariez et gagnez ! Défiez vos amis, pariez sans montant ou avec des daïkoins. Dépensez vos daïkoins dans les points de ventes de nos partenaires agréés. 🔥🔥'**
   String get homeHeaderSubtitle;
 
+  /// Text for the see all button in the home partenaires
+  ///
+  /// In fr, this message translates to:
+  /// **'Tout voir >'**
+  String get homePartnersSeeAll;
+
   /// Title text for the home partenaires honor
   ///
   /// In fr, this message translates to:
