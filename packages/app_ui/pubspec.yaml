@@ -49,7 +49,10 @@ flutter:
           weight: 300
         - asset: assets/fonts/gotham/Gotham-XLight.otf
           weight: 200
-
+    - family: Grifter
+      fonts:
+        - asset: assets/fonts/grifter/grifter-bold.otf
+          weight: 700
 flutter_gen:
   assets:
     enabled: true

@@ -20,7 +20,35 @@ abstract class UITextStyle {
     fontFamily: FontFamily.gotham,
     decoration: TextDecoration.none,
     textBaseline: TextBaseline.alphabetic,
-    letterSpacing: -0.7,
+    letterSpacing: -0.6,
+  );
+
+  /// TextStyle for the Title
+  static final TextStyle title = _baseTextStyle.copyWith(
+    fontFamily: FontFamily.grifter,
+    fontSize: 28,
+    fontWeight: AppFontWeight.bold,
+    height: 1.2,
+  );
+
+  /// TextStyle for the Title Small
+  static final TextStyle titleSmallBold = _baseTextStyle.copyWith(
+    fontSize: 16,
+    fontWeight: AppFontWeight.black,
+    height: 1.25,
+  );
+
+  /// TextStyle for the Subtitle
+  static final TextStyle subtitle = _baseTextStyle.copyWith(
+    fontSize: 16,
+    fontWeight: AppFontWeight.regular,
+    height: 1.25,
+  );
+
+  /// TextStyle for the Button Text
+  static final TextStyle buttonText = _baseTextStyle.copyWith(
+    fontSize: 18,
+    fontWeight: AppFontWeight.medium,
   );
 
   /// TextStyle for the Body Text

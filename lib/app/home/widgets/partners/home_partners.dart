@@ -89,17 +89,19 @@ class PartnersListItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: context.headlineLarge),
+              Text(title, style: UITextStyle.title),
               Row(
                 children: [
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(subtitle, style: context.bodyMedium),
+                        Text(subtitle, style: UITextStyle.subtitle),
                         Text(
                           context.l10n.homePartnersSeeAll,
-                          style: const TextStyle(color: AppColors.primary),
+                          style: UITextStyle.subtitle.copyWith(
+                            color: AppColors.primary,
+                          ),
                         ),
                       ],
                     ),

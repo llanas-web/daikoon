@@ -135,7 +135,7 @@
   "@profileNavBarItemLabel": {
     "description": "Label text for the profile nav bar item"
   },
-  "homeHeaderTitle": "Pariez et défiez vos amis grâce à Daïkoon !",
+  "homeHeaderTitle": "Pariez et défiez \nvos amis grâce \nà Daïkoon !",
   "@homeHeaderTitle": {
     "description": "Title text for the home header"
   },

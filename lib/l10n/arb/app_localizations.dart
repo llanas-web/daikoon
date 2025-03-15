@@ -283,7 +283,7 @@ abstract class AppLocalizations {
   /// Title text for the home header
   ///
   /// In fr, this message translates to:
-  /// **'Pariez et défiez vos amis grâce à Daïkoon !'**
+  /// **'Pariez et défiez \nvos amis grâce \nà Daïkoon !'**
   String get homeHeaderTitle;
 
   /// Subtitle text for the home header

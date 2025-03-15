@@ -86,12 +86,8 @@ class PartnersItem extends StatelessWidget {
                         ),
                         Text(
                           title,
-                          style: context.titleMedium!.copyWith(
-                            fontSize: 17,
-                            fontFamily: FontFamily.gotham,
-                            fontWeight: AppFontWeight.black,
-                            letterSpacing: -0.9,
-                            color: Colors.white, // Ensure text is visible
+                          style: UITextStyle.titleSmallBold.copyWith(
+                            color: Colors.white,
                           ),
                         ),
                       ],
@@ -114,10 +110,15 @@ class PartnersItem extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(subtitle, style: UITextStyle.partnerItemSubtitle),
+                      Text(
+                        subtitle,
+                        style: UITextStyle.bodyText.copyWith(
+                          fontWeight: AppFontWeight.bold,
+                        ),
+                      ),
                       Text(
                         description,
-                        style: UITextStyle.partnerItemDescription,
+                        style: UITextStyle.bodyText,
                       ),
                     ],
                   ),

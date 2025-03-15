@@ -29,9 +29,10 @@ class DaikoonHorizontalScroll extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.only(left: horizontalPadding),
               child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: AppSpacing.lg,
-                  horizontal: AppSpacing.md,
+                padding: const EdgeInsets.only(
+                  top: AppSpacing.lg,
+                  bottom: AppSpacing.lg,
+                  right: AppSpacing.md,
                 ),
                 child: children[index],
               ),
@@ -40,9 +41,10 @@ class DaikoonHorizontalScroll extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.only(right: horizontalPadding),
               child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: AppSpacing.lg,
-                  horizontal: AppSpacing.md,
+                padding: const EdgeInsets.only(
+                  top: AppSpacing.lg,
+                  bottom: AppSpacing.lg,
+                  left: AppSpacing.md,
                 ),
                 child: children[index],
               ),

@@ -24,17 +24,14 @@ class HomeHeader extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(
-            width: AppSize.cardItemMd,
-            child: Text(
-              context.l10n.homeHeaderTitle,
-              style: context.headlineLarge,
-              textAlign: TextAlign.center,
-            ),
+          Text(
+            context.l10n.homeHeaderTitle,
+            style: UITextStyle.title,
+            textAlign: TextAlign.center,
           ),
           Text(
             context.l10n.homeHeaderSubtitle,
-            style: context.bodyMedium,
+            style: UITextStyle.subtitle,
             textAlign: TextAlign.center,
           ),
           Padding(
@@ -51,14 +48,14 @@ class HomeHeader extends StatelessWidget {
                       ),
                       padding: WidgetStatePropertyAll(
                         EdgeInsets.symmetric(
-                          vertical: AppSpacing.lg,
+                          vertical: AppSpacing.xlg,
                           horizontal: AppSpacing.xxlg,
                         ),
                       ),
                     ),
-                    textStyle: UITextStyle.button
+                    textStyle: UITextStyle.buttonText
                         .copyWith(color: context.reversedAdaptiveColor),
-                    text: 'GO !',
+                    text: 'Go !',
                     onPressed: () => context.pushNamed(
                       AppRoutes.createChallenge.name,
                     ),

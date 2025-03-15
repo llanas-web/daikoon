@@ -12,4 +12,7 @@ class FontFamily {
 
   /// Font family: Gotham
   static const String gotham = 'Gotham';
+
+  /// Font family: Grifter
+  static const String grifter = 'Grifter';
 }
