@@ -17,17 +17,22 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppScaffold(
-      appBar: HomeAppBar(),
+    return AppScaffold(
+      appBar: const HomeAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            HomeHeader(),
-            HomePartners(),
+            const HomeHeader(),
+            const HomePartners(),
+            Transform.translate(
+              offset: const Offset(0, -50),
+              child: const HomeSocials(),
+            ),
+            const HomeFooter(),
           ],
         ),
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
     );
   }
 }

@@ -115,8 +115,10 @@ class PartnersItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(subtitle, style: UITextStyle.partnerItemSubtitle),
-                      Text(description,
-                          style: UITextStyle.partnerItemDescription),
+                      Text(
+                        description,
+                        style: UITextStyle.partnerItemDescription,
+                      ),
                     ],
                   ),
                   Row(

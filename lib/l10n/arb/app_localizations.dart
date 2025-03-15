@@ -334,6 +334,18 @@ abstract class AppLocalizations {
   /// **'Les offres du moment'**
   String get homeOffersSubtitle;
 
+  /// Title text for the home socials
+  ///
+  /// In fr, this message translates to:
+  /// **'Retrouvez nous sur nos réseaux sociaux 🫶'**
+  String get homeSocialsTitle;
+
+  /// Label text for the home footer
+  ///
+  /// In fr, this message translates to:
+  /// **'Copyright © 2025 Daïkoon, Tout droits réservés.'**
+  String get homeFooterLabel;
+
   /// Label text for the information tile
   ///
   /// In fr, this message translates to:

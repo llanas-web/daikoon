@@ -138,6 +138,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeOffersSubtitle => 'Les offres du moment';
 
   @override
+  String get homeSocialsTitle => 'Retrouvez nous sur nos réseaux sociaux 🫶';
+
+  @override
+  String get homeFooterLabel =>
+      'Copyright © 2025 Daïkoon, Tout droits réservés.';
+
+  @override
   String get userProfileTileInformationLabel => 'Mes Informations';
 
   @override

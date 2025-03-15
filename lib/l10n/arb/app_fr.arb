@@ -171,6 +171,14 @@
   "@homeOffersSubtitle": {
     "description": "Subtitle text for the home offers"
   },
+  "homeSocialsTitle": "Retrouvez nous sur nos réseaux sociaux 🫶",
+  "@homeSocialsTitle": {
+    "description": "Title text for the home socials"
+  },
+  "homeFooterLabel": "Copyright © 2025 Daïkoon, Tout droits réservés.",
+  "@homeFooterLabel": {
+    "description": "Label text for the home footer"
+  },
   "userProfileTileInformationLabel": "Mes Informations",
   "@userProfileTileInformationLabel": {
     "description": "Label text for the information tile"

@@ -23,6 +23,12 @@ abstract class UITextStyle {
     letterSpacing: -0.7,
   );
 
+  /// TextStyle for the Body Text
+  static final TextStyle bodyText = _baseTextStyle.copyWith(
+    fontSize: 12,
+    fontWeight: AppFontWeight.regular,
+  );
+
   /// TextStyle for the Partner Item Subtitle
   static final TextStyle partnerItemSubtitle = _baseTextStyle.copyWith(
     fontSize: 12,

@@ -40,24 +40,26 @@ class HomePartners extends StatelessWidget {
             subtitle: context.l10n.homePartnersHonorSubtitle,
             children: List.generate(3, (index) => _partnerItem),
           ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxlg),
+            child: AppDivider(color: AppColors.lightGrey),
+          ),
           PartnersListItem(
             title: context.l10n.homePartnersListTitle,
             subtitle: context.l10n.homePartnersListSubtitle,
             children: List.generate(3, (index) => _partnerItem),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxlg),
+            child: AppDivider(color: AppColors.lightGrey),
           ),
           PartnersListItem(
             title: context.l10n.homeOffersTitle,
             subtitle: context.l10n.homeOffersSubtitle,
             children: List.generate(3, (index) => const OfferItem()),
           ) as Widget,
-        ]
-            .insertBetween(
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxlg),
-                child: AppDivider(color: AppColors.lightGrey),
-              ),
-            )
-            .spacerBetween(height: AppSpacing.xxlg),
+          const Gap.v(AppSpacing.xxxlg * 2),
+        ].spacerBetween(height: AppSpacing.xxlg),
       ),
     );
   }
