@@ -53,9 +53,7 @@ class DaikoonFormDateSelector extends StatelessWidget {
       suffixIcon: !readOnly ? const Icon(Icons.arrow_drop_down) : null,
       filled: true,
       filledColor: AppColors.white,
-      hintStyle: const TextStyle(
-        color: AppColors.grey,
-      ),
+      hintStyle: UITextStyle.hintText,
       readOnly: true,
       textController: TextEditingController(
         text: value != null
@@ -66,7 +64,9 @@ class DaikoonFormDateSelector extends StatelessWidget {
             : hintText,
       ),
       onTap: () => onTapDate(context),
-      style: context.bodySmall,
+      style: UITextStyle.hintText.copyWith(
+        fontSize: 12,
+      ),
     );
   }
 }

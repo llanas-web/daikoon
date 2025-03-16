@@ -61,9 +61,7 @@ class _DaikoonFormSelectorState<T> extends State<DaikoonFormSelector<T>> {
           hintText: widget.hintText,
           filled: true,
           filledColor: AppColors.white,
-          hintStyle: const TextStyle(
-            color: AppColors.grey,
-          ),
+          hintStyle: UITextStyle.hintText,
           textController: _controller,
           onChanged: (value) => _debouncer.run(() async {
             listItems.value = await widget.onChange(value);

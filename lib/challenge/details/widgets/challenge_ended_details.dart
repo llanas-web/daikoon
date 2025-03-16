@@ -48,7 +48,9 @@ class ChallengeEndedDetails extends StatelessWidget {
         children: [
           Text(
             challenge.title!,
-            style: context.headlineSmall,
+            style: UITextStyle.subtitle.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
           SizedBox(
@@ -57,7 +59,7 @@ class ChallengeEndedDetails extends StatelessWidget {
               hasWon
                   ? context.l10n.challengeDetailsEndedWonTitle
                   : context.l10n.challengeDetailsEndedLoseTitle,
-              style: context.headlineLarge,
+              style: UITextStyle.title,
               textAlign: TextAlign.center,
             ),
           ),
@@ -72,7 +74,7 @@ class ChallengeEndedDetails extends StatelessWidget {
             children: [
               Text(
                 context.l10n.challengeDetailsEndedWinnersLabel,
-                style: context.headlineMedium,
+                style: UITextStyle.titleSmallBold,
               ),
               Text(
                 winners
@@ -80,7 +82,7 @@ class ChallengeEndedDetails extends StatelessWidget {
                       (winner) => '@${winner?.displayUsername}',
                     )
                     .join(', '),
-                style: context.headlineLarge,
+                style: UITextStyle.title2,
                 textAlign: TextAlign.center,
               ),
             ].spacerBetween(height: AppSpacing.md),
@@ -90,13 +92,13 @@ class ChallengeEndedDetails extends StatelessWidget {
               children: [
                 Text(
                   context.l10n.challengeDetailsEndedDaikoinsWinLabel,
-                  style: context.headlineMedium,
+                  style: UITextStyle.titleSmallBold,
                 ),
                 FutureBuilder<int>(
                   future: getAwardAmount(),
                   builder: (context, snapshot) => Text(
                     snapshot.data != null ? snapshot.data.toString() : '...',
-                    style: context.headlineLarge,
+                    style: UITextStyle.title2,
                   ),
                 ),
               ].spacerBetween(height: AppSpacing.md),

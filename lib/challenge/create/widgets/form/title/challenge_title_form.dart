@@ -13,7 +13,7 @@ class ChallengeTitleForm extends StatelessWidget {
       children: [
         Text(
           context.l10n.challengeCreationTitleFormLabel,
-          style: context.headlineMedium,
+          style: UITextStyle.title,
         ),
         const Row(
           children: [

@@ -13,7 +13,7 @@ class ChallengePreviousButton extends StatelessWidget {
       child: Text(
         '< ${context.l10n.challengeCreationCancelButtonLabel}',
         textAlign: TextAlign.center,
-        style: const TextStyle(
+        style: UITextStyle.subtitle.copyWith(
           decoration: TextDecoration.underline,
           color: AppColors.primary,
         ),

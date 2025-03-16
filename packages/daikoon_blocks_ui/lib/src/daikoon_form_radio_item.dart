@@ -29,7 +29,7 @@ class DaikoonFormRadioItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppRadius.lg),
                 border: isSelected
                     ? Border.all(
-                        color: AppColors.primary,
+                        color: AppColors.deepBlue,
                         width: AppSpacing.xxs,
                       )
                     : Border.all(
@@ -50,7 +50,9 @@ class DaikoonFormRadioItem extends StatelessWidget {
                   else
                     Text(
                       title,
-                      style: context.bodyLarge,
+                      style: UITextStyle.hintText.copyWith(
+                        color: isSelected ? AppColors.deepBlue : AppColors.grey,
+                      ),
                     ),
                   Stack(
                     alignment: Alignment.center,
@@ -62,7 +64,9 @@ class DaikoonFormRadioItem extends StatelessWidget {
                           shape: BoxShape.circle,
                           color: AppColors.white,
                           border: Border.all(
-                            color: AppColors.primary,
+                            color: isSelected
+                                ? AppColors.secondary
+                                : AppColors.deepBlue,
                             width: AppSpacing.xxs,
                           ),
                         ),

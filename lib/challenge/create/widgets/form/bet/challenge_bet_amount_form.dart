@@ -50,7 +50,7 @@ class _ChallengeBetAmountFormState extends State<ChallengeBetAmountForm> {
       children: [
         Text(
           context.l10n.challengeCreationBetFormLabel,
-          style: context.headlineMedium,
+          style: UITextStyle.title,
         ),
         Column(
           children: [
@@ -66,9 +66,7 @@ class _ChallengeBetAmountFormState extends State<ChallengeBetAmountForm> {
                         .l10n.challengeCreationBetAmountMinFormFieldLabel,
                     filled: true,
                     filledColor: AppColors.white,
-                    hintStyle: const TextStyle(
-                      color: AppColors.grey,
-                    ),
+                    hintStyle: UITextStyle.hintText,
                     textInputType: TextInputType.number,
                     focusNode: _minAmountFocusNode,
                     textInputAction: TextInputAction.next,
@@ -94,9 +92,7 @@ class _ChallengeBetAmountFormState extends State<ChallengeBetAmountForm> {
                         .l10n.challengeCreationBetAmountMaxFormFieldLabel,
                     filled: true,
                     filledColor: AppColors.white,
-                    hintStyle: const TextStyle(
-                      color: AppColors.grey,
-                    ),
+                    hintStyle: UITextStyle.hintText,
                     textInputType: TextInputType.number,
                     textInputAction: TextInputAction.done,
                     textController: _maxAmountController,

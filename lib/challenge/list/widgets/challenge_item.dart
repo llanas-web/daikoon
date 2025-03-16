@@ -13,6 +13,14 @@ class ChallengeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var title = '';
+    if (challenge.isPending) {
+      title = 'Défi en cours ⏱️';
+    } else if (challenge.isEnded) {
+      title = 'Défi terminé 📣';
+    } else if (!challenge.isStarted) {
+      title = 'Nouveau Défi 🏆';
+    }
     return Tappable(
       onTap: () => context.pushNamed(
         AppRoutes.challengeDetails.name,
@@ -40,9 +48,12 @@ class ChallengeItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (challenge.isPending) const Text('Défi en cours ⏱️'),
-            if (challenge.isEnded) const Text('Défi terminé 📣'),
-            if (!challenge.isStarted) const Text('Nouveau Défi 🏆'),
+            Text(
+              title,
+              style: UITextStyle.titleSmallBold.copyWith(
+                fontWeight: AppFontWeight.bold,
+              ),
+            ),
             Text(
               challenge.title ?? '',
               style: context.headlineMedium?.copyWith(
@@ -50,7 +61,9 @@ class ChallengeItem extends StatelessWidget {
               ),
             ),
             const Divider(color: AppColors.primary),
-            Text('Défi organisé par ${challenge.creator?.username}'),
+            Text(
+              'Défi organisé par ${challenge.creator?.username}',
+            ),
             const Gap.v(AppSpacing.md),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

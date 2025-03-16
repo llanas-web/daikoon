@@ -13,14 +13,14 @@ class ChallengeDatesForm extends StatelessWidget {
       children: [
         Text(
           context.l10n.challengeCreationDatesFormLabel,
-          style: context.headlineMedium,
+          style: UITextStyle.title,
         ),
         Column(
           children: [
             const ChallengeDateStartFormField(),
             const ChallengeDateLimitFormField(),
             const ChallengeDateEndFormField(),
-          ].spacerBetween(height: AppSpacing.md),
+          ].spacerBetween(height: AppSpacing.lg),
         ),
       ].spacerBetween(height: AppSpacing.xxlg),
     );

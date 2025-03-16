@@ -31,6 +31,14 @@ abstract class UITextStyle {
     height: 1.2,
   );
 
+  /// TextStyle for the Title 2
+  static final TextStyle title2 = _baseTextStyle.copyWith(
+    fontFamily: FontFamily.gotham,
+    fontSize: 28,
+    fontWeight: AppFontWeight.black,
+    height: 1.2,
+  );
+
   /// TextStyle for the Title Small
   static final TextStyle titleSmallBold = _baseTextStyle.copyWith(
     fontSize: 16,
@@ -41,7 +49,14 @@ abstract class UITextStyle {
   /// TextStyle for the Subtitle
   static final TextStyle subtitle = _baseTextStyle.copyWith(
     fontSize: 16,
-    fontWeight: AppFontWeight.regular,
+    fontWeight: AppFontWeight.normal,
+    height: 1.25,
+  );
+
+  /// TextStyle for the Subtitle Bold
+  static final TextStyle subtitleBold = _baseTextStyle.copyWith(
+    fontSize: 16,
+    fontWeight: AppFontWeight.bold,
     height: 1.25,
   );
 
@@ -54,7 +69,28 @@ abstract class UITextStyle {
   /// TextStyle for the Body Text
   static final TextStyle bodyText = _baseTextStyle.copyWith(
     fontSize: 12,
-    fontWeight: AppFontWeight.regular,
+    fontWeight: AppFontWeight.normal,
+  );
+
+  /**
+   * ACTION
+   */
+
+  /// TextStyle for the Action Text
+  static final TextStyle drawerLabel = _baseTextStyle.copyWith(
+    fontSize: 20,
+    fontWeight: AppFontWeight.normal,
+  );
+
+  /**
+   * FORM SECTION
+   */
+
+  /// TextStyle for the Form Section Title
+  static final TextStyle hintText = _baseTextStyle.copyWith(
+    fontSize: 16,
+    fontWeight: AppFontWeight.normal,
+    color: AppColors.grey,
   );
 
   /// TextStyle for the Partner Item Subtitle
@@ -66,7 +102,7 @@ abstract class UITextStyle {
   /// TextStyle for the Partner Item Description
   static final TextStyle partnerItemDescription = _baseTextStyle.copyWith(
     fontSize: 12,
-    fontWeight: AppFontWeight.regular,
+    fontWeight: AppFontWeight.normal,
   );
 
   /// TextStyle for the Partner Item Distance
@@ -141,7 +177,7 @@ abstract class UITextStyle {
   /// Headline 5 Text Style
   static final TextStyle headline5 = _baseTextStyle.copyWith(
     fontSize: 22,
-    fontWeight: AppFontWeight.regular,
+    fontWeight: AppFontWeight.normal,
     height: 1.27,
   );
 

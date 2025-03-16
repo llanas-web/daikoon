@@ -19,14 +19,16 @@ class ChallengeInvitationPending extends StatelessWidget {
         children: [
           Text(
             '@${challenge.creator!.displayUsername}',
-            style: context.headlineSmall,
+            style: UITextStyle.titleSmallBold.copyWith(
+              fontWeight: AppFontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
           SizedBox(
             width: 300,
             child: Text(
               context.l10n.challengeDetailsInvitationTitle(challenge.title!),
-              style: context.headlineLarge,
+              style: UITextStyle.title,
               textAlign: TextAlign.center,
             ),
           ),
@@ -35,9 +37,7 @@ class ChallengeInvitationPending extends StatelessWidget {
             children: [
               Text(
                 context.l10n.challengeDetailsQuestionLabel,
-                style: const TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
               ChallengeQuestionTextField(
                 initialValue: challenge.question!,
@@ -45,16 +45,14 @@ class ChallengeInvitationPending extends StatelessWidget {
               ),
             ].spacerBetween(height: AppSpacing.md),
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'daikoins',
-                style: TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
-              Icon(
+              const Icon(
                 Icons.check,
                 color: AppColors.secondary,
               ),
@@ -65,9 +63,7 @@ class ChallengeInvitationPending extends StatelessWidget {
             children: [
               Text(
                 context.l10n.challengeDetailsLimitDateLabel,
-                style: const TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
               Row(
                 children: [
@@ -118,9 +114,7 @@ class ChallengeInvitationPending extends StatelessWidget {
             children: [
               Text(
                 context.l10n.challengeDetailsStartDateLabel,
-                style: const TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
               Row(
                 children: [
@@ -145,9 +139,7 @@ class ChallengeInvitationPending extends StatelessWidget {
             children: [
               Text(
                 context.l10n.challengeDetailsEndDateLabel,
-                style: const TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
               Row(
                 children: [
@@ -172,9 +164,7 @@ class ChallengeInvitationPending extends StatelessWidget {
             children: [
               Text(
                 context.l10n.challengeDetailsPendingListParticipantLabel,
-                style: const TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
               ListView.builder(
                 shrinkWrap: true,
@@ -183,6 +173,7 @@ class ChallengeInvitationPending extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Text(
                     '@${challenge.participants[index].displayUsername}',
+                    style: UITextStyle.subtitle,
                   );
                 },
               ),

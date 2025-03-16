@@ -45,7 +45,7 @@ abstract class AppColors {
   static const Color primaryDarkBlue = Color(0xff1c1e22);
 
   /// Grey.
-  static const Color grey = Colors.grey;
+  static const Color grey = Color.fromARGB(255, 112, 112, 112);
 
   /// The bright grey color.
   static const Color brightGrey = Color.fromARGB(255, 224, 224, 224);

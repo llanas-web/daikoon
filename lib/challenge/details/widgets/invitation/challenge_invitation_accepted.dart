@@ -53,14 +53,16 @@ class __ChallengeInvitationAcceptedState
             context.l10n.challengeDetailsAcceptedCreatorTitle(
               challenge.creator!.displayUsername,
             ),
-            style: context.headlineSmall,
+            style: UITextStyle.titleSmallBold.copyWith(
+              fontWeight: AppFontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
           SizedBox(
             width: 300,
             child: Text(
               context.l10n.challengeDetailsInvitationTitle(challenge.title!),
-              style: context.headlineLarge,
+              style: UITextStyle.title,
               textAlign: TextAlign.center,
             ),
           ),
@@ -69,9 +71,7 @@ class __ChallengeInvitationAcceptedState
             children: [
               Text(
                 context.l10n.challengeDetailsQuestionLabel,
-                style: const TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
               ChallengeQuestionTextField(
                 initialValue: challenge.question!,
@@ -84,9 +84,7 @@ class __ChallengeInvitationAcceptedState
             children: [
               Text(
                 context.l10n.challengeDetailsAcceptedChoiceLabel,
-                style: const TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
               if (challenge.choices.isNotEmpty)
                 Column(
@@ -109,9 +107,7 @@ class __ChallengeInvitationAcceptedState
               children: [
                 Text(
                   context.l10n.challengeDetailsAcceptedDaikoinsLabel,
-                  style: const TextStyle(
-                    fontWeight: AppFontWeight.extraBold,
-                  ),
+                  style: UITextStyle.subtitleBold,
                 ),
                 Column(
                   children: [
@@ -144,9 +140,7 @@ class __ChallengeInvitationAcceptedState
             children: [
               Text(
                 context.l10n.challengeDetailsLimitDateLabel,
-                style: const TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
               Row(
                 children: [
@@ -171,9 +165,7 @@ class __ChallengeInvitationAcceptedState
             children: [
               Text(
                 context.l10n.challengeDetailsStartDateLabel,
-                style: const TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
               Row(
                 children: [
@@ -198,9 +190,7 @@ class __ChallengeInvitationAcceptedState
             children: [
               Text(
                 context.l10n.challengeDetailsEndDateLabel,
-                style: const TextStyle(
-                  fontWeight: AppFontWeight.extraBold,
-                ),
+                style: UITextStyle.subtitleBold,
               ),
               Row(
                 children: [

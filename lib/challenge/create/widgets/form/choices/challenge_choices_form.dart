@@ -20,7 +20,7 @@ class ChallengeChoicesForm extends StatelessWidget {
       children: [
         Text(
           context.l10n.challengeCreationOptionsFormLabel,
-          style: context.headlineMedium,
+          style: UITextStyle.title,
         ),
         Row(
           children: [
@@ -30,6 +30,7 @@ class ChallengeChoicesForm extends StatelessWidget {
                 children: [
                   Text(
                     '${context.l10n.challengeCreationQuestionFormFieldLabel} :',
+                    style: UITextStyle.subtitle,
                   ),
                   ChallengeQuestionTextField(
                     initialValue: question.value,
@@ -45,7 +46,10 @@ class ChallengeChoicesForm extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('${context.l10n.challengeCreationOptionsFormFieldLabel} :'),
+            Text(
+              '${context.l10n.challengeCreationOptionsFormFieldLabel} :',
+              style: UITextStyle.subtitle,
+            ),
             if (options.isNotEmpty)
               Column(
                 children: options
@@ -102,7 +106,12 @@ class _OptionItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(option, style: context.bodyLarge),
+                Text(
+                  option,
+                  style: UITextStyle.subtitle.copyWith(
+                    color: AppColors.grey,
+                  ),
+                ),
                 Tappable(
                   onTap: onRemove,
                   child: const Icon(Icons.remove),

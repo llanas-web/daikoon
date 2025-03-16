@@ -1,5 +1,6 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
+import 'package:daikoon/app/home/home.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,86 +18,94 @@ class AppDrawer extends StatelessWidget {
       // Make drawer wit no rounded border
       shape: const RoundedRectangleBorder(),
       backgroundColor: Colors.white,
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            padding: const EdgeInsets.only(
-              left: AppSpacing.lg,
-              right: AppSpacing.lg,
-              bottom: AppSpacing.xxlg,
-            ),
-            // adding bottom border
-            margin: EdgeInsets.zero,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Assets.images.daikoon.svg(
-                      colorFilter: const ColorFilter.mode(
-                        AppColors.primary,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.close,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                      onPressed: () => Navigator.pop(context),
-                    ),
-                  ],
+          ListView(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(
+                  left: AppSpacing.lg,
+                  right: AppSpacing.lg,
+                  bottom: AppSpacing.xxlg,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                // adding bottom border
+                margin: EdgeInsets.zero,
+                child: Column(
                   children: [
-                    Text(
-                      context.l10n.drawerHeadline(user.displayUsername),
-                      style: context.headlineMedium,
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.xxlg,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          context.l10n.drawerWelcomeText,
-                          softWrap: true,
-                          textAlign: TextAlign.center,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Assets.images.daikoon.svg(
+                          colorFilter: const ColorFilter.mode(
+                            AppColors.primary,
+                            BlendMode.srcIn,
+                          ),
                         ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.close,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          context.l10n.drawerHeadline(user.displayUsername),
+                          style: UITextStyle.title,
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.xxlg,
                       ),
-                    ],
-                  ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              context.l10n.drawerWelcomeText,
+                              softWrap: true,
+                              textAlign: TextAlign.center,
+                              style: UITextStyle.subtitle,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ].spacerBetween(height: AppSpacing.xlg),
                 ),
-              ].spacerBetween(height: AppSpacing.xlg),
-            ),
+              ),
+              _DrawerItemWidget(
+                title: context.l10n.drawerChallengeLabel,
+                icon: Assets.icons.challenge,
+                route: AppRoutes.createChallenge,
+              ),
+              _DrawerItemWidget(
+                title: context.l10n.drawerListChallengeLabel,
+                icon: Assets.icons.trophy,
+                route: AppRoutes.listChallenges,
+              ),
+              _DrawerItemWidget(
+                title: context.l10n.drawerFriendsLabel,
+                icon: Assets.icons.friends,
+                route: AppRoutes.friends,
+              ),
+              _DrawerItemWidget(
+                title: context.l10n.drawerDaikoinsLabel,
+                icon: Assets.icons.daikoon,
+                route: AppRoutes.daikoins,
+              ),
+            ],
           ),
-          _DrawerItemWidget(
-            title: context.l10n.drawerChallengeLabel,
-            icon: Assets.icons.challenge,
-            route: AppRoutes.createChallenge,
-          ),
-          _DrawerItemWidget(
-            title: context.l10n.drawerListChallengeLabel,
-            icon: Assets.icons.trophy,
-            route: AppRoutes.listChallenges,
-          ),
-          _DrawerItemWidget(
-            title: context.l10n.drawerFriendsLabel,
-            icon: Assets.icons.friends,
-            route: AppRoutes.friends,
-          ),
-          _DrawerItemWidget(
-            title: context.l10n.drawerDaikoinsLabel,
-            icon: Assets.icons.daikoon,
-            route: AppRoutes.daikoins,
-          ),
+          const HomeFooter(),
         ],
       ),
     );
@@ -131,14 +140,16 @@ class _DrawerItemWidget extends StatelessWidget {
       selectedTileColor: AppColors.primary,
       title: Text(
         title,
-        style: context.labelMedium!.copyWith(
-          fontWeight: AppFontWeight.bold,
-          color: isSelected
-              ? context.reversedAdaptiveColor
-              : context.adaptiveColor,
-        ),
+        style: isSelected
+            ? UITextStyle.drawerLabel.copyWith(
+                color: context.reversedAdaptiveColor,
+              )
+            : UITextStyle.drawerLabel.copyWith(
+                color: context.adaptiveColor,
+              ),
       ),
       leading: icon.svg(
+        width: AppSize.iconSize,
         colorFilter: isSelected
             ? ColorFilter.mode(context.reversedAdaptiveColor, BlendMode.srcIn)
             : ColorFilter.mode(context.adaptiveColor, BlendMode.srcIn),

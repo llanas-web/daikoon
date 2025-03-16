@@ -433,7 +433,7 @@ abstract class AppLocalizations {
   /// Label for the challenges page
   ///
   /// In fr, this message translates to:
-  /// **'Nouveau défi'**
+  /// **'Défier'**
   String get drawerChallengeLabel;
 
   /// Label for the list challenges page

@@ -24,6 +24,7 @@ class ChallengeDateLimitFormField extends StatelessWidget {
             children: [
               Text(
                 '${context.l10n.challengeCreationDatesLimitFieldLabel} :',
+                style: UITextStyle.subtitle,
               ),
               Row(
                 children: [

@@ -14,15 +14,33 @@ class ChallengeResume extends StatelessWidget {
       children: [
         Text(
           context.l10n.challengeCreationResumeLabel,
-          style: context.headlineMedium,
+          style: UITextStyle.title,
         ),
-        Text(context.l10n.challengeCreationTitleFormLabel),
-        Text(context.l10n.challengeCreationOptionsFormLabel),
-        Text(context.l10n.challengeCreationBetFormLabel),
+        Text(
+          context.l10n.challengeCreationTitleFormLabel,
+          style: UITextStyle.subtitle,
+        ),
+        Text(
+          context.l10n.challengeCreationOptionsFormLabel,
+          style: UITextStyle.subtitle,
+        ),
+        Text(
+          context.l10n.challengeCreationBetFormLabel,
+          style: UITextStyle.subtitle,
+        ),
         if (challengeState.hasBet)
-          Text(context.l10n.challengeCreationBetAmountFormLabel),
-        Text(context.l10n.challengeCreationParticipantsFormLabel),
-        Text(context.l10n.challengeCreationDatesFormLabel),
+          Text(
+            context.l10n.challengeCreationBetAmountFormLabel,
+            style: UITextStyle.subtitle,
+          ),
+        Text(
+          context.l10n.challengeCreationParticipantsFormLabel,
+          style: UITextStyle.subtitle,
+        ),
+        Text(
+          context.l10n.challengeCreationDatesFormLabel,
+          style: UITextStyle.subtitle,
+        ),
       ],
     );
   }

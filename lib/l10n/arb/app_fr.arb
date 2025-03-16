@@ -241,7 +241,7 @@
   "@drawerWelcomeText": {
     "description": "Welcome text explaining daikoon in the drawer header"
   },
-  "drawerChallengeLabel": "Nouveau défi",
+  "drawerChallengeLabel": "Défier",
   "@drawerChallengeLabel": {
     "description": "Label for the challenges page"
   },

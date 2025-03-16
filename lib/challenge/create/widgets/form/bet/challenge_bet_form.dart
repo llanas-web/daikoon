@@ -17,7 +17,7 @@ class ChallengeBetForm extends StatelessWidget {
       children: [
         Text(
           context.l10n.challengeCreationBetFormLabel,
-          style: context.headlineMedium,
+          style: UITextStyle.title,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

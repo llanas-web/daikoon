@@ -55,9 +55,7 @@ class _ChallengeQuestionTextFieldState
       hintText: context.l10n.challengeCreationQuestionFormFieldHint,
       filled: true,
       filledColor: AppColors.white,
-      hintStyle: const TextStyle(
-        color: AppColors.grey,
-      ),
+      hintStyle: UITextStyle.hintText,
       textController: _controller,
       focusNode: _focusNode,
       readOnly: widget.readOnly,

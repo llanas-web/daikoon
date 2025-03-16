@@ -29,9 +29,7 @@ class _ChallengeTitleTextFieldState extends State<ChallengeTitleTextField> {
       hintText: context.l10n.challengeCreationTitleFormFieldHint,
       filled: true,
       filledColor: AppColors.white,
-      hintStyle: const TextStyle(
-        color: AppColors.grey,
-      ),
+      hintStyle: UITextStyle.hintText,
       initialValue: challengeTitle.value,
       onChanged: (newTitle) => _debouncer.run(
         () => context.read<CreateChallengeCubit>().onTitleChanged(newTitle),

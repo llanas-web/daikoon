@@ -12,15 +12,17 @@ class ChallengeParticipantsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final participants = context.select(
-      (CreateChallengeCubit cubit) => cubit.state.participants,
-    );
+    final participantsNames = context
+        .select(
+          (CreateChallengeCubit cubit) => cubit.state.participants,
+        )
+        .map((participant) => participant.displayUsername);
 
     return Column(
       children: [
         Text(
           l10n.challengeCreationParticipantsFormLabel,
-          style: context.headlineMedium,
+          style: UITextStyle.title,
         ),
         Row(
           children: [
@@ -30,20 +32,25 @@ class ChallengeParticipantsForm extends StatelessWidget {
                 children: [
                   Text(
                     '${l10n.challengeCreationParticipantsFormFieldLabel} :',
+                    style: UITextStyle.subtitle,
                   ),
                   const ChallengeParticipantsFormField(),
-                ],
+                ].spacerBetween(height: AppSpacing.md),
               ),
             ),
           ].spacerBetween(height: AppSpacing.md),
         ),
-        Text(
-          participants.isEmpty
-              ? ''
-              : participants
-                  .map((participant) => participant.displayUsername)
-                  .join(', '),
-        ),
+        if (participantsNames.isEmpty)
+          const SizedBox.shrink()
+        else
+          Text(
+            participantsNames.join(', '),
+            style: UITextStyle.bodyText.copyWith(
+              fontStyle: FontStyle.italic,
+              color: AppColors.grey,
+            ),
+            textAlign: TextAlign.start,
+          ),
       ].spacerBetween(height: AppSpacing.xlg),
     );
   }

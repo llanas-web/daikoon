@@ -24,6 +24,7 @@ class ChallengeDateStartFormField extends StatelessWidget {
             children: [
               Text(
                 '${context.l10n.challengeCreationDatesStartFieldLabel} :',
+                style: UITextStyle.subtitle,
               ),
               Row(
                 children: [

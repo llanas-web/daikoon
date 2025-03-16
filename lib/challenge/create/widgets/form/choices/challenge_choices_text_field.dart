@@ -48,9 +48,7 @@ class _ChallengeChoicesTextFieldState extends State<ChallengeChoicesTextField> {
       hintText: context.l10n.challengeCreationOptionsFormFieldHint,
       filled: true,
       filledColor: AppColors.white,
-      hintStyle: const TextStyle(
-        color: AppColors.grey,
-      ),
+      hintStyle: UITextStyle.hintText,
       focusNode: _focusNode,
       textController: _optionController,
       suffixIcon: Padding(

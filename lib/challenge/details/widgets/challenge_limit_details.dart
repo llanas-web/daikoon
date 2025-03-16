@@ -42,14 +42,16 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
                 context.l10n.challengeDetailsStatsCreatorTitle(
                   challenge.creator!.displayUsername,
                 ),
-                style: context.headlineSmall,
+                style: UITextStyle.subtitle.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
                 width: 300,
                 child: Text(
                   context.l10n.challengeDetailsStatsTitle(challenge.title!),
-                  style: context.headlineLarge,
+                  style: UITextStyle.title,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -82,14 +84,11 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
                     children: [
                       Text(
                         choice.value,
-                        style: const TextStyle(
-                          fontWeight: AppFontWeight.extraBold,
-                        ),
+                        style: UITextStyle.titleSmallBold,
                       ),
                       Text(
                         '${choiceBets.length}',
-                        style: const TextStyle(
-                          fontWeight: AppFontWeight.extraBold,
+                        style: UITextStyle.titleSmallBold.copyWith(
                           color: AppColors.secondary,
                         ),
                       ),
@@ -103,9 +102,15 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
                     backgroundColor: AppColors.primary.withValues(alpha: 0.35),
                   ),
                   if (participantUsernames.isEmpty)
-                    const Text('Vote de : personne')
+                    Text(
+                      'Pas de votant',
+                      style: UITextStyle.bodyText,
+                    )
                   else
-                    Text('Vote de : $participantUsernames'),
+                    Text(
+                      'Vote de : $participantUsernames',
+                      style: UITextStyle.bodyText,
+                    ),
                 ].spacerBetween(height: AppSpacing.sm),
               );
             },

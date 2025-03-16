@@ -52,7 +52,7 @@ class OfferItem extends StatelessWidget {
                   '07:00 - 20:30',
                   style: UITextStyle.offerItemTitle.copyWith(
                     fontSize: 12,
-                    fontWeight: AppFontWeight.regular,
+                    fontWeight: AppFontWeight.normal,
                     color: context.reversedAdaptiveColor,
                   ),
                 ),

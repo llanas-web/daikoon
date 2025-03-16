@@ -18,7 +18,7 @@ abstract class AppFontWeight {
   static const FontWeight medium = FontWeight.w500;
 
   /// FontWeight value of `w400`
-  static const FontWeight regular = FontWeight.w400;
+  static const FontWeight normal = FontWeight.w400;
 
   /// FontWeight value of `w300`
   static const FontWeight light = FontWeight.w300;

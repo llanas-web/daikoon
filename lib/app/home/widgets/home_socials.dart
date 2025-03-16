@@ -67,7 +67,7 @@ class HomeSocials extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xlg),
             child: Text(
               context.l10n.homeSocialsTitle,
-              style: context.headlineMedium,
+              style: UITextStyle.title,
               textAlign: TextAlign.center,
             ),
           ),
@@ -90,43 +90,73 @@ class HomeSocials extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Text('Liens utiles', style: context.headlineMedium),
+                  Text(
+                    'Liens utiles',
+                    style: UITextStyle.titleSmallBold,
+                  ),
                   Container(
                     width: 30,
                     color: AppColors.lightGrey,
                     height: 3,
                   ),
-                  Text('FAQ', style: UITextStyle.bodyText1),
-                  Text('Mentions légales', style: UITextStyle.bodyText1),
+                  Text(
+                    'FAQ',
+                    style: UITextStyle.subtitle,
+                  ),
+                  Text(
+                    'Mentions légales',
+                    style: UITextStyle.subtitle,
+                  ),
                   Text(
                     'Politiques de confidentialité',
-                    style: UITextStyle.bodyText1,
+                    style: UITextStyle.subtitle,
                   ),
-                  Text('CGV', style: UITextStyle.bodyText1),
-                  Text('Qui sommes nous ?', style: UITextStyle.bodyText1),
+                  Text(
+                    'CGV',
+                    style: UITextStyle.subtitle,
+                  ),
+                  Text(
+                    'Qui sommes nous ?',
+                    style: UITextStyle.subtitle,
+                  ),
                 ].spacerBetween(height: AppSpacing.md),
               ),
               Column(
                 children: [
-                  Text('Mon espace', style: context.headlineMedium),
+                  Text(
+                    'Mon espace',
+                    style: UITextStyle.titleSmallBold,
+                  ),
                   Container(
                     width: 30,
                     color: AppColors.lightGrey,
                     height: 3,
                   ),
-                  Text('Mon compte', style: UITextStyle.bodyText1),
-                  Text('Service client', style: UITextStyle.bodyText1),
+                  Text(
+                    'Mon compte',
+                    style: UITextStyle.subtitle,
+                  ),
+                  Text(
+                    'Service client',
+                    style: UITextStyle.subtitle,
+                  ),
                 ].spacerBetween(height: AppSpacing.md),
               ),
               Column(
                 children: [
-                  Text('Contact', style: context.headlineMedium),
+                  Text(
+                    'Contact',
+                    style: UITextStyle.titleSmallBold,
+                  ),
                   Container(
                     width: 30,
                     color: AppColors.lightGrey,
                     height: 3,
                   ),
-                  Text('Nous contacter', style: UITextStyle.bodyText1),
+                  Text(
+                    'Nous contacter',
+                    style: UITextStyle.subtitle,
+                  ),
                 ].spacerBetween(height: AppSpacing.md),
               ),
             ].spacerBetween(height: AppSpacing.xlg),
