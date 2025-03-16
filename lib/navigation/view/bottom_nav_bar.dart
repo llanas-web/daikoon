@@ -1,4 +1,5 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:collection/collection.dart';
 import 'package:daikoon/app/bloc/app_bloc.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -42,15 +43,20 @@ class BottomNavBar extends StatelessWidget {
           initialLocation: index == navigationShell.currentIndex,
         );
       },
-      iconSize: AppSpacing.xxlg,
+      iconSize: AppSize.iconSize,
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      selectedItemColor: AppColors.secondary,
-      unselectedItemColor: AppColors.grey.withValues(alpha: 0.7),
       items: navigationBarItems
-          .map(
-            (navBarItem) => BottomNavigationBarItem(
-              icon: navBarItem.child ?? Icon(navBarItem.icon),
+          .mapIndexed(
+            (index, navBarItem) => BottomNavigationBarItem(
+              icon: navBarItem.icon.svg(
+                colorFilter: ColorFilter.mode(
+                  index == navigationShell.currentIndex
+                      ? AppColors.secondary
+                      : AppColors.primary.withValues(alpha: 0.5),
+                  BlendMode.srcIn,
+                ),
+              ),
               label: navBarItem.label,
               tooltip: navBarItem.tooltip,
             ),

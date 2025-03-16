@@ -41,21 +41,31 @@ class $AssetsIconsGen {
   /// File path: assets/icons/google.svg
   SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
 
+  /// File path: assets/icons/heart.svg
+  SvgGenImage get heart => const SvgGenImage('assets/icons/heart.svg');
+
   /// File path: assets/icons/historic.svg
   SvgGenImage get historic => const SvgGenImage('assets/icons/historic.svg');
 
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
-  /// File path: assets/icons/icone-notification.svg
-  SvgGenImage get iconeNotification =>
-      const SvgGenImage('assets/icons/icone-notification.svg');
-
   /// File path: assets/icons/notif.svg
   SvgGenImage get notif => const SvgGenImage('assets/icons/notif.svg');
 
+  /// File path: assets/icons/notification-actif.svg
+  SvgGenImage get notificationActif =>
+      const SvgGenImage('assets/icons/notification-actif.svg');
+
+  /// File path: assets/icons/notification.svg
+  SvgGenImage get notification =>
+      const SvgGenImage('assets/icons/notification.svg');
+
   /// File path: assets/icons/profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/icons/profile.svg');
+
+  /// File path: assets/icons/search.svg
+  SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
 
   /// File path: assets/icons/trophy.svg
   SvgGenImage get trophy => const SvgGenImage('assets/icons/trophy.svg');
@@ -67,11 +77,14 @@ class $AssetsIconsGen {
         daikoon,
         friends,
         google,
+        heart,
         historic,
         home,
-        iconeNotification,
         notif,
+        notificationActif,
+        notification,
         profile,
+        search,
         trophy
       ];
 }

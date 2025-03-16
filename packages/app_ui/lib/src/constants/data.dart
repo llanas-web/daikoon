@@ -13,29 +13,26 @@ List<NavBarItem> mainNavigationBarItems({
   required bool hasNotification,
 }) =>
     <NavBarItem>[
-      NavBarItem(icon: Icons.home_outlined, label: homeLabel),
-      NavBarItem(icon: Icons.search_outlined, label: searchLabel),
-      NavBarItem(icon: Icons.favorite_outline, label: favoriteLabel),
+      NavBarItem(icon: Assets.icons.home, label: homeLabel),
+      NavBarItem(icon: Assets.icons.search, label: searchLabel),
+      NavBarItem(icon: Assets.icons.heart, label: favoriteLabel),
       NavBarItem(
-        icon: Icons.notifications_outlined,
+        icon: hasNotification
+            ? Assets.icons.notificationActif
+            : Assets.icons.notification,
         label: notificationLabel,
-        child: hasNotification
-            ? Assets.icons.iconeNotification.svg()
-            : const Icon(Icons.notifications_outlined),
       ),
-      NavBarItem(icon: Icons.person_outlined, label: userProfileLabel),
+      NavBarItem(icon: Assets.icons.profile, label: userProfileLabel),
     ];
 
 class NavBarItem {
   NavBarItem({
-    this.icon,
+    required this.icon,
     this.label,
-    this.child,
   });
 
   final String? label;
-  final Widget? child;
-  final IconData? icon;
+  final SvgGenImage icon;
 
   String? get tooltip => label;
 }

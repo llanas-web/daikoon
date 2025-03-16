@@ -169,7 +169,7 @@ class _UserProfileTileItem extends StatelessWidget {
       ),
       minLeadingWidth: AppSpacing.xxlg,
       leading: icon,
-      title: Text(title),
+      title: Text(title, style: UITextStyle.drawerLabel),
       trailing: trailing ? const Icon(Icons.arrow_forward_ios) : null,
       onTap: onTap,
       splashColor: AppColors.primary,

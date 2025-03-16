@@ -73,6 +73,16 @@ abstract class UITextStyle {
   );
 
   /**
+   * NAVIGATION
+   */
+
+  /// TextStyle for the Navigation Title
+  static final TextStyle navTitle = _baseTextStyle.copyWith(
+    fontSize: 20,
+    fontWeight: AppFontWeight.bold,
+  );
+
+  /**
    * ACTION
    */
 
@@ -85,6 +95,20 @@ abstract class UITextStyle {
   /**
    * FORM SECTION
    */
+
+  /// TextStyle for the Form Section Title
+  static final TextStyle inputValueText = _baseTextStyle.copyWith(
+    fontSize: 16,
+    fontWeight: AppFontWeight.normal,
+    color: AppColors.grey,
+  );
+
+  /// TextStyle for the Form Section Title
+  static final TextStyle labelText = _baseTextStyle.copyWith(
+    fontSize: 16,
+    fontWeight: AppFontWeight.bold,
+    color: AppColors.black,
+  );
 
   /// TextStyle for the Form Section Title
   static final TextStyle hintText = _baseTextStyle.copyWith(

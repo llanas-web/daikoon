@@ -46,7 +46,10 @@ class _UserProfileFriendsViewState extends State<UserProfileFriendsView>
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         elevation: 0,
-        title: Text(context.l10n.userProfileTileFriendsLabel),
+        title: Text(
+          context.l10n.userProfileTileFriendsLabel,
+          style: UITextStyle.navTitle,
+        ),
         centerTitle: true,
         backgroundColor: AppColors.primary,
         foregroundColor: context.reversedAdaptiveColor,
@@ -113,8 +116,8 @@ class _FriendTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DefaultTextStyle(
-                        style: context.bodyLarge!.copyWith(
-                          fontWeight: AppFontWeight.semiBold,
+                        style: UITextStyle.subtitleBold.copyWith(
+                          color: AppColors.black,
                         ),
                         child: Row(
                           children: [
@@ -130,8 +133,7 @@ class _FriendTile extends StatelessWidget {
                       ),
                       Text(
                         user.displayFullName,
-                        style: context.labelLarge?.copyWith(
-                          fontWeight: AppFontWeight.medium,
+                        style: UITextStyle.subtitle.copyWith(
                           color: AppColors.grey,
                         ),
                         maxLines: 1,

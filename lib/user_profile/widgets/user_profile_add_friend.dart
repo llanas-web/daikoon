@@ -45,7 +45,7 @@ class _UserProfileAddFriendsViewState extends State<UserProfileAddFriendsView> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         elevation: 0,
-        title: const Text('Ajouter un ami'),
+        title: Text('Ajouter un ami', style: UITextStyle.navTitle),
         centerTitle: true,
         backgroundColor: AppColors.primary,
         foregroundColor: context.reversedAdaptiveColor,
@@ -65,6 +65,7 @@ class _UserProfileAddFriendsViewState extends State<UserProfileAddFriendsView> {
               ), // Adjust padding
               child: AppTextField(
                 hintText: 'Search friends...',
+                hintStyle: UITextStyle.hintText,
                 suffixIcon: Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: AppSpacing.xs,
@@ -156,8 +157,8 @@ class _FriendTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DefaultTextStyle(
-                        style: context.bodyLarge!.copyWith(
-                          fontWeight: AppFontWeight.semiBold,
+                        style: UITextStyle.subtitleBold.copyWith(
+                          color: AppColors.black,
                         ),
                         child: Row(
                           children: [
@@ -173,8 +174,7 @@ class _FriendTile extends StatelessWidget {
                       ),
                       Text(
                         user.displayFullName,
-                        style: context.labelLarge?.copyWith(
-                          fontWeight: AppFontWeight.medium,
+                        style: UITextStyle.subtitle.copyWith(
                           color: AppColors.grey,
                         ),
                         maxLines: 1,

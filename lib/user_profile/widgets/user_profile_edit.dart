@@ -41,7 +41,10 @@ class _UserProfileEditViewState extends State<UserProfileEditView> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         elevation: 0,
-        title: Text(context.l10n.userProfileTileInformationLabel),
+        title: Text(
+          context.l10n.userProfileTileInformationLabel,
+          style: UITextStyle.navTitle,
+        ),
         centerTitle: true,
         backgroundColor: AppColors.primary,
         foregroundColor: context.reversedAdaptiveColor,
@@ -168,6 +171,7 @@ class _ProfileInfoInputState extends State<ProfileInfoInput> {
       autofocus: widget.autofocus,
       textInputAction: TextInputAction.done,
       textInputType: widget.readOnly ? null : widget.inputType,
+      style: UITextStyle.inputValueText,
       autofillHints: const [AutofillHints.nickname],
       onFieldSubmitted: widget.onFieldSubmitted,
       maxLength: widget.readOnly
@@ -188,7 +192,7 @@ class _ProfileInfoInputState extends State<ProfileInfoInput> {
                 extra: widget.infoType,
               ),
       labelText: widget.label,
-      labelStyle: context.bodyLarge?.apply(color: AppColors.grey),
+      labelStyle: UITextStyle.labelText,
       contentPadding: EdgeInsets.zero,
       onChanged: widget.onChanged,
       floatingLabelBehaviour: FloatingLabelBehavior.auto,
