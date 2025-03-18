@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +25,6 @@ abstract class UITextStyle {
     letterSpacing: -0.6,
   );
 
-  /// TextStyle for the Title
   static final TextStyle title = _baseTextStyle.copyWith(
     fontFamily: FontFamily.grifter,
     fontSize: 28,
@@ -31,7 +32,6 @@ abstract class UITextStyle {
     height: 1.2,
   );
 
-  /// TextStyle for the Title 2
   static final TextStyle title2 = _baseTextStyle.copyWith(
     fontFamily: FontFamily.gotham,
     fontSize: 28,
@@ -39,37 +39,42 @@ abstract class UITextStyle {
     height: 1.2,
   );
 
-  /// TextStyle for the Title Small
   static final TextStyle titleSmallBold = _baseTextStyle.copyWith(
     fontSize: 16,
     fontWeight: AppFontWeight.black,
     height: 1.25,
   );
 
-  /// TextStyle for the Subtitle
   static final TextStyle subtitle = _baseTextStyle.copyWith(
     fontSize: 16,
     fontWeight: AppFontWeight.normal,
     height: 1.25,
   );
 
-  /// TextStyle for the Subtitle Bold
   static final TextStyle subtitleBold = _baseTextStyle.copyWith(
     fontSize: 16,
     fontWeight: AppFontWeight.bold,
     height: 1.25,
   );
 
-  /// TextStyle for the Button Text
   static final TextStyle buttonText = _baseTextStyle.copyWith(
     fontSize: 18,
     fontWeight: AppFontWeight.medium,
   );
 
-  /// TextStyle for the Body Text
   static final TextStyle bodyText = _baseTextStyle.copyWith(
     fontSize: 12,
     fontWeight: AppFontWeight.normal,
+  );
+
+  static final TextStyle notifTypeLabel = _baseTextStyle.copyWith(
+    fontSize: 14,
+    fontWeight: AppFontWeight.medium,
+  );
+
+  static final TextStyle notifTitle = _baseTextStyle.copyWith(
+    fontSize: 19,
+    fontWeight: AppFontWeight.black,
   );
 
   /**

@@ -20,6 +20,12 @@ abstract class AppColors {
   /// The primary color and swatch.
   static const Color primary = Color.fromARGB(255, 131, 197, 190);
 
+  /// The primary grey color and swatch.
+  static const Color borders = Color.fromARGB(255, 193, 226, 222);
+
+  /// The primary grey color and swatch.
+  static const Color separators = Color.fromARGB(255, 239, 239, 239);
+
   /// The secondary color and swatch.
   static const Color secondary = Color.fromARGB(255, 235, 15, 141);
 

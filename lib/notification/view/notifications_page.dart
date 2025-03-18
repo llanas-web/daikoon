@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/app.dart';
 import 'package:daikoon/notification/notification.dart';
@@ -58,14 +60,17 @@ class NotificationsView extends StatelessWidget {
                     sliver: SliverList.builder(
                       itemBuilder: (context, index) => Column(
                         children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: NotificationItem(
-                                  notification: notifications[index],
+                          Opacity(
+                            opacity: max((5 - min(index, 5)) / 5, 0.2),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: NotificationItem(
+                                    notification: notifications[index],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           const Gap.v(AppSpacing.md),
                         ],
