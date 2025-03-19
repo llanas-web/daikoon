@@ -31,13 +31,13 @@ class ChallengeItem extends StatelessWidget {
           color: AppColors.white.withValues(alpha: 0.85),
           borderRadius: BorderRadius.circular(AppRadius.xxlg),
           border: Border.all(
-            color: AppColors.primary,
+            color: AppColors.borders,
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.black.withValues(alpha: 0.5),
-              blurRadius: AppRadius.lg,
-              offset: const Offset(0, 5),
+              color: AppColors.black.withValues(alpha: 0.16),
+              blurRadius: AppRadius.sm,
+              offset: const Offset(0, AppSpacing.xs),
             ),
           ],
         ),
@@ -60,7 +60,7 @@ class ChallengeItem extends StatelessWidget {
                 fontWeight: AppFontWeight.extraBold,
               ),
             ),
-            const Divider(color: AppColors.primary),
+            const Divider(color: AppColors.separators),
             Text(
               'Défi organisé par ${challenge.creator?.username}',
             ),
