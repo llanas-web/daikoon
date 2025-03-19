@@ -23,7 +23,7 @@ class DaikoonFormTimeSelector extends StatelessWidget {
     if (readOnly || onTimeSelected == null) return;
     final defaultTimeOfDay = value != null
         ? TimeOfDay(
-            hour: value!.day,
+            hour: value!.hour,
             minute: value!.minute,
           )
         : TimeOfDay.now();
