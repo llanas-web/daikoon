@@ -49,7 +49,7 @@ class ChallengeDetailsView extends StatelessWidget {
             ],
           ),
         ),
-        padding: const EdgeInsets.all(AppSpacing.xxlg),
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxlg),
         child: BlocBuilder<ChallengeDetailsCubit, ChallengeDetailsState>(
           builder: (context, state) {
             if (state.status == ChallengeDetailsStatus.loading) {

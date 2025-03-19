@@ -84,7 +84,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
               ],
             ),
           ),
-          padding: const EdgeInsets.all(AppSpacing.xxlg),
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxlg),
           child: Center(
             child: PageTransitionSwitcher(
               duration: const Duration(milliseconds: 1000),
