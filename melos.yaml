@@ -1,0 +1,8 @@
+name: my_flutter_workspace
+packages:
+  - packages/* # Adjust this based on your folder structure
+scripts:
+  build_runner:
+    run: dart run build_runner build --delete-conflicting-outputs
+    packageFilters:
+      dependsOn: build_runner
