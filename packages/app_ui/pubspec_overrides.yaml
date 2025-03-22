@@ -1,0 +1,14 @@
+# melos_managed_dependency_overrides: authentication_client,database_client,env,powersync_repository,shared,user_repository
+dependency_overrides:
+  authentication_client:
+    path: ..\\authentication_client\\authentication_client
+  database_client:
+    path: ..\\database_client
+  env:
+    path: ..\\env
+  powersync_repository:
+    path: ..\\powersync_repository
+  shared:
+    path: ..\\shared
+  user_repository:
+    path: ..\\user_repository

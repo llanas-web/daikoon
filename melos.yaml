@@ -1,11 +1,19 @@
-name: my_flutter_workspace
+name: daikoon_workspace
 packages:
-  - packages/* # Adjust this based on your folder structure
+  - packages/*
+  - packages/*/*
+
 scripts:
   build_runner:
     run: dart run build_runner build --delete-conflicting-outputs
     packageFilters:
       dependsOn: build_runner
+
 command:
   bootstrap:
     usePubspecOverrides: true
+    runPubGetInParallel: false
+
+dependency_overrides:
+  database_client:
+    path: packages/database_client

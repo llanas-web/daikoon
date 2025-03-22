@@ -39,7 +39,7 @@ melos bootstrap
 
 # Run Melos build_runner.
 echo "Running Melos build_runner..."
-melos run build_runner
+melos run build_runner --no-select
 
 # Install CocoaPods dependencies.
 echo "Installing CocoaPods dependencies..."
