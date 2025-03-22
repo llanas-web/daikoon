@@ -546,6 +546,7 @@
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Daikoon;
+				FLUTTER_TARGET = lib/main_production.dart;
 				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Daïkoon";
@@ -648,6 +649,7 @@
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Daikoon;
+				FLUTTER_TARGET = lib/main_production.dart;
 				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Daïkoon";
@@ -745,6 +747,7 @@
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = Daikoon;
+				FLUTTER_TARGET = lib/main_production.dart;
 				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Daïkoon";
@@ -847,6 +850,7 @@
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Daikoon";
+				FLUTTER_TARGET = lib/main_development.dart;
 				GOOGLE_INFO_URL = "com.googleusercontent.apps.516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut";
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Daïkoon";
@@ -947,6 +951,7 @@
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Daikoon";
+				FLUTTER_TARGET = lib/main_development.dart;
 				GOOGLE_INFO_URL = "com.googleusercontent.apps.516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut";
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Daïkoon";
@@ -1046,6 +1051,7 @@
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Daikoon";
+				FLUTTER_TARGET = lib/main_development.dart;
 				GOOGLE_INFO_URL = "com.googleusercontent.apps.516409268825-8rrkamt4e9chds1qghv7i9pu95em6iut";
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Daïkoon";
@@ -1148,6 +1154,7 @@
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Daikoon";
+				FLUTTER_TARGET = lib/main_development.dart;
 				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Daïkoon";
@@ -1347,6 +1354,7 @@
 				DEVELOPMENT_TEAM = 9SS3K3PAMN;
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Daikoon";
+				FLUTTER_TARGET = lib/main_development.dart;
 				GOOGLE_INFO_URL = "com.googleusercontent.apps.49085509221-csmvuvobc4b0tpdpo6tljvlcveuf7rk8";
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Daïkoon";
