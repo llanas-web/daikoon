@@ -72,21 +72,21 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-        challenge,
-        chat,
-        daikoon,
-        friends,
-        google,
-        heart,
-        historic,
-        home,
-        notif,
-        notificationActif,
-        notification,
-        profile,
-        search,
-        trophy
-      ];
+    challenge,
+    chat,
+    daikoon,
+    friends,
+    google,
+    heart,
+    historic,
+    home,
+    notif,
+    notificationActif,
+    notification,
+    profile,
+    search,
+    trophy,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -136,22 +136,22 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
-        authBackground,
-        authBluryBackground,
-        bluryBackground,
-        daikoon,
-        daikoonBlury,
-        heroImage,
-        isometricLogo,
-        orangerie,
-        portraitMannequinFemmeNeon,
-        profilePic,
-        qrCode
-      ];
+    authBackground,
+    authBluryBackground,
+    bluryBackground,
+    daikoon,
+    daikoonBlury,
+    heroImage,
+    isometricLogo,
+    orangerie,
+    portraitMannequinFemmeNeon,
+    profilePic,
+    qrCode,
+  ];
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const String package = 'app_ui';
 
@@ -161,11 +161,7 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  });
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
 
@@ -196,7 +192,7 @@ class AssetGenImage {
     bool isAntiAlias = false,
     @Deprecated('Do not specify package for a generated library asset')
     String? package = package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -233,11 +229,7 @@ class AssetGenImage {
     @Deprecated('Do not specify package for a generated library asset')
     String? package = package,
   }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
@@ -246,17 +238,11 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = false;
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = false;
 
-  const SvgGenImage.vec(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = true;
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
@@ -313,7 +299,8 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      colorFilter: colorFilter ??
+      colorFilter:
+          colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,

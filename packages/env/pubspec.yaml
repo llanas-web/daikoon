@@ -3,6 +3,8 @@ description: A repository that manages environmental variables
 version: 0.1.0+1
 publish_to: none
 
+resolution: workspace
+
 environment:
   sdk: ^3.5.0
   flutter: ^3.24.0
@@ -18,4 +20,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
-  very_good_analysis: ^6.0.0
+  very_good_analysis: ^7.0.0
