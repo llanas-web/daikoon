@@ -12,14 +12,6 @@ echo "Installing Flutter..."
 git clone https://github.com/flutter/flutter.git --depth 1 -b stable $HOME/flutter
 export PATH="$PATH:$HOME/flutter/bin"
 
-# Installing melos globally.
-echo "Installing Melos..."
-dart pub global activate melos
-
-# Add the Flutter and Melos binaries to the PATH.
-echo "Adding Flutter and Melos binaries to the PATH..."
-export PATH="$PATH":"$HOME/.pub-cache/bin"
-
 # Install Flutter artifacts for iOS (--ios), or macOS (--macos) platforms.
 echo "Installing Flutter artifacts..."
 flutter precache --ios
@@ -32,14 +24,6 @@ flutter pub get
 HOMEBREW_NO_AUTO_UPDATE=1 # disable homebrew's automatic updates.
 echo "Installing CocoaPods..."
 brew install cocoapods
-
-# Install Melos dependencies.
-echo "Installing Melos dependencies..."
-melos bootstrap
-
-# Run Melos build_runner.
-echo "Running Melos build_runner..."
-melos run build_runner --no-select
 
 # Install CocoaPods dependencies.
 echo "Installing CocoaPods dependencies..."
