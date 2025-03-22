@@ -16,6 +16,10 @@ export PATH="$PATH:$HOME/flutter/bin"
 echo "Installing Melos..."
 dart pub global activate melos
 
+# Add the Flutter and Melos binaries to the PATH.
+echo "Adding Flutter and Melos binaries to the PATH..."
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
 # Install Flutter artifacts for iOS (--ios), or macOS (--macos) platforms.
 echo "Installing Flutter artifacts..."
 flutter precache --ios
