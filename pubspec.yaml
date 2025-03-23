@@ -3,6 +3,23 @@ description: A Very Good Project created by Very Good CLI.
 version: 1.0.0+17
 publish_to: none
 
+workspace:
+  - packages/app_ui
+  - packages/authentication_client/authentication_client
+  - packages/authentication_client/supabase_authentication_client
+  - packages/authentication_client/token_storage
+  - packages/challenge_repository
+  - packages/daikoon_blocks_ui
+  - packages/database_client
+  - packages/env
+  - packages/form_fields
+  - packages/notifications_client/firebase_notifications_client
+  - packages/notifications_client/notifications_client
+  - packages/notifications_repository
+  - packages/powersync_repository
+  - packages/shared
+  - packages/user_repository
+
 environment:
   sdk: ^3.5.0
 
