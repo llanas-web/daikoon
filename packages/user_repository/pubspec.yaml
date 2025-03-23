@@ -10,17 +10,13 @@ environment:
   flutter: ^3.22.0
 
 dependencies:
-  authentication_client:
-    path: ../authentication_client/authentication_client
-  database_client:
-    path: ../database_client
+  authentication_client: any
+  database_client: any
   flutter:
     sdk: flutter
-  powersync_repository:
-    path: ../powersync_repository
+  powersync_repository: any
   rxdart: ^0.27.7
-  shared:
-    path: ../shared
+  shared: any
 
 dev_dependencies:
   mocktail: ^1.0.4

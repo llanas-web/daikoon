@@ -118,3 +118,5 @@ app.*.map.json
 *.mocks.dart
 
 android/app/.cxx/**/*
+
+pubspec_overrides.yaml

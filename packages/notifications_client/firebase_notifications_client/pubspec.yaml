@@ -13,10 +13,8 @@ dependencies:
   firebase_messaging: ^15.2.3
   flutter:
     sdk: flutter
-  notifications_client:
-    path: ../notifications_client
-  shared:
-    path: ../../shared
+  notifications_client: any
+  shared: any
 
 dev_dependencies:
   flutter_test:

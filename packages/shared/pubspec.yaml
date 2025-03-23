@@ -10,10 +10,8 @@ environment:
   flutter: ^3.24.0
 
 dependencies:
-  app_ui:
-    path: ../app_ui
-  env:
-    path: ../env
+  app_ui: any
+  env: any
   equatable: ^2.0.7
   flutter:
     sdk: flutter
@@ -23,8 +21,7 @@ dependencies:
   logger: ^2.5.0
   meta: any
   powersync: ^1.11.2
-  user_repository:
-    path: ../user_repository
+  user_repository: any
   uuid: ^4.5.1
 
 dev_dependencies:

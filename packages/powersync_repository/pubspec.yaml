@@ -10,15 +10,13 @@ environment:
   flutter: ^3.24.0
 
 dependencies:
-  env:
-    path: "../env"
+  env: any
   flutter:
     sdk: flutter
   path: ">=1.8.3 <=1.9.1"
   path_provider: ^2.1.5
   powersync: ^1.11.2
-  shared:
-    path: "../shared"
+  shared: any
   supabase_flutter: ^2.8.3
 
 dev_dependencies:

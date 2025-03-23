@@ -10,17 +10,13 @@ environment:
   flutter: ^3.24.0
 
 dependencies:
-  database_client:
-    path: ../database_client
+  database_client: any
   flutter:
     sdk: flutter
-  powersync_repository:
-    path: ../powersync_repository
+  powersync_repository: any
   rxdart: ^0.27.7
-  shared:
-    path: ../shared
-  user_repository:
-    path: ../user_repository
+  shared: any
+  user_repository: any
 
 dev_dependencies:
   flutter_test:

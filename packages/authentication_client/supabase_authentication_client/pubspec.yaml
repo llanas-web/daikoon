@@ -14,13 +14,10 @@ dev_dependencies:
   very_good_analysis: ^7.0.0
 
 dependencies:
-  authentication_client:
-    path: ../authentication_client
+  authentication_client: any
   flutter:
     sdk: flutter
   google_sign_in: ^6.2.2
-  powersync_repository:
-    path: ../../powersync_repository
+  powersync_repository: any
   supabase_flutter: ^2.8.3
-  token_storage:
-    path: ../token_storage
+  token_storage: any
