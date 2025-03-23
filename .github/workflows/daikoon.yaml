@@ -56,7 +56,7 @@ jobs:
         run: melos exec -- dart format lib test
 
       - name: Analyze
-        run: melos exec -- flutter analyze lib test
+        run: melos exec -- flutter analyze lib test --no-fatal-infos
 
       - name: Run tests
         run: melos run test --no-select

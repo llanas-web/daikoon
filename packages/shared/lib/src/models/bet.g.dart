@@ -15,11 +15,3 @@ Bet _$BetFromJson(Map<String, dynamic> json) => Bet(
       userId: json['user_id'] as String? ?? '',
       amount: (json['amount'] as num?)?.toInt() ?? 0,
     );
-
-Map<String, dynamic> _$BetToJson(Bet instance) => <String, dynamic>{
-      'id': instance.id,
-      'created_at': instance.createdAt.toIso8601String(),
-      'choice_id': instance.choiceId,
-      'user_id': instance.userId,
-      'amount': instance.amount,
-    };
