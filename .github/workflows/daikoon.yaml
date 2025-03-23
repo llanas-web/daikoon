@@ -52,6 +52,9 @@ jobs:
       - name: Run build_runner using Melos
         run: melos run build_runner
 
+      - name: Run build_runner test using Melos
+        run: dart run build_runner build
+
       - name: Format
         run: melos exec -- dart format lib test
 
