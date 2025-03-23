@@ -37,10 +37,11 @@ jobs:
           flutter-version: "3.27.4"
           cache: false
 
-      - name: Install Dependencies
-        run: |
-          flutter pub global activate very_good_cli
-          very_good packages get --recursive
+      - name: Install Melos
+        run: dart pub global activate melos
+
+      - name: Bootstrap dependencies using Melos
+        run: melos bootstrap
 
       - name: Copy .test.env to .dev.env and .prod.env
         run: |
@@ -48,23 +49,18 @@ jobs:
           cp packages/env/test/.test.txt packages/env/.env.prod
         shell: bash
 
-      - name: Run build_runner build
-        run: |
-          cd packages/env
-          dart run build_runner build --delete-conflicting-outputs
+      - name: Run build_runner using Melos
+        run: melos run build_runner
 
       - name: Format
-        run: dart format --set-exit-if-changed lib test
-
-      - name: Run build_runner
-        run: flutter pub run build_runner build --delete-conflicting-outputs
+        run: melos exec -- dart format --set-exit-if-changed lib test
 
       - name: Analyze
-        run: flutter analyze lib test
+        run: melos exec -- flutter analyze lib test
 
       - name: Run tests
-        run: very_good test -x presubmit-only --coverage --test-randomize-ordering-seed random --exclude-coverage "**/*.g.dart **/*.freezed.dart **/*.gen.dart **/l10n/*.dart **/l10n/**/*.dart **/main/bootstrap.dart packages/env/*"
-            
+        run: melos run test --no-select
+
       - name: Check for existing and non-empty coverage file
         id: test_coverage_file
         run: if [ -s "/coverage/lcov.info" ]; then echo "result=true" >> $GITHUB_OUTPUT ; else echo "result=false" >> $GITHUB_OUTPUT; fi

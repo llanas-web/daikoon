@@ -9,6 +9,11 @@ scripts:
     packageFilters:
       dependsOn: build_runner
 
+  test:
+    run: flutter test --coverage
+    packageFilters:
+      dirExists: test
+
 command:
   bootstrap:
     usePubspecOverrides: true
