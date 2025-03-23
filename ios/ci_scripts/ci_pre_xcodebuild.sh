@@ -51,8 +51,12 @@ IOS_CLIENT_ID=$IOS_CLIENT_ID
 SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET=$SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET
 EOF
 
-echo cat $PROD_ENV_FILE
-echo cat $DEV_ENV_FILE
+# Display the contents of the files
+echo "Contents of ${PROD_ENV_FILE}:"
+cat $PROD_ENV_FILE
+
+echo "Contents of ${DEV_ENV_FILE}:"
+cat $DEV_ENV_FILE
 
 # Confirm creation of the files
 echo ".env.prod and .env.dev files have been created successfully."

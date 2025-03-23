@@ -72,21 +72,21 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-    challenge,
-    chat,
-    daikoon,
-    friends,
-    google,
-    heart,
-    historic,
-    home,
-    notif,
-    notificationActif,
-    notification,
-    profile,
-    search,
-    trophy,
-  ];
+        challenge,
+        chat,
+        daikoon,
+        friends,
+        google,
+        heart,
+        historic,
+        home,
+        notif,
+        notificationActif,
+        notification,
+        profile,
+        search,
+        trophy,
+      ];
 }
 
 class $AssetsImagesGen {
@@ -136,18 +136,18 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
-    authBackground,
-    authBluryBackground,
-    bluryBackground,
-    daikoon,
-    daikoonBlury,
-    heroImage,
-    isometricLogo,
-    orangerie,
-    portraitMannequinFemmeNeon,
-    profilePic,
-    qrCode,
-  ];
+        authBackground,
+        authBluryBackground,
+        bluryBackground,
+        daikoon,
+        daikoonBlury,
+        heroImage,
+        isometricLogo,
+        orangerie,
+        portraitMannequinFemmeNeon,
+        profilePic,
+        qrCode,
+      ];
 }
 
 class Assets {
@@ -239,10 +239,10 @@ class AssetGenImage {
 
 class SvgGenImage {
   const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
-    : _isVecFormat = false;
+      : _isVecFormat = false;
 
   const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
-    : _isVecFormat = true;
+      : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
@@ -299,8 +299,7 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      colorFilter:
-          colorFilter ??
+      colorFilter: colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
