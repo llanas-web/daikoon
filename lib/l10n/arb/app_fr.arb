@@ -411,6 +411,48 @@
   "@challengeDetailsAcceptedDaikoinsLabel": {
     "description": "Label for the daikoins choice in the challenge details page"
   },
+  "challengeDetailsAcceptedDaikoinsAmountErrorWallet": "Solde insuffisant",
+  "@challengeDetailsAcceptedDaikoinsAmountErrorWallet": {
+    "description": "Error message for the daikoins amount in the challenge details page"
+  },
+  "challengeDetailsAcceptedDaikoinsAmountErrorWalletDescription": "Vous n''avez que ${amount} Daïkoins dans votre portefeuille",
+  "@challengeDetailsAcceptedDaikoinsAmountErrorWalletDescription": {
+    "description": "Error message for the daikoins amount in the challenge details page",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "100"
+      }
+    }
+  },
+  "challengeDetailsAcceptedDaikoinsAmountErrorMinBet": "Mise insuffisante",
+  "@challengeDetailsAcceptedDaikoinsAmountErrorMinBet": {
+    "description": "Error message for the daikoins amount in the challenge details page"
+  },
+  "challengeDetailsAcceptedDaikoinsAmountErrorBetMinDescription": "Vous devez miser au moins ${amount} Daïkoins",
+  "@challengeDetailsAcceptedDaikoinsAmountErrorBetMinDescription": {
+    "description": "Error message for the daikoins amount in the challenge details page",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "100"
+      }
+    }
+  },
+  "challengeDetailsAcceptedDaikoinsAmountErrorMaxBet": "Mise trop élevée",
+  "@challengeDetailsAcceptedDaikoinsAmountErrorMaxBet": {
+    "description": "Error message for the daikoins amount in the challenge details page"
+  },
+  "challengeDetailsAcceptedDaikoinsAmountErrorBetMaxDescription": "Vous ne pouvez pas miser plus de ${amount} Daïkoins",
+  "@challengeDetailsAcceptedDaikoinsAmountErrorBetMaxDescription": {
+    "description": "Error message for the daikoins amount in the challenge details page",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "100"
+      }
+    }
+  },
   "challengeDetailsLimitDateLabel": "Date de fin de mise",
   "@challengeDetailsLimitDateLabel": {
     "description": "Label for the limit date in the challenge details page"

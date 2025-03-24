@@ -313,6 +313,36 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeDetailsAcceptedDaikoinsLabel => 'Choix des Daïkoins';
 
   @override
+  String get challengeDetailsAcceptedDaikoinsAmountErrorWallet =>
+      'Solde insuffisant';
+
+  @override
+  String challengeDetailsAcceptedDaikoinsAmountErrorWalletDescription(
+      String amount) {
+    return 'Vous n\'avez que \$$amount Daïkoins dans votre portefeuille';
+  }
+
+  @override
+  String get challengeDetailsAcceptedDaikoinsAmountErrorMinBet =>
+      'Mise insuffisante';
+
+  @override
+  String challengeDetailsAcceptedDaikoinsAmountErrorBetMinDescription(
+      String amount) {
+    return 'Vous devez miser au moins \$$amount Daïkoins';
+  }
+
+  @override
+  String get challengeDetailsAcceptedDaikoinsAmountErrorMaxBet =>
+      'Mise trop élevée';
+
+  @override
+  String challengeDetailsAcceptedDaikoinsAmountErrorBetMaxDescription(
+      String amount) {
+    return 'Vous ne pouvez pas miser plus de \$$amount Daïkoins';
+  }
+
+  @override
   String get challengeDetailsLimitDateLabel => 'Date de fin de mise';
 
   @override

@@ -1,4 +1,5 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/app/app.dart';
 import 'package:daikoon/challenge/challenge.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
@@ -17,12 +18,15 @@ class ChallengeInvitationAccepted extends StatefulWidget {
 class __ChallengeInvitationAcceptedState
     extends State<ChallengeInvitationAccepted> {
   late TextEditingController _betAmountController;
+  late FocusNode _betAmountFocusNode;
   String? _choiceId;
   bool _hasBet = false;
 
   @override
   void initState() {
     super.initState();
+    _betAmountController = TextEditingController();
+    _betAmountFocusNode = FocusNode();
     final challengeState = context.read<ChallengeDetailsCubit>();
     final minBetValue = challengeState.state.challenge?.minBet;
     final userBet = challengeState.userBet;
@@ -33,18 +37,66 @@ class __ChallengeInvitationAcceptedState
     _hasBet = userBet?.amount != 0 || false;
   }
 
-  Future<void> upsertBet() {
-    return context.read<ChallengeDetailsCubit>().upsertBet(
-          choiceId: _choiceId!,
-          amount: _hasBet ? int.parse(_betAmountController.text) : 0,
-        );
-  }
-
   @override
   Widget build(BuildContext context) {
     final challenge = context.select(
       (ChallengeDetailsCubit cubit) => cubit.state.challenge,
     )!;
+
+    Future<void> upsertBet() async {
+      final minAmount = challenge.minBet;
+      final maxAmount = challenge.maxBet;
+      final amount = int.parse(_betAmountController.text);
+      SnackbarMessage? snackBarError;
+      if (!_hasBet) {
+        return context.read<ChallengeDetailsCubit>().upsertBet(
+              choiceId: _choiceId!,
+              amount: 0,
+            );
+      }
+      final userWallet = context.read<AppBloc>().state.userWalletAmount;
+      if (amount > userWallet) {
+        snackBarError = SnackbarMessage.error(
+          title: context.l10n.challengeDetailsAcceptedDaikoinsAmountErrorWallet,
+          description: context.l10n
+              .challengeDetailsAcceptedDaikoinsAmountErrorWalletDescription(
+            '$userWallet',
+          ),
+          icon: Icons.error_outline_rounded,
+        );
+      }
+      if (amount < minAmount!) {
+        snackBarError = SnackbarMessage.error(
+          title: context.l10n.challengeDetailsAcceptedDaikoinsAmountErrorMinBet,
+          description: context.l10n
+              .challengeDetailsAcceptedDaikoinsAmountErrorBetMinDescription(
+            '$minAmount',
+          ),
+          icon: Icons.error_outline_rounded,
+        );
+      }
+
+      if (amount > maxAmount!) {
+        snackBarError = SnackbarMessage.error(
+          title: context.l10n.challengeDetailsAcceptedDaikoinsAmountErrorMaxBet,
+          description: context.l10n
+              .challengeDetailsAcceptedDaikoinsAmountErrorBetMaxDescription(
+            '$maxAmount',
+          ),
+          icon: Icons.error_outline_rounded,
+        );
+      }
+      if (snackBarError != null) {
+        openSnackbar(snackBarError);
+        _betAmountFocusNode.requestFocus();
+        return;
+      }
+
+      return context.read<ChallengeDetailsCubit>().upsertBet(
+            choiceId: _choiceId!,
+            amount: _hasBet ? amount : 0,
+          );
+    }
 
     return SingleChildScrollView(
       child: Column(
@@ -117,6 +169,7 @@ class __ChallengeInvitationAcceptedState
                       onTap: () => _betAmountController.text,
                       child: TextField(
                         controller: _betAmountController,
+                        focusNode: _betAmountFocusNode,
                         decoration: const InputDecoration(
                           isDense: true,
                           contentPadding: EdgeInsets.zero,

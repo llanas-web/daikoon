@@ -658,6 +658,45 @@ abstract class AppLocalizations {
   /// **'Choix des Daïkoins'**
   String get challengeDetailsAcceptedDaikoinsLabel;
 
+  /// Error message for the daikoins amount in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Solde insuffisant'**
+  String get challengeDetailsAcceptedDaikoinsAmountErrorWallet;
+
+  /// Error message for the daikoins amount in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous n\'\'avez que \${amount} Daïkoins dans votre portefeuille'**
+  String challengeDetailsAcceptedDaikoinsAmountErrorWalletDescription(
+      String amount);
+
+  /// Error message for the daikoins amount in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Mise insuffisante'**
+  String get challengeDetailsAcceptedDaikoinsAmountErrorMinBet;
+
+  /// Error message for the daikoins amount in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous devez miser au moins \${amount} Daïkoins'**
+  String challengeDetailsAcceptedDaikoinsAmountErrorBetMinDescription(
+      String amount);
+
+  /// Error message for the daikoins amount in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Mise trop élevée'**
+  String get challengeDetailsAcceptedDaikoinsAmountErrorMaxBet;
+
+  /// Error message for the daikoins amount in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous ne pouvez pas miser plus de \${amount} Daïkoins'**
+  String challengeDetailsAcceptedDaikoinsAmountErrorBetMaxDescription(
+      String amount);
+
   /// Label for the limit date in the challenge details page
   ///
   /// In fr, this message translates to:

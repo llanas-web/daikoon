@@ -26,6 +26,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppNotificationChanged>((event, emit) {
       emit(state.copyWith(hasNotification: event.hasNotification));
     });
+    on<AppWalletAmountChanged>((event, emit) {
+      emit(state.copyWith(userWalletAmount: event.walletAmount));
+    });
 
     _userSubscription =
         userRepository.user.listen(_userChanged, onError: addError);
@@ -37,6 +40,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   StreamSubscription<User>? _userSubscription;
   StreamSubscription<String>? _pushTokenSubscription;
   StreamSubscription<List<Notification>>? _notificationSubscription;
+  StreamSubscription<int>? _walletSubscription;
 
   void _userChanged(User user) => add(AppUserChanged(user));
 
@@ -56,6 +60,18 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             _notificationsRepository.onTokenRefresh().listen((pushToken) async {
           await _userRepository.updateUser(pushToken: pushToken);
         });
+
+        _walletSubscription ??=
+            _userRepository.daikoins(userId: user.id).listen(
+          (walletAmount) {
+            add(
+              AppWalletAmountChanged(
+                walletAmount: walletAmount,
+              ),
+            );
+          },
+          onError: addError,
+        );
 
         _notificationSubscription =
             _notificationsRepository.notificationsOf(userId: user.id).listen(

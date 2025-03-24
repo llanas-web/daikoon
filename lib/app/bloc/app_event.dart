@@ -28,3 +28,12 @@ final class AppNotificationChanged extends AppEvent {
   @override
   List<Object> get props => [hasNotification];
 }
+
+final class AppWalletAmountChanged extends AppEvent {
+  const AppWalletAmountChanged({required this.walletAmount});
+
+  final int walletAmount;
+
+  @override
+  List<Object> get props => [walletAmount];
+}
