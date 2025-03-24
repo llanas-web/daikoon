@@ -8,11 +8,12 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment: production
     env:
       # Setup env variables that will be used throughout the workflow
       JAVA_VERSION: 21.0.1
       FLUTTER_VERSION: 3.27.4
-      AAB_PATH: build/app/outputs/bundle/release/app-release.aab
+      AAB_PATH: build/app/outputs/bundle/productionRelease/app-production-release.aab
       KEYSTORE_PATH: android/upload-keystore.jks
       KEY_PROPS_PATH: android/key.properties
       SERVICE_ACCOUNT_PATH: store_credentials.json
@@ -46,7 +47,7 @@ jobs:
           touch ${{ env.KEY_PROPS_PATH }}
           echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> ${{ env.KEY_PROPS_PATH }}
           echo "keyPassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> ${{ env.KEY_PROPS_PATH }}
-          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> ${{ env.KEY_PROPS_PATH }}
+          echo "keyAlias=${{ secrets.KEYALIAS }}" >> ${{ env.KEY_PROPS_PATH }}
           echo "storeFile=../upload-keystore.jks" >> ${{ env.KEY_PROPS_PATH }}
 
       - name: 'Create env file'
