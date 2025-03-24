@@ -105,3 +105,4 @@ jobs:
           packageName: dev.llanas.daikoon
           releaseFiles: ${{ env.AAB_PATH }}
           track: internal
+          status: draft
