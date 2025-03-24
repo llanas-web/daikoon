@@ -22,6 +22,7 @@ class AppState extends Equatable {
     required this.status,
     this.user = User.anonymous,
     this.hasNotification = false,
+    this.userWalletAmount = 0,
   });
 
   const AppState.authenticated(User user)
@@ -29,6 +30,7 @@ class AppState extends Equatable {
           status: AppStatus.authenticated,
           user: user,
           hasNotification: false,
+          userWalletAmount: 0,
         );
 
   const AppState.onboardingRequired(User user)
@@ -36,6 +38,7 @@ class AppState extends Equatable {
           status: AppStatus.onboardingRequired,
           user: user,
           hasNotification: false,
+          userWalletAmount: 0,
         );
 
   const AppState.unauthenticated()
@@ -43,24 +46,28 @@ class AppState extends Equatable {
           status: AppStatus.unauthenticated,
           user: User.anonymous,
           hasNotification: false,
+          userWalletAmount: 0,
         );
 
   final AppStatus status;
   final User user;
   final bool hasNotification;
+  final int userWalletAmount;
 
   AppState copyWith({
     User? user,
     AppStatus? status,
     bool? hasNotification,
+    int? userWalletAmount,
   }) {
     return AppState(
       user: user ?? this.user,
       status: status ?? this.status,
       hasNotification: hasNotification ?? this.hasNotification,
+      userWalletAmount: userWalletAmount ?? this.userWalletAmount,
     );
   }
 
   @override
-  List<Object> get props => [status, user, hasNotification];
+  List<Object> get props => [status, user, hasNotification, userWalletAmount];
 }
