@@ -15,7 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   powersync_repository: any
-  rxdart: ^0.27.7
+  rxdart: ^0.28.0
   shared: any
 
 dev_dependencies:
