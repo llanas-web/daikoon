@@ -18,4 +18,4 @@ dependencies:
   equatable: ^2.0.7
   flutter:
     sdk: flutter
-  formz: ^0.4.1
+  formz: ^0.8.0
