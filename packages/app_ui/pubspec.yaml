@@ -10,7 +10,7 @@ environment:
   flutter: ^3.24.0
 
 dependencies:
-  flex_color_scheme: ^8.0.2
+  flex_color_scheme: ^8.2.0
   flutter:
     sdk: flutter
   flutter_gen: ^5.8.0
