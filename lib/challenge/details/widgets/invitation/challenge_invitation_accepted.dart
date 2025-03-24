@@ -166,10 +166,17 @@ class __ChallengeInvitationAcceptedState
                     DaikoonFormRadioItem(
                       title: 'bet',
                       isSelected: _hasBet,
-                      onTap: () => _betAmountController.text,
+                      onTap: () {
+                        _betAmountFocusNode.requestFocus();
+                        setState(
+                          () => _hasBet = true,
+                        );
+                      },
                       child: TextField(
                         controller: _betAmountController,
+                        onTapOutside: (_) => _betAmountFocusNode.unfocus(),
                         focusNode: _betAmountFocusNode,
+                        onTap: () => setState(() => _hasBet = true),
                         decoration: const InputDecoration(
                           isDense: true,
                           contentPadding: EdgeInsets.zero,
