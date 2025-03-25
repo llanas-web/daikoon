@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Setup Java in the VM
       - name: Setup Java to compile the Android project
