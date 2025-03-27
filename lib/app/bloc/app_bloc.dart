@@ -98,11 +98,17 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       case AppStatus.onboardingRequired:
       case AppStatus.authenticated:
       case AppStatus.unauthenticated:
-        return !user.isAnonymous && user.isNewUser
-            ? emit(AppState.onboardingRequired(user))
-            : user.isAnonymous
-                ? emit(const AppState.unauthenticated())
-                : authenticate();
+        {
+          if (user.isAnonymous) {
+            emit(const AppState.unauthenticated());
+            return;
+          }
+          if (user.isNewUser) {
+            emit(AppState.onboardingRequired(user));
+            return;
+          }
+          authenticate();
+        }
     }
   }
 
@@ -117,6 +123,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     _userSubscription?.cancel();
     _pushTokenSubscription?.cancel();
     _notificationSubscription?.cancel();
+    _walletSubscription?.cancel();
     return super.close();
   }
 }
