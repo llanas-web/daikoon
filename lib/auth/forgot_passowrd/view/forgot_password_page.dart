@@ -1,8 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/auth/auth.dart';
-import 'package:daikoon/auth/forgot_passowrd/change_password/change_password.dart';
-import 'package:daikoon/auth/forgot_passowrd/forgot_password.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

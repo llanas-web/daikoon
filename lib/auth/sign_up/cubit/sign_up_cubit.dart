@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:form_fields/form_fields.dart';
 import 'package:notifications_repository/notifications_repository.dart';
 import 'package:powersync_repository/powersync_repository.dart';
@@ -148,7 +149,9 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   /// Defines method to submit form. It is used to check if all inputs are valid
   /// and if so, it is used to signup user.
-  Future<void> onSubmit() async {
+  Future<void> onSubmit({
+    VoidCallback? onSuccess,
+  }) async {
     final email = Email.dirty(state.email.value);
     final password = Password.dirty(state.password.value);
     final username = Username.dirty(state.username.value);
@@ -177,6 +180,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
       if (isClosed) return;
       emit(state.copyWith(submissionStatus: SignUpSubmissionStatus.success));
+      onSuccess?.call();
     } catch (e, stackTrace) {
       _errorFormatter(e, stackTrace);
     }

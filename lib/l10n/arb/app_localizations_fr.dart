@@ -51,6 +51,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get signUpButtonLabel => 'Créer un compte';
 
   @override
+  String get signUpOtpValidationLabel => 'Vérification de l\'adresse e-mail';
+
+  @override
+  String get signUpOtpValidationButtonLabel => 'Valider';
+
+  @override
   String get conditionsLabel =>
       'En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d\'utilisation de Daïkoon.';
 

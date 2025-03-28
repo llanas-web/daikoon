@@ -143,6 +143,25 @@ class UserRepository implements UserBaseRepository {
     }
   }
 
+  /// Sends a login email link to the provided [email] address.
+  ///
+  /// Throws a [VerifyOtpFailure] if an exception occurs.
+  Future<void> verifyOtp({
+    required String email,
+    required String otp,
+  }) async {
+    try {
+      await _authenticationClient.verifyOtp(
+        email: email,
+        otp: otp,
+      );
+    } on VerifyOtpFailure {
+      rethrow;
+    } catch (error, stackTrace) {
+      Error.throwWithStackTrace(VerifyOtpFailure, stackTrace);
+    }
+  }
+
   @override
   Stream<User> profile({required String userId}) =>
       _databaseClient.profile(userId: userId);

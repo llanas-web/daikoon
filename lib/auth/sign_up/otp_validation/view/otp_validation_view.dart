@@ -7,13 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
-class ChangePasswordView extends StatelessWidget {
-  const ChangePasswordView({super.key});
+class OtpValidationView extends StatelessWidget {
+  const OtpValidationView({super.key});
 
   void _confirmGoBack(BuildContext context) => context.confirmAction(
-        fn: () => context
-            .read<ManagePasswordCubit>()
-            .changeScreen(showForgotPassword: true),
+        fn: () => context.read<ShowOtpCubit>().changeScreen(showOtp: false),
         title: context.l10n.goBackConfirmationText,
         content: context.l10n.loseAllEditsText,
         noText: context.l10n.cancelText,
@@ -58,8 +56,8 @@ class ChangePasswordView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    const ChangePasswordForm(),
-                    const Align(child: ChangePasswordButton()),
+                    const OtpValidationForm(),
+                    const Align(child: OtpValidationButton()),
                   ].spacerBetween(height: AppSpacing.md),
                 ),
               ),
