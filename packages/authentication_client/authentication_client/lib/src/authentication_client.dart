@@ -106,6 +106,17 @@ class ResetPasswordFailure extends AuthenticationException {
   const ResetPasswordFailure(super.error);
 }
 
+/// {@template verify_otp_failure}
+/// Thrown during the verify otp process if a failure occurs.
+/// {@endtemplate}
+/// This exception is thrown when there is a failure during the verify otp
+/// process.
+/// It indicates that the verify otp operation was unsuccessful.
+class VerifyOtpFailure extends AuthenticationException {
+  /// {@macro verify_otp_failure}
+  const VerifyOtpFailure(super.error);
+}
+
 /// {@template log_out_failure}
 /// Thrown during the logout process if a failure occurs.
 /// {@endtemplate}
@@ -165,6 +176,14 @@ abstract class AuthenticationClient {
     required String token,
     required String email,
     required String newPassword,
+  });
+
+  /// Sends a login email link to the provided [email] address.
+  ///
+  /// Throws a [VerifyOtpFailure] if an exception occurs.
+  Future<void> verifyOtp({
+    required String email,
+    required String otp,
   });
 
   /// Signs out the current user which will emit

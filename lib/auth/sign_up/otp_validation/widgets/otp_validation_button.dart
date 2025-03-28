@@ -4,8 +4,8 @@ import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChangePasswordButton extends StatelessWidget {
-  const ChangePasswordButton({super.key});
+class OtpValidationButton extends StatelessWidget {
+  const OtpValidationButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +18,12 @@ class ChangePasswordButton extends StatelessWidget {
       ),
     );
     final isLoading = context
-        .select((ChangePasswordCubit cubit) => cubit.state.status.isLoading);
+        .select((OtpValidationCubit cubit) => cubit.state.status.isLoading);
     final child = switch (isLoading) {
       true => AppButton.inProgress(style: style, scale: 0.5),
       _ => AppButton.auth(
-          context.l10n.changePasswordText,
-          () => context.read<ChangePasswordCubit>().onSubmit(
-                email: context.read<ForgotPasswordCubit>().state.email.value,
-              ),
+          context.l10n.signUpOtpValidationButtonLabel,
+          () => context.read<OtpValidationCubit>().onSubmit(),
           style: style,
           textStyle: TextStyle(
             color: context.reversedAdaptiveColor,

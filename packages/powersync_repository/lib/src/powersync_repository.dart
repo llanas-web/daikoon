@@ -304,10 +304,11 @@ class PowerSyncRepository {
   Future<void> verifyOTP({
     required String token,
     required String email,
+    required OtpType type,
   }) =>
       supabase.auth.verifyOTP(
         email: email,
         token: token,
-        type: OtpType.recovery,
+        type: type,
       );
 }

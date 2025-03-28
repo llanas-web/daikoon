@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/auth/auth.dart';
 import 'package:daikoon/auth/sign_up/sign_up.dart';
@@ -11,26 +12,67 @@ import 'package:user_repository/user_repository.dart';
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
 
+  static Route<void> route() => PageRouteBuilder(
+        pageBuilder: (_, __, ___) => const SignUpPage(),
+        transitionDuration: Duration.zero,
+        reverseTransitionDuration: Duration.zero,
+      );
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignUpCubit(
-        userRepository: context.read<UserRepository>(),
-        notificationsRepository: context.read<NotificationsRepository>(),
-      ),
-      child: const SignUpView(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SignUpCubit(
+            userRepository: context.read<UserRepository>(),
+            notificationsRepository: context.read<NotificationsRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => ShowOtpCubit(),
+        ),
+        BlocProvider(
+          create: (context) => OtpValidationCubit(
+            userRepository: context.read<UserRepository>(),
+          ),
+        )
+      ],
+      child: const SignUpTransitionSwitchView(),
     );
   }
 }
 
-class SignUpView extends StatefulWidget {
-  const SignUpView({super.key});
+class SignUpTransitionSwitchView extends StatelessWidget {
+  const SignUpTransitionSwitchView({super.key});
 
   @override
-  State<SignUpView> createState() => _SignUpViewState();
+  Widget build(BuildContext context) {
+    final showOtp = context.select((ShowOtpCubit b) => b.state);
+
+    return PageTransitionSwitcher(
+      reverse: showOtp,
+      transitionBuilder: (
+        child,
+        animation,
+        secondaryAnimation,
+      ) {
+        return SharedAxisTransition(
+          animation: animation,
+          secondaryAnimation: secondaryAnimation,
+          transitionType: SharedAxisTransitionType.horizontal,
+          child: child,
+        );
+      },
+      child: showOtp ? const OtpValidationView() : const SignUpView(),
+    );
+  }
 }
 
-class _SignUpViewState extends State<SignUpView> {
+class SignUpView extends StatelessWidget {
+  const SignUpView({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(

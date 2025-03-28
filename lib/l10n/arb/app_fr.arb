@@ -56,6 +56,14 @@
   "@signUpButtonLabel": {
     "description": "Label text for the inscription button"
   },
+  "signUpOtpValidationLabel": "Vérification de l''adresse e-mail",
+  "@signUpOtpValidationLabel": {
+    "description": "Label text for the inscription otp validation"
+  },
+  "signUpOtpValidationButtonLabel": "Valider",
+  "@signUpOtpValidationButtonLabel": {
+    "description": "Label text for the inscription otp validation button"
+  },
   "conditionsLabel": "En vous connectant, vous acceptez de vous conformer à la Politique de confidentialité et aux Conditions générales d''utilisation de Daïkoon.",
   "@conditionsLabel": {
     "description": "Label text for the conditions"

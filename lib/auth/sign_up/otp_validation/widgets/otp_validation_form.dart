@@ -5,36 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
-class ChangePasswordForm extends StatefulWidget {
-  const ChangePasswordForm({super.key});
+class OtpValidationForm extends StatefulWidget {
+  const OtpValidationForm({super.key});
 
   @override
-  State<ChangePasswordForm> createState() => _ChangePasswordFormState();
+  State<OtpValidationForm> createState() => _OtpValidationFormState();
 }
 
-class _ChangePasswordFormState extends State<ChangePasswordForm> {
+class _OtpValidationFormState extends State<OtpValidationForm> {
   @override
   void initState() {
     super.initState();
-    context.read<ChangePasswordCubit>().resetState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    context.read<ChangePasswordCubit>().resetState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ChangePasswordCubit, ChangePasswordState>(
+    return BlocListener<OtpValidationCubit, OtpValidationState>(
       listener: (context, state) {
-        if (state.status.isError) {
+        if (state.status.isFailure) {
           openSnackbar(
             SnackbarMessage.error(
-              title: changePasswordStatusMessage[state.status]!.title,
-              description:
-                  changePasswordStatusMessage[state.status]?.description,
+              title: otpValidationSatusMessage[state.status]!.title,
+              description: otpValidationSatusMessage[state.status]?.description,
             ),
             clearIfQueue: true,
           );
@@ -44,17 +36,16 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          OtpFormField<ChangePasswordCubit, ChangePasswordState>(
+          OtpFormField<OtpValidationCubit, OtpValidationState>(
             onOtpChanged: (cubit, otp) => cubit.onOtpChanged(otp),
             onOtpUnfocused: (cubit) => cubit.onOtpUnfocused(),
             otpError: context.select(
-              (ChangePasswordCubit cubit) => cubit.state.otp.errorMessage,
+              (OtpValidationCubit cubit) => cubit.state.otp.errorMessage,
             ),
             isLoading: context.select(
-              (ChangePasswordCubit cubit) => cubit.state.status.isLoading,
+              (OtpValidationCubit cubit) => cubit.state.status.isLoading,
             ),
           ),
-          const ChangePasswordField(),
         ].spacerBetween(height: AppSpacing.md),
       ),
     );

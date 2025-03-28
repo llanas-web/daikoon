@@ -178,6 +178,18 @@ abstract class AppLocalizations {
   /// **'Créer un compte'**
   String get signUpButtonLabel;
 
+  /// Label text for the inscription otp validation
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification de l\'\'adresse e-mail'**
+  String get signUpOtpValidationLabel;
+
+  /// Label text for the inscription otp validation button
+  ///
+  /// In fr, this message translates to:
+  /// **'Valider'**
+  String get signUpOtpValidationButtonLabel;
+
   /// Label text for the conditions
   ///
   /// In fr, this message translates to:
