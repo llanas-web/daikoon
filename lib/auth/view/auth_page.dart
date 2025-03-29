@@ -1,9 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/auth/auth.dart';
-import 'package:daikoon/auth/cubit/auth_cubit.dart';
 import 'package:daikoon/auth/login/login.dart';
-import 'package:daikoon/auth/sign_up/sign_up.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

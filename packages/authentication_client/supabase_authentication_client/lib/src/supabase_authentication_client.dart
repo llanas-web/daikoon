@@ -147,7 +147,10 @@ class SupabaseAuthenticationClient implements AuthenticationClient {
   }) async {
     try {
       await _powerSyncRepository.verifyOTP(
-          token: token, email: email, type: OtpType.recovery);
+        token: token,
+        email: email,
+        type: OtpType.recovery,
+      );
       await _powerSyncRepository.updateUser(password: newPassword);
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(ResetPasswordFailure(error), stackTrace);
