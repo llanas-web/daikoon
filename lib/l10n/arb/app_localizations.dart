@@ -709,6 +709,12 @@ abstract class AppLocalizations {
   String challengeDetailsAcceptedDaikoinsAmountErrorBetMaxDescription(
       String amount);
 
+  /// Label for the pending transaction button in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente de connexion pour validation du pari'**
+  String get challengeDetailsAcceptedTransactionPendingLabel;
+
   /// Label for the limit date in the challenge details page
   ///
   /// In fr, this message translates to:
