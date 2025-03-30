@@ -349,6 +349,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get challengeDetailsAcceptedTransactionPendingLabel =>
+      'En attente de connexion pour validation du pari';
+
+  @override
   String get challengeDetailsLimitDateLabel => 'Date de fin de mise';
 
   @override

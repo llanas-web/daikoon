@@ -89,11 +89,6 @@ class ChallengeInvitationPending extends StatelessWidget {
                 child: AppButton(
                   text: context
                       .l10n.challengeDetailsPendingAcceptTimeLeftButtonLabel,
-                  // onPressed: () => context.showAdaptiveDialog<void>(
-                  //   builder: (context) => const Center(
-                  //     child: Text('test modal'),
-                  //   ),
-                  // ),
                   color: AppColors.primary,
                   style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(AppColors.primary),

@@ -461,6 +461,10 @@
       }
     }
   },
+  "challengeDetailsAcceptedTransactionPendingLabel": "En attente de connexion pour validation du pari",
+  "@challengeDetailsAcceptedTransactionPendingLabel": {
+    "description": "Label for the pending transaction button in the challenge details page"
+  },
   "challengeDetailsLimitDateLabel": "Date de fin de mise",
   "@challengeDetailsLimitDateLabel": {
     "description": "Label for the limit date in the challenge details page"
