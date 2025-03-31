@@ -6,85 +6,99 @@ import 'package:flutter/widgets.dart';
 class DaikoonFormRadioItem extends StatelessWidget {
   const DaikoonFormRadioItem({
     required this.title,
-    required this.onTap,
-    required this.isSelected,
+    this.readOnly = false,
+    this.onTap,
+    this.isSelected = false,
     this.child,
     super.key,
   });
 
   final String title;
-  final VoidCallback onTap;
+  final bool readOnly;
+  final VoidCallback? onTap;
   final bool isSelected;
   final Widget? child;
 
   @override
   Widget build(BuildContext context) {
+    final container = Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        border: isSelected
+            ? Border.all(
+                color: AppColors.deepBlue,
+                width: AppSpacing.xxs,
+              )
+            : Border.all(
+                color: AppColors.white,
+                width: AppSpacing.xxs,
+              ),
+        color: AppColors.white,
+      ),
+      padding: const EdgeInsets.symmetric(
+        vertical: AppSpacing.lg,
+        horizontal: AppSpacing.xlg,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          if (child != null)
+            Expanded(child: child!)
+          else
+            Text(
+              title,
+              style: UITextStyle.hintText.copyWith(
+                color: isSelected ? AppColors.deepBlue : AppColors.grey,
+              ),
+            ),
+          if (!readOnly)
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: AppSpacing.xlg,
+                  height: AppSpacing.xlg,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.white,
+                    border: Border.all(
+                      color:
+                          isSelected ? AppColors.secondary : AppColors.deepBlue,
+                      width: AppSpacing.xxs,
+                    ),
+                  ),
+                ),
+                if (isSelected)
+                  Container(
+                    width: AppSpacing.lg,
+                    height: AppSpacing.lg,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.secondary,
+                    ),
+                  ),
+              ],
+            ),
+        ],
+      ),
+    );
+
+    if (readOnly || onTap == null) {
+      return Row(
+        children: [
+          Expanded(
+            child: container,
+          ),
+        ],
+      );
+    }
+
     return Tappable(
       onTap: onTap,
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppRadius.lg),
-                border: isSelected
-                    ? Border.all(
-                        color: AppColors.deepBlue,
-                        width: AppSpacing.xxs,
-                      )
-                    : Border.all(
-                        color: AppColors.white,
-                        width: AppSpacing.xxs,
-                      ),
-                color: AppColors.white,
-              ),
-              padding: const EdgeInsets.symmetric(
-                vertical: AppSpacing.lg,
-                horizontal: AppSpacing.xlg,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  if (child != null)
-                    Expanded(child: child!)
-                  else
-                    Text(
-                      title,
-                      style: UITextStyle.hintText.copyWith(
-                        color: isSelected ? AppColors.deepBlue : AppColors.grey,
-                      ),
-                    ),
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: AppSpacing.xlg,
-                        height: AppSpacing.xlg,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.white,
-                          border: Border.all(
-                            color: isSelected
-                                ? AppColors.secondary
-                                : AppColors.deepBlue,
-                            width: AppSpacing.xxs,
-                          ),
-                        ),
-                      ),
-                      if (isSelected)
-                        Container(
-                          width: AppSpacing.lg,
-                          height: AppSpacing.lg,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.secondary,
-                          ),
-                        ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            child: container,
           ),
         ],
       ),
