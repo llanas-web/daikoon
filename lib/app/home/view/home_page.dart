@@ -19,7 +19,8 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       appBar: const HomeAppBar(),
-      body: SingleChildScrollView(
+      body: AppConstrainedScrollView(
+        withScrollBar: true,
         child: Column(
           children: [
             const HomeHeader(),

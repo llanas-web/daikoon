@@ -52,7 +52,6 @@ class _UserProfileEditViewState extends State<UserProfileEditView> {
       body: Padding(
         padding: const EdgeInsets.all(AppSpacing.xlg),
         child: AppConstrainedScrollView(
-          withScrollBar: true,
           child: Column(
             children: <Widget>[
               ProfileInfoInput(

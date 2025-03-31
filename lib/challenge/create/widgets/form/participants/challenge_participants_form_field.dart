@@ -20,7 +20,7 @@ class _ChallengeParticipantsFormFieldState
     return DaikoonFormSelector<User>(
       hintText: context.l10n.challengeCreationParticipantsFormFieldHint,
       onChange: (value) async {
-        final users = await context.read<UserRepository>().searchUsers(
+        final users = await context.read<UserRepository>().searchFriends(
               query: value,
             );
         return users;

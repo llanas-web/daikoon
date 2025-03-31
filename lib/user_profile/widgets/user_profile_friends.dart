@@ -60,8 +60,8 @@ class _UserProfileFriendsViewState extends State<UserProfileFriendsView>
           ),
         ],
       ),
-      body: CustomScrollView(
-        slivers: [
+      body: AppCustomScrollView(
+        children: [
           BetterStreamBuilder(
             initialData: const <User>[],
             stream: friendsStream,

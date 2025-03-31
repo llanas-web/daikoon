@@ -44,44 +44,42 @@ class NotificationsView extends StatelessWidget {
             image: Assets.images.bluryBackground.provider(),
           ),
         ),
-        child: RefreshIndicator(
-          onRefresh: refreshNotifications,
-          child: CustomScrollView(
-            slivers: [
-              BetterStreamBuilder<List<Notification>>(
-                initialData: const <Notification>[],
-                stream: notificationsCubit.fetchNotifications(userId: user.id),
-                builder: (context, notifications) {
-                  return SliverPadding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.lg,
-                      vertical: AppSpacing.md,
-                    ),
-                    sliver: SliverList.builder(
-                      itemBuilder: (context, index) => Column(
-                        children: [
-                          Opacity(
-                            opacity: max((5 - min(index, 5)) / 5, 0.2),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: NotificationItem(
-                                    notification: notifications[index],
-                                  ),
+        child: AppCustomScrollView(
+          refreshCallback: refreshNotifications,
+          children: [
+            BetterStreamBuilder<List<Notification>>(
+              initialData: const <Notification>[],
+              stream: notificationsCubit.fetchNotifications(userId: user.id),
+              builder: (context, notifications) {
+                return SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.lg,
+                    vertical: AppSpacing.md,
+                  ),
+                  sliver: SliverList.builder(
+                    itemBuilder: (context, index) => Column(
+                      children: [
+                        Opacity(
+                          opacity: max((5 - min(index, 5)) / 5, 0.2),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: NotificationItem(
+                                  notification: notifications[index],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          const Gap.v(AppSpacing.md),
-                        ],
-                      ),
-                      itemCount: notifications.length,
+                        ),
+                        const Gap.v(AppSpacing.md),
+                      ],
                     ),
-                  );
-                },
-              ),
-            ],
-          ),
+                    itemCount: notifications.length,
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

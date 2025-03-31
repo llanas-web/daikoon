@@ -43,68 +43,66 @@ class ChallengeEndedDetails extends StatelessWidget {
           );
     }
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Text(
-            challenge.title!,
-            style: UITextStyle.subtitle.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
+    return Column(
+      children: [
+        Text(
+          challenge.title!,
+          style: UITextStyle.subtitle.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          width: 300,
+          child: Text(
+            hasWon
+                ? context.l10n.challengeDetailsEndedWonTitle
+                : context.l10n.challengeDetailsEndedLoseTitle,
+            style: UITextStyle.title,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
-            width: 300,
-            child: Text(
-              hasWon
-                  ? context.l10n.challengeDetailsEndedWonTitle
-                  : context.l10n.challengeDetailsEndedLoseTitle,
-              style: UITextStyle.title,
+        ),
+        Text(
+          '🥳',
+          style: context.headlineLarge?.copyWith(
+            fontSize: 64,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        Column(
+          children: [
+            Text(
+              context.l10n.challengeDetailsEndedWinnersLabel,
+              style: UITextStyle.titleSmallBold,
+            ),
+            Text(
+              winners
+                  .map(
+                    (winner) => '@${winner?.displayUsername}',
+                  )
+                  .join(', '),
+              style: UITextStyle.title2,
               textAlign: TextAlign.center,
             ),
-          ),
-          Text(
-            '🥳',
-            style: context.headlineLarge?.copyWith(
-              fontSize: 64,
-            ),
-            textAlign: TextAlign.center,
-          ),
+          ].spacerBetween(height: AppSpacing.md),
+        ),
+        if (challenge.hasBet)
           Column(
             children: [
               Text(
-                context.l10n.challengeDetailsEndedWinnersLabel,
+                context.l10n.challengeDetailsEndedDaikoinsWinLabel,
                 style: UITextStyle.titleSmallBold,
               ),
-              Text(
-                winners
-                    .map(
-                      (winner) => '@${winner?.displayUsername}',
-                    )
-                    .join(', '),
-                style: UITextStyle.title2,
-                textAlign: TextAlign.center,
+              FutureBuilder<int>(
+                future: getAwardAmount(),
+                builder: (context, snapshot) => Text(
+                  snapshot.data != null ? snapshot.data.toString() : '...',
+                  style: UITextStyle.title2,
+                ),
               ),
             ].spacerBetween(height: AppSpacing.md),
           ),
-          if (challenge.hasBet)
-            Column(
-              children: [
-                Text(
-                  context.l10n.challengeDetailsEndedDaikoinsWinLabel,
-                  style: UITextStyle.titleSmallBold,
-                ),
-                FutureBuilder<int>(
-                  future: getAwardAmount(),
-                  builder: (context, snapshot) => Text(
-                    snapshot.data != null ? snapshot.data.toString() : '...',
-                    style: UITextStyle.title2,
-                  ),
-                ),
-              ].spacerBetween(height: AppSpacing.md),
-            ),
-        ].spacerBetween(height: AppSpacing.xlg),
-      ),
+      ].spacerBetween(height: AppSpacing.xlg),
     );
   }
 }

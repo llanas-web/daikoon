@@ -181,7 +181,7 @@ extension DialogExtension on BuildContext {
         isScrollControlled: true,
         title: title,
         content: SafeArea(
-          child: SingleChildScrollView(
+          child: AppConstrainedScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,

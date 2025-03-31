@@ -57,7 +57,9 @@ class ChallengeDetailsView extends StatelessWidget {
             } else if (state.status == ChallengeDetailsStatus.failed) {
               return const Center(child: Text('Error'));
             } else {
-              return const ChallengeDetails();
+              return const AppConstrainedScrollView(
+                child: ChallengeDetails(),
+              );
             }
           },
         ),

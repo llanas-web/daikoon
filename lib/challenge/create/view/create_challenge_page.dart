@@ -102,7 +102,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
                   fillColor: Colors.transparent,
                   child: LayoutBuilder(
                     builder: (context, constraints) {
-                      return SingleChildScrollView(
+                      return AppConstrainedScrollView(
                         child: ConstrainedBox(
                           constraints: BoxConstraints(
                             minHeight: constraints.maxHeight,

@@ -67,8 +67,8 @@ class UserProfileView extends StatelessWidget {
             ),
           ),
         ],
-        body: CustomScrollView(
-          slivers: [
+        body: AppCustomScrollView(
+          children: [
             SliverList(
               delegate: SliverChildListDelegate(
                 isOwner

@@ -27,8 +27,12 @@ class ChallengeListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listChallenges =
-        context.select((ChallengesCubit cubit) => cubit.challenges);
+    final challengeListCubit = context.read<ChallengesCubit>();
+
+    Future<void> refreshChallenges() async {
+      challengeListCubit.fetchChallenges();
+    }
+
     return AppScaffold(
       appBar: const HomeAppBar(),
       drawer: const AppDrawer(),
@@ -38,11 +42,13 @@ class ChallengeListView extends StatelessWidget {
             image: Assets.images.bluryBackground.provider(),
           ),
         ),
-        child: CustomScrollView(
-          slivers: [
+        child: AppCustomScrollView(
+          withScrollBar: true,
+          refreshCallback: refreshChallenges,
+          children: [
             BetterStreamBuilder<List<Challenge>>(
               initialData: const <Challenge>[],
-              stream: listChallenges,
+              stream: challengeListCubit.fetchChallenges(),
               builder: (context, challenges) {
                 return SliverPadding(
                   padding: const EdgeInsets.symmetric(
