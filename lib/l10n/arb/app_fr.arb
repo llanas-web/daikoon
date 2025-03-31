@@ -547,7 +547,7 @@
   "@challengeDetailsEndedWonTitle": {
     "description": "Header of the drawer with the username of connected user"
   },
-  "challengeDetailsEndedLoseTitle": "Dommage... \n Vous avez perdu ! 😢",
+  "challengeDetailsEndedLoseTitle": "Dommage... \n Vous avez perdu ! 👎",
   "@challengeDetailsEndedLoseTitle": {
     "description": "Header of the drawer with the username of connected user"
   },
@@ -558,5 +558,9 @@
   "challengeDetailsEndedDaikoinsWinLabel": "Vous avez gagné",
   "@challengeDetailsEndedDaikoinsWinLabel": {
     "description": "Label for the daikoins win in the challenge details page"
+  },
+  "challengeDetailsEndedNoWinnersLabel": "Pas de gagnant",
+  "@challengeDetailsEndedNoWinnersLabel": {
+    "description": "Label for the no winners in the challenge details page"
   }
 }

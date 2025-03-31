@@ -63,7 +63,7 @@ class ChallengeEndedDetails extends StatelessWidget {
           ),
         ),
         Text(
-          '🥳',
+          hasWon ? '🥳' : '😭',
           style: context.headlineLarge?.copyWith(
             fontSize: 64,
           ),
@@ -76,11 +76,13 @@ class ChallengeEndedDetails extends StatelessWidget {
               style: UITextStyle.titleSmallBold,
             ),
             Text(
-              winners
-                  .map(
-                    (winner) => '@${winner?.displayUsername}',
-                  )
-                  .join(', '),
+              winners.isEmpty
+                  ? context.l10n.challengeDetailsEndedNoWinnersLabel
+                  : winners
+                      .map(
+                        (winner) => '@${winner?.displayUsername}',
+                      )
+                      .join(', '),
               style: UITextStyle.title2,
               textAlign: TextAlign.center,
             ),
@@ -96,7 +98,11 @@ class ChallengeEndedDetails extends StatelessWidget {
               FutureBuilder<int>(
                 future: getAwardAmount(),
                 builder: (context, snapshot) => Text(
-                  snapshot.data != null ? snapshot.data.toString() : '...',
+                  snapshot.connectionState == ConnectionState.waiting
+                      ? '...'
+                      : hasWon
+                          ? '${snapshot.data} Daikoins'
+                          : '0 Daikoins',
                   style: UITextStyle.title2,
                 ),
               ),

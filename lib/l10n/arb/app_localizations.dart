@@ -814,7 +814,7 @@ abstract class AppLocalizations {
   /// Header of the drawer with the username of connected user
   ///
   /// In fr, this message translates to:
-  /// **'Dommage... \n Vous avez perdu ! 😢'**
+  /// **'Dommage... \n Vous avez perdu ! 👎'**
   String get challengeDetailsEndedLoseTitle;
 
   /// Label for the winners in the challenge details page
@@ -828,6 +828,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Vous avez gagné'**
   String get challengeDetailsEndedDaikoinsWinLabel;
+
+  /// Label for the no winners in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas de gagnant'**
+  String get challengeDetailsEndedNoWinnersLabel;
 }
 
 class _AppLocalizationsDelegate
