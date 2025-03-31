@@ -17,11 +17,18 @@ class _ChallengeParticipantsFormFieldState
     extends State<ChallengeParticipantsFormField> {
   @override
   Widget build(BuildContext context) {
+    final listParticipantsId = context
+        .select(
+          (CreateChallengeCubit cubit) => cubit.state.participants,
+        )
+        .map((participant) => participant.id)
+        .toList();
     return DaikoonFormSelector<User>(
       hintText: context.l10n.challengeCreationParticipantsFormFieldHint,
       onChange: (value) async {
         final users = await context.read<UserRepository>().searchFriends(
               query: value,
+              excludeUserIds: listParticipantsId,
             );
         return users;
       },

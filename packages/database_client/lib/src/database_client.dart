@@ -60,6 +60,7 @@ abstract class UserBaseRepository {
   Future<List<User>> searchFriends({
     required String query,
     String? userId,
+    List<String>? excludeUserIds,
   });
 }
 
@@ -268,17 +269,33 @@ class PowerSyncDatabaseClient extends DatabaseClient {
   }
 
   @override
-  Future<List<User>> searchFriends({required String query, String? userId}) {
+  Future<List<User>> searchFriends({
+    required String query,
+    String? userId,
+    List<String>? excludeUserIds,
+  }) {
+    final _excludeUserIds = excludeUserIds != null
+        ? excludeUserIds.add(userId ?? currentUserId!)
+        : [userId ?? currentUserId];
     return _powerSyncRepository.db().getAll(
       '''
       SELECT users.id, users.username, users.full_name, users.avatar_url
       FROM friendships
       JOIN users
       ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id) AND users.id != ?1
-      WHERE (friendships.sender_id = ?1 OR friendships.receiver_id = ?1)
-      AND (LOWER(users.username) LIKE LOWER('%$query%') OR LOWER(users.full_name) LIKE LOWER('%$query%'))
+      WHERE (
+        (friendships.sender_id = ?1 AND friendships.receiver_id NOT IN (?2))
+        OR (friendships.receiver_id = ?1 AND friendships.sender_id NOT IN (?2))
+        )
+        AND (
+          LOWER(users.username) LIKE LOWER('%$query%')
+          OR LOWER(users.full_name) LIKE LOWER('%$query%')
+        )
       ''',
-      [userId ?? currentUserId],
+      [
+        userId ?? currentUserId,
+        [userId ?? currentUserId, _excludeUserIds].join(',')
+      ],
     ).then((event) => event.safeMap(User.fromJson).toList(growable: false));
   }
 
