@@ -228,7 +228,11 @@ class UserRepository implements UserBaseRepository {
   }
 
   @override
-  Future<List<User>> searchFriends({required String query, String? userId}) {
+  Future<List<User>> searchFriends({
+    required String query,
+    String? userId,
+    List<String>? excludeUserIds,
+  }) {
     return _databaseClient.searchFriends(userId: userId, query: query);
   }
 }
