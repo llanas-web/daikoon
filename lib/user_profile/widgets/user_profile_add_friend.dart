@@ -50,8 +50,8 @@ class _UserProfileAddFriendsViewState extends State<UserProfileAddFriendsView> {
         backgroundColor: AppColors.primary,
         foregroundColor: context.reversedAdaptiveColor,
       ),
-      body: CustomScrollView(
-        slivers: [
+      body: AppCustomScrollView(
+        children: [
           SliverAppBar(
             pinned: true,
             expandedHeight: AppSpacing.xxxlg,

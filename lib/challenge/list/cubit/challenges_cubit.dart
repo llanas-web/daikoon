@@ -16,6 +16,7 @@ class ChallengesCubit extends Cubit<ChallengesState> {
   final ChallengeRepository _challengeRepository;
   final String _userId;
 
-  Stream<List<Challenge>> get challenges =>
-      _challengeRepository.getChallenges(userId: _userId);
+  Stream<List<Challenge>> fetchChallenges() {
+    return _challengeRepository.getChallenges(userId: _userId);
+  }
 }

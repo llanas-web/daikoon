@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 
 /// {@template app_constrained_scroll_view}
-/// The [AppConstrainedScrollView] is a scroll view that has a [Column]
+/// The [AppCustomScrollView] is a scroll view that has a list of [Widget]
 /// as its child and constrains the width and height of the scroll view
 /// to the width and height of its parent.
 /// {@endtemplate}
-class AppConstrainedScrollView extends StatelessWidget {
+class AppCustomScrollView extends StatelessWidget {
   /// {@macro app_constrained_scroll_view}
-  const AppConstrainedScrollView({
-    required this.child,
+  const AppCustomScrollView({
+    required this.children,
     this.padding,
     this.mainAxisAlignment = MainAxisAlignment.center,
     this.withScrollBar = false,
     this.controller,
+    this.refreshCallback,
     super.key,
   });
 
   /// The widget inside a scroll view.
-  final Widget child;
+  final List<Widget> children;
 
   /// The padding to apply to the scroll view.
   final EdgeInsetsGeometry? padding;
@@ -31,32 +32,35 @@ class AppConstrainedScrollView extends StatelessWidget {
   /// Optional [ScrollController] to use for the scroll view.
   final ScrollController? controller;
 
-  Widget _scrollView(BoxConstraints constraints) => SingleChildScrollView(
-        controller: controller,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minWidth: constraints.maxWidth,
-            minHeight: constraints.maxHeight,
-          ),
-          child: IntrinsicHeight(
-            child: padding == null
-                ? child
-                : Padding(padding: padding!, child: child),
-          ),
-        ),
-      );
+  /// Optional callback to refresh the scroll view.
+  final Future<void> Function()? refreshCallback;
 
   @override
   Widget build(BuildContext context) {
+    final effectiveController = controller ?? ScrollController();
+
+    final scrollView = CustomScrollView(
+      controller: effectiveController,
+      slivers: children,
+    );
+
+    final customScrollView = refreshCallback != null
+        ? RefreshIndicator(
+            onRefresh: refreshCallback!,
+            child: scrollView,
+          )
+        : scrollView;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         return switch (withScrollBar) {
           true => Scrollbar(
               thumbVisibility: true,
               trackVisibility: true,
-              child: _scrollView(constraints),
+              controller: effectiveController,
+              child: customScrollView,
             ),
-          false => _scrollView(constraints),
+          false => customScrollView,
         };
       },
     );
