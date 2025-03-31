@@ -103,26 +103,18 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       return AppConstrainedScrollView(
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            minHeight: constraints.maxHeight,
-                          ),
-                          child: IntrinsicHeight(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Spacer(),
-                                child,
-                                if (formIndex < stepsForm.length - 1)
-                                  const ChallengeNextButton()
-                                else
-                                  const ChallengeSubmitButton(),
-                                if (formIndex > 0)
-                                  const ChallengePreviousButton(),
-                                const Spacer(),
-                              ].spacerBetween(height: AppSpacing.xxlg),
-                            ),
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Spacer(),
+                            child,
+                            if (formIndex < stepsForm.length - 1)
+                              const ChallengeNextButton()
+                            else
+                              const ChallengeSubmitButton(),
+                            if (formIndex > 0) const ChallengePreviousButton(),
+                            const Spacer(),
+                          ].spacerBetween(height: AppSpacing.xxlg),
                         ),
                       );
                     },

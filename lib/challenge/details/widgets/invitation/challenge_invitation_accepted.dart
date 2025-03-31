@@ -101,225 +101,223 @@ class __ChallengeInvitationAcceptedState
           );
     }
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Text(
-            context.l10n.challengeDetailsAcceptedCreatorTitle(
-              challenge.creator!.displayUsername,
-            ),
-            style: UITextStyle.titleSmallBold.copyWith(
-              fontWeight: AppFontWeight.bold,
-            ),
+    return Column(
+      children: [
+        Text(
+          context.l10n.challengeDetailsAcceptedCreatorTitle(
+            challenge.creator!.displayUsername,
+          ),
+          style: UITextStyle.titleSmallBold.copyWith(
+            fontWeight: AppFontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          width: 300,
+          child: Text(
+            context.l10n.challengeDetailsInvitationTitle(challenge.title!),
+            style: UITextStyle.title,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
-            width: 300,
-            child: Text(
-              context.l10n.challengeDetailsInvitationTitle(challenge.title!),
-              style: UITextStyle.title,
-              textAlign: TextAlign.center,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              context.l10n.challengeDetailsQuestionLabel,
+              style: UITextStyle.subtitleBold,
             ),
-          ),
+            ChallengeQuestionTextField(
+              initialValue: challenge.question!,
+              readOnly: true,
+            ),
+          ].spacerBetween(height: AppSpacing.md),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              context.l10n.challengeDetailsAcceptedChoiceLabel,
+              style: UITextStyle.subtitleBold,
+            ),
+            if (challenge.choices.isNotEmpty)
+              Column(
+                children: challenge.choices
+                    .map((choice) {
+                      return DaikoonFormRadioItem(
+                        title: choice.value,
+                        isSelected: choice.id == _choiceId,
+                        onTap: () => setState(() => _choiceId = choice.id),
+                      );
+                    })
+                    .toList()
+                    .spacerBetween(height: AppSpacing.md),
+              ),
+          ].spacerBetween(height: AppSpacing.md),
+        ),
+        if (challenge.hasBet)
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                context.l10n.challengeDetailsQuestionLabel,
+                context.l10n.challengeDetailsAcceptedDaikoinsLabel,
                 style: UITextStyle.subtitleBold,
               ),
-              ChallengeQuestionTextField(
-                initialValue: challenge.question!,
-                readOnly: true,
+              Column(
+                children: [
+                  DaikoonFormRadioItem(
+                    title: 'bet',
+                    isSelected: _hasBet,
+                    onTap: () {
+                      _betAmountFocusNode.requestFocus();
+                      setState(
+                        () => _hasBet = true,
+                      );
+                    },
+                    child: TextField(
+                      controller: _betAmountController,
+                      onTapOutside: (_) => _betAmountFocusNode.unfocus(),
+                      focusNode: _betAmountFocusNode,
+                      onTap: () => setState(() => _hasBet = true),
+                      decoration: const InputDecoration(
+                        isDense: true,
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  DaikoonFormRadioItem(
+                    title: 'bet',
+                    isSelected: !_hasBet,
+                    onTap: () => setState(
+                      () => _hasBet = false,
+                    ),
+                  ),
+                ].spacerBetween(height: AppSpacing.md),
               ),
             ].spacerBetween(height: AppSpacing.md),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                context.l10n.challengeDetailsAcceptedChoiceLabel,
-                style: UITextStyle.subtitleBold,
-              ),
-              if (challenge.choices.isNotEmpty)
-                Column(
-                  children: challenge.choices
-                      .map((choice) {
-                        return DaikoonFormRadioItem(
-                          title: choice.value,
-                          isSelected: choice.id == _choiceId,
-                          onTap: () => setState(() => _choiceId = choice.id),
-                        );
-                      })
-                      .toList()
-                      .spacerBetween(height: AppSpacing.md),
-                ),
-            ].spacerBetween(height: AppSpacing.md),
-          ),
-          if (challenge.hasBet)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              context.l10n.challengeDetailsLimitDateLabel,
+              style: UITextStyle.subtitleBold,
+            ),
+            Row(
               children: [
-                Text(
-                  context.l10n.challengeDetailsAcceptedDaikoinsLabel,
-                  style: UITextStyle.subtitleBold,
+                Expanded(
+                  child: DaikoonFormDateSelector(
+                    value: challenge.limitDate,
+                    readOnly: true,
+                  ),
                 ),
-                Column(
-                  children: [
-                    DaikoonFormRadioItem(
-                      title: 'bet',
-                      isSelected: _hasBet,
-                      onTap: () {
-                        _betAmountFocusNode.requestFocus();
-                        setState(
-                          () => _hasBet = true,
-                        );
-                      },
-                      child: TextField(
-                        controller: _betAmountController,
-                        onTapOutside: (_) => _betAmountFocusNode.unfocus(),
-                        focusNode: _betAmountFocusNode,
-                        onTap: () => setState(() => _hasBet = true),
-                        decoration: const InputDecoration(
-                          isDense: true,
-                          contentPadding: EdgeInsets.zero,
-                        ),
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
-                    DaikoonFormRadioItem(
-                      title: 'bet',
-                      isSelected: !_hasBet,
-                      onTap: () => setState(
-                        () => _hasBet = false,
-                      ),
-                    ),
-                  ].spacerBetween(height: AppSpacing.md),
+                Expanded(
+                  child: DaikoonFormTimeSelector(
+                    value: challenge.limitDate,
+                    readOnly: true,
+                  ),
                 ),
-              ].spacerBetween(height: AppSpacing.md),
+              ].spacerBetween(width: AppSpacing.md),
             ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                context.l10n.challengeDetailsLimitDateLabel,
-                style: UITextStyle.subtitleBold,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: DaikoonFormDateSelector(
-                      value: challenge.limitDate,
-                      readOnly: true,
-                    ),
+          ].spacerBetween(height: AppSpacing.md),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              context.l10n.challengeDetailsStartDateLabel,
+              style: UITextStyle.subtitleBold,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: DaikoonFormDateSelector(
+                    value: challenge.starting,
+                    readOnly: true,
                   ),
-                  Expanded(
-                    child: DaikoonFormTimeSelector(
-                      value: challenge.limitDate,
-                      readOnly: true,
-                    ),
+                ),
+                Expanded(
+                  child: DaikoonFormTimeSelector(
+                    value: challenge.starting,
+                    readOnly: true,
                   ),
-                ].spacerBetween(width: AppSpacing.md),
-              ),
-            ].spacerBetween(height: AppSpacing.md),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                context.l10n.challengeDetailsStartDateLabel,
-                style: UITextStyle.subtitleBold,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: DaikoonFormDateSelector(
-                      value: challenge.starting,
-                      readOnly: true,
-                    ),
+                ),
+              ].spacerBetween(width: AppSpacing.md),
+            ),
+          ].spacerBetween(height: AppSpacing.md),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              context.l10n.challengeDetailsEndDateLabel,
+              style: UITextStyle.subtitleBold,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: DaikoonFormDateSelector(
+                    value: challenge.ending,
+                    readOnly: true,
                   ),
-                  Expanded(
-                    child: DaikoonFormTimeSelector(
-                      value: challenge.starting,
-                      readOnly: true,
-                    ),
+                ),
+                Expanded(
+                  child: DaikoonFormTimeSelector(
+                    value: challenge.ending,
+                    readOnly: true,
                   ),
-                ].spacerBetween(width: AppSpacing.md),
-              ),
-            ].spacerBetween(height: AppSpacing.md),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                context.l10n.challengeDetailsEndDateLabel,
-                style: UITextStyle.subtitleBold,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: DaikoonFormDateSelector(
-                      value: challenge.ending,
-                      readOnly: true,
-                    ),
-                  ),
-                  Expanded(
-                    child: DaikoonFormTimeSelector(
-                      value: challenge.ending,
-                      readOnly: true,
-                    ),
-                  ),
-                ].spacerBetween(width: AppSpacing.md),
-              ),
-            ].spacerBetween(height: AppSpacing.md),
-          ),
-          if (userBet != null &&
-              userBet.transactionStatus == TransactionStatus.pending)
-            Text(context.l10n.challengeDetailsAcceptedTransactionPendingLabel),
-          Row(
-            children: [
-              Expanded(
-                child: (userBet != null &&
-                        userBet.transactionStatus == TransactionStatus.pending)
-                    ? AppButton.inProgress(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              WidgetStatePropertyAll(AppColors.secondary),
-                          padding: WidgetStatePropertyAll(
-                            EdgeInsets.symmetric(
-                              vertical: AppSpacing.lg,
-                              horizontal: AppSpacing.xxlg,
-                            ),
-                          ),
-                        ),
-                      )
-                    : AppButton(
-                        text: context
-                            .l10n.challengeDetailsAcceptedValidateButtonLabel,
-                        onPressed: upsertBet,
-                        color: AppColors.secondary,
-                        textStyle: UITextStyle.button.copyWith(
-                          color: context.reversedAdaptiveColor,
-                        ),
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              WidgetStatePropertyAll(AppColors.secondary),
-                          padding: WidgetStatePropertyAll(
-                            EdgeInsets.symmetric(
-                              vertical: AppSpacing.lg,
-                              horizontal: AppSpacing.xxlg,
-                            ),
+                ),
+              ].spacerBetween(width: AppSpacing.md),
+            ),
+          ].spacerBetween(height: AppSpacing.md),
+        ),
+        if (userBet != null &&
+            userBet.transactionStatus == TransactionStatus.pending)
+          Text(context.l10n.challengeDetailsAcceptedTransactionPendingLabel),
+        Row(
+          children: [
+            Expanded(
+              child: (userBet != null &&
+                      userBet.transactionStatus == TransactionStatus.pending)
+                  ? AppButton.inProgress(
+                      style: const ButtonStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(AppColors.secondary),
+                        padding: WidgetStatePropertyAll(
+                          EdgeInsets.symmetric(
+                            vertical: AppSpacing.lg,
+                            horizontal: AppSpacing.xxlg,
                           ),
                         ),
                       ),
-              ),
-            ],
-          ),
-          const Gap.v(
-            AppSpacing.xlg,
-          ),
-        ].spacerBetween(height: AppSpacing.xlg),
-      ),
+                    )
+                  : AppButton(
+                      text: context
+                          .l10n.challengeDetailsAcceptedValidateButtonLabel,
+                      onPressed: upsertBet,
+                      color: AppColors.secondary,
+                      textStyle: UITextStyle.button.copyWith(
+                        color: context.reversedAdaptiveColor,
+                      ),
+                      style: const ButtonStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(AppColors.secondary),
+                        padding: WidgetStatePropertyAll(
+                          EdgeInsets.symmetric(
+                            vertical: AppSpacing.lg,
+                            horizontal: AppSpacing.xxlg,
+                          ),
+                        ),
+                      ),
+                    ),
+            ),
+          ],
+        ),
+        const Gap.v(
+          AppSpacing.xlg,
+        ),
+      ].spacerBetween(height: AppSpacing.xlg),
     );
   }
 }
