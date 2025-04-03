@@ -25,7 +25,7 @@ class ChallengeResume extends StatelessWidget {
           index: 0,
           children: [
             Text(
-              challengeState.challengeTitle.value,
+              challengeState.title!,
               style: UITextStyle.subtitle,
             ),
           ],

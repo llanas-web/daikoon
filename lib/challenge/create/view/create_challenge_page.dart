@@ -2,11 +2,10 @@ import 'package:animations/animations.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:challenge_repository/challenge_repository.dart';
 import 'package:daikoon/app/app.dart';
-import 'package:daikoon/challenge/create/create_challenge.dart';
+import 'package:daikoon/challenge/challenge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared/shared.dart';
 
 class CreateChallengePage extends StatelessWidget {
   const CreateChallengePage({super.key});
@@ -47,7 +46,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
         context.select((CreateChallengeCubit cubit) => cubit.state.hasBet);
 
     final stepsForm = <Widget>[
-      const ChallengeTitleForm(),
+      const TitleStepView(),
       const ChallengeChoicesForm(),
       const ChallengeBetForm(),
       if (hasBet) const ChallengeBetAmountForm(),
@@ -97,27 +96,11 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
                 return SharedAxisTransition(
                   animation: animation,
                   secondaryAnimation: secondaryAnimation,
-                  transitionType:
-                      SharedAxisTransitionType.horizontal, // Left ↔ Right
+                  transitionType: SharedAxisTransitionType.horizontal,
                   fillColor: Colors.transparent,
                   child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      return AppConstrainedScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Spacer(),
-                            child,
-                            if (formIndex < stepsForm.length - 1)
-                              const ChallengeNextButton()
-                            else
-                              const ChallengeSubmitButton(),
-                            if (formIndex > 0) const ChallengePreviousButton(),
-                            const Spacer(),
-                          ].spacerBetween(height: AppSpacing.xxlg),
-                        ),
-                      );
-                    },
+                    builder: (context, constraints) =>
+                        AppConstrainedScrollView(child: child),
                   ),
                 );
               },

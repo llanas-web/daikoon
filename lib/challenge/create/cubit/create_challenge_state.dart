@@ -7,7 +7,7 @@ class CreateChallengeState extends Equatable {
     required this.status,
     required this.errorMessage,
     required this.challengeId,
-    required this.challengeTitle,
+    required this.title,
     required this.challengeQuestion,
     required this.choices,
     required this.hasBet,
@@ -25,7 +25,7 @@ class CreateChallengeState extends Equatable {
           status: CreateChallengeStatus.initial,
           errorMessage: null,
           challengeId: null,
-          challengeTitle: const ChallengeTitle.pure(),
+          title: null,
           challengeQuestion: const ChallengeQuestion.pure(),
           choices: const [],
           hasBet: false,
@@ -41,7 +41,7 @@ class CreateChallengeState extends Equatable {
   final CreateChallengeStatus status;
   final String? errorMessage;
   final String? challengeId;
-  final ChallengeTitle challengeTitle;
+  final String? title;
   final ChallengeQuestion challengeQuestion;
   final List<String> choices;
   final bool hasBet;
@@ -57,7 +57,7 @@ class CreateChallengeState extends Equatable {
     CreateChallengeStatus? status,
     String? errorMessage,
     String? challengeId,
-    ChallengeTitle? challengeTitle,
+    String? title,
     ChallengeQuestion? challengeQuestion,
     List<String>? choices,
     bool? hasBet,
@@ -73,7 +73,7 @@ class CreateChallengeState extends Equatable {
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
       challengeId: challengeId ?? this.challengeId,
-      challengeTitle: challengeTitle ?? this.challengeTitle,
+      title: title ?? this.title,
       challengeQuestion: challengeQuestion ?? this.challengeQuestion,
       choices: choices ?? this.choices,
       hasBet: hasBet ?? this.hasBet,
@@ -91,7 +91,7 @@ class CreateChallengeState extends Equatable {
   List<Object?> get props => [
         status,
         challengeId,
-        challengeTitle,
+        title,
         challengeQuestion,
         choices,
         hasBet,
