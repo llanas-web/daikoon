@@ -18,7 +18,7 @@ class ChallengeTitleForm extends StatelessWidget {
         const Row(
           children: [
             Expanded(
-              child: ChallengeTitleTextField(),
+              child: ChallengeTitleFormField(),
             ),
           ],
         ),

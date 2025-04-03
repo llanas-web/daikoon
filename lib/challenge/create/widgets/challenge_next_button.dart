@@ -35,7 +35,14 @@ class ChallengeNextButton extends StatelessWidget {
               style: style,
               textStyle: textStyle,
               text: context.l10n.challengeCreationContinueButtonLabel,
-              onPressed: () => context.read<FormStepperCubit>().nextStep(),
+              onPressed: () {
+                final formIndex = context.read<FormStepperCubit>().state;
+                if (context
+                    .read<CreateChallengeCubit>()
+                    .isCurrentFormValid(formIndex)) {
+                  context.read<FormStepperCubit>().nextStep();
+                }
+              },
               child: Row(
                 children: [
                   Expanded(
