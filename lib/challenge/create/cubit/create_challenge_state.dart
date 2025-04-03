@@ -8,7 +8,7 @@ class CreateChallengeState extends Equatable {
     required this.errorMessage,
     required this.challengeId,
     required this.title,
-    required this.challengeQuestion,
+    required this.question,
     required this.choices,
     required this.hasBet,
     required this.minAmount,
@@ -26,7 +26,7 @@ class CreateChallengeState extends Equatable {
           errorMessage: null,
           challengeId: null,
           title: null,
-          challengeQuestion: const ChallengeQuestion.pure(),
+          question: null,
           choices: const [],
           hasBet: false,
           minAmount: null,
@@ -42,7 +42,7 @@ class CreateChallengeState extends Equatable {
   final String? errorMessage;
   final String? challengeId;
   final String? title;
-  final ChallengeQuestion challengeQuestion;
+  final String? question;
   final List<String> choices;
   final bool hasBet;
   final int? minAmount;
@@ -58,7 +58,7 @@ class CreateChallengeState extends Equatable {
     String? errorMessage,
     String? challengeId,
     String? title,
-    ChallengeQuestion? challengeQuestion,
+    String? question,
     List<String>? choices,
     bool? hasBet,
     int? minAmount,
@@ -74,7 +74,7 @@ class CreateChallengeState extends Equatable {
       errorMessage: errorMessage ?? this.errorMessage,
       challengeId: challengeId ?? this.challengeId,
       title: title ?? this.title,
-      challengeQuestion: challengeQuestion ?? this.challengeQuestion,
+      question: question ?? this.question,
       choices: choices ?? this.choices,
       hasBet: hasBet ?? this.hasBet,
       minAmount: minAmount ?? this.minAmount,
@@ -92,7 +92,7 @@ class CreateChallengeState extends Equatable {
         status,
         challengeId,
         title,
-        challengeQuestion,
+        question,
         choices,
         hasBet,
         minAmount,

@@ -47,7 +47,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
 
     final stepsForm = <Widget>[
       const TitleStepView(),
-      const ChallengeChoicesForm(),
+      const PronosticStepView(),
       const ChallengeBetForm(),
       if (hasBet) const ChallengeBetAmountForm(),
       const ChallengeParticipantsForm(),
