@@ -42,7 +42,7 @@ class ChallengeResume extends StatelessWidget {
                   style: UITextStyle.subtitle,
                 ),
                 ChallengeQuestionTextField(
-                  initialValue: challengeState.challengeQuestion.value,
+                  initialValue: challengeState.question!,
                   readOnly: true,
                 ),
               ].spacerBetween(height: AppSpacing.md),

@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:challenge_repository/challenge_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:form_fields/form_fields.dart';
 import 'package:shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -23,55 +22,13 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     emit(state.copyWith(title: newTitle));
   }
 
-  void onQuestionChanged(String newValue) {
-    final previousState = state;
-    final newQuestion = newValue;
-    final shouldValidate = previousState.challengeQuestion.invalid;
-    final newChallengeQuestion = shouldValidate
-        ? ChallengeQuestion.dirty(
-            newQuestion,
-          )
-        : ChallengeQuestion.pure(
-            newQuestion,
-          );
-
-    final newState = previousState.copyWith(
-      challengeQuestion: newChallengeQuestion,
+  void updatePronostic(String question, List<String> choices) {
+    emit(
+      state.copyWith(
+        question: question,
+        choices: choices,
+      ),
     );
-    emit(newState);
-  }
-
-  void onQuestionUnfocused() {
-    final previousState = state;
-    final previousQuestionState = previousState.challengeQuestion;
-    final previousQuestionValue = previousQuestionState.value;
-
-    final newQuestionState = ChallengeQuestion.dirty(
-      previousQuestionValue,
-    );
-    final newState = previousState.copyWith(
-      challengeQuestion: newQuestionState,
-    );
-    emit(newState);
-  }
-
-  void onChoicesAdded(String newChoice) {
-    final previousState = state;
-    final newChoices = List<String>.from(previousState.choices)..add(newChoice);
-    final newState = previousState.copyWith(
-      choices: newChoices,
-    );
-    emit(newState);
-  }
-
-  void onChoicesRemoved(int index) {
-    final previousState = state;
-    final newChoices = List<String>.from(previousState.choices)
-      ..removeAt(index);
-    final newState = previousState.copyWith(
-      choices: newChoices,
-    );
-    emit(newState);
   }
 
   void onSetHasBet({bool? hasBet}) {
@@ -263,7 +220,7 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     emit(state.copyWith(status: CreateChallengeStatus.loading));
     final newChallenge = Challenge(
       title: state.title,
-      question: state.challengeQuestion.value,
+      question: state.question,
       choices: state.choices.map((choice) => Choice(value: choice)).toList(),
       hasBet: state.hasBet,
       minBet: state.minAmount,
