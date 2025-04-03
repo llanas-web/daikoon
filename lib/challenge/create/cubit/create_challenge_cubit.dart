@@ -19,46 +19,8 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
   /// Emits initial state of challenge creation screen.
   void resetState() => emit(const CreateChallengeState.initial());
 
-  bool isCurrentFormValid(int index) {
-    switch (index) {
-      case 0:
-        return FormzValid([ChallengeTitle.dirty(state.challengeTitle.value)])
-            .isFormValid;
-    }
-    return false;
-  }
-
-  /// Title value was changed, triggering new changes in state.
-  void onTitleChanged(String newValue) {
-    final previousState = state;
-    final newTitle = newValue;
-    final shouldValidate = previousState.challengeTitle.invalid;
-    final newChallengeTitle = shouldValidate
-        ? ChallengeTitle.dirty(
-            newTitle,
-          )
-        : ChallengeTitle.pure(
-            newTitle,
-          );
-
-    final newState = previousState.copyWith(
-      challengeTitle: newChallengeTitle,
-    );
-    emit(newState);
-  }
-
-  void onTitleUnfocused() {
-    final previousState = state;
-    final previousTitleState = previousState.challengeTitle;
-    final previousTitleValue = previousTitleState.value;
-
-    final newTitleState = ChallengeTitle.dirty(
-      previousTitleValue,
-    );
-    final newState = previousState.copyWith(
-      challengeTitle: newTitleState,
-    );
-    emit(newState);
+  void updateTitle(String newTitle) {
+    emit(state.copyWith(title: newTitle));
   }
 
   void onQuestionChanged(String newValue) {
@@ -300,7 +262,7 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
   }) async {
     emit(state.copyWith(status: CreateChallengeStatus.loading));
     final newChallenge = Challenge(
-      title: state.challengeTitle.value,
+      title: state.title,
       question: state.challengeQuestion.value,
       choices: state.choices.map((choice) => Choice(value: choice)).toList(),
       hasBet: state.hasBet,
