@@ -31,6 +31,20 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     );
   }
 
+  void updateBetAmount({
+    required int minAmount,
+    required int maxAmount,
+    required bool noBetAmount,
+  }) {
+    emit(
+      state.copyWith(
+        minAmount: minAmount,
+        maxAmount: maxAmount,
+        noBetAmount: false,
+      ),
+    );
+  }
+
   void onSetHasBet({bool? hasBet}) {
     final previousState = state;
     final newState = previousState.copyWith(

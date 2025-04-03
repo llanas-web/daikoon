@@ -1,5 +1,4 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/l10n/l10n.dart';
 import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
