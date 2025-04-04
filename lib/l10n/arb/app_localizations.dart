@@ -583,7 +583,7 @@ abstract class AppLocalizations {
   /// Label for the participants form field in the challenge creation page
   ///
   /// In fr, this message translates to:
-  /// **'Joueurs'**
+  /// **'Joueurs : '**
   String get challengeCreationParticipantsFormFieldLabel;
 
   /// Hint text for the participants form field in the challenge creation page

@@ -72,6 +72,20 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     emit(newState);
   }
 
+  void updateDates({
+    DateTime? startDate,
+    DateTime? limitDate,
+    DateTime? endDate,
+  }) {
+    final previousState = state;
+    final newState = previousState.copyWith(
+      startDate: startDate ?? previousState.startDate,
+      limitDate: limitDate ?? previousState.limitDate,
+      endDate: endDate ?? previousState.endDate,
+    );
+    emit(newState);
+  }
+
   Future<void> submit({
     required User creator,
   }) async {

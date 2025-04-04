@@ -267,7 +267,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeCreationParticipantsFormLabel => 'Les joueurs';
 
   @override
-  String get challengeCreationParticipantsFormFieldLabel => 'Joueurs';
+  String get challengeCreationParticipantsFormFieldLabel => 'Joueurs : ';
 
   @override
   String get challengeCreationParticipantsFormFieldHint => 'Pseudo';
