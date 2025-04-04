@@ -1,5 +1,4 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:daikoon/app/view/app.dart';
 import 'package:daikoon/challenge/challenge.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
@@ -7,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
-class ChallengeDateEndFormField extends StatelessWidget {
-  const ChallengeDateEndFormField({super.key});
+class DateEndFormField extends StatelessWidget {
+  const DateEndFormField({super.key});
 
   @override
   Widget build(BuildContext context) {
     final [startDate, limitDate, endDate] = context.select(
-      (CreateChallengeCubit cubit) =>
+      (DatesStepCubit cubit) =>
           [cubit.state.startDate, cubit.state.limitDate, cubit.state.endDate],
     );
     return Row(
@@ -35,11 +34,8 @@ class ChallengeDateEndFormField extends StatelessWidget {
                           context.l10n.challengeCreationDatesEndFieldLabel,
                       minDate: limitDate ?? startDate ?? DateTime.now(),
                       maxDate: DateTime.now().add(365.days),
-                      onDateSelected: (date) {
-                        context
-                            .read<CreateChallengeCubit>()
-                            .onEndDateChanged(date);
-                      },
+                      onDateSelected:
+                          context.read<DatesStepCubit>().onEndDateChanged,
                     ),
                   ),
                   Expanded(
@@ -47,17 +43,8 @@ class ChallengeDateEndFormField extends StatelessWidget {
                       value: endDate,
                       hintText:
                           context.l10n.challengeCreationDatesEndFieldLabel,
-                      onTimeSelected: (time) {
-                        try {
-                          context
-                              .read<CreateChallengeCubit>()
-                              .onEndTimeChanged(time);
-                        } catch (e) {
-                          openSnackbar(
-                            SnackbarMessage.error(title: e.toString()),
-                          );
-                        }
-                      },
+                      onTimeSelected:
+                          context.read<DatesStepCubit>().onEndTimeChanged,
                     ),
                   ),
                 ].spacerBetween(width: AppSpacing.md),
