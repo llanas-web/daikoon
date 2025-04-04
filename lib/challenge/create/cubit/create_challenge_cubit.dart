@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:challenge_repository/challenge_repository.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -53,32 +52,6 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     emit(newState);
   }
 
-  void onMinAmountChanged(int newMinAmount) {
-    final previousState = state;
-    final newState = previousState.copyWith(
-      minAmount: newMinAmount,
-      noBetAmount: false,
-    );
-    emit(newState);
-  }
-
-  void onMaxAmountChanged(int newMaxAmount) {
-    final previousState = state;
-    final newState = previousState.copyWith(
-      maxAmount: newMaxAmount,
-      noBetAmount: false,
-    );
-    emit(newState);
-  }
-
-  void onNoBetAmount({bool? isSelected}) {
-    final previousState = state;
-    final newState = previousState.copyWith(
-      noBetAmount: isSelected ?? !previousState.noBetAmount,
-    );
-    emit(newState);
-  }
-
   void onParticipantAdded(User user) {
     final previousState = state;
     final newParticipants = List<Participant>.from(previousState.participants)
@@ -95,135 +68,6 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
       ..removeWhere((participant) => participant.id == user.id);
     final newState = previousState.copyWith(
       participants: newParticipants,
-    );
-    emit(newState);
-  }
-
-  void onStartDateChanged(DateTime startDate) {
-    final previousState = state;
-    final selectedDate = state.startDate ?? DateTime.now();
-    final selectedDateTime = DateTime(
-      startDate.year,
-      startDate.month,
-      startDate.day,
-      selectedDate.hour,
-      selectedDate.minute,
-    );
-    final newState = previousState.copyWith(
-      startDate: selectedDateTime,
-    );
-    emit(newState);
-  }
-
-  void onStartTimeChanged(TimeOfDay startTime) {
-    final previousState = state;
-    final selectedDate = state.startDate ?? DateTime.now();
-    final selectedDateTime = DateTime(
-      selectedDate.year,
-      selectedDate.month,
-      selectedDate.day,
-      startTime.hour,
-      startTime.minute,
-    );
-    if (selectedDateTime.isBefore(DateTime.now())) {
-      throw Exception('Start date cannot be in the past');
-    }
-    if (previousState.limitDate != null &&
-        selectedDateTime.isAfter(previousState.limitDate!)) {
-      throw Exception('Start date cannot be after limit date');
-    }
-    if (previousState.endDate != null &&
-        selectedDateTime.isAfter(previousState.endDate!)) {
-      throw Exception('Start date cannot be after end date');
-    }
-    final newState = previousState.copyWith(
-      startDate: selectedDateTime,
-    );
-    emit(newState);
-  }
-
-  void onLimitDateChanged(DateTime limitDate) {
-    final previousState = state;
-    final selectedDate = state.limitDate ?? DateTime.now();
-    final selectedDateTime = DateTime(
-      limitDate.year,
-      limitDate.month,
-      limitDate.day,
-      selectedDate.hour,
-      selectedDate.minute,
-    );
-    final newState = previousState.copyWith(
-      limitDate: selectedDateTime,
-    );
-    emit(newState);
-  }
-
-  void onLimitTimeChanged(TimeOfDay limitTime) {
-    final previousState = state;
-    final selectedDate = state.limitDate ?? DateTime.now();
-    final selectedDateTime = DateTime(
-      selectedDate.year,
-      selectedDate.month,
-      selectedDate.day,
-      limitTime.hour,
-      limitTime.minute,
-    );
-    if (selectedDateTime.isBefore(DateTime.now())) {
-      throw Exception('Limit date cannot be in the past');
-    }
-    if (previousState.startDate != null &&
-        selectedDateTime.isBefore(previousState.startDate!)) {
-      throw Exception('Limit date cannot be before start date');
-    }
-    if (previousState.endDate != null &&
-        selectedDateTime.isAfter(previousState.endDate!)) {
-      throw Exception('Limit date cannot be after end date');
-    }
-    final newState = previousState.copyWith(
-      limitDate: selectedDateTime,
-    );
-    emit(newState);
-  }
-
-  void onEndDateChanged(DateTime endDate) {
-    final previousState = state;
-    final selectedDate = state.endDate ?? DateTime.now();
-    final selectedDateTime = DateTime(
-      endDate.year,
-      endDate.month,
-      endDate.day,
-      selectedDate.hour,
-      selectedDate.minute,
-    );
-    final newState = previousState.copyWith(
-      endDate: selectedDateTime,
-    );
-    emit(newState);
-  }
-
-  Future<void> onEndTimeChanged(TimeOfDay endTime) async {
-    final previousState = state;
-    final selectedDate = state.endDate ?? DateTime.now();
-    final selectedDateTime = DateTime(
-      selectedDate.year,
-      selectedDate.month,
-      selectedDate.day,
-      endTime.hour,
-      endTime.minute,
-    );
-    if (selectedDateTime.isBefore(DateTime.now())) {
-      throw Exception('End date cannot be in the past');
-    }
-    if (previousState.startDate != null &&
-        selectedDateTime.isBefore(previousState.startDate!)) {
-      throw Exception('End date cannot be before start date');
-    }
-    if (previousState.limitDate != null &&
-        selectedDateTime.isBefore(previousState.limitDate!)) {
-      throw Exception('End date cannot be before limit date');
-    }
-    final newState = previousState.copyWith(
-      endDate: selectedDateTime,
     );
     emit(newState);
   }

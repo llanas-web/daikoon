@@ -51,7 +51,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
       const BetStepView(),
       if (hasBet) const BetAmountStepForm(),
       const ChallengeParticipantsForm(),
-      const ChallengeDatesForm(),
+      const DatesStepView(),
       const ChallengeResume(),
     ];
 
