@@ -274,7 +274,7 @@ class PowerSyncDatabaseClient extends DatabaseClient {
     String? userId,
     List<String>? excludeUserIds,
   }) {
-    final _excludeUserIds = excludeUserIds != null
+    final excludeUserIdsWithCurrentUser = excludeUserIds != null
         ? excludeUserIds.add(userId ?? currentUserId!)
         : [userId ?? currentUserId];
     return _powerSyncRepository.db().getAll(
@@ -294,7 +294,7 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       ''',
       [
         userId ?? currentUserId,
-        [userId ?? currentUserId, _excludeUserIds].join(',')
+        [userId ?? currentUserId, excludeUserIdsWithCurrentUser].join(','),
       ],
     ).then((event) => event.safeMap(User.fromJson).toList(growable: false));
   }
