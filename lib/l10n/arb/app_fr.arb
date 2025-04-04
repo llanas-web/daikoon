@@ -341,7 +341,7 @@
   "@challengeCreationParticipantsFormLabel": {
     "description": "Label for the participants form in the challenge creation page"
   },
-  "challengeCreationParticipantsFormFieldLabel": "Joueurs",
+  "challengeCreationParticipantsFormFieldLabel": "Joueurs : ",
   "@challengeCreationParticipantsFormFieldLabel": {
     "description": "Label for the participants form field in the challenge creation page"
   },
