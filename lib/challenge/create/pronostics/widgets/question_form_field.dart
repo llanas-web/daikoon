@@ -26,7 +26,8 @@ class _QuestionFormFieldState extends State<QuestionFormField> {
     super.initState();
     _debouncer = Debouncer();
     _controller = TextEditingController(
-        text: context.read<CreateChallengeCubit>().state.question);
+      text: context.read<CreateChallengeCubit>().state.question,
+    );
     _focusNode = FocusNode();
     _focusNode.requestFocus();
   }

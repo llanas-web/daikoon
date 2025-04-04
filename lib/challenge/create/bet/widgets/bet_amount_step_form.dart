@@ -1,7 +1,6 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/app/view/app.dart';
 import 'package:daikoon/challenge/challenge.dart';
-import 'package:daikoon/challenge/create/bet/cubit/bet_step_cubit.dart';
 import 'package:daikoon/l10n/l10n.dart';
 import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/widgets.dart';
