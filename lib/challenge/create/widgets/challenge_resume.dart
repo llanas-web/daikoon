@@ -72,7 +72,7 @@ class ChallengeResume extends StatelessWidget {
         ),
         _ResumeItem(
           title: context.l10n.challengeCreationParticipantsFormLabel,
-          index: 2,
+          index: challengeState.hasBet ? 4 : 3,
           children: [
             ...challengeState.participants.map(
               (participantUsername) => Text(
@@ -84,7 +84,7 @@ class ChallengeResume extends StatelessWidget {
         ),
         _ResumeItem(
           title: context.l10n.challengeCreationDatesFormLabel,
-          index: 3,
+          index: challengeState.hasBet ? 5 : 4,
           children: [
             ChallengeDates(
               date: challengeState.startDate!,
@@ -103,6 +103,7 @@ class ChallengeResume extends StatelessWidget {
             ),
           ].spacerBetween(height: AppSpacing.lg),
         ),
+        const ChallengeSubmitButton(),
       ].spacerBetween(height: AppSpacing.xxlg),
     );
   }

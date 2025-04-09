@@ -8,8 +8,13 @@ part 'participants_step_state.dart';
 class ParticipantsStepCubit extends Cubit<ParticipantsStepState> {
   ParticipantsStepCubit({
     required UserRepository userRepository,
+    List<Participant>? participants,
   })  : _userRepository = userRepository,
-        super(const ParticipantsStepState.initial());
+        super(
+          ParticipantsStepState.initial(
+            participants: participants ?? [],
+          ),
+        );
 
   final UserRepository _userRepository;
 

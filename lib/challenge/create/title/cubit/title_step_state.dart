@@ -9,11 +9,14 @@ class TitleStepState extends Equatable {
     required this.challengeTitle,
   });
 
-  const TitleStepState.initial()
-      : this(
+  TitleStepState.initial({
+    String? title,
+  }) : this(
           status: TitleStepStatus.initial,
           errorMessage: null,
-          challengeTitle: const ChallengeTitle.pure(),
+          challengeTitle: title != null
+              ? ChallengeTitle.dirty(title)
+              : const ChallengeTitle.pure(),
         );
 
   final TitleStepStatus status;

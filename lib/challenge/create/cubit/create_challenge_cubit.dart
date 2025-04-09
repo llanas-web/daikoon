@@ -52,24 +52,8 @@ class CreateChallengeCubit extends Cubit<CreateChallengeState> {
     emit(newState);
   }
 
-  void onParticipantAdded(User user) {
-    final previousState = state;
-    final newParticipants = List<Participant>.from(previousState.participants)
-      ..add(Participant(user: user));
-    final newState = previousState.copyWith(
-      participants: newParticipants,
-    );
-    emit(newState);
-  }
-
-  void onParticipantRemoved(User user) {
-    final previousState = state;
-    final newParticipants = List<Participant>.from(previousState.participants)
-      ..removeWhere((participant) => participant.id == user.id);
-    final newState = previousState.copyWith(
-      participants: newParticipants,
-    );
-    emit(newState);
+  void updateParticipants(List<Participant> participants) {
+    emit(state.copyWith(participants: participants));
   }
 
   void updateDates({

@@ -26,7 +26,7 @@ class _QuestionFormFieldState extends State<QuestionFormField> {
     super.initState();
     _debouncer = Debouncer();
     _controller = TextEditingController(
-      text: context.read<CreateChallengeCubit>().state.question,
+      text: context.read<PronosticStepCubit>().state.challengeQuestion.value,
     );
     _focusNode = FocusNode();
     _focusNode.requestFocus();
@@ -71,7 +71,7 @@ class _QuestionFormFieldState extends State<QuestionFormField> {
                 hintText: context.l10n.challengeCreationQuestionFormFieldHint,
                 filled: true,
                 filledColor: AppColors.white,
-                border: (challengeQuestion.errorMessage != null)
+                border: (challengeQuestion.error != null)
                     ? const OutlineInputBorder(
                         borderSide: BorderSide(
                           color: AppColors.red,

@@ -289,6 +289,14 @@
   "@challengeCreationTitleFormFieldHint": {
     "description": "Hint text for the title form field in the challenge creation page"
   },
+  "challengeCreationTitleFormFieldErrorEmpty": "Le titre du défi ne peut pas être vide",
+  "@challengeCreationTitleFormFieldErrorEmpty": {
+    "description": "Error message for the title form field in the challenge creation page"
+  },
+  "challengeCreationTitleFormFieldErrorDescription": "Le titre du défi doit contenir au moins 3 caractères et n''utiliser que des lettres, chiffres, espaces, tirets et underscores",
+  "@challengeCreationTitleFormFieldErrorDescription": {
+    "description": "Error message for the title form field in the challenge creation page"
+  },
   "challengeCreationOptionsFormLabel": "Pronostics",
   "@challengeCreationOptionsFormLabel": {
     "description": "Label for the question form in the challenge creation page"
@@ -300,6 +308,14 @@
   "challengeCreationQuestionFormFieldHint": "Qui va gagner ?",
   "@challengeCreationQuestionFormFieldHint": {
     "description": "Hint text for the question form field in the challenge creation page"
+  },
+  "challengeCreationQuestionFormFieldErrorEmtpy": "La question ne peut pas être vide",
+  "@challengeCreationQuestionFormFieldErrorEmtpy": {
+    "description": "Error message for the question form field in the challenge creation page"
+  },
+  "challengeCreationQuestionFormFieldErrorInvalid": "La question doit contenir au moins 4 caractères",
+  "@challengeCreationQuestionFormFieldErrorInvalid": {
+    "description": "Error message for the question form field in the challenge creation page"
   },
   "challengeCreationOptionsFormFieldLabel": "Les choix",
   "@challengeCreationOptionsFormFieldLabel": {

@@ -1,54 +1,29 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:daikoon/challenge/challenge.dart';
-import 'package:daikoon/l10n/l10n.dart';
-import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
-class HasBetStepForm extends StatelessWidget {
-  const HasBetStepForm({super.key});
+class BetAmountStepView extends StatelessWidget {
+  const BetAmountStepView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final hasBet =
-        context.select((CreateChallengeCubit cubit) => cubit.state.hasBet);
-
-    return Column(
-      children: [
-        const Spacer(),
-        Column(
-          children: [
-            Text(
-              context.l10n.challengeCreationBetFormLabel,
-              style: UITextStyle.title,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DaikoonFormRadioItem(
-                  title: context.l10n.challengeCreationBetFormFieldTrue,
-                  onTap: () => context
-                      .read<CreateChallengeCubit>()
-                      .onSetHasBet(hasBet: true),
-                  isSelected: hasBet,
-                ),
-                DaikoonFormRadioItem(
-                  title: context.l10n.challengeCreationBetFormFieldFalse,
-                  onTap: () => context
-                      .read<CreateChallengeCubit>()
-                      .onSetHasBet(hasBet: false),
-                  isSelected: !hasBet,
-                ),
-              ].spacerBetween(height: AppSpacing.md),
-            ),
-            ChallengeNextButton(
-              onPressed: () => context.read<FormStepperCubit>().nextStep(),
-            ),
-          ].spacerBetween(height: AppSpacing.xxlg),
-        ),
-        const Spacer(),
-      ],
+    final createChallengeCubit = context.read<CreateChallengeCubit>();
+    return BlocProvider(
+      create: (context) => BetStepCubit(
+        minAmount: createChallengeCubit.state.minAmount,
+        maxAmount: createChallengeCubit.state.maxAmount,
+        noBetAmount: createChallengeCubit.state.noBetAmount,
+      ),
+      child: Column(
+        children: [
+          const Spacer(),
+          const BetAmountStepForm(),
+          const ChallengePreviousButton(),
+          const Spacer(),
+        ].spacerBetween(height: AppSpacing.xxlg),
+      ),
     );
   }
 }

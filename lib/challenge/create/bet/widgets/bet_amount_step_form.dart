@@ -20,24 +20,21 @@ class BetAmountStepForm extends StatelessWidget {
     }
 
     void onContinue() {
-      switch (betStepCubit.status) {
-        case BetStepStatus.initial:
-          break;
-        case BetStepStatus.error:
-          openSnackbar(
-            SnackbarMessage.error(
-              title: 'Formulaire invalide',
-              description: betStepCubit.errorMessage,
-            ),
-          );
-        case BetStepStatus.success:
-          context.read<CreateChallengeCubit>().updateBetAmount(
-                minAmount: betStepCubit.minAmount ?? 0,
-                maxAmount: betStepCubit.maxAmount ?? 0,
-                noBetAmount: betStepCubit.noBetAmount,
-              );
-          context.read<FormStepperCubit>().nextStep();
+      if (!context.read<BetStepCubit>().validateStep()) {
+        openSnackbar(
+          SnackbarMessage.error(
+            title: 'Formulaire invalide',
+            description: betStepCubit.errorMessage,
+          ),
+        );
+        return;
       }
+      context.read<CreateChallengeCubit>().updateBetAmount(
+            minAmount: betStepCubit.minAmount ?? 0,
+            maxAmount: betStepCubit.maxAmount ?? 0,
+            noBetAmount: betStepCubit.noBetAmount,
+          );
+      context.read<FormStepperCubit>().nextStep();
     }
 
     return Column(
@@ -65,6 +62,9 @@ class BetAmountStepForm extends StatelessWidget {
               isSelected: betStepCubit.noBetAmount,
             ),
           ],
+        ),
+        ChallengeNextButton(
+          onPressed: onContinue,
         ),
       ].spacerBetween(height: AppSpacing.xxlg),
     );

@@ -11,13 +11,16 @@ class BetStepState extends Equatable {
     this.maxAmount,
   });
 
-  const BetStepState.initial()
-      : this(
+  const BetStepState.initial({
+    int? minAmount,
+    int? maxAmount,
+    bool noBetAmount = false,
+  }) : this(
           status: BetStepStatus.initial,
           errorMessage: null,
-          minAmount: null,
-          maxAmount: null,
-          noBetAmount: false,
+          minAmount: minAmount,
+          maxAmount: maxAmount,
+          noBetAmount: noBetAmount,
         );
 
   final BetStepStatus status;

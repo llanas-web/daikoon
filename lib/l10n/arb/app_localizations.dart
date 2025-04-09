@@ -502,6 +502,18 @@ abstract class AppLocalizations {
   /// **'Défi fifa ⚽'**
   String get challengeCreationTitleFormFieldHint;
 
+  /// Error message for the title form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Le titre du défi ne peut pas être vide'**
+  String get challengeCreationTitleFormFieldErrorEmpty;
+
+  /// Error message for the title form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Le titre du défi doit contenir au moins 3 caractères et n\'\'utiliser que des lettres, chiffres, espaces, tirets et underscores'**
+  String get challengeCreationTitleFormFieldErrorDescription;
+
   /// Label for the question form in the challenge creation page
   ///
   /// In fr, this message translates to:
@@ -519,6 +531,18 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Qui va gagner ?'**
   String get challengeCreationQuestionFormFieldHint;
+
+  /// Error message for the question form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'La question ne peut pas être vide'**
+  String get challengeCreationQuestionFormFieldErrorEmtpy;
+
+  /// Error message for the question form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'La question doit contenir au moins 4 caractères'**
+  String get challengeCreationQuestionFormFieldErrorInvalid;
 
   /// Label for the option form in the challenge creation page
   ///

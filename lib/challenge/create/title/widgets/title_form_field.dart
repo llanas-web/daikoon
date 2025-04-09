@@ -25,7 +25,7 @@ class _TitleFormFieldState extends State<TitleFormField> {
     _debouncer = Debouncer();
     _focusNode = FocusNode()..addListener(_focusNodeListener);
     _controller = TextEditingController(
-      text: context.read<CreateChallengeCubit>().state.title,
+      text: context.read<TitleStepCubit>().state.challengeTitle.value,
     );
   }
 

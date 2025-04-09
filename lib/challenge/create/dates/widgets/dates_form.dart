@@ -10,27 +10,24 @@ class DatesForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleCubit = context.read<DatesStepCubit>();
+    final dateCubit = context.read<DatesStepCubit>();
 
     void onContinue() {
-      switch (titleCubit.state.status) {
-        case DatesStepStatus.initial:
-          break;
-        case DatesStepStatus.failure:
-          openSnackbar(
-            SnackbarMessage.error(
-              title: 'Formulaire invalide',
-              description: titleCubit.state.errorMessage,
-            ),
-          );
-        case DatesStepStatus.success:
-          context.read<CreateChallengeCubit>().updateDates(
-                startDate: titleCubit.state.startDate,
-                endDate: titleCubit.state.endDate,
-                limitDate: titleCubit.state.limitDate,
-              );
-          context.read<FormStepperCubit>().nextStep();
+      if (!context.read<DatesStepCubit>().validateStep()) {
+        openSnackbar(
+          SnackbarMessage.error(
+            title: 'Formulaire invalide',
+            description: dateCubit.state.errorMessage,
+          ),
+        );
+        return;
       }
+      context.read<CreateChallengeCubit>().updateDates(
+            startDate: dateCubit.state.startDate,
+            endDate: dateCubit.state.endDate,
+            limitDate: dateCubit.state.limitDate,
+          );
+      context.read<FormStepperCubit>().nextStep();
     }
 
     return Column(
@@ -39,7 +36,6 @@ class DatesForm extends StatelessWidget {
         const DateLimitFormField(),
         const DateEndFormField(),
         ChallengeNextButton(
-          enable: titleCubit.state.status != DatesStepStatus.initial,
           onPressed: onContinue,
         ),
       ].spacerBetween(height: AppSpacing.lg),

@@ -4,7 +4,17 @@ import 'package:equatable/equatable.dart';
 part 'bet_step_state.dart';
 
 class BetStepCubit extends Cubit<BetStepState> {
-  BetStepCubit() : super(const BetStepState.initial());
+  BetStepCubit({
+    int? minAmount,
+    int? maxAmount,
+    bool noBetAmount = false,
+  }) : super(
+          BetStepState.initial(
+            minAmount: minAmount,
+            maxAmount: maxAmount,
+            noBetAmount: noBetAmount,
+          ),
+        );
 
   void onMinAmountChanged(int? minAmount) {
     final previousState = state;
@@ -34,5 +44,19 @@ class BetStepCubit extends Cubit<BetStepState> {
         status: BetStepStatus.success,
       ),
     );
+  }
+
+  bool validateStep() {
+    final isValid = !state.noBetAmount ||
+        (state.minAmount != null && state.maxAmount != null);
+
+    emit(
+      state.copyWith(
+        status: isValid ? BetStepStatus.success : BetStepStatus.error,
+        errorMessage: isValid ? null : 'Invalid bet amount',
+      ),
+    );
+
+    return isValid;
   }
 }
