@@ -29,7 +29,9 @@ class _QuestionFormFieldState extends State<QuestionFormField> {
       text: context.read<PronosticStepCubit>().state.challengeQuestion.value,
     );
     _focusNode = FocusNode();
-    _focusNode.requestFocus();
+    _focusNode
+      ..addListener(_focusNodeListener)
+      ..requestFocus();
   }
 
   @override
