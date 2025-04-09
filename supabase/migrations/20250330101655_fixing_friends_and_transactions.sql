@@ -1,7 +1,3 @@
-alter table "public"."users" drop constraint "users_fcm_token_key";
-
-drop index if exists "public"."users_fcm_token_key";
-
 set check_function_bodies = off;
 
 CREATE OR REPLACE FUNCTION public.handle_new_user()
