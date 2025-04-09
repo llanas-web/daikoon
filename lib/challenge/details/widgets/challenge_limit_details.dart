@@ -56,64 +56,56 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
             ),
           ].spacerBetween(height: AppSpacing.md),
         ),
-        ListView.separated(
-          shrinkWrap: true,
-          itemCount: choices.length,
-          separatorBuilder: (context, index) => const SizedBox(
-            height: AppSpacing.xlg,
-          ),
-          itemBuilder: (context, index) {
-            final choice = choices[index];
-            final choiceBets = bets.where(
-              (bet) => bet.choiceId == choice.id,
-            );
-            final participantUsernames = choiceBets
-                .map((bet) => bet.userId)
-                .map(
-                  (userId) => challenge.participants
-                      .firstWhere((participant) => participant.id == userId)
-                      .displayUsername,
-                )
-                .join(', ');
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      choice.value,
-                      style: UITextStyle.titleSmallBold,
-                    ),
-                    Text(
-                      '${choiceBets.length}',
-                      style: UITextStyle.titleSmallBold.copyWith(
-                        color: AppColors.secondary,
-                      ),
-                    ),
-                  ],
-                ),
-                LinearProgressIndicator(
-                  value: bets.isEmpty ? 0 : choiceBets.length / bets.length,
-                  minHeight: 18,
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(18),
-                  backgroundColor: AppColors.primary.withValues(alpha: 0.35),
-                ),
-                if (participantUsernames.isEmpty)
+        ...choices.map((choice) {
+          final choiceBets = bets.where(
+            (bet) => bet.choiceId == choice.id,
+          );
+          final participantUsernames = choiceBets
+              .map((bet) => bet.userId)
+              .map(
+                (userId) => challenge.participants
+                    .firstWhere((participant) => participant.id == userId)
+                    .displayUsername,
+              )
+              .join(', ');
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
                   Text(
-                    'Pas de votant',
-                    style: UITextStyle.bodyText,
-                  )
-                else
-                  Text(
-                    'Vote de : $participantUsernames',
-                    style: UITextStyle.bodyText,
+                    choice.value,
+                    style: UITextStyle.titleSmallBold,
                   ),
-              ].spacerBetween(height: AppSpacing.sm),
-            );
-          },
-        ),
+                  Text(
+                    '${choiceBets.length}',
+                    style: UITextStyle.titleSmallBold.copyWith(
+                      color: AppColors.secondary,
+                    ),
+                  ),
+                ],
+              ),
+              LinearProgressIndicator(
+                value: bets.isEmpty ? 0 : choiceBets.length / bets.length,
+                minHeight: 18,
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(18),
+                backgroundColor: AppColors.primary.withValues(alpha: 0.35),
+              ),
+              if (participantUsernames.isEmpty)
+                Text(
+                  'Pas de votant',
+                  style: UITextStyle.bodyText,
+                )
+              else
+                Text(
+                  'Vote de : $participantUsernames',
+                  style: UITextStyle.bodyText,
+                ),
+            ].spacerBetween(height: AppSpacing.sm),
+          );
+        }),
         if (challengeDetailsCubit.isOwner)
           Row(
             children: [
