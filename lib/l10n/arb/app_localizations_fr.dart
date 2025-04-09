@@ -335,6 +335,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeDetailsAcceptedDaikoinsLabel => 'Choix des Daïkoins';
 
   @override
+  String get challengeDetailsAcceptedNoChoiceError =>
+      'Vous devez choisir une option';
+
+  @override
   String get challengeDetailsAcceptedDaikoinsAmountErrorWallet =>
       'Solde insuffisant';
 

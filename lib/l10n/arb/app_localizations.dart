@@ -694,6 +694,12 @@ abstract class AppLocalizations {
   /// **'Choix des Daïkoins'**
   String get challengeDetailsAcceptedDaikoinsLabel;
 
+  /// Error message for the choice in the challenge details page
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous devez choisir une option'**
+  String get challengeDetailsAcceptedNoChoiceError;
+
   /// Error message for the daikoins amount in the challenge details page
   ///
   /// In fr, this message translates to:

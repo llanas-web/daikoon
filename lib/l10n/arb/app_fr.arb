@@ -435,6 +435,10 @@
   "@challengeDetailsAcceptedDaikoinsLabel": {
     "description": "Label for the daikoins choice in the challenge details page"
   },
+  "challengeDetailsAcceptedNoChoiceError": "Vous devez choisir une option",
+  "@challengeDetailsAcceptedNoChoiceError": {
+    "description": "Error message for the choice in the challenge details page"
+  },
   "challengeDetailsAcceptedDaikoinsAmountErrorWallet": "Solde insuffisant",
   "@challengeDetailsAcceptedDaikoinsAmountErrorWallet": {
     "description": "Error message for the daikoins amount in the challenge details page"
