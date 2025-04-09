@@ -57,6 +57,15 @@ class __ChallengeInvitationAcceptedState
               amount: 0,
             );
       }
+      if (_choiceId == null) {
+        snackBarError = SnackbarMessage.error(
+          title: context.l10n.challengeDetailsAcceptedNoChoiceError,
+          icon: Icons.error_outline_rounded,
+        );
+        openSnackbar(snackBarError);
+        _betAmountFocusNode.requestFocus();
+        return;
+      }
       final userWallet = context.read<AppBloc>().state.userWalletAmount;
       if (amount > userWallet) {
         snackBarError = SnackbarMessage.error(
