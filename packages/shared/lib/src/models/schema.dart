@@ -9,6 +9,7 @@ const schema = Schema([
       Column.text('choice_id'),
       Column.text('user_id'),
       Column.integer('amount'),
+      Column.text('status'),
     ],
     indexes: [
       Index('choice', [IndexedColumn('choice_id')]),

@@ -281,45 +281,43 @@ class __ChallengeInvitationAcceptedState
             ),
           ].spacerBetween(height: AppSpacing.md),
         ),
-        if (userBet != null &&
-            userBet.transactionStatus == TransactionStatus.pending)
+        if (userBet != null && userBet.status == BetStatus.pending)
           Text(context.l10n.challengeDetailsAcceptedTransactionPendingLabel),
         Row(
           children: [
             Expanded(
-              child:
-                  // (userBet != null &&
-                  //         userBet.transactionStatus == TransactionStatus.pending)
-                  //     ? AppButton.inProgress(
-                  //         style: const ButtonStyle(
-                  //           backgroundColor:
-                  //               WidgetStatePropertyAll(AppColors.secondary),
-                  //           padding: WidgetStatePropertyAll(
-                  //             EdgeInsets.symmetric(
-                  //               vertical: AppSpacing.lg,
-                  //               horizontal: AppSpacing.xxlg,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       )
-                  // :
-                  AppButton(
-                text: context.l10n.challengeDetailsAcceptedValidateButtonLabel,
-                onPressed: upsertBet,
-                color: AppColors.secondary,
-                textStyle: UITextStyle.button.copyWith(
-                  color: context.reversedAdaptiveColor,
-                ),
-                style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(AppColors.secondary),
-                  padding: WidgetStatePropertyAll(
-                    EdgeInsets.symmetric(
-                      vertical: AppSpacing.lg,
-                      horizontal: AppSpacing.xxlg,
+              child: (userBet != null && userBet.status == BetStatus.pending)
+                  ? AppButton.inProgress(
+                      style: const ButtonStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(AppColors.secondary),
+                        padding: WidgetStatePropertyAll(
+                          EdgeInsets.symmetric(
+                            vertical: AppSpacing.lg,
+                            horizontal: AppSpacing.xxlg,
+                          ),
+                        ),
+                      ),
+                    )
+                  : AppButton(
+                      text: context
+                          .l10n.challengeDetailsAcceptedValidateButtonLabel,
+                      onPressed: upsertBet,
+                      color: AppColors.secondary,
+                      textStyle: UITextStyle.button.copyWith(
+                        color: context.reversedAdaptiveColor,
+                      ),
+                      style: const ButtonStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(AppColors.secondary),
+                        padding: WidgetStatePropertyAll(
+                          EdgeInsets.symmetric(
+                            vertical: AppSpacing.lg,
+                            horizontal: AppSpacing.xxlg,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
             ),
           ],
         ),

@@ -14,4 +14,11 @@ Bet _$BetFromJson(Map<String, dynamic> json) => Bet(
       choiceId: json['choice_id'] as String? ?? '',
       userId: json['user_id'] as String? ?? '',
       amount: (json['amount'] as num?)?.toInt() ?? 0,
+      status: $enumDecodeNullable(_$BetStatusEnumMap, json['status']) ??
+          BetStatus.pending,
     );
+
+const _$BetStatusEnumMap = {
+  BetStatus.pending: 'pending',
+  BetStatus.done: 'done',
+};

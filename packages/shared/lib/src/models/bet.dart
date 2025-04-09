@@ -7,7 +7,7 @@ import 'package:shared/shared.dart';
 
 part 'bet.g.dart';
 
-enum TransactionStatus { pending, done }
+enum BetStatus { pending, done }
 
 @immutable
 @JsonSerializable(
@@ -21,7 +21,7 @@ class Bet extends Equatable {
     this.choiceId = '',
     this.userId = '',
     this.amount = 0,
-    this.transactionStatus = TransactionStatus.pending,
+    this.status = BetStatus.pending,
   })  : id = id ?? uuid.v4(),
         createdAt = createdAt ?? Jiffy.now().dateTime;
 
@@ -32,7 +32,7 @@ class Bet extends Equatable {
   final String choiceId;
   final String userId;
   final int amount;
-  final TransactionStatus transactionStatus;
+  final BetStatus status;
 
   Bet copyWith({
     String? id,
@@ -40,7 +40,7 @@ class Bet extends Equatable {
     String? choiceId,
     String? userId,
     int? amount,
-    TransactionStatus? transactionStatus,
+    BetStatus? status,
   }) {
     return Bet(
       id: id ?? this.id,
@@ -48,7 +48,7 @@ class Bet extends Equatable {
       choiceId: choiceId ?? this.choiceId,
       userId: userId ?? this.userId,
       amount: amount ?? this.amount,
-      transactionStatus: transactionStatus ?? this.transactionStatus,
+      status: status ?? this.status,
     );
   }
 
@@ -59,6 +59,6 @@ class Bet extends Equatable {
         choiceId,
         userId,
         amount,
-        transactionStatus,
+        status,
       ];
 }
