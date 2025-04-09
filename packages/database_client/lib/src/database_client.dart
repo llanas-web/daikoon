@@ -400,12 +400,9 @@ class PowerSyncDatabaseClient extends DatabaseClient {
   Future<List<Bet>> getBets({required String challengeId}) {
     return _powerSyncRepository.db().getAll(
       '''
-      SELECT 
-        bets.*,
-        COALESCE(transactions.status, 'pending') as transaction_status
+      SELECT bets.*
       FROM bets 
       JOIN choices ON bets.choice_id = choices.id
-      LEFT JOIN transactions ON transactions.origin_id = bets.id
       WHERE choices.challenge_id = ?1
       ''',
       [challengeId],

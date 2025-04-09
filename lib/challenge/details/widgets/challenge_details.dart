@@ -17,8 +17,7 @@ class ChallengeDetails extends StatelessWidget {
     if (challengeDetails.isEnded) {
       return const ChallengeEndedDetails();
     } else if (challengeDetails.isLimited ||
-        (userBet != null &&
-            userBet.transactionStatus == TransactionStatus.done)) {
+        (userBet != null && userBet.status == BetStatus.done)) {
       return const ChallengeLimitDetails();
     } else {
       return const ChallengeStartedDetails();
