@@ -49,7 +49,7 @@ class _CreateChallengeViewState extends State<CreateChallengeView> {
       const TitleStepView(),
       const PronosticStepView(),
       const BetStepView(),
-      if (hasBet) const BetAmountStepForm(),
+      if (hasBet) const BetAmountStepView(),
       const ParticipantsStepView(),
       const DatesStepView(),
       const ChallengeResume(),

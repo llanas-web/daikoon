@@ -21,6 +21,7 @@ class _MaxAmountFormFieldState extends State<MaxAmountFormField> {
   void initState() {
     super.initState();
     _focusNode = FocusNode();
+    _focusNode.addListener(onFocusListener);
     _controller = TextEditingController(
       text: context.read<BetStepCubit>().state.maxAmount?.toString() ?? '',
     );
@@ -28,9 +29,15 @@ class _MaxAmountFormFieldState extends State<MaxAmountFormField> {
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    _focusNode
+      ..removeListener(onFocusListener)
+      ..dispose();
     _controller.dispose();
     super.dispose();
+  }
+
+  void onFocusListener() {
+    context.read<BetStepCubit>().onNoBetAmountChanged(noBetAmount: false);
   }
 
   @override

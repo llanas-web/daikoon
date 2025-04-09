@@ -15,7 +15,8 @@ class ChallengeQuestion extends FormzInput<String, ChallengeQuestionError>
   /// {@macro email.dirty}
   const ChallengeQuestion.dirty(super.value) : super.dirty();
 
-  static final _challengeTitleRegex = RegExp(r'^[a-zA-Z0-9_.]{6,32}$');
+// Add space to the regex
+  static final _challengeTitleRegex = RegExp(r'^[a-zA-Z0-9_.?\s]{6,32}$');
 
   @override
   ChallengeQuestionError? validator(String value) {
@@ -28,11 +29,9 @@ class ChallengeQuestion extends FormzInput<String, ChallengeQuestionError>
 
   @override
   Map<ChallengeQuestionError?, String?> get validationErrorMessage => {
-        ChallengeQuestionError.empty: 'This field is required',
-        ChallengeQuestionError.invalid: '''
-              Challenge title must be between 6 and 32 characters. 
-              Also, it can only contain letters, numbers, periods, and underscores.
-            ''',
+        ChallengeQuestionError.empty: 'La question ne peut pas être vide',
+        ChallengeQuestionError.invalid:
+            'La question doit contenir au moins 6 caractères',
         null: null,
       };
 

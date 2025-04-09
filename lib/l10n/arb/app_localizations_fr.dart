@@ -228,6 +228,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeCreationTitleFormFieldHint => 'Défi fifa ⚽';
 
   @override
+  String get challengeCreationTitleFormFieldErrorEmpty =>
+      'Le titre du défi ne peut pas être vide';
+
+  @override
+  String get challengeCreationTitleFormFieldErrorDescription =>
+      'Le titre du défi doit contenir au moins 3 caractères et n\'utiliser que des lettres, chiffres, espaces, tirets et underscores';
+
+  @override
   String get challengeCreationOptionsFormLabel => 'Pronostics';
 
   @override
@@ -235,6 +243,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get challengeCreationQuestionFormFieldHint => 'Qui va gagner ?';
+
+  @override
+  String get challengeCreationQuestionFormFieldErrorEmtpy =>
+      'La question ne peut pas être vide';
+
+  @override
+  String get challengeCreationQuestionFormFieldErrorInvalid =>
+      'La question doit contenir au moins 4 caractères';
 
   @override
   String get challengeCreationOptionsFormFieldLabel => 'Les choix';

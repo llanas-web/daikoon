@@ -9,11 +9,12 @@ class ParticipantsStepState extends Equatable {
     required this.participants,
   });
 
-  const ParticipantsStepState.initial()
-      : this(
+  const ParticipantsStepState.initial({
+    List<Participant>? participants,
+  }) : this(
           status: ParticipantsStepStatus.initial,
           errorMessage: null,
-          participants: const [],
+          participants: participants ?? const [],
         );
 
   final ParticipantsStepStatus status;

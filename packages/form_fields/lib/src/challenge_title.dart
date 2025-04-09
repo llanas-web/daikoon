@@ -28,11 +28,10 @@ class ChallengeTitle extends FormzInput<String, ChallengeTitleError>
 
   @override
   Map<ChallengeTitleError?, String?> get validationErrorMessage => {
-        ChallengeTitleError.empty: 'This field is required',
-        ChallengeTitleError.invalid: '''
-              Challenge title must be between 3 and 16 characters. 
-              Also, it can only contain letters, numbers, periods, and underscores.
-            ''',
+        ChallengeTitleError.empty: 'Le titre du défi ne peut pas être vide',
+        ChallengeTitleError.invalid:
+            // ignore: lines_longer_than_80_chars
+            "Le titre du défi doit contenir au moins 3 caractères et n'utiliser que des lettres, chiffres, espaces, tirets et underscores",
         null: null,
       };
 

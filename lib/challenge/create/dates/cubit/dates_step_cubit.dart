@@ -5,7 +5,17 @@ import 'package:flutter/material.dart';
 part 'dates_step_state.dart';
 
 class DatesStepCubit extends Cubit<DatesStepState> {
-  DatesStepCubit() : super(const DatesStepState.initial());
+  DatesStepCubit({
+    DateTime? startDate,
+    DateTime? limitDate,
+    DateTime? endDate,
+  }) : super(
+          DatesStepState.initial(
+            startDate: startDate,
+            limitDate: limitDate,
+            endDate: endDate,
+          ),
+        );
 
   void onStartDateChanged(DateTime startDate) {
     final selectedDate = state.startDate ?? DateTime.now();
@@ -63,7 +73,13 @@ class DatesStepCubit extends Cubit<DatesStepState> {
       );
       return;
     }
-    emit(previousState.copyWith(startDate: selectedDateTime));
+    emit(
+      previousState.copyWith(
+        startDate: selectedDateTime,
+        status: DatesStepStatus.success,
+        errorMessage: '',
+      ),
+    );
   }
 
   void onLimitDateChanged(DateTime limitDate) {
@@ -123,6 +139,8 @@ class DatesStepCubit extends Cubit<DatesStepState> {
     }
     final newState = previousState.copyWith(
       limitDate: selectedDateTime,
+      status: DatesStepStatus.success,
+      errorMessage: '',
     );
     emit(newState);
   }
@@ -184,7 +202,26 @@ class DatesStepCubit extends Cubit<DatesStepState> {
     }
     final newState = previousState.copyWith(
       endDate: selectedDateTime,
+      status: DatesStepStatus.success,
+      errorMessage: '',
     );
     emit(newState);
+  }
+
+  bool validateStep() {
+    final isValid = state.startDate != null &&
+        state.limitDate != null &&
+        state.endDate != null &&
+        state.startDate!.isBefore(state.limitDate!) &&
+        state.limitDate!.isBefore(state.endDate!);
+
+    emit(
+      state.copyWith(
+        status: isValid ? DatesStepStatus.success : DatesStepStatus.failure,
+        errorMessage: isValid ? null : 'Invalid date range',
+      ),
+    );
+
+    return isValid;
   }
 }

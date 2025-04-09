@@ -1,25 +1,27 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:form_fields/form_fields.dart';
+import 'package:shared/shared.dart';
 
 part 'pronostic_step_state.dart';
 
 class PronosticStepCubit extends Cubit<PronosticStepState> {
-  PronosticStepCubit() : super(const PronosticStepState.initial());
+  PronosticStepCubit({
+    String? question,
+    List<String>? choices,
+  }) : super(
+          PronosticStepState.initial(
+            question: question,
+            choices: choices,
+          ),
+        );
 
   void _updateQuestion(ChallengeQuestion newChallengeQuestion) {
     final previousState = state;
 
-    final isValid = FormzValid([
-      newChallengeQuestion,
-    ]).isFormValid;
-
     emit(
       previousState.copyWith(
         challengeQuestion: newChallengeQuestion,
-        status:
-            isValid ? PronosticStepStatus.success : PronosticStepStatus.error,
-        errorMessage: isValid ? null : newChallengeQuestion.errorMessage,
       ),
     );
   }
@@ -95,5 +97,11 @@ class PronosticStepCubit extends Cubit<PronosticStepState> {
     );
 
     return isChoicesValid;
+  }
+
+  @override
+  Future<void> close() {
+    logD('PronosticStepCubit closed');
+    return super.close();
   }
 }

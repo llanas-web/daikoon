@@ -47,7 +47,7 @@ class AppTextField extends StatelessWidget {
     this.contentPadding,
     this.initialValue,
     this.readOnly = false,
-    this.textCapitalization = TextCapitalization.none,
+    this.textCapitalization = TextCapitalization.sentences,
     this.suffixText,
     this.filled,
     this.filledColor,

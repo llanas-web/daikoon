@@ -10,12 +10,16 @@ class PronosticStepState extends Equatable {
     required this.choices,
   });
 
-  const PronosticStepState.initial()
-      : this(
+  PronosticStepState.initial({
+    String? question,
+    List<String>? choices,
+  }) : this(
           status: PronosticStepStatus.initial,
           errorMessage: null,
-          challengeQuestion: const ChallengeQuestion.pure(),
-          choices: const [],
+          challengeQuestion: question != null
+              ? ChallengeQuestion.dirty(question)
+              : const ChallengeQuestion.pure(),
+          choices: choices ?? const [],
         );
 
   final PronosticStepStatus status;

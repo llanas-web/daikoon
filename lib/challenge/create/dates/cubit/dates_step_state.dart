@@ -11,13 +11,16 @@ class DatesStepState extends Equatable {
     required this.limitDate,
   });
 
-  const DatesStepState.initial()
-      : this(
+  const DatesStepState.initial({
+    DateTime? startDate,
+    DateTime? limitDate,
+    DateTime? endDate,
+  }) : this(
           status: DatesStepStatus.initial,
           errorMessage: null,
-          startDate: null,
-          endDate: null,
-          limitDate: null,
+          startDate: startDate,
+          endDate: limitDate,
+          limitDate: endDate,
         );
 
   final DatesStepStatus status;

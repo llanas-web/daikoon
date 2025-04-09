@@ -5,7 +5,9 @@ import 'package:form_fields/form_fields.dart';
 part 'title_step_state.dart';
 
 class TitleStepCubit extends Cubit<TitleStepState> {
-  TitleStepCubit() : super(const TitleStepState.initial());
+  TitleStepCubit({
+    String? title,
+  }) : super(TitleStepState.initial(title: title));
 
   void _updateTitle(ChallengeTitle newChallengeTitle) {
     final previousState = state;

@@ -29,7 +29,7 @@ class ChoicesForm extends StatelessWidget {
           ),
         const Gap.v(AppSpacing.lg),
         const ChoiceFormField(),
-      ],
+      ].spacerBetween(height: AppSpacing.md),
     );
   }
 }

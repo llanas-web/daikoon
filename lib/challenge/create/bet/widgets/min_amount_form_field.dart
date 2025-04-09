@@ -19,17 +19,28 @@ class _MinAmountFormFieldState extends State<MinAmountFormField> {
   void initState() {
     super.initState();
     _focusNode = FocusNode();
+    _focusNode.addListener(_focusNodeListener);
+    if (!context.read<BetStepCubit>().state.noBetAmount) {
+      _focusNode.requestFocus();
+    }
     _controller = TextEditingController(
-      text: context.read<CreateChallengeCubit>().state.minAmount?.toString() ??
-          '',
+      text: context.read<BetStepCubit>().state.minAmount?.toString() ?? '',
     );
   }
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    _focusNode
+      ..removeListener(_focusNodeListener)
+      ..dispose();
     _controller.dispose();
     super.dispose();
+  }
+
+  void _focusNodeListener() {
+    if (!_focusNode.hasFocus) {
+      context.read<BetStepCubit>().onNoBetAmountChanged(noBetAmount: false);
+    }
   }
 
   @override
