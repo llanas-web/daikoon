@@ -225,7 +225,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeCreationTitleFormLabel => 'Nom du défi';
 
   @override
-  String get challengeCreationTitleFormFieldHint => 'Défi fifa ⚽';
+  String get challengeCreationTitleFormFieldHint => 'Titre du défi 📣';
 
   @override
   String get challengeCreationTitleFormFieldErrorEmpty =>

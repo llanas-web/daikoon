@@ -285,7 +285,7 @@
   "@challengeCreationTitleFormLabel": {
     "description": "Label for the title form in the challenge creation page"
   },
-  "challengeCreationTitleFormFieldHint": "Défi fifa ⚽",
+  "challengeCreationTitleFormFieldHint": "Titre du défi 📣",
   "@challengeCreationTitleFormFieldHint": {
     "description": "Hint text for the title form field in the challenge creation page"
   },

@@ -104,6 +104,7 @@ class ChallengeResume extends StatelessWidget {
           ].spacerBetween(height: AppSpacing.lg),
         ),
         const ChallengeSubmitButton(),
+        const Spacer(),
       ].spacerBetween(height: AppSpacing.xxlg),
     );
   }

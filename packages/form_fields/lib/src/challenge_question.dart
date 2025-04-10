@@ -16,14 +16,14 @@ class ChallengeQuestion extends FormzInput<String, ChallengeQuestionError>
   const ChallengeQuestion.dirty(super.value) : super.dirty();
 
 // Add space to the regex
-  static final _challengeTitleRegex = RegExp(r'^[a-zA-Z0-9_.?\s]{6,32}$');
+  // static final _challengeTitleRegex = RegExp(r'^[a-zA-Z0-9_.?\s]{6,32}$');
 
   @override
   ChallengeQuestionError? validator(String value) {
     if (value.isEmpty) return ChallengeQuestionError.empty;
-    if (!_challengeTitleRegex.hasMatch(value)) {
-      return ChallengeQuestionError.invalid;
-    }
+    // if (!_challengeTitleRegex.hasMatch(value)) {
+    //   return ChallengeQuestionError.invalid;
+    // }
     return null;
   }
 

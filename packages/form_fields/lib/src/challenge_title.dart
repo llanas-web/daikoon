@@ -15,14 +15,14 @@ class ChallengeTitle extends FormzInput<String, ChallengeTitleError>
   /// {@macro email.dirty}
   const ChallengeTitle.dirty(super.value) : super.dirty();
 
-  static final _challengeTitleRegex = RegExp(r'^[a-zA-Z0-9_.]{3,16}$');
+  // static final _challengeTitleRegex = RegExp(r'^[a-zA-Z0-9_.]{3,16}$');
 
   @override
   ChallengeTitleError? validator(String value) {
     if (value.isEmpty) return ChallengeTitleError.empty;
-    if (!_challengeTitleRegex.hasMatch(value)) {
-      return ChallengeTitleError.invalid;
-    }
+    // if (!_challengeTitleRegex.hasMatch(value)) {
+    //   return ChallengeTitleError.invalid;
+    // }
     return null;
   }
 

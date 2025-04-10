@@ -20,7 +20,7 @@ class NotificationItem extends StatelessWidget {
       onTap: () {
         context.read<NotificationsCubit>().markAsChecked(notification.id);
         if (notification.challengeId != null) {
-          context.goNamed(
+          context.replaceNamed(
             AppRoutes.challengeDetails.name,
             pathParameters: {'challengeId': notification.challengeId!},
           );

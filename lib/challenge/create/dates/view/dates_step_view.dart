@@ -14,8 +14,8 @@ class DatesStepView extends StatelessWidget {
     return BlocProvider(
       create: (_) => DatesStepCubit(
         startDate: createChallengeCubit.state.startDate,
-        endDate: createChallengeCubit.state.endDate,
         limitDate: createChallengeCubit.state.limitDate,
+        endDate: createChallengeCubit.state.endDate,
       ),
       child: Column(
         children: [

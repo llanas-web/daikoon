@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app_ui/app_ui.dart';
 import 'package:challenge_repository/challenge_repository.dart';
 import 'package:collection/collection.dart';
@@ -15,6 +17,7 @@ class ChallengeEndedDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final userId = context.read<AppBloc>().state.user.id;
     final challengeCubit = context.read<ChallengeDetailsCubit>();
+    final challengeRepository = context.read<ChallengeRepository>();
     final challenge = challengeCubit.state.challenge!;
     final bets = challengeCubit.state.bets;
     final correctChoice = challenge.choices.firstWhereOrNull(
@@ -37,10 +40,14 @@ class ChallengeEndedDetails extends StatelessWidget {
 
     Future<int> getAwardAmount() async {
       if (challengeCubit.userBet == null) return 0;
-      return context.read<ChallengeRepository>().getAward(
-            betId: challengeCubit.userBet!.id,
-            userId: userId,
-          );
+      final amount = Future.delayed(
+        1.seconds,
+        () => challengeRepository.getAward(
+          betId: challengeCubit.userBet!.id,
+          userId: userId,
+        ),
+      );
+      return amount;
     }
 
     return Column(

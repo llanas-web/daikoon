@@ -499,7 +499,7 @@ abstract class AppLocalizations {
   /// Hint text for the title form field in the challenge creation page
   ///
   /// In fr, this message translates to:
-  /// **'Défi fifa ⚽'**
+  /// **'Titre du défi 📣'**
   String get challengeCreationTitleFormFieldHint;
 
   /// Error message for the title form field in the challenge creation page
