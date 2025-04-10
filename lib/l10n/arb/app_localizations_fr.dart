@@ -69,6 +69,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get usernameText => 'Pseudo';
 
   @override
+  String get usernameTextFieldHint => 'Saisissez votre pseudo';
+
+  @override
   String get recoveryPasswordText => 'Récupération de mot de passe';
 
   @override

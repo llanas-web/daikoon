@@ -70,6 +70,7 @@ class _EmailFormFieldState<T extends Cubit<S>, S>
       floatingLabelBehaviour: FloatingLabelBehavior.always,
       textInputAction: TextInputAction.next,
       textInputType: TextInputType.emailAddress,
+      textCapitalization: TextCapitalization.none,
       cursorColor: context.reversedAdaptiveColor,
       style: ContentTextStyle.bodyText1.copyWith(
         color: context.reversedAdaptiveColor,

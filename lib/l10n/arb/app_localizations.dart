@@ -208,6 +208,12 @@ abstract class AppLocalizations {
   /// **'Pseudo'**
   String get usernameText;
 
+  /// Hint text for the username text field
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisissez votre pseudo'**
+  String get usernameTextFieldHint;
+
   /// Text shown in the recovery password page
   ///
   /// In fr, this message translates to:

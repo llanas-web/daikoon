@@ -82,6 +82,10 @@
   "@usernameText": {
     "description": "Text shown before the username text field"
   },
+  "usernameTextFieldHint": "Saisissez votre pseudo",
+  "@usernameTextFieldHint": {
+    "description": "Hint text for the username text field"
+  },
   "recoveryPasswordText": "Récupération de mot de passe",
   "@recoveryPasswordText": {
     "description": "Text shown in the recovery password page"

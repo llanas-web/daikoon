@@ -49,10 +49,11 @@ class _UsernameTextFieldState extends State<UsernameTextField> {
       textInputAction: TextInputAction.next,
       textInputType: TextInputType.text,
       cursorColor: context.reversedAdaptiveColor,
+      textCapitalization: TextCapitalization.none,
       style: ContentTextStyle.bodyText1.copyWith(
         color: context.reversedAdaptiveColor,
       ),
-      hintText: context.l10n.emailTextFieldHint,
+      hintText: context.l10n.usernameTextFieldHint,
       hintStyle: ContentTextStyle.bodyText2.copyWith(
         color: context.reversedAdaptiveColor,
       ),

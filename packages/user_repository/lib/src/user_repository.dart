@@ -202,9 +202,9 @@ class UserRepository implements UserBaseRepository {
     String? excludeUserIds,
   }) async {
     return _databaseClient.searchUsers(
-      query: query,
       limit: limit,
       offset: offset,
+      query: query,
       excludeUserIds: excludeUserIds,
     );
   }

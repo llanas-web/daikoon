@@ -76,6 +76,7 @@ class _PasswordTextFieldState<T extends Cubit<S>, S>
       focusNode: _focusNode,
       floatingLabelBehaviour: FloatingLabelBehavior.always,
       cursorColor: context.reversedAdaptiveColor,
+      textCapitalization: TextCapitalization.none,
       style: ContentTextStyle.bodyText1.copyWith(
         color: context.reversedAdaptiveColor,
       ),

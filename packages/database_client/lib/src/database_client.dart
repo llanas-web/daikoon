@@ -236,8 +236,8 @@ class PowerSyncDatabaseClient extends DatabaseClient {
     required int limit,
     required int offset,
     required String query,
-    String? userId,
     String? excludeUserIds,
+    String? userId,
   }) async {
     final excludeUserIdsStatement =
         excludeUserIds == null ? '' : 'AND id NOT IN ($excludeUserIds)';
