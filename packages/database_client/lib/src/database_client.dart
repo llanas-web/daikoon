@@ -274,18 +274,17 @@ class PowerSyncDatabaseClient extends DatabaseClient {
     String? userId,
     List<String>? excludeUserIds,
   }) {
-    final excludeUserIdsWithCurrentUser = excludeUserIds != null
-        ? excludeUserIds.add(userId ?? currentUserId!)
-        : [userId ?? currentUserId];
+    final selectedUserId = userId ?? currentUserId!;
+    final excludeUserIdsWithCurrentUser = excludeUserIds ?? []
+      ..add(selectedUserId);
     return _powerSyncRepository.db().getAll(
       '''
       SELECT users.id, users.username, users.full_name, users.avatar_url
       FROM friendships
       JOIN users
-      ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id) AND users.id != ?1
+      ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id) AND users.id NOT IN (?1)
       WHERE (
-        (friendships.sender_id = ?1 AND friendships.receiver_id NOT IN (?2))
-        OR (friendships.receiver_id = ?1 AND friendships.sender_id NOT IN (?2))
+        (friendships.sender_id = ?1 OR friendships.receiver_id = ?1)
         )
         AND (
           LOWER(users.username) LIKE LOWER('%$query%')
@@ -293,8 +292,7 @@ class PowerSyncDatabaseClient extends DatabaseClient {
         )
       ''',
       [
-        userId ?? currentUserId,
-        [userId ?? currentUserId, excludeUserIdsWithCurrentUser].join(','),
+        excludeUserIdsWithCurrentUser.join(','),
       ],
     ).then((event) => event.safeMap(User.fromJson).toList(growable: false));
   }

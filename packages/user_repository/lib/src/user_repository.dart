@@ -233,6 +233,10 @@ class UserRepository implements UserBaseRepository {
     String? userId,
     List<String>? excludeUserIds,
   }) {
-    return _databaseClient.searchFriends(userId: userId, query: query);
+    return _databaseClient.searchFriends(
+      userId: userId,
+      query: query,
+      excludeUserIds: excludeUserIds,
+    );
   }
 }
