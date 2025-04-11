@@ -325,9 +325,27 @@
   "@challengeCreationOptionsFormFieldLabel": {
     "description": "Label for the option form in the challenge creation page"
   },
-  "challengeCreationOptionsFormFieldHint": "Choix 1",
+  "challengeCreationOptionsFormFieldHint": "Ajouter un choix",
   "@challengeCreationOptionsFormFieldHint": {
     "description": "Hint text for the option form field in the challenge creation page"
+  },
+  "challengeCreationOptionsConfirmationInputChoiceTitle": "Vous n''avez pas ajouté le choix {choice}",
+  "@challengeCreationOptionsConfirmationInputChoiceTitle": {
+    "description": "Error message for the option form field in the challenge creation page",
+    "placeholders": {
+      "choice": {
+        "type": "String",
+        "example": "1"
+      }
+    }
+  },
+  "challengeCreationOptionsConfirmationInputChoiceAcceptLabel": "Ajouter le choix",
+  "@challengeCreationOptionsConfirmationInputChoiceAcceptLabel": {
+    "description": "Label for the accept button in the option form field in the challenge creation page"
+  },
+  "challengeCreationOptionsConfirmationInputChoiceCancelLabel": "Annuler",
+  "@challengeCreationOptionsConfirmationInputChoiceCancelLabel": {
+    "description": "Label for the cancel button in the option form field in the challenge creation page"
   },
   "challengeCreationBetFormLabel": "Choix du défi",
   "@challengeCreationBetFormLabel": {

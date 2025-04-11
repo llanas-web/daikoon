@@ -8,6 +8,7 @@ class PronosticStepState extends Equatable {
     required this.errorMessage,
     required this.challengeQuestion,
     required this.choices,
+    required this.newChoiceInput,
   });
 
   PronosticStepState.initial({
@@ -20,24 +21,28 @@ class PronosticStepState extends Equatable {
               ? ChallengeQuestion.dirty(question)
               : const ChallengeQuestion.pure(),
           choices: choices ?? const [],
+          newChoiceInput: null,
         );
 
   final PronosticStepStatus status;
   final String? errorMessage;
   final ChallengeQuestion challengeQuestion;
   final List<String> choices;
+  final String? newChoiceInput;
 
   PronosticStepState copyWith({
     PronosticStepStatus? status,
     String? errorMessage,
     ChallengeQuestion? challengeQuestion,
     List<String>? choices,
+    String? newChoiceInput,
   }) {
     return PronosticStepState(
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
       challengeQuestion: challengeQuestion ?? this.challengeQuestion,
       choices: choices ?? this.choices,
+      newChoiceInput: newChoiceInput ?? this.newChoiceInput,
     );
   }
 
@@ -46,5 +51,6 @@ class PronosticStepState extends Equatable {
         status,
         challengeQuestion,
         choices,
+        newChoiceInput ?? '',
       ];
 }

@@ -559,8 +559,26 @@ abstract class AppLocalizations {
   /// Hint text for the option form field in the challenge creation page
   ///
   /// In fr, this message translates to:
-  /// **'Choix 1'**
+  /// **'Ajouter un choix'**
   String get challengeCreationOptionsFormFieldHint;
+
+  /// Error message for the option form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous n\'\'avez pas ajouté le choix {choice}'**
+  String challengeCreationOptionsConfirmationInputChoiceTitle(String choice);
+
+  /// Label for the accept button in the option form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter le choix'**
+  String get challengeCreationOptionsConfirmationInputChoiceAcceptLabel;
+
+  /// Label for the cancel button in the option form field in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get challengeCreationOptionsConfirmationInputChoiceCancelLabel;
 
   /// Label for the daikoins choice form in the challenge creation page
   ///

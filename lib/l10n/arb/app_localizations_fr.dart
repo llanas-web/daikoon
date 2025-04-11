@@ -259,7 +259,20 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeCreationOptionsFormFieldLabel => 'Les choix';
 
   @override
-  String get challengeCreationOptionsFormFieldHint => 'Choix 1';
+  String get challengeCreationOptionsFormFieldHint => 'Ajouter un choix';
+
+  @override
+  String challengeCreationOptionsConfirmationInputChoiceTitle(String choice) {
+    return 'Vous n\'avez pas ajouté le choix $choice';
+  }
+
+  @override
+  String get challengeCreationOptionsConfirmationInputChoiceAcceptLabel =>
+      'Ajouter le choix';
+
+  @override
+  String get challengeCreationOptionsConfirmationInputChoiceCancelLabel =>
+      'Annuler';
 
   @override
   String get challengeCreationBetFormLabel => 'Choix du défi';

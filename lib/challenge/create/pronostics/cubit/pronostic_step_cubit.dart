@@ -104,4 +104,14 @@ class PronosticStepCubit extends Cubit<PronosticStepState> {
     logD('PronosticStepCubit closed');
     return super.close();
   }
+
+  void onChoicesInputChanged(String value) {
+    final previousState = state;
+
+    emit(
+      previousState.copyWith(
+        newChoiceInput: value,
+      ),
+    );
+  }
 }

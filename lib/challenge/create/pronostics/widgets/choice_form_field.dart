@@ -53,6 +53,9 @@ class _ChoiceFormFieldState extends State<ChoiceFormField> {
             hintStyle: UITextStyle.hintText,
             focusNode: _focusNode,
             textController: _optionController,
+            onChanged: (value) {
+              context.read<PronosticStepCubit>().onChoicesInputChanged(value);
+            },
             suffixIcon: Padding(
               padding: const EdgeInsets.only(
                 right: AppSpacing.xlg,
