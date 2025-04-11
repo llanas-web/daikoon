@@ -16,10 +16,6 @@ class BetForm extends StatelessWidget {
     );
     return Column(
       children: [
-        Text(
-          context.l10n.challengeCreationBetFormLabel,
-          style: UITextStyle.title,
-        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -39,10 +39,6 @@ class BetAmountStepForm extends StatelessWidget {
 
     return Column(
       children: [
-        Text(
-          context.l10n.challengeCreationBetFormLabel,
-          style: UITextStyle.title,
-        ),
         Column(
           children: [
             Row(
