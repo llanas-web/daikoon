@@ -24,8 +24,8 @@ class DatesForm extends StatelessWidget {
       }
       context.read<CreateChallengeCubit>().updateDates(
             startDate: dateCubit.state.startDate,
-            endDate: dateCubit.state.endDate,
             limitDate: dateCubit.state.limitDate,
+            endDate: dateCubit.state.endDate,
           );
       context.read<FormStepperCubit>().nextStep();
     }
