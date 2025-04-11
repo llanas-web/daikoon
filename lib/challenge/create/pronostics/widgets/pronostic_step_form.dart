@@ -33,7 +33,12 @@ class PronosticStepForm extends StatelessWidget {
     }
 
     void confirmNewChoice(BuildContext context) => context.confirmAction(
-          fn: onContinue,
+          fn: () {
+            context.read<PronosticStepCubit>().onChoicesAdded(
+                  pronosticCubit.newChoiceInput!,
+                );
+            onContinue();
+          },
           title:
               context.l10n.challengeCreationOptionsConfirmationInputChoiceTitle(
             pronosticCubit.newChoiceInput!,

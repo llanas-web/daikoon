@@ -67,6 +67,9 @@ class _UserProfileFriendsViewState extends State<UserProfileFriendsView>
             stream: friendsStream,
             comparator: const ListEquality<User>().equals,
             builder: (context, friends) {
+              if (friends.isEmpty) {
+                return const EmptyFriends();
+              }
               return SliverList.builder(
                 itemCount: friends.length,
                 itemBuilder: (context, index) {
@@ -184,6 +187,62 @@ class _UnfriendButton extends StatelessWidget {
         color: AppColors.primary,
       ),
       onPressed: onPressed,
+    );
+  }
+}
+
+class EmptyFriends extends StatelessWidget {
+  const EmptyFriends({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverFillRemaining(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.lg,
+          vertical: AppSpacing.md,
+        ),
+        child: Column(
+          children: [
+            Text(
+              "Pas d'amis encore ? 🫠",
+              style: UITextStyle.subtitleBold,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: AppButton(
+                      style: const ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(
+                          AppColors.primary,
+                        ),
+                        padding: WidgetStatePropertyAll(
+                          EdgeInsets.symmetric(
+                            vertical: AppSpacing.lg,
+                            horizontal: AppSpacing.xxlg,
+                          ),
+                        ),
+                      ),
+                      textStyle: UITextStyle.buttonText.copyWith(
+                        color: context.reversedAdaptiveColor,
+                      ),
+                      text: 'Trouver des amis',
+                      onPressed: () =>
+                          context.pushNamed(AppRoutes.addFriends.name),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ].spacerBetween(
+            height: AppSpacing.lg,
+          ),
+        ),
+      ),
     );
   }
 }
