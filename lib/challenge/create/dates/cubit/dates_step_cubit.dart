@@ -207,21 +207,4 @@ class DatesStepCubit extends Cubit<DatesStepState> {
     );
     emit(newState);
   }
-
-  bool validateStep() {
-    final isValid = state.startDate != null &&
-        state.limitDate != null &&
-        state.endDate != null &&
-        state.startDate!.isBefore(state.limitDate!) &&
-        state.limitDate!.isBefore(state.endDate!);
-
-    emit(
-      state.copyWith(
-        status: isValid ? DatesStepStatus.success : DatesStepStatus.failure,
-        errorMessage: isValid ? null : 'Invalid date range',
-      ),
-    );
-
-    return isValid;
-  }
 }

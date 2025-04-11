@@ -13,7 +13,7 @@ class DatesForm extends StatelessWidget {
     final dateCubit = context.read<DatesStepCubit>();
 
     void onContinue() {
-      if (!context.read<DatesStepCubit>().validateStep()) {
+      if (dateCubit.state.status == DatesStepStatus.failure) {
         openSnackbar(
           SnackbarMessage.error(
             title: 'Formulaire invalide',
