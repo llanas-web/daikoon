@@ -53,7 +53,7 @@ abstract class UserBaseRepository {
     required int offset,
     required String query,
     String? userId,
-    String? excludeUserIds,
+    List<String>? excludeUserIds,
   });
 
   /// Search for friends associated with the provided [userId] and [query].
@@ -236,20 +236,21 @@ class PowerSyncDatabaseClient extends DatabaseClient {
     required int limit,
     required int offset,
     required String query,
-    String? excludeUserIds,
+    List<String>? excludeUserIds,
     String? userId,
   }) async {
-    final excludeUserIdsStatement =
-        excludeUserIds == null ? '' : 'AND id NOT IN ($excludeUserIds)';
+    final selectedUserId = userId ?? currentUserId!;
+    final excludeUserIdsWithCurrentUser = excludeUserIds ?? []
+      ..add(selectedUserId);
     final result = await _powerSyncRepository.db().getAll(
       '''
       SELECT id, avatar_url, full_name, username 
       FROM users 
       WHERE (LOWER(username) LIKE LOWER('%$query%') OR LOWER(full_name) LIKE LOWER('%$query%'))
-      AND id <> ?1 $excludeUserIdsStatement
+      AND NOT IN (?1)
       LIMIT ?2 OFFSET ?3
       ''',
-      [currentUserId, limit, offset],
+      [excludeUserIdsWithCurrentUser.join(','), limit, offset],
     );
     return result.safeMap(User.fromJson).toList(growable: false);
   }

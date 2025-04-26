@@ -66,6 +66,7 @@ class _UserProfileAddFriendsViewState extends State<UserProfileAddFriendsView> {
               child: AppTextField(
                 hintText: 'Search friends...',
                 hintStyle: UITextStyle.hintText,
+                textController: searchQueryController,
                 suffixIcon: Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: AppSpacing.xs,

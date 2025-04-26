@@ -59,8 +59,7 @@ class LoginView extends StatelessWidget {
           children: [
             const Gap.v(AppSpacing.xxxlg),
             const AppLogo(
-              height: AppSpacing.xxxlg,
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.fitWidth,
               width: double.infinity,
             ),
             const Gap.v(AppSpacing.sm),

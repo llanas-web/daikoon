@@ -199,7 +199,7 @@ class UserRepository implements UserBaseRepository {
     int limit = 8,
     int offset = 0,
     String? userId,
-    String? excludeUserIds,
+    List<String>? excludeUserIds,
   }) async {
     return _databaseClient.searchUsers(
       limit: limit,
