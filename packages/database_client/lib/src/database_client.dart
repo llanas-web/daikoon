@@ -246,8 +246,10 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       '''
       SELECT id, avatar_url, full_name, username 
       FROM users 
-      WHERE (LOWER(username) LIKE LOWER('%$query%') OR LOWER(full_name) LIKE LOWER('%$query%'))
-      AND NOT IN (?1)
+      WHERE (
+        (LOWER(username) LIKE LOWER('%$query%') OR LOWER(full_name) LIKE LOWER('%$query%'))
+        AND id NOT IN (?1)
+      )
       LIMIT ?2 OFFSET ?3
       ''',
       [excludeUserIdsWithCurrentUser.join(','), limit, offset],
