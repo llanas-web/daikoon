@@ -66,17 +66,6 @@ class __ChallengeInvitationAcceptedState
         _betAmountFocusNode.requestFocus();
         return;
       }
-      final userWallet = context.read<AppBloc>().state.userWalletAmount;
-      if (amount > userWallet) {
-        snackBarError = SnackbarMessage.error(
-          title: context.l10n.challengeDetailsAcceptedDaikoinsAmountErrorWallet,
-          description: context.l10n
-              .challengeDetailsAcceptedDaikoinsAmountErrorWalletDescription(
-            '$userWallet',
-          ),
-          icon: Icons.error_outline_rounded,
-        );
-      }
       if (amount < minAmount!) {
         snackBarError = SnackbarMessage.error(
           title: context.l10n.challengeDetailsAcceptedDaikoinsAmountErrorMinBet,
@@ -104,10 +93,20 @@ class __ChallengeInvitationAcceptedState
         return;
       }
 
-      return context.read<ChallengeDetailsCubit>().upsertBet(
-            choiceId: _choiceId!,
-            amount: _hasBet ? amount : 0,
-          );
+      try {
+        return context.read<ChallengeDetailsCubit>().upsertBet(
+              choiceId: _choiceId!,
+              amount: _hasBet ? amount : 0,
+            );
+      } catch (e) {
+        snackBarError = SnackbarMessage.error(
+          title: context.l10n.challengeDetailsAcceptedDaikoinsAmountErrorWallet,
+          description: 'Solde daikoon insufisant',
+          icon: Icons.error_outline_rounded,
+        );
+        openSnackbar(snackBarError);
+        _betAmountFocusNode.requestFocus();
+      }
     }
 
     return Column(
@@ -196,7 +195,7 @@ class __ChallengeInvitationAcceptedState
                     ),
                   ),
                   DaikoonFormRadioItem(
-                    title: 'bet',
+                    title: context.l10n.challengeDetailsAcceptedDaikoinsNoBet,
                     isSelected: !_hasBet,
                     onTap: () => setState(
                       () => _hasBet = false,

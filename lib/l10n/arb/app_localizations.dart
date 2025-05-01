@@ -718,6 +718,12 @@ abstract class AppLocalizations {
   /// **'Choix des Daïkoins'**
   String get challengeDetailsAcceptedDaikoinsLabel;
 
+  /// Label for the radio input where you don't want to bet daikoins
+  ///
+  /// In fr, this message translates to:
+  /// **'Ne pas parier de Daïkoins'**
+  String get challengeDetailsAcceptedDaikoinsNoBet;
+
   /// Error message for the choice in the challenge details page
   ///
   /// In fr, this message translates to:

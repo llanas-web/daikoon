@@ -457,6 +457,10 @@
   "@challengeDetailsAcceptedDaikoinsLabel": {
     "description": "Label for the daikoins choice in the challenge details page"
   },
+  "challengeDetailsAcceptedDaikoinsNoBet": "Ne pas parier de Daïkoins",
+  "@challengeDetailsAcceptedDaikoinsNoBet": {
+    "description": "Label for the radio input where you don't want to bet daikoins"
+  },
   "challengeDetailsAcceptedNoChoiceError": "Vous devez choisir une option",
   "@challengeDetailsAcceptedNoChoiceError": {
     "description": "Error message for the choice in the challenge details page"

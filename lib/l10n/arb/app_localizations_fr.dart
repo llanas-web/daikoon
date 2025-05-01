@@ -351,6 +351,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get challengeDetailsAcceptedDaikoinsLabel => 'Choix des Daïkoins';
 
   @override
+  String get challengeDetailsAcceptedDaikoinsNoBet =>
+      'Ne pas parier de Daïkoins';
+
+  @override
   String get challengeDetailsAcceptedNoChoiceError =>
       'Vous devez choisir une option';
 
