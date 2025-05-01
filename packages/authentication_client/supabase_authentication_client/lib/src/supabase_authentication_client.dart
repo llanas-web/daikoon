@@ -138,6 +138,7 @@ class SupabaseAuthenticationClient implements AuthenticationClient {
       provider: OAuthProvider.apple,
       idToken: idToken,
       accessToken: credential.authorizationCode,
+      nonce: rawNonce,
     );
   }
 
