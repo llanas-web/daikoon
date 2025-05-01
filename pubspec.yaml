@@ -50,6 +50,7 @@ dependencies:
   notifications_repository: any
   powersync_repository: any
   shared: any
+  sign_in_with_apple: ^7.0.1
   sliver_tools: ^0.2.12
   supabase_authentication_client: any
   token_storage: any

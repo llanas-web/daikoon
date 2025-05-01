@@ -1,7 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:authentication_client/authentication_client.dart';
+import 'package:crypto/crypto.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:powersync_repository/powersync_repository.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 import 'package:token_storage/token_storage.dart';
 
@@ -92,6 +97,48 @@ class SupabaseAuthenticationClient implements AuthenticationClient {
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(LogInWithGoogleFailure(error), stackTrace);
     }
+  }
+
+  @override
+  Future<void> logInWithApple() async {
+    if (Platform.isIOS) {
+      await logInWithAppleIos();
+    } else {
+      await _powerSyncRepository.supabase.auth.signInWithOAuth(
+        OAuthProvider.apple,
+        redirectTo: kIsWeb ? null : 'my.scheme://my-host',
+        // Optionally set the redirect link to bring back the user via deeplink.
+        authScreenLaunchMode: kIsWeb
+            ? LaunchMode.platformDefault
+            : LaunchMode.externalApplication,
+        // Launch the auth screen in a new webview on mobile.
+      );
+    }
+  }
+
+  /// iOS specific implementation of Sign In with Apple.
+  Future<void> logInWithAppleIos() async {
+    final rawNonce = _powerSyncRepository.supabase.auth.generateRawNonce();
+    final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
+
+    final credential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      nonce: hashedNonce,
+    );
+
+    final idToken = credential.identityToken;
+    if (idToken == null) {
+      throw const LogInWithAppleFailure('No ID Token found.');
+    }
+
+    await _powerSyncRepository.supabase.auth.signInWithIdToken(
+      provider: OAuthProvider.apple,
+      idToken: idToken,
+      accessToken: credential.authorizationCode,
+    );
   }
 
   @override

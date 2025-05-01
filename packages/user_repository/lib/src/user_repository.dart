@@ -42,6 +42,22 @@ class UserRepository implements UserBaseRepository {
     }
   }
 
+  /// Starts the Sign In with Apple Flow.
+  ///
+  /// Throws a [LogInWithAppleCanceled] if the flow is canceled by the user.
+  /// Throws a [LogInWithAppleFailure] if an exception occurs.
+  Future<void> logInWithApple() async {
+    try {
+      await _authenticationClient.logInWithApple();
+    } on LogInWithAppleFailure {
+      rethrow;
+    } on LogInWithAppleCanceled {
+      rethrow;
+    } catch (error, stackTrace) {
+      Error.throwWithStackTrace(LogInWithAppleFailure(error), stackTrace);
+    }
+  }
+
   /// Signs out the current user which will emit
   /// [User.anonymous] from the [user] Stream.
   ///
