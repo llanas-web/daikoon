@@ -35,6 +35,8 @@
 			<array>
 				<string>io.supabase.flutterquickstart</string>
 				<string>${GOOGLE_INFO_URL}</string>
+				<string>https://ctnoihvpguadadbfkpie.supabase.co/auth/v1/callback</string>
+				<string>dev.llanas.daikoon://login-callback</string>
 			</array>
 		</dict>
 	</array>

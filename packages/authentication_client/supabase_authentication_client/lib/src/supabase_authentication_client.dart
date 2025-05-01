@@ -106,7 +106,7 @@ class SupabaseAuthenticationClient implements AuthenticationClient {
     } else {
       await _powerSyncRepository.supabase.auth.signInWithOAuth(
         OAuthProvider.apple,
-        redirectTo: kIsWeb ? null : 'my.scheme://my-host',
+        redirectTo: kIsWeb ? null : 'dev.llanas.daikoon://login-callback/',
         // Optionally set the redirect link to bring back the user via deeplink.
         authScreenLaunchMode: kIsWeb
             ? LaunchMode.platformDefault
