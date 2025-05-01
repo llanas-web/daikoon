@@ -202,6 +202,22 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
+  Future<void> loginWithApple() async {
+    emit(
+      state.copyWith(
+        submissionStatus: SignUpSubmissionStatus.appleAuthInProgress,
+      ),
+    );
+    try {
+      await _userRepository.logInWithApple();
+      emit(state.copyWith(submissionStatus: SignUpSubmissionStatus.success));
+    } on LogInWithAppleCanceled {
+      emit(state.copyWith(submissionStatus: SignUpSubmissionStatus.idle));
+    } catch (error, stackTrace) {
+      _errorFormatter(error, stackTrace);
+    }
+  }
+
   /// Defines method to format error. It is used to format error in order to
   /// show it to user.
   void _errorFormatter(Object e, StackTrace stackTrace) {

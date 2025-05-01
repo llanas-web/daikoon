@@ -72,6 +72,14 @@ class LogInWithGoogleFailure extends AuthenticationException {
   const LogInWithGoogleFailure(super.error);
 }
 
+/// {@template log_in_with_apple_canceled}
+/// Thrown during the sign in with apple process if a cancel occurs.
+/// {@endtemplate}
+class LogInWithAppleCanceled extends AuthenticationException {
+  /// {@macro log_in_with_apple_canceled}
+  const LogInWithAppleCanceled(super.error);
+}
+
 /// {@template log_in_with_google_canceled}
 /// Thrown during the sign in with google process if it's canceled.
 /// {@endtemplate}
@@ -146,6 +154,12 @@ abstract class AuthenticationClient {
   ///
   /// Throws a [LogInWithGoogleFailure] if an exception occurs.
   Future<void> logInWithGoogle();
+
+  /// Starts the Sign In with Apple Flow.
+  ///
+  /// Throws a [LogInWithAppleFailure] if an exception occurs.
+  /// Throws a [LogInWithAppleCanceled] if the flow is canceled by the user.
+  Future<void> logInWithApple();
 
   /// Signs up with the provided [email] and [password].
   ///

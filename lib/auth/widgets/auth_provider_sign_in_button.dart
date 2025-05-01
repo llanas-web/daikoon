@@ -21,6 +21,7 @@ class AuthProviderSignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final effectiveIcon = switch (provider) {
       AuthProvider.google => Assets.icons.google.svg(),
+      AuthProvider.apple => Assets.icons.apple.svg(),
     };
     final icon = SizedBox.square(
       dimension: 24,
@@ -58,7 +59,8 @@ class AuthProviderSignInButton extends StatelessWidget {
 }
 
 enum AuthProvider {
-  google('Google');
+  google('Google'),
+  apple('Apple');
 
   const AuthProvider(this.value);
 

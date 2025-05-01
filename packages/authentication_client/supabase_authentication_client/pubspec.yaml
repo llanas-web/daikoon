@@ -15,9 +15,11 @@ dev_dependencies:
 
 dependencies:
   authentication_client: any
+  crypto: ^3.0.6
   flutter:
     sdk: flutter
   google_sign_in: ^6.2.2
   powersync_repository: any
+  sign_in_with_apple: ^7.0.1
   supabase_flutter: ^2.8.3
   token_storage: any
