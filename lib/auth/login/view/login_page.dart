@@ -102,9 +102,21 @@ class LoginView extends StatelessWidget {
                           context.read<LoginCubit>().loginWithGoogle(),
                     ),
                   ),
+                  Align(
+                    child: AuthProviderSignInButton(
+                      provider: AuthProvider.apple,
+                      isInProgress: context.select(
+                        (SignUpCubit cubit) =>
+                            cubit.state.submissionStatus.isAppleAuthInProgress,
+                      ),
+                      onPressed: () =>
+                          context.read<SignUpCubit>().loginWithApple(),
+                    ),
+                  ),
                 ].spacerBetween(height: AppSpacing.xlg),
               ),
             ),
+            const Gap.v(AppSpacing.xxlg),
             const ConditionsInfos(),
           ],
         ),
