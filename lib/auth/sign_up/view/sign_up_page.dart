@@ -150,7 +150,6 @@ class SignUpView extends StatelessWidget {
                           context.read<SignUpCubit>().loginWithGoogle(),
                     ),
                   ),
-                  const AppDivider(),
                   Align(
                     child: AuthProviderSignInButton(
                       provider: AuthProvider.apple,
@@ -165,6 +164,7 @@ class SignUpView extends StatelessWidget {
                 ].spacerBetween(height: AppSpacing.xlg),
               ),
             ),
+            const Gap.v(AppSpacing.xxlg),
             const ConditionsInfos(),
           ],
         ),
