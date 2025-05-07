@@ -5,6 +5,8 @@ import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notifications_repository/notifications_repository.dart';
+import 'package:storage/storage.dart';
 import 'package:user_repository/user_repository.dart';
 
 class UserProfilePage extends StatelessWidget {
@@ -20,6 +22,8 @@ class UserProfilePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => UserProfileBloc(
         userRepository: context.read<UserRepository>(),
+        notificationsRepository: context.read<NotificationsRepository>(),
+        storage: context.read<Storage>(),
         userId: userId,
       )..add(
           const UserProfileSubscriptionRequested(),
@@ -109,7 +113,9 @@ class UserProfileView extends StatelessWidget {
                         _UserProfileTileItem(
                           icon: const Icon(Icons.settings),
                           title: context.l10n.userProfileTileSettingsLabel,
-                          onTap: () {},
+                          onTap: () => context.pushNamed(
+                            AppRoutes.parameters.name,
+                          ),
                         ),
                         _UserProfileTileItem(
                           icon: Assets.icons.friends.svg(

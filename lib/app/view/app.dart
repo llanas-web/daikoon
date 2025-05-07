@@ -5,6 +5,7 @@ import 'package:daikoon/app/view/app_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notifications_repository/notifications_repository.dart';
+import 'package:storage/storage.dart';
 import 'package:user_repository/user_repository.dart';
 
 final snackbarKey = GlobalKey<AppSnackbarState>();
@@ -15,6 +16,7 @@ class App extends StatelessWidget {
     required this.userRepository,
     required this.notificationsRepository,
     required this.challengeRepository,
+    required this.storage,
     super.key,
   });
 
@@ -22,6 +24,7 @@ class App extends StatelessWidget {
   final UserRepository userRepository;
   final NotificationsRepository notificationsRepository;
   final ChallengeRepository challengeRepository;
+  final Storage storage;
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +33,14 @@ class App extends StatelessWidget {
         RepositoryProvider.value(value: userRepository),
         RepositoryProvider.value(value: challengeRepository),
         RepositoryProvider.value(value: notificationsRepository),
+        RepositoryProvider.value(value: storage),
       ],
       child: BlocProvider(
         create: (context) => AppBloc(
           userRepository: userRepository,
           notificationRepository: notificationsRepository,
           user: user,
+          storage: storage,
         ),
         child: const AppView(),
       ),

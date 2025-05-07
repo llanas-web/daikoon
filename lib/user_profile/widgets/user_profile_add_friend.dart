@@ -3,7 +3,9 @@ import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:daikoon_blocks_ui/daikoon_blocks_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notifications_repository/notifications_repository.dart';
 import 'package:shared/shared.dart';
+import 'package:storage/storage.dart';
 import 'package:user_repository/user_repository.dart';
 
 class UserProfileAddFriend extends StatelessWidget {
@@ -14,6 +16,8 @@ class UserProfileAddFriend extends StatelessWidget {
     return BlocProvider(
       create: (context) => UserProfileBloc(
         userRepository: context.read<UserRepository>(),
+        notificationsRepository: context.read<NotificationsRepository>(),
+        storage: context.read<Storage>(),
       ),
       child: const UserProfileAddFriendsView(),
     );

@@ -6,6 +6,7 @@ enum AppRoutes {
   notification('/notification'),
   userProfile('/user-profile'),
   editProfile('/edit-profile'),
+  parameters('/parameters'),
   daikoins('/daikoins'),
   friends('/friends'),
   addFriends('/add-friends'),

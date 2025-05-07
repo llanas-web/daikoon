@@ -45,3 +45,11 @@ final class UserProfileFriendRequested extends UserProfileEvent {
 
   final String friendId;
 }
+
+final class UserProfileNotificationDisableRequested extends UserProfileEvent {
+  const UserProfileNotificationDisableRequested();
+}
+
+final class UserProfileNotificationEnableRequested extends UserProfileEvent {
+  const UserProfileNotificationEnableRequested();
+}

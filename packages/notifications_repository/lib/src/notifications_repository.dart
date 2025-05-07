@@ -44,6 +44,17 @@ class NotificationsRepository {
     }
   }
 
+  /// Disables notifications by deleting the token.
+  Future<void> disableNotitification() async {
+    try {
+      await _notificationsClient.deleteToken();
+    } on FetchTokenFailure {
+      rethrow;
+    } catch (error, stackTrace) {
+      Error.throwWithStackTrace(FetchTokenFailure(error), stackTrace);
+    }
+  }
+
   /// Returns a list of notifications associated with the provided [userId].
   Stream<List<Notification>> notificationsOf({required String userId}) {
     return _databaseClient.notificationsOf(userId: userId);

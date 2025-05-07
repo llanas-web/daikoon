@@ -7,6 +7,7 @@ import 'package:env/env.dart';
 import 'package:firebase_notifications_client/firebase_notifications_client.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:notifications_repository/notifications_repository.dart';
+import 'package:persistent_storage/persistent_storage.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_authentication_client/supabase_authentication_client.dart';
 import 'package:token_storage/token_storage.dart';
@@ -14,7 +15,11 @@ import 'package:user_repository/user_repository.dart';
 
 void main() {
   bootstrap(
-    (powerSyncrepository, firebaseMessaging) async {
+    (
+      powerSyncrepository,
+      firebaseMessaging,
+      sharedPreferences,
+    ) async {
       final iOSClientId = getIt<AppFlavor>().getEnv(Env.iOSClientId);
       final webClientId = getIt<AppFlavor>().getEnv(Env.webClientId);
 
@@ -22,6 +27,10 @@ void main() {
       final googleSignIn = GoogleSignIn(
         clientId: iOSClientId,
         serverClientId: webClientId,
+      );
+
+      final persistentStorage = PersistentStorage(
+        sharedPreferences: sharedPreferences,
       );
 
       final authenticationClient = SupabaseAuthenticationClient(
@@ -57,6 +66,7 @@ void main() {
         userRepository: userRepository,
         challengeRepository: challengeRepository,
         notificationsRepository: notificationsRepository,
+        storage: persistentStorage,
       );
     },
     options: DefaultFirebaseOptions.currentPlatform,
