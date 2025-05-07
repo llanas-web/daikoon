@@ -39,7 +39,7 @@ Deno.serve(async (req) => {
     .eq("id", user_id)
     .single();
 
-  if (user?.push_token == null) {
+  if (user?.push_token == null || user?.push_token === "") {
     return builResponse(
       400,
       JSON.stringify({ error: "user has no fcm_token specified" }),

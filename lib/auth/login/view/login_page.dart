@@ -106,8 +106,8 @@ class LoginView extends StatelessWidget {
                     child: AuthProviderSignInButton(
                       provider: AuthProvider.apple,
                       isInProgress: context.select(
-                        (SignUpCubit cubit) =>
-                            cubit.state.submissionStatus.isAppleAuthInProgress,
+                        (LoginCubit cubit) =>
+                            cubit.state.status.isAppleAuthInProgress,
                       ),
                       onPressed: () =>
                           context.read<SignUpCubit>().loginWithApple(),

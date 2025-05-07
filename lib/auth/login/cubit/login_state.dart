@@ -21,6 +21,10 @@ enum LogInSubmissionStatus {
   /// submitted login with google.
   googleAuthInProgress,
 
+  /// [LogInSubmissionStatus.appleAuthInProgress] indicates that user has
+  /// submitted login with apple.
+  appleAuthInProgress,
+
   /// [LogInSubmissionStatus.success] indicates that user has successfully
   /// submitted login form and is currently waiting for response from backend.
   success,
@@ -42,12 +46,18 @@ enum LogInSubmissionStatus {
 
   /// [LogInSubmissionStatus.googleLogInFailure] indicates that some went
   /// wrong during google login process.
-  googleLogInFailure;
+  googleLogInFailure,
+
+  /// [LogInSubmissionStatus.appleLogInFailure] indicates that some went wrong
+  /// during apple login process.
+  appleLogInFailure;
 
   bool get isSuccess => this == LogInSubmissionStatus.success;
   bool get isLoading => this == LogInSubmissionStatus.loading;
   bool get isGoogleAuthInProgress =>
       this == LogInSubmissionStatus.googleAuthInProgress;
+  bool get isAppleAuthInProgress =>
+      this == LogInSubmissionStatus.appleAuthInProgress;
   bool get isInvalidCredentials =>
       this == LogInSubmissionStatus.invalidCredentials;
   bool get isNetworkError => this == LogInSubmissionStatus.networkError;

@@ -5,6 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:notifications_repository/notifications_repository.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:storage/storage.dart';
 import 'package:user_repository/user_repository.dart';
 
 import 'app_test.mocks.dart';
@@ -14,17 +15,21 @@ import 'app_test.mocks.dart';
   UserRepository,
   ChallengeRepository,
   NotificationsRepository,
+  Storage,
 ])
 void main() {
   late UserRepository userRepository;
   late ChallengeRepository challengeRepository;
   late NotificationsRepository notificationsRepository;
+  late Storage storage;
   late User user;
 
   setUp(() {
     userRepository = MockUserRepository();
     challengeRepository = MockChallengeRepository();
     notificationsRepository = MockNotificationsRepository();
+    storage = MockStorage();
+
     user = MockUser();
 
     when(user.isAnonymous).thenReturn(false);
@@ -49,6 +54,7 @@ void main() {
         userRepository: userRepository,
         challengeRepository: challengeRepository,
         notificationsRepository: notificationsRepository,
+        storage: storage,
       ),
     );
 

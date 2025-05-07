@@ -5,7 +5,9 @@ import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notifications_repository/notifications_repository.dart';
 import 'package:shared/shared.dart';
+import 'package:storage/storage.dart';
 import 'package:user_repository/user_repository.dart';
 
 class UserProfileEdit extends StatelessWidget {
@@ -16,6 +18,8 @@ class UserProfileEdit extends StatelessWidget {
     return BlocProvider(
       create: (context) => UserProfileBloc(
         userRepository: context.read<UserRepository>(),
+        notificationsRepository: context.read<NotificationsRepository>(),
+        storage: context.read<Storage>(),
       ),
       child: const UserProfileEditView(),
     );

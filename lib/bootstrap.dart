@@ -9,10 +9,12 @@ import 'package:firebase_notifications_client/firebase_notifications_client.dart
 import 'package:flutter/widgets.dart';
 import 'package:powersync_repository/powersync_repository.dart';
 import 'package:shared/shared.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 typedef AppBuilder = FutureOr<Widget> Function(
   PowerSyncRepository,
   FirebaseMessaging,
+  SharedPreferences,
 );
 
 class AppBlocObserver extends BlocObserver {
@@ -54,6 +56,8 @@ Future<void> bootstrap(
 
     setupDi(appFlavor: appFlavor);
 
+    final sharedPreferences = await SharedPreferences.getInstance();
+
     await Firebase.initializeApp(
       options: options,
     );
@@ -68,7 +72,13 @@ Future<void> bootstrap(
 
     SystemUiOverlayTheme.setPortraitOrientation();
 
-    runApp(await builder(powerSyncRepository, firebaseMessaging));
+    runApp(
+      await builder(
+        powerSyncRepository,
+        firebaseMessaging,
+        sharedPreferences,
+      ),
+    );
   }, (error, stack) {
     logE(error.toString(), stackTrace: stack);
   });

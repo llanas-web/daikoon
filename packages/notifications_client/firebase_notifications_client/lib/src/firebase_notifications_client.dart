@@ -26,4 +26,8 @@ class FirebaseNotificationsClient implements NotificationsClient {
   @override
   Future<String?> fetchToken({String? vapidKey}) =>
       _firebaseMessaging.getToken(vapidKey: vapidKey);
+
+  /// Revoke the token to stop receiving notifications.
+  @override
+  Future<void> deleteToken() => _firebaseMessaging.deleteToken();
 }

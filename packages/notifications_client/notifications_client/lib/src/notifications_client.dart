@@ -37,4 +37,7 @@ abstract class NotificationsClient {
 
   /// Returns the default messaging token for this device.
   Future<String?> fetchToken({String? vapidKey});
+
+  /// Revoke the token to stop receiving notifications.
+  Future<void> deleteToken();
 }

@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:equatable/equatable.dart';
 import 'package:notifications_repository/notifications_repository.dart';
 import 'package:shared/shared.dart';
+import 'package:storage/storage.dart';
 import 'package:user_repository/user_repository.dart';
 
 part 'app_event.dart';
@@ -14,8 +16,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     required User user,
     required UserRepository userRepository,
     required NotificationsRepository notificationRepository,
+    required Storage storage,
   })  : _userRepository = userRepository,
         _notificationsRepository = notificationRepository,
+        _storage = storage,
         super(
           user.isAnonymous
               ? const AppState.unauthenticated()
@@ -36,6 +40,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   final UserRepository _userRepository;
   final NotificationsRepository _notificationsRepository;
+  final Storage _storage;
 
   StreamSubscription<User>? _userSubscription;
   StreamSubscription<String>? _pushTokenSubscription;
@@ -51,15 +56,23 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       emit(AppState.authenticated(user));
 
       try {
-        final pushToken = await _notificationsRepository.fetchToken();
-        if (user.pushToken == null || user.pushToken != pushToken) {
-          await _userRepository.updateUser(pushToken: pushToken);
-        }
+        final isNotificationsEnabled = await _storage.read(
+          key: UserProfileStorageKeys.notificationsEnabled,
+        );
 
-        _pushTokenSubscription ??=
-            _notificationsRepository.onTokenRefresh().listen((pushToken) async {
-          await _userRepository.updateUser(pushToken: pushToken);
-        });
+        if (isNotificationsEnabled != 'false') {
+          final pushToken = await _notificationsRepository.fetchToken();
+          if (user.pushToken == null || user.pushToken != pushToken) {
+            await _userRepository.updateUser(pushToken: pushToken);
+          }
+
+          _pushTokenSubscription ??=
+              _notificationsRepository.onTokenRefresh().listen(
+                    (pushToken) => _userRepository.updateUser(
+                      pushToken: pushToken,
+                    ),
+                  );
+        }
 
         _walletSubscription ??=
             _userRepository.daikoins(userId: user.id).listen(

@@ -3,6 +3,8 @@ import 'package:daikoon/l10n/l10n.dart';
 import 'package:daikoon/user_profile/bloc/user_profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notifications_repository/notifications_repository.dart';
+import 'package:storage/storage.dart';
 import 'package:user_repository/user_repository.dart';
 
 class UserProfileDaikoins extends StatelessWidget {
@@ -13,6 +15,8 @@ class UserProfileDaikoins extends StatelessWidget {
     return BlocProvider(
       create: (context) => UserProfileBloc(
         userRepository: context.read<UserRepository>(),
+        notificationsRepository: context.read<NotificationsRepository>(),
+        storage: context.read<Storage>(),
       )..add(
           const UserProfileDaikoinsRequested(),
         ),
