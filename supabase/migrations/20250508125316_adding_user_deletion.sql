@@ -1,6 +1,6 @@
-alter table "public"."users" drop constraint "users_fcm_token_key";
+alter table "public"."users" drop constraint if exists "users_fcm_token_key";
 
-alter table "public"."challenges" drop constraint "challenges_creator_id_fkey";
+alter table "public"."challenges" drop constraint if exists "challenges_creator_id_fkey";
 
 drop index if exists "public"."users_fcm_token_key";
 
