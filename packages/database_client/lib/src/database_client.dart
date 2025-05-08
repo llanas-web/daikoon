@@ -581,11 +581,11 @@ class PowerSyncDatabaseClient extends DatabaseClient {
 
   @override
   Future<void> deleteUser({required String userId}) {
-    return _powerSyncRepository.db().execute(
-      '''
-      DELETE FROM users WHERE id = ?
-      ''',
-      [userId],
+    return _powerSyncRepository.supabase.functions.invoke(
+      'delete-user',
+      body: {
+        'user_id': userId,
+      },
     );
   }
 }
