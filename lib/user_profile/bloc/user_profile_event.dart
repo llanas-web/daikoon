@@ -53,3 +53,7 @@ final class UserProfileNotificationDisableRequested extends UserProfileEvent {
 final class UserProfileNotificationEnableRequested extends UserProfileEvent {
   const UserProfileNotificationEnableRequested();
 }
+
+final class UserProfileDeleteUserRequested extends UserProfileEvent {
+  const UserProfileDeleteUserRequested();
+}

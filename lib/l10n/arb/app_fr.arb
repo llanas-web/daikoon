@@ -219,6 +219,30 @@
   "@userProfileTileLogoutLabel": {
     "description": "Label text for the logout tile"
   },
+  "userProfileParametersNotificationToggleLabel": "Activer / Désactiver les notifications",
+  "@userProfileParametersNotificationToggleLabel": {
+    "description": "Label text for the notification toggle"
+  },
+  "userProfileParametersDeleteAccount": "Supprimer le compte",
+  "@userProfileParametersDeleteAccount": {
+    "description": "Label text for the delete account button"
+  },
+  "userProfileParametersDeleteAccountConfirmationText": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+  "@userProfileParametersDeleteAccountConfirmationText": {
+    "description": "Text shown in the confirmation dialog when the user tries to delete his account"
+  },
+  "userProfileParametersDeleteAccountConfirmationDescription": "Cette action est irréversible et supprimera toutes vos données. Si vous avez des défis en cours, ils seront supprimés et les paris seront annulés.",
+  "@userProfileParametersDeleteAccountConfirmationDescription": {
+    "description": "Text shown in the confirmation dialog when the user tries to delete his account"
+  },
+  "userProfileParametersDeleteAccountConfirmationButtonLabel": "Supprimer le compte",
+  "@userProfileParametersDeleteAccountConfirmationButtonLabel": {
+    "description": "Label text for the delete account confirmation button"
+  },
+  "userProfileParametersDeleteAccountConfirmationCancelButtonLabel": "Annuler",
+  "@userProfileParametersDeleteAccountConfirmationCancelButtonLabel": {
+    "description": "Label text for the delete account confirmation cancel button"
+  },
   "logOutText": "Déconnexion",
   "@logOutText": {
     "description": "Text shown in the logout page"

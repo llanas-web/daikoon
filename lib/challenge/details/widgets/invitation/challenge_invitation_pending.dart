@@ -17,7 +17,7 @@ class ChallengeInvitationPending extends StatelessWidget {
     return Column(
       children: [
         Text(
-          '@${challenge.creator!.displayUsername}',
+          '@${challenge.creator?.displayUsername}',
           style: UITextStyle.titleSmallBold.copyWith(
             fontWeight: AppFontWeight.bold,
           ),

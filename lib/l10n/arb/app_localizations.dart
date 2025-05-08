@@ -406,6 +406,42 @@ abstract class AppLocalizations {
   /// **'Déconnexion'**
   String get userProfileTileLogoutLabel;
 
+  /// Label text for the notification toggle
+  ///
+  /// In fr, this message translates to:
+  /// **'Activer / Désactiver les notifications'**
+  String get userProfileParametersNotificationToggleLabel;
+
+  /// Label text for the delete account button
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer le compte'**
+  String get userProfileParametersDeleteAccount;
+
+  /// Text shown in the confirmation dialog when the user tries to delete his account
+  ///
+  /// In fr, this message translates to:
+  /// **'Êtes-vous sûr de vouloir supprimer votre compte ?'**
+  String get userProfileParametersDeleteAccountConfirmationText;
+
+  /// Text shown in the confirmation dialog when the user tries to delete his account
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette action est irréversible et supprimera toutes vos données. Si vous avez des défis en cours, ils seront supprimés et les paris seront annulés.'**
+  String get userProfileParametersDeleteAccountConfirmationDescription;
+
+  /// Label text for the delete account confirmation button
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer le compte'**
+  String get userProfileParametersDeleteAccountConfirmationButtonLabel;
+
+  /// Label text for the delete account confirmation cancel button
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get userProfileParametersDeleteAccountConfirmationCancelButtonLabel;
+
   /// Text shown in the logout page
   ///
   /// In fr, this message translates to:

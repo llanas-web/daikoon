@@ -44,6 +44,9 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
     on<UserProfileNotificationDisableRequested>(
       (event, emit) => _onDisableNotification(),
     );
+    on<UserProfileDeleteUserRequested>(
+      (event, emit) => _deleteUser(),
+    );
   }
 
   final String _userId;
@@ -138,5 +141,14 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
       key: UserProfileStorageKeys.notificationsEnabled,
       value: false.toString(),
     );
+  }
+
+  Future<void> _deleteUser() async {
+    try {
+      await _userRepository.deleteUser(userId: _userId);
+      await _userRepository.logOut();
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
   }
 }

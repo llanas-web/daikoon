@@ -255,4 +255,9 @@ class UserRepository implements UserBaseRepository {
       excludeUserIds: excludeUserIds,
     );
   }
+
+  @override
+  Future<void> deleteUser({required String userId}) {
+    return _databaseClient.deleteUser(userId: userId);
+  }
 }

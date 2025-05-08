@@ -62,6 +62,11 @@ abstract class UserBaseRepository {
     String? userId,
     List<String>? excludeUserIds,
   });
+
+  /// Removes the user identified by [userId].
+  Future<void> deleteUser({
+    required String userId,
+  });
 }
 
 /// ChallengeBaseRepository
@@ -287,12 +292,12 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       JOIN users
       ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id) AND users.id NOT IN (?1)
       WHERE (
-        (friendships.sender_id = ?1 OR friendships.receiver_id = ?1)
-        )
+        (friendships.sender_id NOT IN (?1) OR friendships.receiver_id NOT IN (?1))
         AND (
           LOWER(users.username) LIKE LOWER('%$query%')
           OR LOWER(users.full_name) LIKE LOWER('%$query%')
         )
+      )
       ''',
       [
         excludeUserIdsWithCurrentUser.join(','),
@@ -572,5 +577,15 @@ class PowerSyncDatabaseClient extends DatabaseClient {
       ''',
       [betId, userId],
     ).then((event) => event['amount'] as int);
+  }
+
+  @override
+  Future<void> deleteUser({required String userId}) {
+    return _powerSyncRepository.db().execute(
+      '''
+      DELETE FROM users WHERE id = ?
+      ''',
+      [userId],
+    );
   }
 }
