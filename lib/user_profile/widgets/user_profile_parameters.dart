@@ -4,6 +4,7 @@ import 'package:daikoon/user_profile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notifications_repository/notifications_repository.dart';
+import 'package:shared/shared.dart';
 import 'package:storage/storage.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -57,23 +58,74 @@ class UserProfileParametersView extends StatelessWidget {
         backgroundColor: AppColors.primary,
         foregroundColor: context.reversedAdaptiveColor,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(AppSpacing.xlg),
-        child: AppConstrainedScrollView(
-          child: Column(
-            children: <Widget>[
-              ValueListenableBuilder<bool>(
-                valueListenable: isNotifEnabled,
-                builder: (context, value, child) {
-                  return SwitchListTile(
-                    value: value,
-                    onChanged: (newValue) =>
-                        toggleNotification(value: newValue),
-                    title: const Text('Enable notifications'),
-                  );
-                },
+      body: AppConstrainedScrollView(
+        child: Column(
+          children: <Widget>[
+            ValueListenableBuilder<bool>(
+              valueListenable: isNotifEnabled,
+              builder: (context, value, child) {
+                return SwitchListTile(
+                  value: value,
+                  onChanged: (newValue) => toggleNotification(value: newValue),
+                  title: Text(
+                    context.l10n.userProfileParametersNotificationToggleLabel,
+                  ),
+                );
+              },
+            ),
+            Expanded(
+              child: Container(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxlg),
+              child: AppButton(
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(AppColors.secondary),
+                  padding: WidgetStatePropertyAll(
+                    EdgeInsets.symmetric(
+                      vertical: AppSpacing.lg,
+                      horizontal: AppSpacing.xxlg,
+                    ),
+                  ),
+                ),
+                textStyle: UITextStyle.button
+                    .copyWith(color: context.reversedAdaptiveColor),
+                text: context.l10n.challengeCreationContinueButtonLabel,
+                onPressed: () => context.confirmAction(
+                  fn: () {
+                    userProfileBloc.add(const UserProfileDeleteUserRequested());
+                  },
+                  title: context
+                      .l10n.userProfileParametersDeleteAccountConfirmationText,
+                  content: context.l10n
+                      .userProfileParametersDeleteAccountConfirmationDescription,
+                  noText: context.l10n
+                      .userProfileParametersDeleteAccountConfirmationCancelButtonLabel,
+                  yesText: context.l10n
+                      .userProfileParametersDeleteAccountConfirmationButtonLabel,
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.delete_outline,
+                      size: AppSize.iconSizeMedium,
+                      color: context.reversedAdaptiveColor,
+                    ),
+                    Expanded(
+                      child: Text(
+                        context.l10n.userProfileParametersDeleteAccount,
+                        style: UITextStyle.button
+                            .copyWith(color: context.reversedAdaptiveColor),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ],
+            ),
+            const Gap.v(AppSpacing.lg),
+          ].spacerBetween(
+            height: AppSpacing.xlg,
           ),
         ),
       ),

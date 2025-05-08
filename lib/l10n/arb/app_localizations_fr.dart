@@ -176,6 +176,29 @@ class AppLocalizationsFr extends AppLocalizations {
   String get userProfileTileLogoutLabel => 'Déconnexion';
 
   @override
+  String get userProfileParametersNotificationToggleLabel =>
+      'Activer / Désactiver les notifications';
+
+  @override
+  String get userProfileParametersDeleteAccount => 'Supprimer le compte';
+
+  @override
+  String get userProfileParametersDeleteAccountConfirmationText =>
+      'Êtes-vous sûr de vouloir supprimer votre compte ?';
+
+  @override
+  String get userProfileParametersDeleteAccountConfirmationDescription =>
+      'Cette action est irréversible et supprimera toutes vos données. Si vous avez des défis en cours, ils seront supprimés et les paris seront annulés.';
+
+  @override
+  String get userProfileParametersDeleteAccountConfirmationButtonLabel =>
+      'Supprimer le compte';
+
+  @override
+  String get userProfileParametersDeleteAccountConfirmationCancelButtonLabel =>
+      'Annuler';
+
+  @override
   String get logOutText => 'Déconnexion';
 
   @override
