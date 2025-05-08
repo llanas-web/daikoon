@@ -226,11 +226,15 @@ class SupabaseAuthenticationClient implements AuthenticationClient {
   Future<void> logOut() async {
     try {
       await _powerSyncRepository.db().disconnectAndClear();
-      await _powerSyncRepository.supabase.auth.updateUser(
-        UserAttributes(
-          data: {'push_token': null},
-        ),
-      );
+      try {
+        await _powerSyncRepository.supabase.auth.updateUser(
+          UserAttributes(
+            data: {'push_token': null},
+          ),
+        );
+      } catch (e) {
+        // Ignore error if user is not authenticated
+      }
       await _powerSyncRepository.supabase.auth.signOut();
       await _googleSignIn.signOut();
     } catch (error, stackTrace) {
