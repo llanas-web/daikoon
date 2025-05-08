@@ -50,6 +50,7 @@ class PronosticStepCubit extends Cubit<PronosticStepState> {
     emit(
       previousState.copyWith(
         choices: newChoices,
+        newChoiceInput: '', // Clear the input field after adding a choice
       ),
     );
   }

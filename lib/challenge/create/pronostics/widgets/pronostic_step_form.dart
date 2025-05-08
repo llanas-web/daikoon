@@ -25,9 +25,12 @@ class PronosticStepForm extends StatelessWidget {
         );
         return;
       }
+      final challengeQuestion =
+          context.read<PronosticStepCubit>().state.challengeQuestion.value;
+      final choices = context.read<PronosticStepCubit>().state.choices;
       context.read<CreateChallengeCubit>().updatePronostic(
-            pronosticCubit.challengeQuestion.value,
-            pronosticCubit.choices,
+            challengeQuestion,
+            choices,
           );
       context.read<FormStepperCubit>().nextStep();
     }
