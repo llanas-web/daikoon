@@ -799,6 +799,12 @@ abstract class AppLocalizations {
   String challengeDetailsAcceptedDaikoinsAmountErrorBetMaxDescription(
       String amount);
 
+  /// Label for the no bet action button
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas de mise'**
+  String get challengeDetailsAcceptedDaikoinsNoBetLabel;
+
   /// Label for the pending transaction button in the challenge details page
   ///
   /// In fr, this message translates to:

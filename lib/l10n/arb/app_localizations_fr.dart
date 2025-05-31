@@ -408,6 +408,9 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get challengeDetailsAcceptedDaikoinsNoBetLabel => 'Pas de mise';
+
+  @override
   String get challengeDetailsAcceptedTransactionPendingLabel =>
       'En attente de connexion pour validation du pari';
 

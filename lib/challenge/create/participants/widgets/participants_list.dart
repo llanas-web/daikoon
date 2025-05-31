@@ -1,4 +1,5 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:daikoon/app/view/app.dart';
 import 'package:daikoon/challenge/challenge.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,9 +19,9 @@ class ParticipantsList extends StatelessWidget {
     } else {
       return Text(
         participantsNames.join(', '),
-        style: UITextStyle.bodyText.copyWith(
+        style: UITextStyle.subtitle.copyWith(
           fontStyle: FontStyle.italic,
-          color: AppColors.grey,
+          color: AppColors.darkGrey,
         ),
         textAlign: TextAlign.start,
       );

@@ -196,7 +196,8 @@ class __ChallengeInvitationAcceptedState
                     ),
                   ),
                   DaikoonFormRadioItem(
-                    title: 'bet',
+                    title:
+                        context.l10n.challengeDetailsAcceptedDaikoinsNoBetLabel,
                     isSelected: !_hasBet,
                     onTap: () => setState(
                       () => _hasBet = false,
