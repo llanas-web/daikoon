@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:notifications_repository/notifications_repository.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:storage/storage.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -44,6 +45,11 @@ class UserProfileView extends StatelessWidget {
     final user = context.select(
       (UserProfileBloc bloc) => bloc.state.user,
     );
+
+    Future<String> getPackageInfo() async {
+      final packageInfo = await PackageInfo.fromPlatform();
+      return '${packageInfo.version} (${packageInfo.buildNumber})';
+    }
 
     return AppScaffold(
       body: NestedScrollView(
@@ -141,6 +147,29 @@ class UserProfileView extends StatelessWidget {
                             yesText: context.l10n.logOutText,
                           ),
                           trailing: false,
+                        ),
+                        FutureBuilder<String>(
+                          future: getPackageInfo(),
+                          builder: (context, snapshot) {
+                            return Container(
+                              width: double.infinity,
+                              color: AppColors.lightGrey,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: AppSpacing.md,
+                              ),
+                              child: Text(
+                                snapshot.connectionState ==
+                                            ConnectionState.done &&
+                                        snapshot.hasData
+                                    ? snapshot.data!
+                                    : '',
+                                style: UITextStyle.bodyText.copyWith(
+                                  color: AppColors.grey,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            );
+                          },
                         ),
                       ]
                     : [],
