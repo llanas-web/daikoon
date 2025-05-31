@@ -283,26 +283,43 @@ class PowerSyncDatabaseClient extends DatabaseClient {
     List<String>? excludeUserIds,
   }) {
     final selectedUserId = userId ?? currentUserId!;
-    final excludeUserIdsWithCurrentUser = excludeUserIds ?? []
-      ..add(selectedUserId);
-    return _powerSyncRepository.db().getAll(
-      '''
+    final excludeIds =
+        {...?excludeUserIds, selectedUserId}.toList(); // ensure uniqueness
+
+    // Create the correct number of placeholders (?, ?, ?) for the IN clause
+    final placeholders =
+        List.generate(excludeIds.length, (index) => '?').join(', ');
+
+    final sql = '''
       SELECT users.id, users.username, users.full_name, users.avatar_url
       FROM friendships
       JOIN users
-      ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id) AND users.id NOT IN (?1)
-      WHERE (
-        (friendships.sender_id NOT IN (?1) OR friendships.receiver_id NOT IN (?1))
+      ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id)
+      WHERE users.id NOT IN ($placeholders)
+      AND (
+        (friendships.sender_id NOT IN ($placeholders) OR friendships.receiver_id NOT IN ($placeholders))
         AND (
-          LOWER(users.username) LIKE LOWER('%$query%')
-          OR LOWER(users.full_name) LIKE LOWER('%$query%')
+          LOWER(users.username) LIKE LOWER(?)
+          OR LOWER(users.full_name) LIKE LOWER(?)
         )
       )
-      ''',
-      [
-        excludeUserIdsWithCurrentUser.join(','),
-      ],
-    ).then((event) => event.safeMap(User.fromJson).toList(growable: false));
+    ''';
+
+    final likeQuery = '%$query%';
+
+    // You need to repeat excludeIds three times + the query string twice
+    final args = [
+      ...excludeIds, // for users.id NOT IN
+      ...excludeIds, // for friendships.sender_id/receiver_id NOT IN
+      ...excludeIds, // again for friendships.sender_id/receiver_id NOT IN
+      likeQuery,
+      likeQuery,
+    ];
+
+    return _powerSyncRepository
+        .db()
+        .getAll(sql, args)
+        .then((event) => event.safeMap(User.fromJson).toList(growable: false));
   }
 
   @override
