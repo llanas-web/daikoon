@@ -10,7 +10,7 @@ environment:
   flutter: ^3.24.0
 
 dependencies:
-  firebase_messaging: ^15.2.3
+  firebase_messaging: ^15.2.6
   flutter:
     sdk: flutter
   notifications_client: any
