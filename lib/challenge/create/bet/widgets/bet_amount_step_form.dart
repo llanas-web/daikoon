@@ -30,8 +30,8 @@ class BetAmountStepForm extends StatelessWidget {
         return;
       }
       context.read<CreateChallengeCubit>().updateBetAmount(
-            minAmount: betStepCubit.minAmount ?? 0,
-            maxAmount: betStepCubit.maxAmount ?? 0,
+            minAmount: betStepCubit.minAmount,
+            maxAmount: betStepCubit.maxAmount,
             noBetAmount: betStepCubit.noBetAmount,
           );
       context.read<FormStepperCubit>().nextStep();

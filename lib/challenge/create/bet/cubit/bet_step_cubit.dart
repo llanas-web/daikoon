@@ -47,7 +47,7 @@ class BetStepCubit extends Cubit<BetStepState> {
   }
 
   bool validateStep() {
-    final isValid = !state.noBetAmount ||
+    final isValid = state.noBetAmount ||
         (state.minAmount != null && state.maxAmount != null);
 
     emit(

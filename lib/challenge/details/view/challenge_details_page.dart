@@ -58,6 +58,7 @@ class ChallengeDetailsView extends StatelessWidget {
               return const Center(child: Text('Error'));
             } else {
               return const AppConstrainedScrollView(
+                padding: EdgeInsets.only(bottom: AppSpacing.xlg),
                 child: ChallengeDetails(),
               );
             }

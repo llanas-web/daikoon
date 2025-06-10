@@ -69,7 +69,9 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
         ),
       );
       if (_betsSubscription == null) {
-        fetchBetStream();
+        if (!isClosed) {
+          fetchBetStream();
+        }
       }
     }
   }
