@@ -78,6 +78,7 @@ GoRouter router(AppBloc appBloc) {
                     key: state.pageKey,
                     child: ChallengeDetailsPage(
                       challengeId: challengeId ?? '',
+                      key: ValueKey(challengeId),
                     ),
                   );
                 },

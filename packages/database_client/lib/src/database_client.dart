@@ -291,7 +291,7 @@ class PowerSyncDatabaseClient extends DatabaseClient {
         List.generate(excludeIds.length, (index) => '?').join(', ');
 
     final sql = '''
-      SELECT users.id, users.username, users.full_name, users.avatar_url
+      SELECT DISTINCT users.id, users.username, users.full_name, users.avatar_url
       FROM friendships
       JOIN users
       ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id)
@@ -451,13 +451,19 @@ class PowerSyncDatabaseClient extends DatabaseClient {
 
   @override
   Future<Bet> upsertBet({required Bet bet}) async {
-    await _powerSyncRepository.db().execute(
-      '''
-        INSERT INTO bets (id, choice_id, user_id, amount) VALUES(?1, ?2, ?3, ?4)
-      ''',
-      [bet.id, bet.choiceId, bet.userId, bet.amount],
-    );
-    return bet;
+    return _powerSyncRepository.supabase
+        .from('bets')
+        .insert(
+          {
+            'choice_id': bet.choiceId,
+            'user_id': bet.userId,
+            'amount': bet.amount,
+            'status': bet.status.name,
+          },
+        )
+        .select()
+        .single()
+        .withConverter(Bet.fromJson);
   }
 
   @override

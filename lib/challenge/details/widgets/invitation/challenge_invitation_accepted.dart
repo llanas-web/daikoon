@@ -292,6 +292,7 @@ class __ChallengeInvitationAcceptedState
                 textStyle: UITextStyle.button.copyWith(
                   color: context.reversedAdaptiveColor,
                 ),
+                loading: userBet != null,
                 style: const ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(AppColors.secondary),
                   padding: WidgetStatePropertyAll(

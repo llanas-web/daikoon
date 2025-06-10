@@ -57,52 +57,64 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
         choiceId: choiceId,
         userId: _userId,
       );
-      await _challengeRepository.upsertBet(
+      final newBet = await _challengeRepository.upsertBet(
         bet: bet,
       );
+      emit(
+        state.copyWith(
+          bets: [
+            ...state.bets.where((b) => b.id != newBet.id),
+            newBet,
+          ],
+        ),
+      );
+      if (_betsSubscription == null) {
+        fetchBetStream();
+      }
     }
+  }
+
+  void fetchBetStream() {
+    _betsSubscription = _challengeRepository
+        .fetchChallengeBets(
+          challengeId: _challengeId,
+        )
+        .listen(
+          (bets) => emit(
+            state.copyWith(bets: bets),
+          ),
+        );
+  }
+
+  void fetchParticipantsStream() {
+    _participantsSubscription = _challengeRepository
+        .fetchChallengeParticipant(
+          challengeId: _challengeId,
+        )
+        .listen(
+          (participants) => emit(
+            state.copyWith(
+              challenge: state.challenge!.copyWith(
+                participants: participants,
+              ),
+            ),
+          ),
+        );
   }
 
   Future<void> fetchChallengeDetails() async {
     final challenge = await _challengeRepository.getChallengeDetails(
       challengeId: _challengeId,
     );
-    final participantStream = _challengeRepository.fetchChallengeParticipant(
-      challengeId: _challengeId,
-    );
-    final betStream = _challengeRepository.fetchChallengeBets(
-      challengeId: _challengeId,
-    );
 
-    final listParticipant = await _challengeRepository.getParticipants(
-      challengeId: _challengeId,
-    );
-    final listBet = await _challengeRepository.getBets(
-      challengeId: _challengeId,
-    );
+    if (_participantsSubscription == null) {
+      fetchParticipantsStream();
+    }
 
     emit(
       state.copyWith(
-        challenge: challenge.copyWith(
-          participants: listParticipant,
-        ),
-        bets: listBet,
+        challenge: challenge,
         status: ChallengeDetailsStatus.loaded,
-      ),
-    );
-
-    _betsSubscription = betStream.listen(
-      (bets) => emit(
-        state.copyWith(bets: bets),
-      ),
-    );
-    _participantsSubscription = participantStream.listen(
-      (participants) => emit(
-        state.copyWith(
-          challenge: state.challenge!.copyWith(
-            participants: participants,
-          ),
-        ),
       ),
     );
   }

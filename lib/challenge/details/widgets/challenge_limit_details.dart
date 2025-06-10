@@ -28,7 +28,8 @@ class ChallengeLimitDetailsStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final challengeDetailsCubit = context.read<ChallengeDetailsCubit>();
+    final challengeDetailsCubit = context.read<ChallengeDetailsCubit>()
+      ..fetchBetStream();
     final challenge = challengeDetailsCubit.state.challenge!;
     final choices = challengeDetailsCubit.state.challenge!.choices;
     final bets = challengeDetailsCubit.state.bets;
