@@ -48,6 +48,8 @@ class _ChallengeQuestionTextFieldState
   @override
   Widget build(BuildContext context) {
     return AppTextField(
+      maxLines: null,
+      textInputType: TextInputType.multiline,
       contentPadding: const EdgeInsets.symmetric(
         vertical: AppSpacing.lg,
         horizontal: AppSpacing.xlg,
