@@ -29,11 +29,6 @@ class HomeHeader extends StatelessWidget {
             style: UITextStyle.title,
             textAlign: TextAlign.center,
           ),
-          Text(
-            context.l10n.homeHeaderSubtitle,
-            style: UITextStyle.subtitle,
-            textAlign: TextAlign.center,
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: AppSpacing.md,
