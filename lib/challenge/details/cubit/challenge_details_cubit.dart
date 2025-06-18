@@ -113,6 +113,10 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
       fetchParticipantsStream();
     }
 
+    if (_betsSubscription == null) {
+      fetchBetStream();
+    }
+
     emit(
       state.copyWith(
         challenge: challenge,

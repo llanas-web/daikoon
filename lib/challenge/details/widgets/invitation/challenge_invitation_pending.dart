@@ -165,16 +165,16 @@ class ChallengeInvitationPending extends StatelessWidget {
               context.l10n.challengeDetailsPendingListParticipantLabel,
               style: UITextStyle.subtitleBold,
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: challenge.participants.length,
-              itemBuilder: (context, index) {
-                return Text(
-                  '@${challenge.participants[index].displayUsername}',
-                  style: UITextStyle.subtitle,
-                );
-              },
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: challenge.participants
+                  .map(
+                    (participant) => Text(
+                      '@${participant.displayUsername}',
+                      style: UITextStyle.subtitle,
+                    ),
+                  )
+                  .toList(),
             ),
           ].spacerBetween(height: AppSpacing.md),
         ),

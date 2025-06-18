@@ -16,6 +16,7 @@ class ChallengeDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      key: ValueKey(challengeId),
       create: (context) => ChallengeDetailsCubit(
         userId: context.read<AppBloc>().state.user.id,
         challengeId: challengeId,
