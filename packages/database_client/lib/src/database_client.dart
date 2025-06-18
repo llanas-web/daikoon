@@ -290,28 +290,27 @@ class PowerSyncDatabaseClient extends DatabaseClient {
     final placeholders =
         List.generate(excludeIds.length, (index) => '?').join(', ');
 
+    // Only get the result where friendships.sender_id or receiver_id has selectedUserId
     final sql = '''
       SELECT DISTINCT users.id, users.username, users.full_name, users.avatar_url
       FROM friendships
       JOIN users
-      ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id)
+        ON (friendships.receiver_id = users.id OR friendships.sender_id = users.id)
       WHERE users.id NOT IN ($placeholders)
-      AND (
-        (friendships.sender_id NOT IN ($placeholders) OR friendships.receiver_id NOT IN ($placeholders))
+        AND (friendships.sender_id = ? OR friendships.receiver_id = ?)
         AND (
           LOWER(users.username) LIKE LOWER(?)
           OR LOWER(users.full_name) LIKE LOWER(?)
         )
-      )
     ''';
 
     final likeQuery = '%$query%';
 
     // You need to repeat excludeIds three times + the query string twice
     final args = [
-      ...excludeIds, // for users.id NOT IN
-      ...excludeIds, // for friendships.sender_id/receiver_id NOT IN
-      ...excludeIds, // again for friendships.sender_id/receiver_id NOT IN
+      ...excludeIds,
+      selectedUserId,
+      selectedUserId,
       likeQuery,
       likeQuery,
     ];

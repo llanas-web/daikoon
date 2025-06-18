@@ -29,6 +29,27 @@ class HomeHeader extends StatelessWidget {
             style: UITextStyle.title,
             textAlign: TextAlign.center,
           ),
+          Stack(
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  margin: const EdgeInsets.all(AppSpacing.lg),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.primary.withValues(alpha: 0.15),
+                  ),
+                ),
+              ),
+              Image(
+                image: Assets.images.heroImage.provider(),
+                width: 300,
+              ),
+            ],
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: AppSpacing.md,
@@ -58,26 +79,6 @@ class HomeHeader extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          Stack(
-            children: [
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Container(
-                  margin: const EdgeInsets.all(AppSpacing.xlg),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.primary.withValues(alpha: 0.15),
-                  ),
-                ),
-              ),
-              Image(
-                image: Assets.images.heroImage.provider(),
-              ),
-            ],
           ),
         ].spacerBetween(height: AppSpacing.xlg),
       ),
