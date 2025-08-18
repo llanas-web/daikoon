@@ -56,7 +56,7 @@ class __ChallengeInvitationAcceptedState
     Future<void> upsertBet() async {
       final amount = _betAmountSliderValue.round();
       SnackbarMessage? snackBarError;
-      if (!_hasBet) {
+      if (!challenge.hasBet) {
         return context.read<ChallengeDetailsCubit>().upsertBet(
               choiceId: _choiceId!,
               amount: 0,
