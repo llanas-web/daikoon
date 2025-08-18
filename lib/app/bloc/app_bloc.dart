@@ -74,6 +74,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                   );
         }
 
+        await _userRepository.daikoins(userId: user.id).first.then(
+          (walletAmount) {
+            add(
+              AppWalletAmountChanged(walletAmount: walletAmount),
+            );
+          },
+          onError: addError,
+        );
+
         _walletSubscription ??=
             _userRepository.daikoins(userId: user.id).listen(
           (walletAmount) {
