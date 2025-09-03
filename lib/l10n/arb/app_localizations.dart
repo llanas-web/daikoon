@@ -718,6 +718,12 @@ abstract class AppLocalizations {
   /// **'Erreur lors de la création du défi : '**
   String get challengeCreationErrorTitle;
 
+  /// Title for the success dialog in the challenge creation page
+  ///
+  /// In fr, this message translates to:
+  /// **'Défi créé avec succès'**
+  String get challengeCreationSuccessTitle;
+
   /// Label for the question in the challenge details page
   ///
   /// In fr, this message translates to:

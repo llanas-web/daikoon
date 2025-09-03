@@ -46,86 +46,47 @@ class BottomNavBar extends StatelessWidget {
       iconSize: AppSize.iconSize,
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      items: navigationBarItems
-          .mapIndexed(
-            (index, navBarItem) => BottomNavigationBarItem(
-              icon: navBarItem.icon.svg(
-                colorFilter: ColorFilter.mode(
-                  index == navigationShell.currentIndex
-                      ? AppColors.secondary
-                      : AppColors.primary.withValues(alpha: 0.5),
-                  BlendMode.srcIn,
-                ),
-              ),
-              label: navBarItem.label,
-              tooltip: navBarItem.tooltip,
-            ),
-          )
-          .toList(),
+      items: navigationBarItems.mapIndexed(
+        (index, navBarItem) {
+          final isSelected = index == navigationShell.currentIndex;
+          final bellColor = isSelected
+              ? AppColors.secondary
+              : AppColors.primary.withValues(alpha: 0.5);
+          final iconWidget = (navBarItem.label ==
+                  context.l10n.notificationNavBarItemLabel)
+              ? _NotificationIcon(
+                  isSelected: isSelected,
+                ) // <- subscribes & rebuilds on change
+              : navBarItem.icon.svg(theme: SvgTheme(currentColor: bellColor));
+          return BottomNavigationBarItem(
+            icon: iconWidget,
+            label: navBarItem.label,
+            tooltip: navBarItem.tooltip,
+          );
+        },
+      ).toList(),
     );
-    // final videoPlayer = VideoPlayerInheritedWidget.of(context);
+  }
+}
 
-    // final user = context.select((AppBloc bloc) => bloc.state.user);
+class _NotificationIcon extends StatelessWidget {
+  const _NotificationIcon({required this.isSelected});
 
-    // final navigationBarItems = mainNavigationBarItems(
-    //   homeLabel: context.l10n.homeNavBarItemLabel,
-    //   searchLabel: context.l10n.searchNavBarItemLabel,
-    //   createMediaLabel: context.l10n.createMediaNavBarItemLabel,
-    //   reelsLabel: context.l10n.reelsNavBarItemLabel,
-    //   userProfileLabel: context.l10n.profileNavBarItemLabel,
-    //   userProfileAvatar: AnimatedCrossFade(
-    //     firstChild: const Icon(Icons.person),
-    //     secondChild: UserProfileAvatar(
-    //       avatarUrl: user.avatarUrl,
-    //       isLarge: false,
-    //       radius: 18,
-    //     ),
-    //     crossFadeState:
-    //         user.avatarUrl == null || (user.avatarUrl?.isEmpty ?? true)
-    //             ? CrossFadeState.showFirst
-    //             : CrossFadeState.showSecond,
-    //     duration: 350.ms,
-    //   ),
-    // );
+  final bool isSelected;
 
-    // return BottomNavigationBar(
-    //   currentIndex: navigationShell.currentIndex,
-    //   onTap: (index) {
-    //     HomeProvider().togglePageView(enable: index == 0);
-    //     if ([0, 1, 2, 3].contains(index)) {
-    //       if (index case 0) videoPlayer.videoPlayerState.playFeed();
-    //       if (index case 1) videoPlayer.videoPlayerState.playTimeline();
-    //       if (index case 2) {
-    //         HomeProvider().animateToPage(0);
-    //         HomeProvider().togglePageView();
-    //       }
-    //       if (index case 3) videoPlayer.videoPlayerState.playReels();
-    //     } else {
-    //       videoPlayer.videoPlayerState.stopAll();
-    //     }
-    //     if (index != 2) {
-    //       navigationShell.goBranch(
-    //         index,
-    //         initialLocation: index == navigationShell.currentIndex,
-    //       );
-    //     }
-    //     if (index == 0) {
-    //       if (!(index == navigationShell.currentIndex)) return;
-    //       FeedPageController().scrollToTop();
-    //     }
-    //   },
-    //   iconSize: 28,
-    //   showSelectedLabels: false,
-    //   showUnselectedLabels: false,
-    //   items: navigationBarItems
-    //       .map(
-    //         (e) => BottomNavigationBarItem(
-    //           icon: e.child ?? Icon(e.icon),
-    //           label: e.label,
-    //           tooltip: e.tooltip,
-    //         ),
-    //       )
-    //       .toList(),
-    // );
+  @override
+  Widget build(BuildContext context) {
+    final hasNotification =
+        context.select((AppBloc bloc) => bloc.state.hasNotification);
+
+    final icon = hasNotification
+        ? Assets.icons.notificationActif
+        : Assets.icons.notification;
+
+    return icon.svg(
+      theme: isSelected
+          ? const SvgTheme(currentColor: AppColors.secondary)
+          : SvgTheme(currentColor: AppColors.primary.withValues(alpha: 0.5)),
+    );
   }
 }

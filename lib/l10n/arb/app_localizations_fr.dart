@@ -350,6 +350,9 @@ class AppLocalizationsFr extends AppLocalizations {
       'Erreur lors de la création du défi : ';
 
   @override
+  String get challengeCreationSuccessTitle => 'Défi créé avec succès';
+
+  @override
   String get challengeDetailsQuestionLabel => 'Question du défi :';
 
   @override

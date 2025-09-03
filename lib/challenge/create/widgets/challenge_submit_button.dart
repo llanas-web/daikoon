@@ -29,7 +29,13 @@ class ChallengeSubmitButton extends StatelessWidget {
       listener: (context, state) {
         switch (state.status) {
           case CreateChallengeStatus.success:
-            context.go('/challenge/${state.challengeId}');
+            openSnackbar(
+              SnackbarMessage.success(
+                title: context.l10n.challengeCreationSuccessTitle,
+              ),
+              clearIfQueue: true,
+            );
+            context.go('/home');
           case CreateChallengeStatus.error:
             openSnackbar(
               SnackbarMessage.error(

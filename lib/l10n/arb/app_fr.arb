@@ -439,6 +439,10 @@
   "@challengeCreationErrorTitle": {
     "description": "Title for the error dialog in the challenge creation page"
   },
+  "challengeCreationSuccessTitle": "Défi créé avec succès",
+  "@challengeCreationSuccessTitle": {
+    "description": "Title for the success dialog in the challenge creation page"
+  },
   "challengeDetailsQuestionLabel": "Question du défi :",
   "@challengeDetailsQuestionLabel": {
     "description": "Label for the question in the challenge details page"
