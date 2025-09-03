@@ -42,7 +42,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   void onOtpChanged(String newValue) {
     final previousScreenState = state;
     final previousOtpState = previousScreenState.otp;
-    final shouldValidate = previousOtpState.invalid;
+    final shouldValidate = previousOtpState.isNotValid;
     final newOtpState = shouldValidate
         ? Otp.dirty(
             newValue,
@@ -78,7 +78,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   void onPasswordChanged(String newValue) {
     final previousScreenState = state;
     final previousPasswordState = previousScreenState.password;
-    final shouldValidate = previousPasswordState.invalid;
+    final shouldValidate = previousPasswordState.isNotValid;
     final newPasswordState = shouldValidate
         ? Password.dirty(
             newValue,

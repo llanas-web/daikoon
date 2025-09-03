@@ -35,7 +35,7 @@ class Username extends FormzInput<String, UsernameValidationError>
       };
 
   @override
-  List<Object?> get props => [value, pure];
+  List<Object?> get props => [value, isPure];
 }
 
 /// Validation errors for [Username]. It can be empty or invalid.

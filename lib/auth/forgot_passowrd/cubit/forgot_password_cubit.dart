@@ -25,7 +25,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
   void onEmailChanged(String newValue) {
     final previousScreenState = state;
     final previousEmailState = previousScreenState.email;
-    final shouldValidate = previousEmailState.invalid;
+    final shouldValidate = previousEmailState.isNotValid;
     final newEmailState = shouldValidate
         ? Email.dirty(
             newValue,

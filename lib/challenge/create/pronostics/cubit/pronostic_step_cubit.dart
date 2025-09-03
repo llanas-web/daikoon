@@ -27,7 +27,7 @@ class PronosticStepCubit extends Cubit<PronosticStepState> {
   }
 
   void onQuestionChanged(String newValue) {
-    final shouldValidate = state.challengeQuestion.invalid;
+    final shouldValidate = state.challengeQuestion.isNotValid;
     final newChallengeQuestion = shouldValidate
         ? ChallengeQuestion.dirty(newValue)
         : ChallengeQuestion.pure(newValue);

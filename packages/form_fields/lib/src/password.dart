@@ -38,7 +38,7 @@ class Password extends FormzInput<String, PasswordValidationError>
       };
 
   @override
-  List<Object?> get props => [value, pure];
+  List<Object?> get props => [value, isPure];
 }
 
 /// Validation errors for [Password]. It can be empty or invalid.

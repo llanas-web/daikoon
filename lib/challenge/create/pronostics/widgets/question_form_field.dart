@@ -73,14 +73,14 @@ class _QuestionFormFieldState extends State<QuestionFormField> {
                 hintText: context.l10n.challengeCreationQuestionFormFieldHint,
                 filled: true,
                 filledColor: AppColors.white,
-                border:
-                    (!challengeQuestion.pure && challengeQuestion.error != null)
-                        ? const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppColors.red,
-                            ),
-                          )
-                        : InputBorder.none,
+                border: (!challengeQuestion.isPure &&
+                        challengeQuestion.error != null)
+                    ? const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppColors.red,
+                        ),
+                      )
+                    : InputBorder.none,
                 hintStyle: UITextStyle.hintText,
                 textController: _controller,
                 focusNode: _focusNode,

@@ -34,7 +34,7 @@ class OtpValidationCubit extends Cubit<OtpValidationState> {
   void onOtpChanged(String newValue) {
     final previousState = state;
     final previousOtp = previousState.otp;
-    final shouldValidate = previousOtp.invalid;
+    final shouldValidate = previousOtp.isNotValid;
     final newOtp = shouldValidate ? Otp.dirty(newValue) : Otp.pure(newValue);
     final newState = previousState.copyWith(otp: newOtp);
     emit(newState);
@@ -45,7 +45,7 @@ class OtpValidationCubit extends Cubit<OtpValidationState> {
 
     final currentState = state;
     final otp = currentState.otp;
-    if (otp.invalid) {
+    if (otp.isNotValid) {
       emit(currentState.copyWith(status: OtpValidationStatus.invalidOtp));
       return;
     }

@@ -26,7 +26,7 @@ class TitleStepCubit extends Cubit<TitleStepState> {
   }
 
   void onTitleChanged(String newValue) {
-    final shouldValidate = state.challengeTitle.invalid;
+    final shouldValidate = state.challengeTitle.isNotValid;
     final newChallengeTitle = shouldValidate
         ? ChallengeTitle.dirty(newValue)
         : ChallengeTitle.pure(newValue);
