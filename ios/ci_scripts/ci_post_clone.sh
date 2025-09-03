@@ -27,7 +27,7 @@ brew install cocoapods
 
 # Install CocoaPods dependencies.
 echo "Installing CocoaPods dependencies..."
-cd ios && pod install # run `pod install` in the `ios` directory.
+cd ios && pod install --repo-update # run `pod install` in the `ios` directory.
 
 flutter build ios --config-only --release --flavor production -t lib/main_production.dart
 
