@@ -70,7 +70,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   melos: ^7.0.0-dev.7
-  mockito: ^5.4.5
+  mockito: ^5.5.0
   mocktail: ^1.0.4
   rxdart: ^0.28.0
   very_good_analysis: ^7.0.0
