@@ -109,6 +109,14 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
       challengeId: _challengeId,
     );
 
+    final initialBets = await _challengeRepository
+        .fetchChallengeBets(challengeId: _challengeId)
+        .first;
+
+    final initialParticipants = await _challengeRepository
+        .fetchChallengeParticipant(challengeId: _challengeId)
+        .first;
+
     if (_participantsSubscription == null) {
       fetchParticipantsStream();
     }
@@ -119,8 +127,11 @@ class ChallengeDetailsCubit extends Cubit<ChallengeDetailsState> {
 
     emit(
       state.copyWith(
-        challenge: challenge,
+        challenge: challenge.copyWith(
+          participants: initialParticipants,
+        ),
         status: ChallengeDetailsStatus.loaded,
+        bets: initialBets,
       ),
     );
   }
